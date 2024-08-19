@@ -9,8 +9,8 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - Octopus Cloud
   - Engineering
+  - Octopus Cloud
   - Azure
 ---
 
@@ -18,7 +18,7 @@ Octopus Cloud runs reliably thousands of Octopus Server instances. In this post,
 
 ## What is Octopus Cloud
 
-Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you. You don’t need to download, install, and manage it yourself. Check out [our documentation](https://octopus.com/docs/octopus-cloud) if want to give it a try.
+Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you. An Octopus Server instance hosted in Octopus Cloud is called a Cloud instance. You don’t need to download, install, and manage it yourself. Check out [our documentation](https://octopus.com/docs/octopus-cloud) if want to give it a try.
 
 ## Foundations of Octopus Cloud
 
@@ -36,7 +36,7 @@ Octopus Cloud is currently deployed in [3 different Azure regions](https://octop
 
 #### Reef as a cell
 
-Resources deployed into each Azure region also follow the cell-based architecture. There is more than one reef in each region. A reef is a collection of Azure resources shared by a number of Cloud instances. A Cloud Instance is an Octopus Server instance hosted in Octopus Cloud. Reefs don’t share any resources, so an outage of one of the reefs in a region doesn’t affect all other reefs in that region.  
+Resources deployed into each Azure region also follow the cell-based architecture. There is more than one reef in each region. A reef is a collection of Azure resources shared by a number of Cloud instances. Reefs don’t share any resources, so an outage of one of the reefs in a region doesn’t affect all other reefs in that region.  
 
 Fun fact. We've picked `Reef` as the name because this is where octopuses usually live in tropical waters. The other popular contender was Octopus Cloud region, but we felt that it might get easily confused with Azure region.
 
