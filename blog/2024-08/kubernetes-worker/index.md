@@ -13,16 +13,15 @@ tags:
   - Kubernetes
   - Workers
 ---
-The words belong to go together - but it took a bit of work to make it happen.
+The words belong to go together; it took some work, but we've made it happen.
 
 The story starts with the recently completed [Octopus Deploy Kubernetes Agent](https://octopus.com/blog/kubernetes-agent).
 
-The Kubernetes Agent was our "man on the inside", simplifying deployments into the cluster.
-
+The Kubernetes Agent was our "man on the inside", simplifying deployments into a Kubernetes cluster. 
 It allowed Deployments to execute Kubernetes commands, from _within_ the cluster.
 
-We've now built a Kubernetes Worker - an extension on the Agent, which is able to execute any workload in the cluster (not just Kubernetes commands!).
-
+We've now built a Kubernetes Worker - an extension to the Agent, which is able to execute any workload in the cluster 
+(not just Kubernetes commands!).
 
 # Background
 To appreciate how this upgrade helps you. it's worth explaining the types of machines involved in an deployment:
