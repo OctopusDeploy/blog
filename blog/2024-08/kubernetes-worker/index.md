@@ -24,7 +24,7 @@ We've now built a Kubernetes Worker - an extension to the Agent, which is able t
 (not just Kubernetes commands!).
 
 ## Background
-To appreciate how this upgrade helps you, it's worth explaining the types of machines involved in an deployment:
+To appreciate how this new capability helps you, it's worth explaining the types of machines involved in an deployment:
 
 1. Deployment Targets - machines which host runtime software packages
 2. Workers - compute resources required to execute the deployment process.
@@ -32,10 +32,13 @@ To appreciate how this upgrade helps you, it's worth explaining the types of mac
 We’re only going to deal with Workers here - i.e. computers required during a deployment, but are otherwise idle.
 
 When you use a physical or virtual machine as a worker - it works hard at deployment time, but is probably remaining
-unused between deployments. Which is disappointingly wasteful.
+unused between deployments. Which is a little disappointing.
 
-Whereas with a Kubernetes Worker, the worker releases hardware resources when not in use. Meaning the resources are free for other tasks , or can released to your cloud provider.
-On the flip-side, when workload is high, Kubernetes can increase the available hardware to prevent starving tasks.
+Whereas with a Kubernetes worker, each requested operation is executed in a new Kubernetes Pod (horizontal scaling), which
+eventually applies pressure to the cluster - causing more hardware to be provisioned.
+
+As work completes, the pods terminate, and the cluster can either allocate those resources to other tasks, or release them.
+
 This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
 
 ## Is this for you?
