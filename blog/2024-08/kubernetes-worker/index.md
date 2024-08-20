@@ -78,27 +78,34 @@ This wizard will guide you through a series of steps to capture values defining 
 The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle.It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
 
 # Inbuilt tooling 
-When work-packages are sent to the Kubernetes Worker, the actual operation is executed within a Pod which is using Octopus Deploy’s [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image.
+When work-packages are sent to the Kubernetes Worker, the actual operation is executed within an Octopus Deploy [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) container.
 
 If the worker-tools is not appropriate for your workloads, two options exist:
-1. Override the default container on the specific deployment step (as per standard workers), or
+1. Override the default container on the specific deployment step (as per standard workers),
 2. Change the image used by all Worker operations via the chart's `values`.
 
 # How to customize the Kubernetes worker
-The installation workflow will produce a Kubernetes worker which is appropriate for 90% of workloads you want to execute.
+The installation wizard creates a Kubernetes worker which is appropriate for 90% of expected workloads.
 
-But may aspects of the worker can be configured via its `Values` - at this stage, all customisations must be performed via the command
+For the rest,  manual customization is available.
+
+Many aspects of the worker can be configured via its `Values`. Fopr now, these customisations must be performed via the command
 line using a Helm upgrade command (or setting them manually during initial install).
 
 The full list of customisations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
 
 # Easy ways to try it out!
-The Kubernetes Worker has been proven to work in a variety of clusters - if its something you'd like to try out, we recommend using
+The Kubernetes Worker has been proven to work in a variety of clusters - if it's something you'd like to try, we recommend using
+a lightweight Kubernetes cluster such as:
+* [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download)
+* [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
+As part of install, each of these will configure a kubernetes context in your terminal, allowing helm to connect to the installed
+cluster.
 
 # When do I get to use it?
 It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3 - so give it a few weeks.
 
 # More information & support
-The OctopusDeploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our community slack, or direct to our support in case of trouble.
+The OctopusDeploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
 
