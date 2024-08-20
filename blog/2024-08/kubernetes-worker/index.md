@@ -24,14 +24,17 @@ We've now built a Kubernetes Worker - an extension to the Agent, which is able t
 (not just Kubernetes commands!).
 
 # Background
-To appreciate how this upgrade helps you. it's worth explaining the types of machines involved in an deployment:
+To appreciate how this upgrade helps you, it's worth explaining the types of machines involved in an deployment:
 
 1. Deployment Targets - machines which host runtime software packages
-2. Workers - compute resources required to execute aspects of a deployment process.
+2. Workers - compute resources required to execute the deployment process.
 
 We’re only going to deal with Workers here - i.e. computers required during a deployment, but are otherwise idle.
 
-With a Kubernetes Worker, the worker releases hardware resources when not in use. Meaning the resources are free for other tasks , or can released to your cloud provider.
+When you use a physical or virtual machine as a worker - it works hard at deployment time, but is probably remaining
+unused between deployments. Which is disappointingly wasteful.
+
+Whereas with a Kubernetes Worker, the worker releases hardware resources when not in use. Meaning the resources are free for other tasks , or can released to your cloud provider.
 On the flip-side, when workload is high, Kubernetes can increase the available hardware to prevent starving tasks.
 This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
 
@@ -103,7 +106,7 @@ As part of install, each of these will configure a kubernetes context in your te
 cluster.
 
 # When do I get to use it?
-It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3 - so give it a few weeks.
+It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3, which is coming out in a few weeks.
 
 # More information & support
 The OctopusDeploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
