@@ -22,18 +22,19 @@ Turns out - the Kubernetes Agent was a great platform to extend into a general w
 # Background
 To appreciate the greatness of this change, it’s helpful to understand how Octopus Deploy executes deployments.
 
-In a deployment, there can be two types of machine required:
+In a deployment, there are two types of machines required:
 1. Deployment Targets - machines which host runtime software packages
 2. Workers - compute resources required to execute aspects of a deployment process
 
 We’re just going to deal with Workers here - i.e. computers required to execute a deployment, but are otherwise idling.
 
-This is where the Kubernetes Worker comes in - a worker which automatically scales up and down based on demanded workload. Thus reducing the running, and upkeep costs associated with physical and virtual Octopus workers.
+This is where the Kubernetes Worker comes in - a worker which automatically scales up and down based on demanded workload. 
+Thus reducing the running, and upkeep costs associated with physical and virtual Octopus workers, which are largely idle.
 
 # Kubernetes Autoscaling Worker
 The Kubernetes Worker is a specialized kubernetes-specific tentacle (add link) - a lightweight application responsible for executing work-packages received from an OctopusServer.
 
-On reception of a work-package, the Kuberentes Worker creates a new Kubernetes Pod using the requested container (or a sensible default), executes the work/script, and feeds the log output back to the requesting server.
+On reception of a work-package, the Kubernetes Worker creates a new Kubernetes Pod using the requested container (or a sensible default), executes the work/script, and feeds the log output back to the requesting server.
 
 Every work package gets a new pod - which eventually applies pressure to the cluster - causing new nodes to be added as required.
 
@@ -57,29 +58,46 @@ The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](htt
 This wizard will guide you through a series of steps to capture values defining your worker, and provide the Helm command required to install the defined worker.
 
 1. In the sidebar menu, navigate to Deploy → Infrastructure → Workers → Add Worker → Add Worker → Kubernetes
+
 ![Add Kubernetes Worker](add-kubernetes-worker.png)
 
 2. This launches the Kubernetes Worker installation wizard. Here you can name the worker, specify (and create) the worker pool(s) to which it should belong. To create a new Worker Pool, select the “+” symbol to dropdown required pool creation fields.
+
 ![Set Kubernetes Worker Properties](add-kubernetes-worker-properties.png)
 
 3. The Kubernetes worker needs a shared filesystem. You have the option of providing an existing storage class (under “Show Advanced”) or using a default Network File System (NFS) storage pod. The NFS storage pod is an easy, low-configuration storage option that doesn’t need extra volumes or storage classes to be configured in the cluster first. To use NFS storage, you must install an extra Helm chart.
+
 ![Install NFS Helm Chart](install-nfs-helm-chart.png)
 
 4. At the end of the wizard, Octopus generates a Helm command that you copy and paste into a terminal connected to the target cluster. After it’s executed, Helm intsalls all the required resources and starts the agent.
+
 ![Install Kubernetes Worker Helm Chart](install-kubernetes-worker-helm-chart.png)
 
 5. If left open, the installation dialog waits for the worker to establish a connection and run a health check. Once successful, the Kubernetes worker is ready for use!
+
 ![Kubernetes Worker Installed Successfully](kubernetes-helm-chart-installed-success.png)
 
 # How does it communicate?
 The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle.It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
 
 # Inbuilt Tooling 
-When work-packages are sent to the Kuberentes Worker, the actual operation is executed within a Pod which is using Octopus Deploy’s [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image.
+When work-packages are sent to the Kubernetes Worker, the actual operation is executed within a Pod which is using Octopus Deploy’s [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image.
 
-# How to Optimize the Kubernetes Worker
+If the worker-tools is not appropriate for your workloads, two options exist:
+1. Override the default container on the specific deployment step (as per standard workers), or
+2. Change the image used by all Worker operations via the chart's `values`.
+
+# How to Customize the Kubernetes Worker
+The installation workflow will produce a Kubernetes worker which is appropriate for 90% of workloads you want to execute.
+
+But may aspects of the worker can be configured via its `Values` - at this stage, all customisations must be performed via the command
+line using a Helm upgrade command (or setting them manually during initial install).
+
+The full list of customisations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
 
 # Easy Ways to Try It Out!
+The Kubernetes Worker has been proven to work in a variety of clusters - if its something you'd like to try out, we recommend using
+
 
 # When do I get to use it?
 It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3 - so give it a few weeks.
