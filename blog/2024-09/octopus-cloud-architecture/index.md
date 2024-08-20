@@ -18,11 +18,11 @@ Octopus Cloud runs reliably thousands of Octopus Server instances. In this post,
 
 ## What is Octopus Cloud
 
-Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you. An Octopus Server instance hosted in Octopus Cloud is called a Cloud instance. You don’t need to download, install, and manage it yourself. Check out [our documentation](https://octopus.com/docs/octopus-cloud) if want to give it a try.
+Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you and we call it a Cloud instance. You don’t need to download, install, and manage it yourself. Check out [our documentation](https://octopus.com/docs/octopus-cloud) if want to give it a try.
 
 ## Foundations of Octopus Cloud
 
-We've designed Octopus Cloud to be a distributed system that can withstand partial infrastructure outages. To achieve this high-level goal we've broken it down into a set of guiding principles, which the engineering team at Octopus has been following since the inception of the product.
+We've designed Octopus Cloud to be a distributed system that can withstand partial infrastructure outages. To achieve this high-level goal we've broken this high level goal down into a set of guiding principles, which the engineering team at Octopus has been following since the inception of the product.
 
 ### Avoid single point of failure
 
@@ -32,7 +32,7 @@ Octopus Cloud is based on what’s sometimes called a cell-based architecture. A
 
 #### Azure region as a cell
 
-Octopus Cloud is currently deployed in [3 different Azure regions](https://octopus.com/docs/octopus-cloud#octopus-cloud-hosting-locations) and can be easily deployed to more regions if we see enough demand there. Resources used by Octopus Cloud in each Azure region are fully isolated from each other. This means that an outage in `West US 2` region will only affect customers hosted in that region, and won't affect customers hosted in `West Europe` and `Australia East` regions.
+Octopus Cloud is currently deployed in [3 different Azure regions](https://octopus.com/docs/octopus-cloud#octopus-cloud-hosting-locations) and can be deployed to more regions if we see enough demand there. Resources used by Octopus Cloud in each Azure region are fully isolated from each other. This means that an outage in `West US 2` region will only affect customers hosted in that region, and won't affect customers hosted in `West Europe` and `Australia East` regions.
 
 #### Reef as a cell
 
@@ -51,27 +51,27 @@ Octopus Cloud provides Cloud instances with an Azure version of each of the requ
 
 ![Mapping of Octopus Server resource requirements to Azure resources provided by Octopus Cloud](resources.png)
 
-This is where the strict isolation driven by the cell-based approach used at the region and reef level changes from a binary proposition to a wide range of options. 
+This is where the strict isolation driven by the cell-based approach used at the region and reef level changes from a binary proposition to a spectrum of options. 
 
 At one end of the spectrum, we can host a single instance on its own dedicated reef. This is a very powerful option, but we avoid using it because it’s not cost-effective.
 
 At the other end of the spectrum, hundreds of instances can run on a single reef and share a single Azure SQL elastic pool, a single AKS cluster, and a single Azure storage account. This option works well for Cloud instances that are active at different times of the day and don’t generate a lot of load.
 
-Finally, we have a few options in between these 2 extremes. For example, a busy Cloud instance will have dedicated resources assigned to its database but more than likely it will share its K8s cluster and storage account with other instances.
+Finally, we have a few options in between these 2 extremes. For example, a busy Cloud instance might have dedicated resources assigned to its database but more than likely it will share its K8s cluster and storage account with other Cloud instances.
  
-Each Cloud instance has its own database and a file share, which allows us to use built-in Azure tools for managing backup and restore processes.
+Side note. The fact that each Cloud instance has its own database and a file share, also allows us to use built-in Azure tools for managing backup and restore processes. 
 
 ### Design for gradual rollouts
 
 The cell-based architecture lends itself to gradual rollouts because the infrastructure in each reef and region can be upgraded independently. This reduces the risk of a change causing an outage that affects the whole of Octopus Cloud. As much as nobody likes outages, an outage that affects hundreds of instances is a better place to be than an outage that affects thousands of instances. 
 
-The decision to provision a dedicated file share and a database for each Cloud instance also helps with the gradual rollout of the Octopus Server changes because each instance can be upgraded and downgraded in isolation. That wouldn't be an easy goal to achieve if, for example, more than one Cloud instance shared the same database via database schemas or a similar mechanism that implements multi-tenancy.
+The decision to provision a dedicated file share and a database for each Cloud instance also helps with the gradual rollout of the Octopus Server changes because each instance can be upgraded and downgraded independently. That wouldn't be an easy goal to achieve if, for example, more than one Cloud instance shared the same database via database schemas or a similar mechanism that implements multi-tenancy.
 
 ### Scalable by default
 
-This is again where cell-based architecture shines. We can scale the infrastructure of Octopus Cloud easily by adding new reefs. As a side note, we can also assign individual resource limits to each Cloud instance.
+This is again where cell-based architecture shines. We can scale the infrastructure of Octopus Cloud easily by adding new reefs. We can also assign individual resource limits to each Cloud instance.
 
-Fun fact. We had an event a few years ago when Octopus Cloud doubled the number of active Cloud instances within 48-72 hours, and nothing broke. No existing customers were affected and Octopus simply paid a higher hosting bill that month.
+Fun fact. We had an event a few years ago when Octopus Cloud doubled the number of active Cloud instances within 48-72 hours, and nothing broke. No existing customers were affected and Octopus simply paid a higher hosting bill that month. 
 
 ### Avoid temporal coupling
 
@@ -85,9 +85,9 @@ In the context of [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem), Octo
 
 ### Use officially supported APIs only
 
-Octopus Cloud glues together several 3rd party services using their APIs. This might sound like an obvious choice. That said, we’ve extended this approach also to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting that isn't exposed via a public API, then we will add a new API and won't modify this setting directly in the database.
+Octopus Cloud glues together several 3rd party services using their APIs. This might sound like an obvious choice. That said, we’ve extended this approach also to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting that isn't exposed via a public API, then we will add a new API. We won't modify this setting directly in the database even though we could do that.
 
-Fun fact: After years of using APIs from major service and Cloud providers, we've learnt that very few of them follow [SemVer](https://semver.org/), and changes to runtime characteristics (e.g., a synchronous operation becomes asynchronous and vice versa) happen all the time and without any notice. 
+Fun fact: After years of using APIs from major service and Cloud providers, we've learnt that very few of them follow [SemVer](https://semver.org/), and changes to runtime characteristics (e.g. a synchronous operation becomes asynchronous and vice versa) happen all the time and without any notice. 
 
 ## Developer productivity
 
