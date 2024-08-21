@@ -97,7 +97,7 @@ For the rest, manual customization is available.
 Many aspects of the worker can be configured via its `Values`. Fopr now, these customisations must be performed via the command
 line using a Helm upgrade command (or setting them manually during initial install).
 
-The full list of customisations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
+The full list of customizations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
 
 ## Easy ways to try it out!
 The Kubernetes Worker has been proven to work in a variety of clusters - if it's something you'd like to try, we recommend using
