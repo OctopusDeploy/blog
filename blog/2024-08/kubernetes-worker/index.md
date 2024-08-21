@@ -35,7 +35,7 @@ When you use a physical or virtual machine as a worker - it works hard at deploy
 unused between deployments. Which is a little disappointing.
 
 Whereas with a Kubernetes worker, each requested operation is executed in a new Kubernetes Pod (horizontal scaling), which
-eventually applies pressure to the cluster - causing more hardware to be provisioned.
+eventually applies pressure to the cluster - causing additional resources to be provisioned.
 
 As work completes, the pods terminate, and the cluster can either allocate those resources to other tasks, or release them.
 
@@ -87,14 +87,14 @@ When work-packages are sent to the Kubernetes Worker, the actual operation is ex
 
 If the worker-tools is not appropriate for your workloads, two options exist:
 1. Override the default container on the specific deployment step (as per standard workers),
-2. Change the image used by all Worker operations via the chart's `values`.
+2. Change the image used by all Worker operations via the chart's `Values`.
 
 ## How to customize the Kubernetes worker
 The installation wizard creates a Kubernetes worker which is appropriate for 90% of expected workloads.
 
 For the rest,  manual customization is available.
 
-Many aspects of the worker can be configured via its `Values`. Fopr now, these customisations must be performed via the command
+Many aspects of the worker can be configured via its `Values`. For now, these customisations must be performed via the command
 line using a Helm upgrade command (or setting them manually during initial install).
 
 The full list of customisations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
