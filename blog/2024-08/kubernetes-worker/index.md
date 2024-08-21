@@ -93,7 +93,7 @@ If the worker-tools is not appropriate for your workloads, two options exist:
 2. Change the image used by all Worker operations via the chart's `Values`.
 
 ## How to customize the Kubernetes worker
-The installation wizard creates a Kubernetes worker which is appropriate for a majority of expected workloads.
+The installation wizard creates a Kubernetes worker which is appropriate for a majority of workloads.
 
 For the rest, manual customization is available.
 
