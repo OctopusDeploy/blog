@@ -31,13 +31,16 @@ To appreciate how this new capability helps you, it's worth explaining the types
 
 We’re only going to deal with Workers here - i.e. computers required during a deployment, but are otherwise idle.
 
-When you use a physical or virtual machine as a worker - it works hard at deployment time, but is probably remaining
-unused between deployments. Which is a little disappointing.
+When using a physical or virtual machine as a worker, it must be adequately provisioned to handle peak-deployment loads.
+Unfortunately, the worker machine holds onto those resources between deployments, when no operations are executing.
+Which is a little disappointing.
 
-Whereas with a Kubernetes worker, each requested operation is executed in a new Kubernetes Pod (horizontal scaling), which
-eventually applies pressure to the cluster - causing additional resources to be provisioned.
+With a Kubernetes worker, once a deployment is complete the hardware resources used are given back to the cluster.
+Allowing the cluster to repurpose them, or release them.
 
-As work completes, the pods terminate, and the cluster can either allocate those resources to other tasks, or release them.
+The Kubernetes worker executes each deployment task in a new Kubernetes Pod (horizontal scaling).
+When sufficient pressure is applied to the cluster, additional resources are automatically provisioned. Then as work completes and the 
+pods terminate, the additional resources are returned to the cluster.
 
 This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
 
@@ -90,7 +93,7 @@ If the worker-tools is not appropriate for your workloads, two options exist:
 2. Change the image used by all Worker operations via the chart's `Values`.
 
 ## How to customize the Kubernetes worker
-The installation wizard creates a Kubernetes worker which is appropriate for 90% of expected workloads.
+The installation wizard creates a Kubernetes worker which is appropriate for a majority of expected workloads.
 
 For the rest, manual customization is available.
 
