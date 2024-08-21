@@ -17,7 +17,7 @@ The words belong to go together; it took some work, but we've made it happen.
 
 The story starts with the recently completed [Octopus Deploy Kubernetes Agent](https://octopus.com/blog/kubernetes-agent).
 
-The Kubernetes Agent was our "man on the inside", simplifying deployments into a Kubernetes cluster. 
+The Kubernetes Agent was our "contact on the inside", simplifying deployments into a Kubernetes cluster. 
 It allowed Deployments to execute Kubernetes commands, from _within_ the cluster.
 
 We've now built a Kubernetes Worker - an extension to the Agent, which is able to execute any workload in the cluster 
