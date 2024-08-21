@@ -42,7 +42,7 @@ As work completes, the pods terminate, and the cluster can either allocate those
 This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
 
 ## Is this for you?
-OctopusDeploy provides a number of ways for you to provide Worker compute resources:
+Octopus Deploy provides a number of ways for you to provide Worker compute resources:
 
 1. Taking it directly from your Octopus Server instance
     i. Great place to start, and fine for smaller installations, but can be limiting in large systems
@@ -52,10 +52,10 @@ OctopusDeploy provides a number of ways for you to provide Worker compute resour
 The Kubernetes worker is may not reduce complexity for the first groups. 
 Whereas group-3 is likely to see significant benefits through reduced worker-management.
 
-So if you're in group-3, you may find the Kubernetes Worker allows you to replace a fleet of workers machines, with a single Kubernetes Worker. One which will scale with your workloads.
+So if you're in group-3, you may find the Kubernetes Worker allows you to replace a fleet of worker-machines, with a single Kubernetes Worker. One that will scale with your workloads.
 
 ## How To install the Kubernetes worker
-The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the OctopusDeploy Web portal.
+The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the Octopus Deploy Web portal.
 
 This wizard will guide you through a series of steps to capture values defining your worker, and provide the Helm command required to install the defined worker.
 
@@ -80,7 +80,7 @@ This wizard will guide you through a series of steps to capture values defining 
 ![Kubernetes Worker Installed Successfully](kubernetes-helm-chart-installed-success.png)
 
 ## How does it communicate?
-The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle.It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
+The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle. It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
 
 ## Inbuilt tooling 
 When work-packages are sent to the Kubernetes Worker, the actual operation is executed within an Octopus Deploy [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) container.
@@ -92,12 +92,12 @@ If the worker-tools is not appropriate for your workloads, two options exist:
 ## How to customize the Kubernetes worker
 The installation wizard creates a Kubernetes worker which is appropriate for 90% of expected workloads.
 
-For the rest,  manual customization is available.
+For the rest, manual customization is available.
 
 Many aspects of the worker can be configured via its `Values`. For now, these customisations must be performed via the command
 line using a Helm upgrade command (or setting them manually during initial install).
 
-The full list of customisations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
+The full list of customizations are documented in the `Readme.md` of the [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent).
 
 ## Easy ways to try it out!
 The Kubernetes Worker has been proven to work in a variety of clusters - if it's something you'd like to try, we recommend using
@@ -112,5 +112,5 @@ cluster.
 It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3, which is coming out in a few weeks.
 
 ## More information & support
-The OctopusDeploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
+The Octopus Deploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
 
