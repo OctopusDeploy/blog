@@ -50,10 +50,12 @@ Octopus Deploy provides a number of ways for you to provide Worker compute resou
 2. If cloud-hosted, you may be using the Dynamic Workers supplied in cloud
 3. Self-managed VMs or physical machines.
 
-The Kubernetes worker is may not reduce complexity for the first groups. 
+The Kubernetes worker may not reduce complexity for the first groups. 
 Whereas group-3 is likely to see significant benefits through reduced worker-management.
 
-So if you're in group-3, you may find the Kubernetes Worker allows you to replace a fleet of worker-machines, with a single Kubernetes Worker. One that will scale with your workloads.
+So if you're in group-3 you may find the Kubernetes worker allows you to replace a fleet of worker-machines, with a single Kubernetes Worker. One that will scale with your workloads.
+
+You don't need to be deploying to Kubernetes, nor be an expert Kubernetes user to benefit Kubernetes worker.
 
 ## How To install the Kubernetes worker
 The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the Octopus Deploy Web portal.
