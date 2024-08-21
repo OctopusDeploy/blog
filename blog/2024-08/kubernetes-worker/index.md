@@ -55,7 +55,7 @@ Whereas group-3 is likely to see significant benefits through reduced worker-man
 So if you're in group-3, you may find the Kubernetes Worker allows you to replace a fleet of workers machines, with a single Kubernetes Worker. One which will scale with your workloads.
 
 ## How To install the Kubernetes worker
-The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the OctopusDeploy Web portal.
+The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the Octopus Deploy Web portal.
 
 This wizard will guide you through a series of steps to capture values defining your worker, and provide the Helm command required to install the defined worker.
 
