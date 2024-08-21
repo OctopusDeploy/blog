@@ -36,7 +36,7 @@ Octopus Cloud is currently deployed in [3 different Azure regions](https://octop
 
 #### Reef as a cell
 
-Resources deployed into each Azure region also follow the cell-based architecture. There's more than one reef in each region. A reef is a collection of Azure resources shared by several Cloud instances. Reefs don't share any resources, so an outage of one reef in a region doesn't affect other reefs in that region.  
+Resources deployed into each Azure region also follow the cell-based architecture and are split into multiple reefs. A reef is a collection of Azure resources shared by several Cloud instances. Reefs don't share any resources, so an outage of one reef in a region doesn't affect other reefs in that region.  
 
 Fun fact: We picked **reef** as the name because this is where octopuses usually live in tropical waters. The other popular contender was Octopus Cloud region, but we decided it might get easily confused with Azure region.
 
