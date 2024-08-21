@@ -112,5 +112,5 @@ cluster.
 It’s on Cloud instances already, and will be available to self-hosted customers in 2024.3, which is coming out in a few weeks.
 
 ## More information & support
-The OctopusDeploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
+The Octopus Deploy documentation suite covers the use of the Kubernetes Worker, otherwise reach out to our [community slack](https://octopususergroup.slack.com/archives/CBQ3FPQAH), or direct to our support in case of trouble.
 
