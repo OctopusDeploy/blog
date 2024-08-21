@@ -80,7 +80,7 @@ This wizard will guide you through a series of steps to capture values defining 
 ![Kubernetes Worker Installed Successfully](kubernetes-helm-chart-installed-success.png)
 
 ## How does it communicate?
-The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle.It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
+The Kubernetes Worker uses the same polling communications protocol as Octopus Tentacle. It lets the worker connect from the cluster to Octopus Server (via proxy as required), solving potential network access issues.
 
 ## Inbuilt tooling 
 When work-packages are sent to the Kubernetes Worker, the actual operation is executed within an Octopus Deploy [Worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) container.
