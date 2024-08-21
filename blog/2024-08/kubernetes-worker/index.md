@@ -42,7 +42,7 @@ As work completes, the pods terminate, and the cluster can either allocate those
 This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
 
 ## Is this for you?
-OctopusDeploy provides a number of ways for you to provide Worker compute resources:
+Octopus Deploy provides a number of ways for you to provide Worker compute resources:
 
 1. Taking it directly from your Octopus Server instance
     i. Great place to start, and fine for smaller installations, but can be limiting in large systems
