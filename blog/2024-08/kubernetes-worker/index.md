@@ -13,8 +13,6 @@ tags:
   - Kubernetes
   - Workers
 ---
-The words belong to go together; it took some work, but we've made it happen.
-
 The story starts with the recently completed [Octopus Deploy Kubernetes Agent](https://octopus.com/blog/kubernetes-agent).
 
 The Kubernetes Agent was our "contact on the inside", simplifying deployments into a Kubernetes cluster. 
