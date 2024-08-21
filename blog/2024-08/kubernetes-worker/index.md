@@ -38,20 +38,19 @@ The Kubernetes worker executes each deployment task in a new Kubernetes Pod (hor
 Additional resources are automatically provisioned when sufficient pressure is applied to the cluster. Then, as work is completed and the
 pods terminate, the additional resources are returned to the cluster.
 
-This reduces the running and maintenance costs associated with maintaining a fleet of physical (or virtual) worker machines.
+This reduces the running and maintenance costs associated with a fleet of physical (or virtual) worker machines.
 
 ## Is this for you?
-Octopus Deploy provides a number of ways for you to provide Worker compute resources:
+Until now, resources required for workers could come from a variety of places:
 
-1. Taking it directly from your Octopus Server instance
+1. Directly from your Octopus Server instance
    i. It is a great place to start and acceptable for smaller installations but can be limiting in large systems
-2. If cloud-hosted, you may be using the Dynamic Workers supplied in the cloud
+2. If cloud-hosted, you may be using the Dynamic Workers supplied by the Octopus Deploy cloud platform
 3. Self-managed VMs or physical machines.
 
-The Kubernetes worker may not reduce complexity for the first groups.
-Group 3 is likely to see significant benefits through reduced worker management.
+The Kubernetes worker may not reduce complexity for the first two groups. 
 
-So, if you're in group 3, you may find that the Kubernetes worker allows you to replace a fleet of worker machines with a single Kubernetes Worker that will scale with your workloads.
+But, if you're in group 3, you may find that the Kubernetes worker allows you to replace a fleet of worker machines with a single Kubernetes Worker that will scale with your workloads.
 
 You don't need to deploy to Kubernetes or be an expert Kubernetes user to benefit from the Kubernetes worker.
 
