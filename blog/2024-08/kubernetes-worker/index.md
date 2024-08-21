@@ -15,47 +15,45 @@ tags:
 ---
 The story starts with the recently completed [Octopus Deploy Kubernetes Agent](https://octopus.com/blog/kubernetes-agent).
 
-The Kubernetes Agent was our "contact on the inside", simplifying deployments into a Kubernetes cluster. 
-It allowed Deployments to execute Kubernetes commands, from _within_ the cluster.
+The Kubernetes Agent was our "contact on the inside", simplifying deployments into a Kubernetes cluster.
+It allowed Deployments to execute Kubernetes commands from _within_ the cluster.
 
-We've now built a Kubernetes Worker - an extension to the Agent, which is able to execute any workload in the cluster 
-(not just Kubernetes commands!).
+We've now built a Kubernetes Worker — an extension to the Agent that can execute _any_ workload in the cluster (not just Kubernetes commands!).
 
 ## Background
-To appreciate how this new capability helps you, it's worth explaining the types of machines involved in an deployment:
+To appreciate how this new capability helps you, it's worth explaining the types of machines involved in a deployment:
 
-1. Deployment Targets - machines which host runtime software packages
+1. Deployment Targets - machines that host runtime software packages
 2. Workers - compute resources required to execute the deployment process.
 
-We’re only going to deal with Workers here - i.e. computers required during a deployment, but are otherwise idle.
+We will only deal with workers here, i.e., computers required during a deployment that are otherwise idle.
 
 When using a physical or virtual machine as a worker, it must be adequately provisioned to handle peak-deployment loads.
-Unfortunately, the worker machine holds onto those resources between deployments, when no operations are executing.
-Which is a little disappointing.
+Unfortunately, when no operations are executing, the worker machine holds onto those resources! Which is a little disappointing.
 
-With a Kubernetes worker, once a deployment is complete the hardware resources used are given back to the cluster.
-Allowing the cluster to repurpose them, or release them.
+With a Kubernetes worker, once a deployment is complete, the hardware resources used are returned to the cluster.
+Allowing the cluster to repurpose or release them.
 
 The Kubernetes worker executes each deployment task in a new Kubernetes Pod (horizontal scaling).
-When sufficient pressure is applied to the cluster, additional resources are automatically provisioned. Then as work completes and the 
+Additional resources are automatically provisioned when sufficient pressure is applied to the cluster. Then, as work is completed and the
 pods terminate, the additional resources are returned to the cluster.
 
-This reduces the running and maintenance costs associated a fleet of physical (or virtual) worker machines.
+This reduces the running and maintenance costs associated with maintaining a fleet of physical (or virtual) worker machines.
 
 ## Is this for you?
 Octopus Deploy provides a number of ways for you to provide Worker compute resources:
 
 1. Taking it directly from your Octopus Server instance
-    i. Great place to start, and fine for smaller installations, but can be limiting in large systems
-2. If cloud-hosted, you may be using the Dynamic Workers supplied in cloud
+   i. It is a great place to start and acceptable for smaller installations but can be limiting in large systems
+2. If cloud-hosted, you may be using the Dynamic Workers supplied in the cloud
 3. Self-managed VMs or physical machines.
 
-The Kubernetes worker may not reduce complexity for the first groups. 
-Whereas group-3 is likely to see significant benefits through reduced worker-management.
+The Kubernetes worker may not reduce complexity for the first groups.
+Group 3 is likely to see significant benefits through reduced worker management.
 
-So if you're in group-3 you may find the Kubernetes worker allows you to replace a fleet of worker-machines, with a single Kubernetes Worker. One that will scale with your workloads.
+So, if you're in group 3, you may find that the Kubernetes worker allows you to replace a fleet of worker machines with a single Kubernetes Worker that will scale with your workloads.
 
-You don't need to be deploying to Kubernetes, nor be an expert Kubernetes user to benefit Kubernetes worker.
+You don't need to deploy to Kubernetes or be an expert Kubernetes user to benefit from the Kubernetes worker.
 
 ## How To install the Kubernetes worker
 The Kubernetes Worker can be installed via the Kubernetes Agent [helm chart](https://hub.docker.com/r/octopusdeploy/kubernetes-agent) - you can do this manually via the command-line, but a far simpler method is to use the “installation wizard” provided by the Octopus Deploy Web portal.
