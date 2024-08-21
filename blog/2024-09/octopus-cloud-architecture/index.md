@@ -18,7 +18,7 @@ Octopus Cloud reliably runs thousands of Octopus Server instances. In this post,
 
 ## What is Octopus Cloud
 
-Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you and we call it a Cloud instance. You don’t need to download, install, and manage it yourself. Check out [our documentation](https://octopus.com/docs/octopus-cloud) if want to give it a try.
+Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you and we call it a Cloud instance. You don’t need to download, install, and manage it yourself. You can create [a free instance](https://octopus.com/start) if you want to give a try.
 
 ## Foundations of Octopus Cloud
 
@@ -61,7 +61,7 @@ At the other end of the spectrum, hundreds of instances can run on a single reef
 Finally, we have a few options between these 2 extremes. For example, a busy Cloud instance might have dedicated resources assigned to its database, but likely shares its Kubernetes cluster and storage account with other Cloud instances.
 
 :::hint
-Because each Cloud instance has its own database and a file share, we can use built-in Azure tools to manage backup and restore processes.
+Because each Cloud instance has its own database and a file share, we can use built-in Azure tools to manage [backup and restore processes](https://octopus.com/docs/octopus-cloud/disaster-recovery).
 :::
 
 ### Designing for gradual rollouts
