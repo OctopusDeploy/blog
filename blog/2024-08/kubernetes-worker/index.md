@@ -92,7 +92,7 @@ If the worker-tools is not appropriate for your workloads, two options exist:
 ## How to customize the Kubernetes worker
 The installation wizard creates a Kubernetes worker which is appropriate for 90% of expected workloads.
 
-For the rest,  manual customization is available.
+For the rest, manual customization is available.
 
 Many aspects of the worker can be configured via its `Values`. Fopr now, these customisations must be performed via the command
 line using a Helm upgrade command (or setting them manually during initial install).
