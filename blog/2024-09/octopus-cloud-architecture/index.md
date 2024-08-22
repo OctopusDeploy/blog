@@ -14,7 +14,7 @@ tags:
   - Azure
 ---
 
-Octopus Cloud reliably runs thousands of Octopus Server instances. In this post, I explain the architecture that underpins this complex distributed system.
+Octopus Cloud reliably hosts thousands of Octopus Deploy customers. In this post, I explain the architecture that underpins this complex distributed system.
 
 ## What is Octopus Cloud
 
