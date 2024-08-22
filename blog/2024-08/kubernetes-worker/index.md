@@ -26,7 +26,7 @@ In this post, I explain how it works and how you can use it.
 
 To appreciate how this new worker helps you, it's worth explaining the types of machines involved in a deployment: 
 
-1. Deployment targets - machines that host runtime software packages
+1. Deployment targets - machines that host runtime software packages.
 2. Workers - compute resources to execute the deployment process. 
 
 We'll only deal with workers here – computers needed during a deployment that are otherwise idle. 
@@ -100,8 +100,8 @@ For the full list of customizations, you can refer to the [Helm chart README.md]
 
 The Kubernetes worker works in a variety of clusters. If it's something you'd like to try, we recommend using a lightweight Kubernetes cluster, like:
 
-* [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download)
-* [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+* [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download)
+* [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 As part of install, each of these configures a Kubernetes context in your terminal, allowing helm to connect to the installed cluster.
 
