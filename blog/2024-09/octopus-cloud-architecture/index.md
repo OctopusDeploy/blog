@@ -94,7 +94,7 @@ Fun fact: After years of using APIs from major service and Cloud providers, we'v
 
 ## Developer productivity
 
-Cell-based architecture can also increase engineering productivity, which is often overlooked. You can test each change on its own isolated reef, either locally or using an automated build. There's no need for shared test or dev environments, which are a common for testing infrastructure-related changes in our industry.
+Cell-based architecture can also increase engineering productivity, which is often overlooked. You can test each change on its own isolated reef, either locally or using an automated build. There's no need for shared test or dev environments, which are commonly used for testing infrastructure-related changes in our industry.
 
 ## Trade-offs 
 
