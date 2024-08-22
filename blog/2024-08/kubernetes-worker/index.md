@@ -35,7 +35,7 @@ When using a physical or virtual machine as a worker, it must be adequately prov
 
 With a Kubernetes worker, after a deployment is complete, the hardware resources get returned to the cluster. This lets the cluster repurpose or release them. 
 
-The Kubernetes worker executes each deployment task in a new Kubernetes Pod (known as horizontal scaling). More resources are automatically provisioned when there's enough pressure on the cluster. Then, as work gets completed and the pods terminate, the additional resources get returned to the cluster. This reduces the running and maintenance costs associated with a fleet of physical (or virtual) worker machines.
+The Kubernetes worker executes each deployment task in a new Kubernetes Pod (known as horizontal scaling). More resources are automatically provisioned when there's enough pressure on the cluster. Then, as work gets completed and the pods terminate, the additional resources get returned to the cluster. This reduces the cost and effort in comparison to supporting a similar workload on physical and virtual worker machines.
 
 ## Is the new worker for you?
 
