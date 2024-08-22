@@ -100,7 +100,7 @@ Cell-based architecture can also increase engineering productivity, which is oft
 
 ### Effort
 
-Cell-based architecture requires a considerable effort to implement properly. It's not something that an existing system can easily evolve into. In software engineering, we often distinguish between exactly 1 and 1+ problems. This is because the effort to implement a solution that handles multiples of X can be an order of magnitude bigger than a solution that handles just one of X. Call-based architecture falls squarely into the 1+ bucket. 
+Cell-based architecture requires a considerable effort to implement properly. It's not something that an existing system can easily evolve into. In software engineering, we often distinguish between exactly 1 and 1+ problems. This is because the effort to implement a solution that handles multiples of X can be an order of magnitude bigger than a solution that handles just one of X. Cell-based architecture falls squarely into the 1+ bucket. 
 
 ### Hidden shared parts
 
