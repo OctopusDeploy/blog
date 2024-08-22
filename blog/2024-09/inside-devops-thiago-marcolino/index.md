@@ -1,6 +1,6 @@
 ---
-title: Inside DevOps with Thiago Marcolino from NewDay
-description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Thiago Marcolino, Platform Engineer from NewDay.
+title: Inside DevOps with Thiago Marcolino from YLD
+description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Thiago Marcolino, Platform Engineer from YLD.
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2024-09-02-1400
@@ -15,7 +15,7 @@ tags:
 
 This post is the next in our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps.  
 
-Hear from Thiago Marcolino, Platform Engineer with NewDay. NewDay is a leading provider of consumer credit in the UK. 
+Hear from [Thiago Marcolino](https://www.linkedin.com/in/thiagomarcolinodasilva/), Platform Engineer with [YLD](https://www.linkedin.com/company/yld/), a software engineering consultancy company. Thiago currently supports [NewDay](https://www.linkedin.com/company/newday/), a leading provider of consumer credit in the UK.
 
 **What is DevOps to you? How do you define it?**
 
