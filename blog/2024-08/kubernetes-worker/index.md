@@ -4,9 +4,9 @@ description: Learn about our new worker that makes it easier to scale your deplo
 author: trent.mohay@octopus.com
 visibility: public
 published: 2024-08-26-1400
-metaImage: img-blog-octopus-k8-worker-2024.png
-bannerImage: img-blog-octopus-k8-worker-2024.png
-bannerImageAlt: Octopus Deploy logo connected to a Kubernetes-branded box with an Octopus logo in it.
+metaImage:
+bannerImage:
+bannerImageAlt: Octopus Deploy logos falling into many Kubernetes-branded boxes.
 isFeatured: false
 tags: 
   - Product
