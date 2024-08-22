@@ -65,7 +65,7 @@ This wizard guides you through the steps to capture values defining your worker,
 
 ![Install NFS Helm Chart](install-nfs-helm-chart.png)
 
-4. At the end of the wizard, Octopus generates a Helm command that you copy and paste into a terminal connected to the target cluster. After it’s executed, Helm intsalls all the resources and starts the agent.
+4. At the end of the wizard, Octopus generates a Helm command that you copy and paste into a terminal connected to the target cluster. After it’s executed, Helm installs all the resources and starts the agent.
 
 ![Install Kubernetes worker Helm chart](install-kubernetes-worker-helm-chart.png)
 
