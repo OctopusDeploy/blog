@@ -53,7 +53,7 @@ You can install the Kubernetes worker using the Kubernetes agent [Helm chart](ht
 
 This wizard guides you through the steps to capture values defining your worker, and provides the Helm command to install the worker.
 
-1. In the sidebar menu, navigate to **Deploy**, then **Workers** under **Infrastructure**, then **Add Worker**, then **Add Worker**, and then **Kubernetes Worker**.
+1. In the sidebar menu, navigate to **Deploy**, then **Workers** under **Infrastructure**, then **Add Worker**, and then **Kubernetes Worker**.
 
 ![Add Kubernetes worker](add-kubernetes-worker.png)
 
