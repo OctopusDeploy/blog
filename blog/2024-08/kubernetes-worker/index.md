@@ -42,7 +42,7 @@ The Kubernetes worker executes each deployment task in a new Kubernetes Pod (kno
 Until now, resources for workers could come from a variety of places: 
 
 1. Directly from your Octopus Server instance. (This is a great place to start and acceptable for smaller installations, but it can be limiting in large systems.)
-2. You may be using the dynamic workers supplied by the Octopus Cloud platform if you're cloud-hosted.
+2. Dynamic workers supplied by the Octopus Cloud platform if you're cloud-hosted.
 3. Self-managed VMs or physical machines. 
 
 The Kubernetes worker may not reduce complexity for the first 2 groups. But, if you're in group 3, you may find the Kubernetes worker lets you replace a fleet of worker machines with a single Kubernetes worker that scales with your workloads. You don't need to deploy to Kubernetes or be an expert Kubernetes user to benefit from the Kubernetes worker.
