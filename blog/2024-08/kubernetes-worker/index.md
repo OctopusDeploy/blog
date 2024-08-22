@@ -4,8 +4,8 @@ description: Learn about our new worker that makes it easier to scale your deplo
 author: trent.mohay@octopus.com
 visibility: public
 published: 2024-08-26-1400
-metaImage:
-bannerImage:
+metaImage: img-blog-kubernetes-k8-engine-bkg-lightbkg-2024.png
+bannerImage: img-blog-kubernetes-k8-engine-bkg-lightbkg-2024.png
 bannerImageAlt: Octopus Deploy logos falling into many Kubernetes-branded boxes.
 isFeatured: false
 tags: 
