@@ -113,6 +113,6 @@ The Kubernetes worker is available for Cloud customers now as an early access pr
 
 The Octopus Deploy documentation covers the use of the Kubernetes worker.
 
-To see the worker in action, register for our webinar on Tuesday, September 3, 2024, [Scalable deployment infrastructure with our new worker](https://streamyard.com/watch/ifsZdkjcrfCp).
+To see the worker in action, register for our webinar on Tuesday, September 3, 2024, [Introducing our new autoscaling worker](https://streamyard.com/watch/ifsZdkjcrfCp).
 
 Happy deployments!
