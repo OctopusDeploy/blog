@@ -4,7 +4,7 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2024-09-02-1400
-metaImage: img-meta-inside-devops-with-thiago-marcolino-2024.png
+metaImage: 
 bannerImage: img-blog-inside-devops-with-thiago-marcolino-2024.png
 bannerImageAlt: Photo of Thiago Marcolino
 isFeatured: false
