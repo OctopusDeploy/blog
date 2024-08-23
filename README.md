@@ -8,6 +8,8 @@ Authors must sign the [Contribution License Agreement (CLA)](https://cla-assista
 
 The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/templates) to help you get started.
 
+If you're drafting a post that you'd like to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
+
 See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writing) for the following information:
 
 - [The Octopus voice and style](https://www.octopus.design/932c0f1a9/p/13df3a-voice-and-style)
@@ -39,7 +41,5 @@ When submitting your post in #topic-content-marketing, you also need to provide 
 - Please refer to our [writing tips for social media](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2608464184/Writing+tips+for+social+media) before writing your social posts. 
 - Please also check the copy using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice.
 - Submit your social posts in #topic-social-media.
-
-If you're drafting a post that you'd like to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
 
 The editing process takes time and we have a schedule of posts, so giving us at least 1 week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
