@@ -20,6 +20,10 @@ Customers often ask if they can run an Octopus worker within a Kubernetes (K8s) 
 
 In this post, I demonstrate deploying Tentacle containers to be used as workers on an Octopus instance.
 
+:::hint
+In August 2024, we introduced a new worker that makes it easier to scale your deployment infrastructure. The Kubernetes-based worker optimizes your infrastructure use through autoscaling, and Octopus manages the worker for you. Learn how to use it in our post, [Autoscaling Octopus workers using Kubernetes](https://octopus.com/blog/kubernetes-worker).
+:::
+
 ## Create a worker pool
 First we need to create a new worker pool for our container workers:
 
