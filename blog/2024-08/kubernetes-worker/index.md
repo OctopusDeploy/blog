@@ -92,7 +92,7 @@ The installation wizard creates a Kubernetes worker that is appropriate for the 
 
 For the rest, manual customization is available.
 
-You can configure many aspects of the worker my modifying its Helm values. For now, you need to perform these customizations via the command-line using a Helm upgrade command (or setting them manually during install).
+You can configure many aspects of the worker by modifying its Helm values. For now, you need to perform these customizations via the command-line using a Helm upgrade command (or setting them manually during install).
 
 For the full list of customizations, you can refer to the [Helm chart README.md](https://github.com/OctopusDeploy/helm-charts/tree/main/charts/kubernetes-agent).
 
