@@ -3,10 +3,10 @@ title: Octopus Cloud architecture
 description: Learn how cell-based architecture helped us make Octopus Cloud reliable and scalable.
 author: pawel.pabich@octopus.com
 visibility: public
-published: 2024-09-02-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2024-09-09-1400
+metaImage: blog-octopus-cloud-architecture.jpg
+bannerImage: blog-octopus-cloud-architecture.jpg
+bannerImageAlt: Person holding giant magnifying glass over cells to reveal
 isFeatured: false
 tags: 
   - Engineering
