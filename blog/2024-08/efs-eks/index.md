@@ -197,16 +197,16 @@ parameters:
 
 Apply this to your cluster and you're done!
 
-## Conclusion
+## Aditional setting for the Octopus Kubernetes agent
 
-The information to connect EFS to EKS *is* available, but it's spread across multiple AWS documentation pages that don't seem to reference each other. I hope that consolidating the steps in one spot saves you from the frustration of piecing it all together.
-
-## PS - additional setting for the Octopus Deploy Kubernetes Agent
-
-If you are wanting to use EFS with the Octopus Depoloy Kubernetes Agent, you will need to add the following to the Helm command provided by the wizard
+To use EFS with the [Octopus Kubernetes agent](https://octopus.com/docs/kubernetes/targets/kubernetes-agent), you  need to add the following to the Helm command provided by the wizard:
 
 ```
 --set scriptPods.securityContext.runAsUser="1000"
 ```
+
+## Conclusion
+
+The information to connect EFS to EKS *is* available, but it's spread across multiple AWS documentation pages that don't seem to reference each other. I hope that consolidating the steps in one spot saves you from the frustration of piecing it all together.
 
 Happy deployments!
