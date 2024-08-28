@@ -197,7 +197,7 @@ parameters:
 
 Apply this to your cluster and you're done!
 
-## Additional setting for the Octopus Kubernetes agent
+### Additional setting for the Octopus Kubernetes agent
 
 To use EFS with the [Octopus Kubernetes agent](https://octopus.com/docs/kubernetes/targets/kubernetes-agent), you need to add the following to the Helm command provided by the wizard:
 
