@@ -6,7 +6,7 @@ visibility: public
 published: 2024-09-09-1400
 metaImage: blog-octopus-cloud-architecture.jpg
 bannerImage: blog-octopus-cloud-architecture.jpg
-bannerImageAlt: Person holding giant magnifying glass over cells to reveal
+bannerImageAlt: Person holding giant magnifying glass over cells to reveal Octopus dashboard.
 isFeatured: false
 tags: 
   - Engineering
@@ -16,9 +16,9 @@ tags:
 
 Octopus Cloud reliably hosts thousands of Octopus Deploy customers. In this post, I explain the architecture that underpins this complex distributed system.
 
-## What is Octopus Cloud
+## What is Octopus Cloud?
 
-Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you and we call it a Cloud instance. You don’t need to download, install, and manage it yourself. You can create [a free instance](https://octopus.com/start) if you want to give a try.
+Octopus Cloud is the easiest way to run Octopus Deploy. It has the same software and functionality as Octopus Server, except we host it for you and we call it a Cloud instance. You don’t need to download, install, or manage it yourself. You can create [a free instance](https://octopus.com/start) to give it a try.
 
 ## Foundations of Octopus Cloud
 
@@ -38,11 +38,13 @@ Octopus Cloud is currently deployed in [3 different Azure regions](https://octop
 
 Resources deployed into each Azure region also follow the cell-based architecture and are split into multiple reefs. A reef is a collection of Azure resources shared by several Cloud instances. Reefs don't share any resources, so an outage of one reef in a region doesn't affect other reefs in that region.  
 
+:::hint
 Fun fact: We picked **reef** as the name because this is where octopuses usually live in tropical waters. The other popular contender was Octopus Cloud region, but we decided it might get easily confused with Azure region.
+:::
 
 #### Cloud instance as a cell
 
-Octopus Server is a monolithic .NET application that requires 3 basic resources to run:
+Octopus Server is a monolithic .NET application that needs 3 basic resources to run:
 
 - SQL Server database for structured data (for example, project data)
 - Shared file system for unstructured data (for example, task logs and packages)
@@ -88,9 +90,11 @@ In the context of [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem), Octo
 
 ### Using officially supported APIs only
 
-Octopus Cloud glues together several third party services using their APIs. This might sound like an obvious choice. That said, we also extended this approach to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting that isn't exposed via a public API, then we add a new API. We won't modify this setting directly in the database even though we could.
+Octopus Cloud glues together several third-party services using their APIs. This might sound like an obvious choice. That said, we also extended this approach to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting that isn't exposed via a public API, then we add a new API. We don't modify this setting directly in the database even though we could.
 
+:::hint
 Fun fact: After years of using APIs from major service and Cloud providers, we've learned that very few of them follow [SemVer](https://semver.org/). Also, changes to runtime characteristics (for example, a synchronous operation becomes asynchronous and vice versa) happen all the time and without any notice.
+:::
 
 ## Developer productivity
 
@@ -100,7 +104,7 @@ Cell-based architecture can also increase engineering productivity, which is oft
 
 ### Effort
 
-Cell-based architecture requires a considerable effort to implement properly. It's not something that an existing system can easily evolve into. In software engineering, we often distinguish between exactly 1 and 1+ problems. This is because the effort to implement a solution that handles multiples of X can be an order of magnitude bigger than a solution that handles just one of X. Cell-based architecture falls squarely into the 1+ bucket. 
+Cell-based architecture requires a considerable effort to implement properly. It's not something that an existing system can easily evolve in to. In software engineering, we often distinguish between exactly 1 and 1+ problems. This is because the effort to implement a solution that handles multiples of X can be an order of magnitude bigger than a solution that handles just one of X. Cell-based architecture falls squarely into the 1+ bucket. 
 
 ### Hidden shared parts
 
@@ -108,6 +112,6 @@ If you think there must be something connecting all these independent parts, the
 
 ## Conclusion
 
-Cell-based architecture is the cornerstone of Octopus Cloud's reliability and scalability. I hope this post has given you a high-level but insightful overview. If you have any questions about the Octopus Cloud architecture, please ask them in the comments section below.
+Cell-based architecture is the cornerstone of Octopus Cloud's reliability and scalability. I hope this post has given you a high-level but insightful overview. If you have any questions about the Octopus Cloud architecture, please ask in the comments section below.
 
 Happy deployments!
