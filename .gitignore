@@ -2,6 +2,7 @@ log/
 obj/
 _site/
 .vscode/
+Writerside/
 *.iml
 .idea
 .DS_Store
