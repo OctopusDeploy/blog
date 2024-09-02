@@ -29,7 +29,7 @@ This video introduces many Octopus concepts such as:
 
 It then demonstrates how to integrate Octopus with a Kubernetes cluster and perform a deployment.
 
-[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+If you don't already have an Octopus account, [you can start a free trial](https://oc.to/octopus-k8s-training-trial).
 
 <p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/G-5z7-JALRU?si=IZLbNOuDBXDdNXKb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
