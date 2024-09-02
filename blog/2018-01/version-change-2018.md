@@ -96,7 +96,7 @@ Since April 2017 we've shipped a new feature release at around about the same ti
 
 This cadence helped us plan better, but it wasn't a silver bullet. Each team would autonomously find the highest value things they could build, and set about building them. At the beginning of each month we would look at what was nearly ready to ship, then look to build a cohesive story for that release. We had a few months where nothing was ready to ship, so we delayed the release by a couple of weeks.
 
-Using this approach we shipped Octopus `3.12` - `3.17` all with valuable features, eventually bumping up to `4.0` when we shipped the [new user interface](/blog/2017-11/octopus-release-4-0.md) and a [whole lot of other valuable features](/blog/2017-10/octopus-v4-blog-series-kickoff.md) in one big release.
+Using this approach we shipped Octopus `3.12` - `3.17` all with valuable features, eventually bumping up to `4.0` when we shipped the [new user interface](/blog/2017-11/octopus-release-4-0.md) and a whole lot of other valuable features in one big release.
 
 ### A missing piece: deliberate alignment
 
