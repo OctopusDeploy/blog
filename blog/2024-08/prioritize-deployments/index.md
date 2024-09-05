@@ -4,9 +4,9 @@ description: Prioritize your deployments. Fast-tracking deployments has never be
 author: susan.pan@octopus.com
 visibility: public
 published: 2024-09-9-0900
-metaImage: -750x400px.png
-bannerImage: -750x400px.png
-bannerImageAlt: 
+metaImage: priority-deployments-create-deployment.png
+bannerImage: priority-deployments-create-deployment.png
+bannerImageAlt: Please update me!
 isFeatured: false
 tags: 
   - Product
