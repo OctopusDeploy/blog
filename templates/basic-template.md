@@ -16,7 +16,7 @@ See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensi
 
 Introductory paragraph that tells the reader why they should read on and what to expect.
 
-If you're talking about a feature, try to include the pain that users felt beforehand, and how our feature solves it. Try using this formula, or similar: When you wanted to [do something], you used to have to [toil and pain]. But with our new [feature] you can [do something even better with less toil and pain].
+If you're talking about a new feature, try to include the pain users feel, and how our feature solves it. Try using this formula, or similar: When you wanted to [do something], you used to have to [toil and pain]. But with our new [feature] you can [do something even better with less toil and pain].
 
 ## H2 subheading here (please use sentence case for all headings)
 
