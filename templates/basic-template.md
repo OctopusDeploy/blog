@@ -12,9 +12,11 @@ tags:
   - tag
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags.
 
 Introductory paragraph that tells the reader why they should read on and what to expect.
+
+If you're talking about a feature, try to include the pain that users felt beforehand, and how our feature solves it. Try using this formula, or similar: Until today, if you… then the solution was X. But with our feature…Y.
 
 ## H2 subheading here (please use sentence case for all headings)
 
