@@ -3,10 +3,10 @@ title: Prioritize Deployments
 description: Prioritize your deployments. Fast-tracking deployments has never been easier. 
 author: susan.pan@octopus.com
 visibility: public
-published: 2024-09-9-0900
-metaImage: priority-deployments-create-deployment.png
-bannerImage: priority-deployments-create-deployment.png
-bannerImageAlt: Please update me!
+published: 2024-09-16-1400
+metaImage: blogimage-reprioritizetaskqueue-2022.png
+bannerImage: blogimage-reprioritizetaskqueue-2022.png
+bannerImageAlt: Stylized Octopus task queue with an item being moved to number one position.
 isFeatured: false
 tags: 
   - Product
