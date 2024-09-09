@@ -23,6 +23,8 @@ State the subject of the announcement as plainly and directly as you can.
 
 If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
 
+If you're talking about a new feature, try to include the pain users feel, and how our feature solves it. Try using this formula, or similar: When you wanted to [do something], you used to have to [toil and pain]. But with our new [feature] you can [do something even better with less toil and pain].
+
 If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 Here's an example of authoring alt text and an image caption:
 ![Alt text](image.png)*Caption text*
