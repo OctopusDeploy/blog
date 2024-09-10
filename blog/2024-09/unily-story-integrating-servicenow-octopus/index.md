@@ -4,9 +4,9 @@ description: Unily uses Octopus and ServiceNow to manage complex deployments to 
 author: ella.pradella@octopus.com
 visibility: public
 published: 2024-09-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blog-unily-casestudy-2024.png
+bannerImage: blog-unily-casestudy-2024.png
+bannerImageAlt: Person holding a giant magnifying glass over the Unily logo on a giant piece of paper.
 isFeatured: false
 tags: 
   - DevOps
