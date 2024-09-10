@@ -17,7 +17,7 @@ As our customers grow, we want to ensure they can deploy what they need, when th
 
 In this post, I explain how to configure priority deployments.
 
-## Prioritize deployments
+## Prioritizing deployments
 
 We've introduced 2 ways to automate deployment priority:
 
