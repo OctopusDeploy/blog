@@ -18,7 +18,6 @@ Many organizations use ServiceNow to automate change management, but you can als
 
 The Unily team use Octopus and ServiceNow to manage complex deployments to all customers. In this post, we dive into Unily’s solution and how the integration helps minimize downtime and increase efficiency.
 
-
 ## How Unily uses ServiceNow
 
 Unily provides a business-critical service to its customers with a true enterprise EX platform. One of Unily's unique challenges is managing a complex deployment strategy for its software updates. This task is particularly intricate given the diverse needs of deployments.
@@ -31,13 +30,13 @@ ServiceNow gave Unily a self-service customer portal and automated the service a
 
 ## Integrating ServiceNow with Octopus
 
-By integrating ServiceNow with Octopus, the Unily team automated their deployments. Unily also created an internal tool that automates deployments and maintenance tasks for its engineers. When a deployment is scheduled in ServiceNow, Unily’s custom automation-platform then runs an automated deployment or assigns a task to the engineer, should they need to act manually by creating an internal Incident in ServiceNow along with the deployment details from Octopus Deploy.
+By integrating ServiceNow with Octopus, the Unily team automated their deployments. Unily also created an internal tool that automates deployments and maintenance tasks for its engineers. When a deployment gets scheduled in ServiceNow, Unily’s custom automation-platform runs an automated deployment or assigns a task to the engineer, should they need to act manually by creating an internal Incident in ServiceNow along with the deployment details from Octopus Deploy.
 
 For manual deployments, the engineer adds the ServiceNow ID to Octopus to confirm the client, time, and deployment type. If any details don’t match, the deployment won’t proceed, assuring deployment compliance and reducing risk. Engineers can also schedule deployments and set the maximum time for the deployment to run, receiving notifications if there are problems.
 
-When the deployment finishes, Octopus pushes the start and end time to ServiceNow and marks it complete. Along with the automation, the deployment that is triggered in ServiceNow will also notify clients when a deployment starts, and when the deployment is completed.
+When the deployment finishes, Octopus pushes the start and end time to ServiceNow and marks it complete. Along with the automation, the deployment that's triggered in ServiceNow also notifies clients when a deployment starts, and when the deployment completes.
 
-Unily also uses its custom automation platform with ServiceNow and Octopus to run various automated tasks using the API, including searching for expired certificates in Octopus variables. Unily will notify clients two months in advance of an upcoming certificate expiration. This is done as an email asking them to refresh the certificate. This workflow integrates with ServiceNow to ensure all information is in one place. 
+Unily also uses its custom automation platform with ServiceNow and Octopus to run various automated tasks using the API, including searching for expired certificates in Octopus variables. Unily notifies clients 2 months in advance of an upcoming certificate expiration. This is done as an email asking them to refresh the certificate. This workflow integrates with ServiceNow to ensure all information is in one place. 
 
 ## The benefits of integrating Octopus and ServiceNow for Unily
 
@@ -50,7 +49,6 @@ Integrating Octopus and ServiceNow helped Unily achieve the following benefits:
 - Simplified maintenance through automated tasks.
 
 From September 2020, when the dedicated deployment team was first established at Unily, the team went from doing 200 deployments per month to almost 3,000 deployments. Along with increased capacity, Unily also reduced the failure rates dramatically, only having to deal with a failure rate of 1.2% where an engineer may need to step in.
-
 
 ## Conclusion
 
