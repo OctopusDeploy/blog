@@ -1,5 +1,5 @@
 ---
-title: Integrating ServiceNow and Octopus to increase efficiency: Unily’s story
+title: "Integrating ServiceNow and Octopus to increase efficiency: Unily’s story"
 description: Unily uses Octopus and ServiceNow to manage complex deployments to all customers. In this post, we dive into Unily’s solution and how the integration helps minimize downtime and increase efficiency.
 author: ella.pradella@octopus.com
 visibility: public
