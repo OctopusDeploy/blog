@@ -13,7 +13,9 @@ tags:
   - Automation
 ---
 
-As our customers grow, we want to ensure they can deploy what they need, when they need to. We're excited to introduce 2 ways to prioritize essential deployments. This expands on the 2023.4 feature that lets you [manually prioritize a deployment](https://octopus.com/blog/reprioritize-task-queue). Now, we've automated the prioritization process, so you can expedite essential deployments. We've also made changed the way we calculate queue times. 
+As our customers grow, we want to ensure they can deploy what they need, when they need to. We're pleased to introduce 2 ways to prioritize essential deployments. This expands on the 2023.4 feature that lets you [manually prioritize a deployment](https://octopus.com/blog/reprioritize-task-queue). 
+
+We've automated the prioritization process, so you can expedite essential deployments. We also changed the way we calculate queue times so it's easier to understand deployment progress.
 
 In this post, I explain how to configure priority deployments and how we calculate queue times.
 
@@ -45,7 +47,7 @@ We introduced [manual task prioritization](https://octopus.com/blog/reprioritize
 
 ## Queue times
 
-Octopus now considers the task's estimated run duration and server's [task cap](https://octopus.com/docs/support/increase-the-octopus-server-task-cap) to estimate the remaining wait time in the queue. The task cap limits the number of parallel tasks that can be run simultaneously. With a task cap of 5, 10 queued tasks can join any of the 5 parallel streams of executing tasks depending on which stream finishes executing first. The remaining queue time for a queued task is the sum of the remaining run durations for executing and queued tasks expected to be executing in the same stream.
+Octopus now considers the task's estimated run duration and server's [task cap](https://octopus.com/docs/support/increase-the-octopus-server-task-cap) to estimate the remaining wait time in the queue. The task cap limits the number of parallel tasks that can  run simultaneously. With a task cap of 5, 10 queued tasks can join any of the 5 parallel streams of executing tasks depending on which stream finishes executing first. The remaining queue time for a queued task is the sum of the remaining run durations for executing and queued tasks expected to run in the same stream.
 
 ## Conclusion
 
