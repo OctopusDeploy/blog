@@ -47,7 +47,7 @@ We introduced [manual task prioritization](https://octopus.com/blog/reprioritize
 
 ## Queue times
 
-Octopus now considers the task's estimated run duration and server's [task cap](https://octopus.com/docs/support/increase-the-octopus-server-task-cap) to estimate the remaining wait time in the queue. The task cap limits the number of parallel tasks that can  run simultaneously. With a task cap of 5, 10 queued tasks can join any of the 5 parallel streams of executing tasks depending on which stream finishes executing first. The remaining queue time for a queued task is the sum of the remaining run durations for executing and queued tasks expected to run in the same stream.
+Octopus now considers the task's estimated run duration and server's [task cap](https://octopus.com/docs/support/increase-the-octopus-server-task-cap) to estimate the remaining wait time in the queue. The task cap limits the number of parallel tasks that can run simultaneously. With a task cap of 5, 10 queued tasks can join any of the 5 parallel streams of executing tasks depending on which stream finishes executing first. The remaining queue time for a queued task is the sum of the remaining run durations for executing and queued tasks expected to run in the same stream.
 
 ## Conclusion
 
