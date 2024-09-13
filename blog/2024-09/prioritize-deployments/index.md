@@ -1,5 +1,5 @@
 ---
-title: Prioritize deployments
+title: Prioritizing deployments
 description: Prioritize your deployments. Fast-tracking deployments has never been easier. 
 author: susan.pan@octopus.com
 visibility: public
