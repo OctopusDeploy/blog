@@ -13,7 +13,7 @@ tags:
   - Automation
 ---
 
-As our customers grow, we want to ensure they can deploy what they need, when they need to. We're pleased to introduce 2 ways to prioritize essential deployments. This expands on the 2023.4 feature that lets you [manually prioritize a deployment](https://octopus.com/blog/reprioritize-task-queue). 
+As our customers grow, we want to ensure they can deploy what they need, when they need to. We're pleased to introduce 2 ways to prioritize essential deployments. This expands on the 'move to top' feature that lets you [manually prioritize a deployment](https://octopus.com/blog/reprioritize-task-queue). 
 
 We've automated the prioritization process, so you can expedite essential deployments. We also changed the way we calculate queue times so it's easier to understand deployment progress.
 
