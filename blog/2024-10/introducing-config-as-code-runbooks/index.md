@@ -1,12 +1,12 @@
 ---
 title: Introducing config as code for Runbooks
 description: A brief summary of the post, 170 characters max including spaces.
-author: firstname.surname@octopus.com
+author: harriet.alexander@octopus.com
 visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2024-10-23-1400
+metaImage: img-configascode-runbooks-2024.png
+bannerImage: img-configascode-runbooks-2024.png
+bannerImageAlt: Person sitting on over-sixed books with an open laptop on their lap.
 isFeatured: false
 tags: 
   - Product
