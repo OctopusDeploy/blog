@@ -14,7 +14,7 @@ tags:
   - Runbooks
 ---
 
-We're excited to announce that Configuration as Code for Runbooks has started rolling out to our Cloud customers. It will be available for our self-hosted customers in the 2024.4 release. 
+We're excited to announce that Configuration as Code for Runbooks has started rolling out to our Cloud customers. It will be available for our self-hosted customers in the 2024.4 release later this year.
 
 Config as Code for Runbooks has been one of our most requested features. You told us that you wanted your runbooks to gain the benefits of version control. Until now, you had to update your runbooks and application code in 2 different places, making it hard to keep your runbooks in sync with your application and deployment changes. It was also inconvenient not being able to view the history of changes in Git like you can for your deployment processes.
 
