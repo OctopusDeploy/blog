@@ -44,8 +44,9 @@ With Config as Code for Runbooks, you can make and test changes to a runbook on 
 
 After your changes have been tested and reviewed, simply merge them into your default branch to make them available for the rest of the team.
 
-You can also run an old version of a runbook from a commit or tag at any time – there's no need to go searching through old snapshots trying to find one that works.
+![Make a change to a runbook and create a PR to merge it into your main branch](makeapullrequestv2.gif)
 
+You can also run an old version of a runbook from a commit or tag at any time – there's no need to go searching through old snapshots trying to find one that works.
 
 ### How will runbook permissions work?
 
