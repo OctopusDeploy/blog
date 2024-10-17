@@ -3,7 +3,7 @@ title: Introducing Config as Code for Runbooks
 description: Config as Code for Runbooks is now available, complementing our existing support for version-controlled deployment processes.
 author: harriet.alexander@octopus.com
 visibility: private
-published: 2024-10-23-1400
+published: 2024-10-28-1400
 metaImage: img-configascode-runbooks-2024.png
 bannerImage: img-configascode-runbooks-2024.png
 bannerImageAlt: Person sitting on over-sixed books with an open laptop on their lap.
@@ -39,6 +39,8 @@ Without Config as Code for Runbooks, when running a runbook, you pick from 2 dif
 When running the published snapshot, we run a version of the runbook that was snapshotted sometime in the past and marked as the published version. When running the latest draft, we create a new snapshot of the latest process and variables at the time of running, every time you run. This lets you make and test changes to your runbooks without impacting day-to-day operations.
 
 With Config as Code for Runbooks, you can make and test changes to a runbook on a branch without impacting the rest of the team, so there's no need for published and draft versions.
+
+![Create a new Runbook on a separate branch in Octopus](createbranch.gif "width=500")
 
 After your changes have been tested and reviewed, simply merge them into your default branch to make them available for the rest of the team.
 
