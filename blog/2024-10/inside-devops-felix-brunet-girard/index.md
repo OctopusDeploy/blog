@@ -3,9 +3,9 @@ title: "Inside DevOps with Félix Brunet Girard from TELUS Health"
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Félix Brunet Girard, Lead DevOps Specialist with TELUS Health.
 author: joanna.wyganowska@octopus.com
 visibility: public
-published: 2024-10-16-1400
-metaImage: 
-bannerImage: 
+published: 2024-10-24-1400
+metaImage: img-blog-inside-devops-greenblue-750x400-2024-x2.png
+bannerImage: img-blog-inside-devops-greenblue-750x400-2024-x2.png
 bannerImageAlt: Photo of Félix Brunet Girard
 isFeatured: false
 tags: 
@@ -15,7 +15,7 @@ tags:
 
 This post is the next in our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps.  
 
-Hear from [Félix Brunet Girard](https://www.linkedin.com/in/felixbrunetgirard/), Lead DevOps Specialist with TELUS Health (TELUS Santé) – a global health and wellbeing provider.
+Hear from [Félix Brunet Girard](https://www.linkedin.com/in/felixbrunetgirard/), Lead DevOps Specialist with TELUS Health (TELUS Santé), a global health and wellbeing provider.
 
 
 **What is DevOps to you? How do you define it?**
@@ -33,7 +33,7 @@ I developed my own build tools to compile code faster and some CI for testing. B
 
 Currently, I’m with TELUS Health, working both with on-prem and cloud applications, so there are different technologies to learn. I enjoy implementing new tools to help meet the needs of our developers and architects.
 
-**What are some DevOps best practices you or your organization have implemented?**
+**What are some DevOps best practices your organization has implemented?**
 
 *Félix:* We’ve implemented a “golden pipeline”, which is a reusable template for building and deploying applications. With the use of Octopus for CD, we’ve standardized our deployment processes and made them repeatable, which saves us time and provides stability.
 
@@ -55,7 +55,7 @@ Octopus’s UI is very friendly, so different people with different skills or ro
 
 **What’s the most rewarding part of DevOps?**
 
-*Félix:* I think helping others achieve their goal and helping the organization with big issues. It’s very rewarding to help someone that was having issues, and you don’t always get that as a developer. Also, you learn new stuff almost every week, as you need to understand the technology stack, which always evolves.
+*Félix:* I think helping others achieve their goals and helping the organization with big issues. It’s very rewarding to help someone that was having issues, and you don’t always get that as a developer. Also, you learn new stuff almost every week, as you need to understand the technology stack, which always evolves.
 
 **What advice would you give to those just starting their DevOps journey?**
 
@@ -65,10 +65,10 @@ Octopus’s UI is very friendly, so different people with different skills or ro
 
 *Félix:* My top 4 books are:
 
-- *Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation* by Jez Humble and David Farley.
-- *The DevOps Handbook: How to Create World-Class Agility, Reliability, & Security in Technology Organizations* by Gene Kim, Jez Humble, et al.
-- *Effective DevOps: Building a Culture of Collaboration, Affinity, and Tooling at Scale* by Jennifer Davis and Ryn Daniels
-- *Team Topologies: Organizing Business and Technology Teams for Fast Flow* by Matthew Skelto
+- *[Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://octopus.com/devops/reading-list/#continuous-delivery)* by Jez Humble and David Farley.
+- *[The DevOps Handbook: How to Create World-Class Agility, Reliability, & Security in Technology Organizations](https://octopus.com/devops/reading-list/#the-devops-handbook)* by Gene Kim, Jez Humble, et al.
+- *[Effective DevOps: Building a Culture of Collaboration, Affinity, and Tooling at Scale](https://www.goodreads.com/book/show/25602743-effective-devops)* by Jennifer Davis and Ryn Daniels
+- *[Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://octopus.com/devops/reading-list/#team-topologies)* by Matthew Skelto
 
 **What’s one thing about you that might surprise us?**
 
