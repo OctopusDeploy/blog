@@ -65,6 +65,6 @@ If you want to use Config as Code for Runbooks, you need to migrate your existin
 
 ## Conclusion
 
-Config as Code for Runbooks has been one of our most requested features, and we're excited that it's started rolling out to Cloud customers. We'll be providing more information soon, so stay tuned for more updates on our blog, in our newsletter, on social media, and in our docs. 
+Config as Code for Runbooks has been one of our most requested features, and we're excited that it's started rolling out to Cloud customers. We'll be providing more information soon, so stay tuned for updates on our blog, in our newsletter, on social media, and in our docs. 
 
 Happy deployments!
