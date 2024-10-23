@@ -4,9 +4,9 @@ description: Find out about the latest software delivery performance clusters in
 author: steve.fenton@octopus.com
 visibility: public
 published: 2024-10-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-meantimerecovermetric-2023.png
+bannerImage: blogimage-meantimerecovermetric-2023.png
+bannerImageAlt: Person crouching ready to start a sprint on top of a giant stop watch.
 isFeatured: false
 tags: 
   - DevOps
