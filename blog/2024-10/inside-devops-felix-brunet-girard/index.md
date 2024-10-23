@@ -3,8 +3,8 @@ title: "Inside DevOps with Félix Brunet Girard from TELUS Health"
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Félix Brunet Girard, Lead DevOps Specialist with TELUS Health.
 author: joanna.wyganowska@octopus.com
 visibility: public
-published: 2024-10-24-1400
-metaImage: img-blog-inside-devops-greenblue-750x400-2024-x2.png
+published: 2024-10-30-1400
+metaImage: img-social-insidedevops-felix-brunet-1200x627-2024-x1.png
 bannerImage: img-blog-inside-devops-greenblue-750x400-2024-x2.png
 bannerImageAlt: Photo of Félix Brunet Girard
 isFeatured: false
