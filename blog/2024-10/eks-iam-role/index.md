@@ -94,7 +94,7 @@ helm upgrade --install --atomic \
 --set agent.deploymentTarget.initial.tags="{Octopub-Audit,Octopub-Frontend,Octopub-Product}" \
 --set agent.deploymentTarget.enabled="true" \
 --set agent.bearerToken="BearerTokenValue" \
---set scriptPods.serviceAccount.annotations="eks\.amazonaws\.com/role-arn: arn:aws:iam::<account-id>:role/<iam-role-name>" \
+--set scriptPods.serviceAccount.annotations."eks\.amazonaws\.com/role-arn"="arn:aws:iam::<account-id>:role/<iam-role-name>" \
 --version "2.*.*" \
 --create-namespace --namespace octopus-agent-mycluster \
 mycluster \
