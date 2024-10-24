@@ -1,6 +1,6 @@
 ---
 title: Introducing Config as Code for Runbooks
-description: Config as Code for Runbooks is now available, complementing our existing support for version-controlled deployment processes.
+description: Config as Code for Runbooks is coming soon, complementing our existing support for version-controlled deployment processes.
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2024-10-28-1400
@@ -14,7 +14,7 @@ tags:
   - Runbooks
 ---
 
-We're excited to announce that Configuration as Code for Runbooks has started rolling out to our Cloud customers. 
+We're excited to announce that Configuration as Code for Runbooks is rolling out to our Cloud customers soon. 
 
 Config as Code for Runbooks has been one of our most requested features. You told us that you wanted your runbooks to gain the benefits of version control. Until now, you had to update your runbooks and application code in 2 different places, making it hard to keep your runbooks in sync with your application and deployment changes. It was also inconvenient not being able to view the history of changes in Git like you can for your deployment processes.
 
@@ -59,12 +59,12 @@ If you're using the built-in Runbook Producer and Runbook Consumer roles, these 
 
 ## Using Config as Code for Runbooks
 
-Config as Code for Runbooks is rolling out to our Cloud customers now. The release date for our self-hosted customers will be announced soon.
+Config as Code for Runbooks will start rolling out to our Cloud customers soon. The release date for our self-hosted customers will be announced soon, too.
 
 If you want to use Config as Code for Runbooks, you need to migrate your existing runbooks using our simple migration tool. A prompt will appear when it's available in your instance. 
 
 ## Conclusion
 
-Config as Code for Runbooks has been one of our most requested features, and we're excited that it's started rolling out to Cloud customers. We'll be providing more information soon, so stay tuned for updates on our blog, in our newsletter, on social media, and in our docs. 
+Config as Code for Runbooks has been one of our most requested features. We'll be providing more information soon, so stay tuned for updates on our blog, in our newsletter, on social media, and in our docs. 
 
 Happy deployments!
