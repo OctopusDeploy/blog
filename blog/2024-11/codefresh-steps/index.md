@@ -3,10 +3,10 @@ title: Announcing Codefresh steps for Octopus Deploy
 description:  You can now integrate your Codefresh builds with deployments in Octopus Deploy thanks to our Codefresh steps. Learn how the new steps improve your deployment experience.
 author: susan.pan@octopus.com
 visibility: private
-published: 2024-11-01-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2024-11-06-1400
+metaImage: codefresh_steps_blog_image_octopus.png
+bannerImage: codefresh_steps_blog_image_octopus.png
+bannerImageAlt: Stylized version of Octopus steps in Codefresh UI
 isFeatured: false
 tags: 
   - DevOps
