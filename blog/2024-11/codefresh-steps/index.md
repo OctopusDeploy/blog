@@ -27,7 +27,7 @@ All our Octopus Deploy steps use and execute inside the [octopus-cli Docker cont
 
 We're thrilled to introduce the addition of the following steps to the [Codefresh steps marketplace](https://codefresh.io/steps/):
 
-- Login to Octopus Deploy
+- [Login to Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-login)
 - [Push packages to Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-push-package)
 - [Create releases in Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-create-release)
 - [Deploy a release in Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-deploy-release)
@@ -155,7 +155,7 @@ Along with sharing files between steps using the shared volume, each step also p
 | octopusdeploy-run-runbook | `DEPLOYMENTS` | JSON array of objects with `runbookId` and `serverTaskId` for created runbooks | 
 | octopusdeploy-push-build-information | - | This step has no output. | 
 
-# Conclusion
+## Conclusion
 
 Codefresh steps for Octopus Deploy are yet another way to streamline your processes. Customize your build pipeline through Codefresh and watch your Octopus deployments fly through the door.
 
