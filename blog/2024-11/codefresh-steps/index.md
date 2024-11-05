@@ -1,8 +1,8 @@
 ---
 title: Announcing Codefresh steps for Octopus Deploy
-description:  You can now integrate your Codefresh builds with deployments in Octopus Deploy thanks to our Codefresh steps. Learn how the new steps improve your deployment experience.
+description: You can now integrate your Codefresh builds with deployments in Octopus Deploy thanks to our Codefresh steps. Learn how the new steps improve your deployment experience.
 author: susan.pan@octopus.com
-visibility: private
+visibility: public
 published: 2024-11-06-1400
 metaImage: codefresh_steps_blog_image_octopus.png
 bannerImage: codefresh_steps_blog_image_octopus.png
@@ -15,7 +15,7 @@ tags:
   - Continuous Deployment
 ---
 
-We're excited to announce the first set of official [Codefresh steps](https://codefresh.io/steps/) for Octopus Deploy. Codefresh is a modern CI/CD platform built on top of Docker. Their CI product, Codefresh Pipelines, are customizable workflows made from a series of steps, each performing their own action. 
+We're excited to announce the first set of official [Codefresh steps](https://codefresh.io/steps/) for Octopus Deploy. Codefresh is a modern CI/CD platform built on top of Docker. Its CI product, Codefresh Pipelines, comprises customizable workflows made from a series of steps, each performing its own action. 
 
 In this post, I walk you through the process of creating a release and deploying it to an Octopus environment through Codefresh Pipelines.
 
@@ -52,8 +52,8 @@ The following example Codefresh workflow is a common scenario that customers of 
 - Clone a Git repository
 - Create a zip of the repository
 - Push the package to the [Octopus Deploy built-in feed](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository)
-- Create a new release in project `Example Project` with the pushed package
-- Deploy the created release to environment `Development`
+- Create a new release in project **Example Project** with the pushed package
+- Deploy the created release to environment **Development**
 
 Since each Codefresh step calls the Octopus CLI, each step's required and optional arguments should follow the CLI's required and optional parameters quite closely. You can find documentation on each individual step by searching for the step in [Codefresh's step marketplace](https://codefresh.io/steps/). 
 
@@ -132,7 +132,7 @@ push-package:
   	ENVIRONMENTS:
     	- "Development"
 ```
-For the last step in the workflow, we defined a step with the name `deploy`. This step uses one of our Codefresh Octopus Deploy steps - the `octopusdeploy-deploy-release` step. 
+For the last step in the workflow, we defined a step with the name `deploy`. This step uses one of our Codefresh Octopus Deploy steps - the **octopusdeploy-deploy-release** step. 
 
 We defined an Octopus instance URL and API key using Codefresh variables, and are passing them in as arguments using the Codefresh variable substitution syntax. 
 
