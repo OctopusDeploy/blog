@@ -1,5 +1,5 @@
 ---
-title: What is a Container Registry? A Guide + Top 8 Registries to Consider
+title: "What is a container registry? A guide + top 8 registries to consider"
 description: There are many container registry services, suitable for all different kinds of teams. We look at the top 8 and why you might consider them.
 author: andrew.corrigan@octopus.com
 visibility: public
