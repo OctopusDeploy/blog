@@ -51,7 +51,7 @@ In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/
 
 A green build in a CI/CD pipeline means that every test passed, and the release has progressed to the next stage. Software teams aim to keep builds green. 
 
-You should choose a deployment tool that surfaces information to help keep builds green. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
+You should choose a [deployment tool](https://octopus.com/devops/ci-cd/ci-cd-tools/) that surfaces information to help keep builds green. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
 
 A build server doesn't include the concept of deployment stages. Octopus Deploy, however, separates a release into Test, Dev, and Production environments, and environments can exist at different release versions in each stage. Our UI shows each release's deployment stage and transitions releases between stages. The Octopus UI also shows logs and error messages to help developers quickly identify failing builds.
 
@@ -91,6 +91,6 @@ CI/CD is part of the DevOps model and helps bring software projects from code to
 
 Many tools can help you with CI/CD, from build servers and deployment tools to monitoring solutions. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
-To learn even more about [best practices for CI/CD](https://octopus.com/blog/best-practices-for-cicd), check out our [DevOps engineer's handbook](https://octopus.com/devops/).
+To learn even more about best practices for CI/CD, check out our [DevOps engineer's handbook](https://octopus.com/devops/).
 
 Happy deployments!
