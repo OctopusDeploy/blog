@@ -15,7 +15,7 @@ tags:
   - Continuous Delivery
 ---
 
-Continuous Integration and Delivery (CI/CD) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
+Continuous Integration and Delivery ([CI/CD](https://octopus.com/devops/ci-cd/)) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
 
 If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-category product that makes complex deployments easier. 
 
@@ -37,7 +37,7 @@ If you work in software, you've almost certainly used Git. The wars on source-co
 
 Source-controlled code allows a complete history and rollback of code to previous versions. You can also resolve conflicts by using Git's merging methods.
 
-Committing a code change should trigger a CI/CD pipeline build. This trigger allows developers to test and validate changes to the codebase earlier. After a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently so developers notice any errors sooner.
+Committing a code change should trigger a [CI/CD pipeline](https://octopus.com/devops/ci-cd/ci-cd-pipeline/) build. This trigger allows developers to test and validate changes to the codebase earlier. After a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently so developers notice any errors sooner.
 
 ## Use Configuration as Code for your deployment process
 
@@ -91,6 +91,6 @@ CI/CD is part of the DevOps model and helps bring software projects from code to
 
 Many tools can help you with CI/CD, from build servers and deployment tools to monitoring solutions. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
-To learn even more about best practices for CI/CD, check out our [DevOps engineer's handbook](https://octopus.com/devops/).
+To learn even more about [best practices for CI/CD](https://octopus.com/blog/best-practices-for-cicd), check out our [DevOps engineer's handbook](https://octopus.com/devops/).
 
 Happy deployments!
