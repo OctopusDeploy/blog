@@ -23,7 +23,7 @@ Our first stop is to StackOverflow, where we find the question [What's the diffe
 
 The highest voted answer indicates that there is indeed a difference between these two terms:
 
-> in [blue-green deployment](https://octopus.com/devops/software-deployments/blue-green-deployment/), both versions may be getting requests at the same time temporarily, while in red-black only one of the versions is getting traffic at any point in time
+> in a [blue/green deployment](https://octopus.com/devops/software-deployments/blue-green-deployment/), both versions may be getting requests at the same time temporarily, while in red-black only one of the versions is getting traffic at any point in time
 
 The answer then goes on to say that:
 
