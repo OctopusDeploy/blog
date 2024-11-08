@@ -15,13 +15,15 @@ When deploying new versions of a centralized application like a web service, the
 
 So why is this strategy referred to as both green/blue and red/black? Do these colors imply technical differences?
 
+This is part of a series of articles about [software deployment](https://octopus.com/devops/software-deployments/).
+
 ## StackOverflow says...
 
 Our first stop is to StackOverflow, where we find the question [What's the difference between Red/Black deployment and Blue/Green Deployment?](https://stackoverflow.com/questions/45259589/whats-the-difference-between-red-black-deployment-and-blue-green-deployment).
 
 The highest voted answer indicates that there is indeed a difference between these two terms:
 
-> in blue-green deployment, both versions may be getting requests at the same time temporarily, while in red-black only one of the versions is getting traffic at any point in time
+> in a [blue-green deployment](https://octopus.com/devops/software-deployments/blue-green-deployment/), both versions may be getting requests at the same time temporarily, while in red-black only one of the versions is getting traffic at any point in time
 
 The answer then goes on to say that:
 
@@ -45,7 +47,7 @@ Slides from a Kubernetes presentation titled [Deployment Strategies on Kubernete
 
 Likewise, the [Istio blog](https://istio.io/blog/2017/0.1-canary/) refers to blue/green and red/black as the same thing:
 
-> this approach is only useful when we have a properly tested version that we want to deploy, i.e., more of a blue/green, a.k.a. red/black, kind of upgrade than a “dip your feet in the water” kind of canary deployment.
+> this approach is only useful when we have a properly tested version that we want to deploy, i.e., more of a blue/green, a.k.a. red/black, kind of upgrade than a “dip your feet in the water” kind of [canary deployment](https://octopus.com/devops/software-deployments/canary-deployment/).
 
 ## Conclusion
 

@@ -15,7 +15,7 @@ tags:
   - Continuous Delivery
 ---
 
-Continuous Integration and Delivery (CI/CD) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
+Continuous Integration and Delivery ([CI/CD](https://octopus.com/devops/ci-cd/)) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
 
 If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-category product that makes complex deployments easier. 
 
@@ -37,7 +37,7 @@ If you work in software, you've almost certainly used Git. The wars on source-co
 
 Source-controlled code allows a complete history and rollback of code to previous versions. You can also resolve conflicts by using Git's merging methods.
 
-Committing a code change should trigger a CI/CD pipeline build. This trigger allows developers to test and validate changes to the codebase earlier. After a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently so developers notice any errors sooner.
+Committing a code change should trigger a [CI/CD pipeline](https://octopus.com/devops/ci-cd/ci-cd-pipeline/) build. This trigger allows developers to test and validate changes to the codebase earlier. After a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently so developers notice any errors sooner.
 
 ## Use Configuration as Code for your deployment process
 
@@ -51,7 +51,7 @@ In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/
 
 A green build in a CI/CD pipeline means that every test passed, and the release has progressed to the next stage. Software teams aim to keep builds green. 
 
-You should choose a deployment tool that surfaces information to help keep builds green. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
+You should choose a [deployment tool](https://octopus.com/devops/ci-cd/ci-cd-tools/) that surfaces information to help keep builds green. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
 
 A build server doesn't include the concept of deployment stages. Octopus Deploy, however, separates a release into Test, Dev, and Production environments, and environments can exist at different release versions in each stage. Our UI shows each release's deployment stage and transitions releases between stages. The Octopus UI also shows logs and error messages to help developers quickly identify failing builds.
 
