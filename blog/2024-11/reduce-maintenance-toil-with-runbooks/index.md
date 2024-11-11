@@ -2,11 +2,11 @@
 title: Free your teams from maintenance tasks with runbooks
 description: Find out how to reduce toil by converting manual operations tasks to automated runbooks.
 author: steve.fenton@octopus.com
-visibility: pu
+visibility: public
 published: 2024-11-12-1400
-metaImage: blogimage-runbooks-2022.png
-bannerImage: blogimage-runbooks-2022.png
-bannerImageAlt: Split view of a pile of folders and a laptop screen with an Octopus arm emerging out the side.
+metaImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
+bannerImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
+bannerImageAlt: A book with arms and legs is holding a checklist under one arm and has a screwdriver in the other hand.
 isFeatured: false
 tags: 
   - DevOps
