@@ -27,7 +27,7 @@ All our Octopus Deploy steps use and execute inside the [octopus-cli Docker cont
 
 We're thrilled to introduce the addition of the following steps to the [Codefresh steps marketplace](https://codefresh.io/steps/):
 
-- [Login to Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-login)
+- [Log in to Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-login)
 - [Push packages to Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-push-package)
 - [Create releases in Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-create-release)
 - [Deploy a release in Octopus Deploy](https://codefresh.io/steps/step/octopusdeploy-deploy-release)
