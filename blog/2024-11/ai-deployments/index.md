@@ -78,7 +78,7 @@ AI developers are held to a high standard, with AWS noting that governance, defi
 
 **Visible deployments** allow DevOps teams to answer questions like “What is the state of production?” and “What changed since the last deployment?” [Microsoft’s Human AI Experience (HAX) workbook](https://www.microsoft.com/en-us/haxtoolkit/workbook/) lists “Notify users about major changes” as one of the guidelines, which requires a good understanding of how the production environment has changed between deployments.
 
-**Measurable deployments** are essential to measuring the performance of a DevOps team against common metrics like DORA metrics. Capturing these metrics in the deployment process ensures they are consistent and reliable.
+**Measurable deployments** are essential to measuring the performance of a DevOps team against common metrics like those [popularized by DORA](https://dora.dev/guides/dora-metrics-four-keys/). Capturing these metrics in the deployment process ensures they are consistent and reliable.
 
 **Auditable deployments** allow DevOps teams to track what changes were made, who made the change, and when the change was made. CSIRO calls out “supply chain accountability” as a core part of [their responsible AI research](https://www.csiro.au/en/research/technology-space/ai/responsible-ai).
 
