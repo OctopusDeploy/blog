@@ -33,7 +33,7 @@ When creating a deployment against a tenant tag, all disabled tenants will not b
 
 ## Conclusion
 
-The ability to disable tenants in Octopus 2025.1 provides greater flexibility and control over your deployments. This feature helps ease the process of preventing deployments to specific tenants, manage licensing requirements and keep your environment organized without losing access to historical configurations.
+The ability to disable tenants in Octopus 2025.1 provides greater flexibility and control over your deployments. This feature simplifies preventing deployments to specific tenants, managing licensing requirements, and keeping your environment organized without losing access to historical configurations.
 
 With support across the UI, CLI, and Terraform provider, managing tenant states is accessible anywhere. We’re excited to hear how this feature helps you simplify your processes so, as always, we’d love to hear your feedback. Let us know how you’re using this feature and what future improvements you’d like to see.
 
