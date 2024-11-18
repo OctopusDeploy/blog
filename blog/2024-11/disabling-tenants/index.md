@@ -11,7 +11,7 @@ tags:
 - Product
 ---
 
-In 2025.1 Octopus has added support for disabling tenants in response to [customer requests](https://roadmap.octopus.com/c/158-ability-to-disable-tenants). This capability allows you to manage tenants easily, preventing deployments to a specific tenant. This also removes tenants from license calculations allowing you to effectively archive unused tenants and re-enable them in the future. Disabled tenants do not allow deployments or runbook runs but are able to be edited.
+In response to [customer feedback](https://roadmap.octopus.com/c/158-ability-to-disable-tenants) in 2025.1 Octopus has added support for disabling tenants. This capability allows you to manage tenants easily, preventing deployments to a specific tenant. This also removes tenants from license calculations allowing you to effectively archive unused tenants and re-enable them in the future. Disabled tenants do not allow deployments or runbook runs but are able to be edited.
 
 ## Enabling and Disabling
 
