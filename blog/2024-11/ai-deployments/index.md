@@ -92,9 +92,9 @@ The 10 pillars of pragmatic deployments each represent architectural decisions t
 
 ## Summary
 
-It is perhaps not surprising to discover that AI and DevOps best practices have a significant overlap. All the major cloud providers emphasize testing, supply chain accountability, human oversight, and transparency, all of which are supported by a robust DevOps lifecycle.
+It is perhaps not surprising to discover that AI and DevOps best practices have a significant overlap. All the major cloud providers emphasize automation, testing, supply chain accountability, human oversight, and transparency, all of which are supported by a robust DevOps lifecycle.
 
-Consistently delivering a high quality product means best practices can not be opt-in. By defining best practices as architectural decisions that are implemented at scale throughout your DevOps teams and refined over time allows DevOps teams to focus on the creative and rewarding task of creating valuable solutions to meaningful problems rather than being burdened with menial tasks.
+Consistently delivering a high quality product means best practices can not be opt-in. By defining best practices as architectural decisions that are implemented at scale throughout your DevOps teams and refined over time allows DevOps teams to focus on creating valuable solutions to meaningful problems rather than being burdened with menial tasks.
 
 DEaaS provides a framework for thinking about how these architectural decisions allow DevOps team members to answer the question “What am I not responsible for?”, which in turn supports good DevEx, with the 10 pillars of pragmatic deployments listing the non-functional requirements found in a robust DevOps lifecycle.
 
