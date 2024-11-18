@@ -60,11 +60,13 @@ The responsibility models are each subject to constraints around who can edit ar
 
 ![](optimize-for-any-two.png)
 
-When implemented correctly, every member of the DevOps team can clearly identify what they are and are not responsible for when consuming artifacts provided by the DEaaS team. This allows them to focus on building valuable solutions to meaningful problems.
+When implemented correctly, every member of the DevOps team can clearly identify what they are, and are not, responsible for when consuming artifacts provided by the DEaaS team. This allows them to focus on building valuable solutions to meaningful problems.
 
 ## The 10 pillars of pragmatic deployments
 
-There are a number of common non-functional requirements associated with the DevOps lifecycle that DEaaS teams must consider as they decide which architectural decisions to share with the DevOps teams. AI developers are held to a high standard, with AWS noting that governance, defined as “Incorporating best practices into the AI supply chain, including providers and deployers”, is a [core dimension of responsible AI](https://aws.amazon.com/ai/responsible-ai/).
+There are a number of common non-functional requirements associated with the DevOps lifecycle that DEaaS teams must consider as they decide which architectural decisions to share with the DevOps teams. These have been grouped into the 10 pillars of pragmatic deployments.
+
+AI developers are held to a high standard, with AWS noting that governance, defined as “Incorporating best practices into the AI supply chain, including providers and deployers”, is a [core dimension of responsible AI](https://aws.amazon.com/ai/responsible-ai/).
 
 **Repeatable deployments** ensure that DevOps teams can deploy new features and fixes in an automated and consistent manner. While it may be necessary to involve some human decision-making before software is deployed to production, the low level work involved in deployments must be automated. [Google's AI and ML perspective: Operational excellence](https://cloud.google.com/architecture/framework/perspectives/ai-ml/operational-excellence) documentation notes that "Automation enables seamless, repeatable, and error-free model development and deployment."
 
