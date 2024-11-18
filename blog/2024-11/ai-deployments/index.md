@@ -20,21 +20,21 @@ DevOps teams can support all three of these dimensions by ensuring every member 
 
 ## DevEx as a Service
 
-Platform engineering is one the most effective ways to answer the question “What am I not responsible for?” At its core, platform engineering, and specifically the Internal Developer Platform (IDP) that is the interface between the platform and DevOps teams, must satisfy three requirements:
+Platform engineering is one of the most effective ways to answer the question “What am I not responsible for?” At its core, platform engineering, and specifically the Internal Developer Platform (IDP) that is the interface between the platform and DevOps teams, must satisfy three requirements:
 
 1. Provide a repository of architectural decisions.
-1. Enable architectural decisions to be implemented at scale.
-1. Define feedback processes that ensure architectural decisions are updated over time.
+2. Enable architectural decisions to be implemented at scale.
+3. Define feedback processes that ensure architectural decisions are updated over time.
 
 ![](idp.png)
 
-In this context, we refer to the book “Objects, Components, and Frameworks With UML: The Catalysis Approach” by Desmond D'Souza and Alan Wills for this definition of “architecture”:
+In this context, we refer to the book [Objects, Components, and Frameworks With UML: The Catalysis Approach](https://www.amazon.com/Objects-Components-Frameworks-UML-Catalysis/dp/0201310120) by Desmond D'Souza and Alan Wills for this definition of “architecture”:
 
 > The set of design decisions about any system (or smaller component) that keeps its implementors and maintainers from exercising needless creativity.
 
-In other words, architectural decisions answer the question “What am I not responsible for?” by providing DevOps teams with golden pipelines, common tools, processes, and practices used as the foundation upon which to build valuable solutions to meaningful problems.
+In other words, architectural decisions answer the question “What am I not responsible for?” by providing DevOps teams with golden pipelines, common tools, processes, and best practices used as the foundation upon which to build valuable solutions to meaningful problems.
 
-When the goal of platform engineering is to deliver improved DevEx, the end result is DevEx as a Service (DEaaS).
+When the goal of platform engineering is to deliver improved DevEx, the end result is [DevEx as a Service (DEaaS)](https://octopus.com/publications/devex-as-a-service).
 
 The architectural decisions maintained by your DEaaS implementation will adopt one of three responsibility models.
 
