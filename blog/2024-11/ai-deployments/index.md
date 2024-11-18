@@ -1,4 +1,4 @@
-AI has generated a lot of excitement, and criticism, ever since ChatGPT highlighted the potential, and flaws, of generative AI. DevOps teams have a unique challenge developing and deploying AI platforms because they are the ones tasked with realizing the value of AI and delivering it to customers in a safe, reliable, and predictable manner.
+AI has generated a lot of excitement, and criticism, ever since ChatGPT highlighted the potential and limitations of generative AI. DevOps teams have a unique challenge developing and deploying AI platforms because they are the ones tasked with realizing the value of AI and delivering it to customers in a safe, reliable, and predictable manner.
 
 Fortunately, many of the best practices that we have adopted for deploying and maintaining software still apply to those responsible for AI platforms. Some practices, like testing, have a renewed sense of urgency given the nondeterministic nature of GenAI. Some, like rollbacks, may end up being easier thanks to the stateless design of GenAI models.
 
@@ -8,16 +8,17 @@ In this post we’ll explore the practices, ideals, and compromises that DevOps 
 
 ## It starts and ends with DevEx
 
-DevOps started as with an insight as obvious as it was brilliant: what if instead of separate development and operations teams with distinct management hierarchies, measured on (often competing) outcomes, and who communicated through tickets, we had one team reporting to a shared management hierarchy measured on shared outcomes focused on delivering value to customers?
+DevOps started with an insight as obvious as it was brilliant: what if instead of separate development and operations teams with distinct management hierarchies, measured on (often competing) outcomes, and communicating through tickets, we had one team reporting to a shared management hierarchy measured on shared outcomes focused on delivering value to customers?
 
-Over the years though DevOps has come to encompass so much that it has almost no meaning. To say you have a DevOps job has about as much meaning as saying you have a sales, finance, or management job. It is the nature of DevOps to consume as much responsibility as it can (demonstrated by all the  Dev-Insert-Something-Here-Ops paradigms that have evolved), often without any consideration for who has to deliver this growing sphere of responsibility. The growing frustration by DevOps team members with the inability to answer the question “What am I not responsible for?” has led to the rise of DevEx.
+Over the years though DevOps has come to encompass so much that it has almost no meaning. To say you have a DevOps job has about as much meaning as saying you have a sales, finance, or management job. It is the nature of DevOps to consume as much responsibility as it can (demonstrated by all the  Dev-Insert-Something-Here-Ops paradigms that have evolved), often without any consideration for who has to deliver this growing sphere of responsibility. The frustration by DevOps team members with the inability to answer the question “What am I not responsible for?” has led to the rise of DevEx.
 
-As noted in the paper DevEx: What Actually Drives Productivity, DevEx has three dimensions: flow state, cognitive load, and feedback loops. 
+As noted in the paper [DevEx: What Actually Drives Productivity](https://queue.acm.org/detail.cfm?id=3595878), DevEx has three dimensions: flow state, cognitive load, and feedback loops:
 
 ![](devex.png)
 
 DevOps teams can support all three of these dimensions by ensuring every member of the team can confidently answer the question “What am I not responsible for?” Keeping this question in mind as you develop your DevOps processes is a powerful strategy to take the best that DevOps has to offer without inadvertently building a system that only functions because everyone is responsible for everything all the time.
-DevEx as a Service
+
+## DevEx as a Service
 
 Platform engineering is one the most effective ways to answer the question “What am I not responsible for?” At its core, platform engineering, and specifically the Internal Developer Platform (IDP) that is the interface between the platform and DevOps teams, must satisfy three requirements:
 
