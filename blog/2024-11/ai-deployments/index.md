@@ -64,7 +64,7 @@ When implemented correctly, every member of the DevOps team can clearly identify
 
 This is reinforced by Meryem Arik, co-founder of TitanML, who noted in her talk [Navigating LLM Deployment: Tips, Tricks, and Techniques](https://www.infoq.com/presentations/llm-deployment/) that:
 
-> Deployment is really hard, so it's better if you deploy once, you have one team managing deployment, and then you maintain that, rather than having teams individually doing that deployment, because then each team individually has to discover that this is a good tradeoff to make.
+> Deployment is really hard, so it's better if you deploy once, you have one team managing deployment, and then you maintain that, rather than having teams individually doing that deployment, because then each team individually has to discover that this is a good tradeoff to make. What this allows is it allows the rest of the org to focus on that application development while the infrastructure is taken care of.
 
 ## The 10 pillars of pragmatic deployments
 
