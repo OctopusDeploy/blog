@@ -3,7 +3,7 @@ title: The 2024 DevOps performance clusters
 description: Find out about the latest software delivery performance clusters in the State of DevOps Report, including an interesting plot twist for 2024.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2024-10-23-1400
+published: 2024-11-19-1400
 metaImage: blogimage-meantimerecovermetric-2023.png
 bannerImage: blogimage-meantimerecovermetric-2023.png
 bannerImageAlt: Person crouching ready to start a sprint on top of a giant stop watch.
