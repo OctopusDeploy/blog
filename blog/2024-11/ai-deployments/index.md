@@ -62,6 +62,10 @@ The responsibility models are each subject to constraints around who can edit ar
 
 When implemented correctly, every member of the DevOps team can clearly identify what they are, and are not, responsible for when consuming artifacts provided by the DEaaS team. This allows them to focus on building valuable solutions to meaningful problems.
 
+This is reinforced by Meryem Arik, co-founder of TitanML, who noted in her talk [Navigating LLM Deployment: Tips, Tricks, and Techniques](https://www.infoq.com/presentations/llm-deployment/) that:
+
+> Deployment is really hard, so it's better if you deploy once, you have one team managing deployment, and then you maintain that, rather than having teams individually doing that deployment, because then each team individually has to discover that this is a good tradeoff to make.
+
 ## The 10 pillars of pragmatic deployments
 
 There are a number of common non-functional requirements associated with the DevOps lifecycle that DEaaS teams must consider as they decide which architectural decisions to share with the DevOps teams. These have been grouped into the 10 pillars of pragmatic deployments.
