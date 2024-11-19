@@ -11,24 +11,24 @@ tags:
 - Product
 ---
 
-In response to [customer feedback](https://roadmap.octopus.com/c/158-ability-to-disable-tenants) in 2025.1 Octopus has added support for disabling tenants. This feature enables you to manage tenants, restricting deployments to a specific tenant. This also removes tenants from license calculations allowing you to effectively archive unused tenants and re-enable them in the future. Disabled tenants do not allow deployments or runbook runs but are able to be edited.
+In response to [customer feedback](https://roadmap.octopus.com/c/158-ability-to-disable-tenants) in 2025.1 Octopus has added support for disabling tenants. This feature allows you to manage tenants, restricting deployments to a specific tenant. This also removes tenants from license calculations allowing you to effectively archive unused tenants and re-enable them in the future. Disabled tenants do not allow deployments or runbook runs but are able to be edited.
 
 ## Enabling and Disabling
 
 Tenants can be enabled and disabled in the tenant settings page. Support has also been added for the [terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs/resources/tenant) and [CLI](https://octopus.com/docs/octopus-rest-api/cli).
 ![Screenshot of Octopus Deploy tenant settings with ](toggle-disable-tenant.png "width=500")
 
-Tenants are now grouped by their enabled or disabled state.
+Tenants are now grouped by their enabled or disabled state on both the tenants and project tenants pages.
 ![Tenants are now grouped by their enabled/disabled state](tenants-page.png "width=500")
 
 Disabled tenants can still be edited, added or removed from any related entities. In these scenarios disabled tenants can be identified by their disabled chip state.
 ![Tenant chips indicate the disabled or enabled state](disabled-tenant-chips.png "width=500")
 
-## Deploying
-When creating a deployment or runbook run only enabled tenants will be able to be selected. When selecting tenant tags, only enabled tenants with that tag will be deployed to. Deploying to a single disabled tenant will cause an error preventing deployment creation.
+## Deployments and Runbooks
+When creating a deployment or runbook run manually or through triggers only enabled tenants will be able to be selected. If you are selecting tenant tags, only enabled tenants with that tag will be deployed to, disabled tenants will automatically be filtered out. When deploying through clients (CLI or API) to disabled tenants an error will be thrown preventing deployment creation.
 ![Deploying to disabled tenants will not deploy](deploying-to-disabled-tenants.png "width=500")
 
-When creating a deployment against a tenant tag, all disabled tenants will not be deployed to. This allows for tenants to effectively be removed from all deployments in one place, and later re-enabled if required.
+When creating a deployment against a tenant tag, all disabled tenants will be ignored. This allows for tenants to effectively be removed from all deployments at the tenant level, and later re-enabled if required.
 ![Deployments page with disabled tenants](disabled-tenants-deployments-page.png "width=500")
 
 ## Conclusion
