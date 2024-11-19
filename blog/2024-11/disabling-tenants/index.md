@@ -16,17 +16,17 @@ In response to [customer feedback](https://roadmap.octopus.com/c/158-ability-to-
 ## Enabling and Disabling
 
 Tenants can be enabled and disabled in the tenant settings page. Support is included for the [Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs/resources/tenant) and [CLI](https://octopus.com/docs/octopus-rest-api/cli).
-![Screenshot of Octopus Deploy tenant settings with ](toggle-disable-tenant.png "width=500")
+![Octopus Deploy tenant settings with Enable and Disable](toggle-disable-tenant.png "width=500")
 
 Tenants are now grouped by their enabled or disabled status on the tenants and project tenants pages.
-![Tenants are now grouped by their enabled/disabled state](tenants-page.png "width=500")
+![Tenants are now grouped by their enabled or disabled state](tenants-page.png "width=500")
 
 Disabled tenants can still be edited, added or removed from any related entities. In these scenarios disabled tenants can be identified by their disabled chip state.
 ![Tenant chips indicate the disabled or enabled state](disabled-tenant-chips.png "width=500")
 
 ## Deployments and Runbooks
 When creating a deployment or runbook run manually or through triggers only enabled tenants will be able to be selected. If you are selecting tenant tags, only enabled tenants with that tag will be deployed to, disabled tenants will automatically be filtered out. Deployments to disabled tenants through the CLI or API will fail, throwing an error.
-![Deploying to disabled tenants will not deploy](deploying-to-disabled-tenants.png "width=500")
+![Disabled tenants no longer appear on the deployment preview screen](deploying-to-disabled-tenants.png "width=500")
 
 When creating a deployment against a tenant tag, all disabled tenants will be ignored. This allows for tenants to effectively be removed from all deployments at the tenant level, and later re-enabled if required.
 ![Deployments page with disabled tenants](disabled-tenants-deployments-page.png "width=500")
