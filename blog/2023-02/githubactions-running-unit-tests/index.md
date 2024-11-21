@@ -29,7 +29,7 @@ GitHub Actions is a hosted service, so you all need to get started is a GitHub a
 GitHub Actions relies heavily on third party actions contributed by the community. A quick Google search shows at least half a dozen actions for processing unit test results, including:
 
 - [action-junit-report](https://github.com/mikepenz/action-junit-report)
-- [publish-unit-test-results](https://github.com/marketplace/actions/publish-unit-test-results)
+- [publish-unit-test-results](https://github.com/marketplace/actions/publish-test-results)
 - [junit-report-action](https://github.com/marketplace/actions/junit-report-action)
 - [test-reporter](https://github.com/marketplace/actions/test-reporter)
 - [report-junit-annotations-as-github-actions-annotations](https://github.com/marketplace/actions/report-junit-annotations-as-github-actions-annotations)
