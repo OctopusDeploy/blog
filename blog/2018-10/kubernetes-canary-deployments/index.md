@@ -22,7 +22,7 @@ The Kubernetes cluster will also need to have Helm installed. Google offers [the
 
 ## Installing Voyager
 
-Before we can start deploying any application to Kubernetes, we need to install Voyager to our cluster. Voyager offers many [different installation methods](https://appscode.com/products/voyager/5.0.0/setup/), but I find Helm to be the most convenient for situations like this.
+Before we can start deploying any application to Kubernetes, we need to install Voyager to our cluster. Voyager offers many different installation methods, but I find Helm to be the most convenient for situations like this.
 
 We'll make use of the Helm step in Octopus itself to deploy the Voyager Helm chart.
 
