@@ -93,7 +93,7 @@ The [Atom editor](https://atom.io/) is an alternative editor to VS Code and is a
 
 So far, I've talked about using HCL in the context of the HashiCorp tools, but there is other tooling that consumes a HCL file for use in different applications. 
 
-One example is the [hclq command-line processor](https://hclq.sh/). This command-line processor offers the following features:
+One example is the [hclq command-line processor](https://github.com/mattolenik/hclq). This command-line processor offers the following features:
 
 - Inspection and validation of configurations.
 - An alternative to parsing files with `grep` or `sed`.
