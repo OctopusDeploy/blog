@@ -25,7 +25,7 @@ The term GitOps suffers from the same ambiguity, so in this post we look at:
 
 ## The origins of GitOps
 
-The term GitOps was originally coined in a blog post by WeaveWorks called [GitOps - Operations by Pull Request](https://www.weave.works/blog/gitops-operations-by-pull-request). The post described how WeaveWorks used git as a source of truth, leading to the following benefits:
+The term GitOps was originally coined in a blog post by WeaveWorks. The post described how WeaveWorks used git as a source of truth, leading to the following benefits:
 
 >    Our provisioning of AWS resources and deployment of k8s is declarative
 >
