@@ -77,7 +77,7 @@ You need to [create a personal access token](https://docs.github.com/en/authenti
 
 ## 7: PullPreview
 
-The [PullPreview action](https://github.com/marketplace/actions/pullpreview) allows you to preview pull requests by spinning up live environments for code reviews. 
+The [PullPreview action](https://github.com/marketplace/actions/preview-environments-for-github) allows you to preview pull requests by spinning up live environments for code reviews. 
 
 When making a pull with the ‘pullpreview’ label, this action checks out your code and deploys to an AWS Lightsail instance with Docker and Docker Compose.
 
