@@ -38,7 +38,7 @@ The resulting cluster looks like this:
 
 ![](sampleapp.svg "width=500")
 
-I used Helm to install NGINX, but it’s not as easy as it could be. The [GitHub docs](https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments/helm-chart#installing-via-helm-repository) point you to the Helm repo at https://helm.nginx.com/edge, which failed for me. The chart from the official Helm repository at https://kubernetes-charts.storage.googleapis.com/ did not include the CRDs.
+I used Helm to install NGINX, but it’s not as easy as it could be. The [GitHub docs](https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments/helm-chart#installing-via-helm-repository) point you to the Helm repo, which failed for me. The chart from the official Helm repository at https://kubernetes-charts.storage.googleapis.com/ did not include the CRDs.
 
 The solution was to clone the NGINX Git repo and install the Helm chart from a local file. These commands worked with Helm 3:
 

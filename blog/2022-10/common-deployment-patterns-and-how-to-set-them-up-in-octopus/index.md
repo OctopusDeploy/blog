@@ -275,7 +275,7 @@ Now you can see how many tenants a project has deployed to on the Octopus dashbo
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
 
-To learn more, you can watch our [webinar on multi-tenancy deployments](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
+To learn more, you can watch our [webinar on multi-tenancy deployments](https://www.youtube.com/watch?v=qsHSosC3GmA).
 
 ## Conclusion
 

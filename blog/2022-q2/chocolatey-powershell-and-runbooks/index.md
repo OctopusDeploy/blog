@@ -312,7 +312,7 @@ All of the configuration in this post can be found on our [samples instance](htt
 
 Octopus Runbooks and Chocolatey work well together, giving you the flexibility to automate the installation and configuration of servers both on-premises and in the cloud. They eliminate the need to install thousands of applications across your organization’s infrastructure. 
 
-To see this in action, watch our webinar, [Automating your infrastructure & applications with Runbooks and Chocolatey](https://octopus.com/events/automating-your-infrastructure-applications-with-runbooks-and-chocolatey), with [Paul Broadwith](https://blog.pauby.com) from Chocolatey.
+To see this in action, watch our webinar, [Automating your infrastructure & applications with Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), with [Paul Broadwith](https://blog.pauby.com) from Chocolatey.
 
 !include <q2-2022-newsletter-cta>
 

@@ -36,7 +36,7 @@ Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2,
 
 In 2005 the name was changed to Java Enterprise Edition (Java EE) with the release of Java EE 5. The Java EE name has been used until 2017 with Java EE 8.
 
-In 2017 Oracle open sourced the Java EE platform, and it is now managed by the [Eclipse Foundation](https://projects.eclipse.org/projects/ee4j/faq) under the name Eclipse Enterprise for Java (EE4J).
+In 2017 Oracle open sourced the Java EE platform, and it is now managed by the [Eclipse Foundation](https://www.eclipse.org/downloads/packages/) under the name Eclipse Enterprise for Java (EE4J).
 
 ## Servlet-Only vs Java EE
 

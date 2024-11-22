@@ -99,7 +99,7 @@ These errors can be ignored as they don't prevent the packages from being instal
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 ```
 
-The Docker website provides [official guidance on the use of the DEBIAN_FRONTEND environment variable](https://docs.docker.com/engine/faq/#why-is-debian_frontendnoninteractive-discouraged-in-dockerfiles). They consider it a cosmetic change, and recommend against permanently setting the environment variable. The command above sets the environment variable for the duration of the single `apt-get` command, meaning any subsequent calls to `apt-get` will not have the `DEBIAN_FRONTEND` defined.
+The Docker website provides official guidance on the use of the DEBIAN_FRONTEND environment variable. They consider it a cosmetic change, and recommend against permanently setting the environment variable. The command above sets the environment variable for the duration of the single `apt-get` command, meaning any subsequent calls to `apt-get` will not have the `DEBIAN_FRONTEND` defined.
 
 ## Cleaning up package lists
 

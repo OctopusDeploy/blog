@@ -168,10 +168,10 @@ Navigate to `/src/main/resources/spring/datasource-config.xml` and comment out t
     -->
 ```
 ## Adding a Flyway project
-[Flyway](https://flywaydb.org) is a migrations-based database deployment tool.  In a nutshell, it’s a command-line utility that you include in your project, that uses a specific folder structure to execute SQL scripts in a specified order.  The Flyway download is essentially the project you will add to your project source control.
+[Flyway](https://www.red-gate.com/products/flyway/) is a migrations-based database deployment tool.  In a nutshell, it’s a command-line utility that you include in your project, that uses a specific folder structure to execute SQL scripts in a specified order.  The Flyway download is essentially the project you will add to your project source control.
 
 ### Adding the .sql scripts to Flyway
-Within the Java application source, copy the .sql files located in `src/main/resources/db/mysql` to the `/sql` folder of your Flyway project.  Then, rename the files to conform with how [Flyway works](https://flywaydb.org/getstarted/how).  For instance:
+Within the Java application source, copy the .sql files located in `src/main/resources/db/mysql` to the `/sql` folder of your Flyway project.  Then, rename the files to conform with how [Flyway works](https://documentation.red-gate.com/fd/getting-started-with-flyway-184127223.html).  For instance:
 
 - V1__initDb.sql
 - V1_1__populateDb.sql

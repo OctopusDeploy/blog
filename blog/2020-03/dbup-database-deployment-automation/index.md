@@ -14,7 +14,7 @@ tags:
 
 ![Using DbUp and Octopus workers for database deployment automation](blogimage-sqlscript.png)
 
-One of the most exciting aspects of database deployments in the last ten years is the number of tools that have been released.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, you can see I have a clear bias toward Redgate’s tooling, but I’m a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  
+One of the most exciting aspects of database deployments in the last ten years is the number of tools that have been released.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, you can see I have a clear bias toward Redgate’s tooling, but I’m a friend of Redgate for a reason.  
 
 In this post, I use [DbUp](https://dbup.readthedocs.io/en/latest/).  DbUp is a free, open-source tool, which we use here at Octopus Deploy for our database deployments.  Anytime you install or upgrade Octopus Deploy, DbUp runs the scripts to update your database.  Our founder, Paul Stovell, wrote a [blog post](https://octopus.com/blog/howto/deploy-a-sql-database) back in 2012 on how to use DbUp to deploy to a SQL Server.  For the most part, that blog post still holds up today.
 
