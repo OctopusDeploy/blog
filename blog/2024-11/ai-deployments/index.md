@@ -1,3 +1,19 @@
+---
+title: AI deployments best practices
+description: AI deployments present some unique challenges for DevOps team. And yet, existing DevOps best practises still apply.
+author: matthew.casperson@octopus.com
+visibility: private
+published: 2024-11-27-1400
+metaImage: img-blog-ai.png
+bannerImage: img-blog-ai.png
+bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+isFeatured: false
+tags:
+- Continuous Integration
+- Continuous Deployment
+---
+
+
 AI has generated a lot of excitement, and criticism, ever since ChatGPT highlighted the potential and limitations of generative AI. DevOps teams have a unique challenge developing and deploying AI platforms because they are the ones tasked with realizing the value of AI and delivering it to customers in a safe, reliable, and predictable manner.
 
 Fortunately, most of the best practices that we have adopted for deploying and maintaining software still apply to those responsible for AI platforms. Much like database deployments, which have always been tightly coupled to application deployments, deploying AI models and other AI artifacts benefit from a tight integration with the DevOps lifecycle. The atomic elements of AI deployments are just files to be moved around, API calls to hosting platforms, IaC to manage infrastructure, and the human based workflows to coordinate, test, and authorize changes. 
