@@ -14,11 +14,11 @@ tags:
 ---
 
 
-AI has generated a lot of excitement, and criticism, ever since ChatGPT highlighted the potential and limitations of generative AI. DevOps teams have a unique challenge developing and deploying AI platforms because they are the ones tasked with realizing the value of AI and delivering it to customers in a safe, reliable, and predictable manner.
+AI has generated a lot of excitement and criticism ever since ChatGPT highlighted the potential and limitations of generative AI. DevOps teams have a unique challenge developing and deploying AI platforms because they are tasked with realizing the value of AI and delivering it to customers safely, reliably, and predictably.
 
-Fortunately, most of the best practices that we have adopted for deploying and maintaining software still apply to those responsible for AI platforms. Much like database deployments, which have always been tightly coupled to application deployments, deploying AI models and other AI artifacts benefit from a tight integration with the DevOps lifecycle. The atomic elements of AI deployments are just files to be moved around, API calls to hosting platforms, IaC to manage infrastructure, and the human based workflows to coordinate, test, and authorize changes. 
+Fortunately, most of the best practices we have adopted for deploying and maintaining software still apply to those responsible for AI platforms. Much like database deployments, which have always been tightly coupled to application deployments, deploying AI models and other AI artifacts benefit from a tight integration with the DevOps lifecycle. The atomic elements of AI deployments are just files to be moved around, API calls to hosting platforms, IaC to manage infrastructure, and human-based workflows to coordinate, test, and authorize changes. 
 
-While AI presents novel social and ethical challenges, the largest technical challenges when deploying AI platforms are to apply existing processes, like transferring packages, to AI specific services, like [HuggingFace](https://huggingface.co/), or replicating security practices, such as CVE scanning, to AI models.
+While AI presents novel social and ethical challenges, the largest technical challenges when deploying AI platforms are applying existing processes, like transferring packages, to AI-specific services, like [HuggingFace](https://huggingface.co/), or replicating security practices, such as CVE scanning, to AI models.
 
 AI teams may also have the luxury of working on greenfield projects, which provides them with the opportunity to design their DevOps processes from the ground up, taking advantage of trends like platform engineering and focusing on DevEx.
 
