@@ -26,7 +26,7 @@ In this post, we’ll explore the practices, ideals, and compromises that DevOps
 
 ## It starts and ends with DevEx
 
-DevOps started with an insight as obvious as it was brilliant: what if instead of separate development and operations teams with distinct management hierarchies, measured on (often competing) outcomes, and communicating through tickets, we had one team reporting to a shared management hierarchy measured on shared outcomes focused on delivering value to customers?
+DevOps started with an insight as obvious as it was brilliant: what if instead of separate development and operations teams with distinct management hierarchies, measured on unique outcomes, and communicating through tickets, we had one team reporting to a shared management hierarchy measured on shared outcomes focused on delivering value to customers?
 
 Over the years, though, DevOps has come to encompass so much that it has almost no meaning. To say you have a DevOps job has about as much meaning as saying you have a sales, finance, or management job. DevOps's nature is to consume as much responsibility as it can (demonstrated by all the Dev-Insert-Something-Here-Ops paradigms that have evolved), often without any consideration for who has to deliver this growing sphere of responsibility. The frustration of DevOps team members with the inability to answer the question “What am I not responsible for?” has led to the rise of DevEx.
 
