@@ -4,9 +4,9 @@ description: Learn how you can deactivate tenants in Octopus.
 author: isaac.calligeros@octopus.com
 visibility: public
 published: 2024-11-27-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Octopus deploy with a disable tenants button in the foreground.
+metaImage: img-blog-deactivating-tenants-2024.png
+bannerImage: img-blog-deactivating-tenants-2024.png
+bannerImageAlt: Person sitting cross-legged with laptop in front of oversized, stylized Octopus UI.
 tags:
 - Product
 ---
@@ -25,21 +25,21 @@ You can choose to enable or disable tenants on the Tenant Settings page. We've i
 
 Tenants are now grouped by their ENABLED or DISABLED status on the Tenants and Project Tenants pages.
 
-![Tenants are now grouped by their enabled or disabled state](tenants-page.png "width=500")
+![Tenants are now grouped by their enabled or deactivated state](tenants-page.png "width=500")
 
 You can still edit, add, or remove deactivated tenants from any related entities. In these scenarios, you can identify deactivated tenants by their deactivated chip state.
 
-![Tenant chips indicate the disabled or enabled state](disabled-tenant-chips.png "width=500")
+![Tenant chips indicate the deactivated or enabled state](disabled-tenant-chips.png "width=500")
 
 ## Deployments and runbooks
 
 When creating a deployment or runbook run manually or through triggers, you can only select enabled tenants. If you're selecting tenant tags, you can deploy to enabled tenants with that tag, and deactivated tenants will get automatically filtered out. Deployments to deactivated tenants through the CLI or API will fail, throwing an error.
 
-![Disabled tenants no longer appear on the deployment preview screen](deploying-to-disabled-tenants.png "width=500")
+![Deactivated tenants no longer appear on the deployment preview screen](deploying-to-disabled-tenants.png "width=500")
 
 When creating a deployment against a tenant tag, Octopus will ignore all deactivated tenants. This allows tenants to be effectively removed from all deployments at the tenant level, and later re-enabled if needed.
 
-![Deployments page with disabled tenants](disabled-tenants-deployments-page.png "width=500")
+![Deployments page with deactivated tenants](disabled-tenants-deployments-page.png "width=500")
 
 ## Conclusion
 
