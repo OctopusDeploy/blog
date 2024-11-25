@@ -4,8 +4,8 @@ description: Learn how you can deactivate tenants in Octopus.
 author: isaac.calligeros@octopus.com
 visibility: public
 published: 2024-11-27-1400
-metaImage: disable-tenants.png
-bannerImage: disable-tenants.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: Octopus deploy with a disable tenants button in the foreground.
 tags:
 - Product
