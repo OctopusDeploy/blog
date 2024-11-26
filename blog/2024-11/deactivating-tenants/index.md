@@ -3,7 +3,7 @@ title: Deactivating tenants
 description: Learn how you can deactivate tenants in Octopus.
 author: isaac.calligeros@octopus.com
 visibility: public
-published: 2024-11-27-1400
+published: 2024-12-02-1400
 metaImage: img-blog-deactivating-tenants-2024.png
 bannerImage: img-blog-deactivating-tenants-2024.png
 bannerImageAlt: Person sitting cross-legged with laptop in front of oversized, stylized Octopus UI.
