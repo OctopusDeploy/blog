@@ -199,7 +199,7 @@ Apply this to your cluster and you're done!
 
 ### Troubleshooting
 
-#### Permission denied extracting calamari
+#### Permission denied extracting Calamari
 
 Some users have reported getting a permission denied error when extracting Calamari in the pod.  This could be caused by enabling `Prevent root access by default` in the `File system policy` section of the EFS service.  In these cases, you may need to specify the user account for the script pod to run as the Helm command provided by the wizard.  For example:
 
