@@ -19,7 +19,7 @@ In this post, I walk you through how to enable and deactivate tenants.
 
 ## Enabling and deactivating tenants
 
-You can choose to enable or disable tenants on the Tenant Settings page. We've included support for the [Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs/resources/tenant) and [CLI](https://octopus.com/docs/octopus-rest-api/cli).
+You can choose to enable or deactivate tenants on the Tenant Settings page. We've included support for the [Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs/resources/tenant) and [CLI](https://octopus.com/docs/octopus-rest-api/cli).
 
 ![Octopus Deploy tenant settings with Enabled and Disable](toggle-disable-tenant.png "width=500")
 
