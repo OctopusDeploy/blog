@@ -64,8 +64,6 @@ To maintain health, it makes sense to be careful about what numbers we actively 
 
 ## The model for healthy metrics
 
-[img]
-
 The overlay has three dimensions:
 
 - **Elevation**: Whether or not you make a metric visible outside your team.
@@ -78,7 +76,7 @@ When you run an initiative to improve a specific aspect of your software, you mi
 
 Here's an example to illustrate. You're working on an e-commerce website.
 
-[img]
+![A grid split by lifespan (long term, background, temporary) and elevation (internal or elevated)](effective-devops-metrics.png)
 
 Your internal long-term measures are tracking throughput, stability, and reliability. These are great feedback loops for improving how you deliver software.
 
