@@ -4,12 +4,13 @@ description: A summary of the key points from the effective DevOps metrics sessi
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-dorametrics-2023.png
+bannerImage: blogimage-dorametrics-2023.png
+bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
+  - DORA Metrics
 ---
 
 At SHIPPED24 I presented a version of my "Effective DevOps metrics" talk, which included a simple framework to help you keep your measurement system healthy.
