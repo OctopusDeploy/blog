@@ -4,9 +4,9 @@ description: A summary of the key points from the effective DevOps metrics sessi
 author: steve.fenton@octopus.com
 visibility: public
 published: 2024-12-09-1400
-metaImage: blogimage-dorametrics-2023.png
-bannerImage: blogimage-dorametrics-2023.png
-bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
+metaImage: blogimage-calculatingdorametrics-2022.png
+bannerImage: blogimage-calculatingdorametrics-2022.png
+bannerImageAlt: A magnifying glass highlights a chart on a dashboard 
 isFeatured: false
 tags: 
   - DevOps
