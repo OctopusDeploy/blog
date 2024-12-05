@@ -2,8 +2,8 @@
 title: Effective DevOps metrics
 description: A summary of the key points from the effective DevOps metrics session at SHIPPED24.
 author: steve.fenton@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2024-12-09-1400
 metaImage: blogimage-dorametrics-2023.png
 bannerImage: blogimage-dorametrics-2023.png
 bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
@@ -13,7 +13,7 @@ tags:
   - DORA Metrics
 ---
 
-At SHIPPED24 I presented a version of my "Effective DevOps metrics" talk, which included a simple framework to help you keep your measurement system healthy.
+At [SHIPPED24](https://www.youtube.com/playlist?list=PLAGskdGvlaw1ykkyds5NXYdYCeF798C7l), I presented a version of my "Effective DevOps metrics" talk, which included a simple framework to help you keep your measurement system healthy.
 
 When you look at how our idea of value has evolved, you can see why we need to change how we measure software delivery. Let's explore that and see how the time/elevation model keeps things positive.
 
@@ -21,7 +21,7 @@ You can [watch the webinar](https://www.youtube.com/watch?v=_gZCUwecZ9E) or read
 
 ## Value in software delivery
 
-The primary value of software is whether it helps people achieve their objectives, but within technical teams, we tend to consider more localized versions of value. We need short-hop goals that help us see our progress, as the end-to-end system provides feedback too late to be helpful.
+The primary value of software is whether it helps people achieve their objectives, but in technical teams, we tend to consider more localized versions of value. We need short-hop goals that help us see our progress, as the end-to-end system provides feedback too late to be helpful.
 
 We can use a simplified version of the [history of software delivery](https://octopus.com/devops/history/) to understand how our idea of value has changed.
 
@@ -45,9 +45,9 @@ That makes it better to inform your continuous improvement process.
 
 ## How do you measure software delivery?
 
-The great news is that there are plenty of ideas for measuring software delivery. In fact, you'll have too many options to choose from. There's the [DORA 4 keys](https://octopus.com/devops/metrics/dora-metrics/), the [SPACE framework](https://octopus.com/devops/metrics/space-framework/), DX Core, and many more.
+The great news is that there are plenty of ideas for measuring software delivery. In fact, you have too many options to choose from. There are the [DORA 4 keys](https://octopus.com/devops/metrics/dora-metrics/), the [SPACE framework](https://octopus.com/devops/metrics/space-framework/), DX Core, and many more.
 
-You'll need a razor to reduce all the possible options, and the simplest is to ask why you are measuring software delivery.
+You need a razor to reduce all the possible options, and the simplest is to ask why you're measuring software delivery.
 
 You can apply this by reflecting on your actions if the metric you measure goes up, down, or remains unchanged. If you don't have a clear idea of this, the metric won't provide a strong signal. No metric should end up in your model if you can't answer these questions.
 
@@ -57,15 +57,15 @@ Collecting useless metrics isn't the only danger. A more pressing problem is how
 
 The purpose of your metrics is improvement. A common mistake is to show off your improvement by elevating the metric in management reports. When you share the measurements too broadly, it fundamentally changes how people respond to them.
 
-Equally, if you put a chart on a dashboard or information radiator, you are sending a signal about the importance of that number. When you make a number prominent, you distract people from anything you omit.
+Equally, if you put a chart on a dashboard or information radiator, you're sending a signal about the importance of that number. When you make a number prominent, you distract people from anything you omit.
 
-When metrics become too prominent, either through elevation or visible distraction, tasks not reflected in that number get de-prioritized. When someone talks about a development team "gaming the metrics," they are likely admitting that they have created unbalanced signals about what's important.
+When metrics become too prominent, either through elevation or visible distraction, tasks not reflected in that number get de-prioritized. When someone talks about a development team "gaming the metrics", they're likely admitting that they've created unbalanced signals about what's important.
 
 To maintain health, it makes sense to be careful about what numbers we actively track, how long the metric is helpful, and how broadly we share it.
 
 ## The model for healthy metrics
 
-The overlay has three dimensions:
+The overlay has 3 dimensions:
 
 - **Elevation**: Whether or not you make a metric visible outside your team.
 - **Lifespan**: Whether a metric is long-term or temporary.
@@ -83,7 +83,7 @@ Your internal long-term measures are tracking throughput, stability, and reliabi
 
 When you report upwards, you switch into business mode. You report transaction rates, time spent on new features, and developer satisfaction.
 
-In the background, you internally collect queue times and cycle times so you can be alerted when work gets blocked. You elevate the revenue per developer metric as this reflects your organization's view of a healthy return on investment.
+In the background, you internally collect queue times and cycle times so you get alerts when work gets blocked. You elevate the revenue per developer metric as this reflects your organization's view of a healthy return on investment.
 
 You've also decided to experiment with ways to reduce abandoned baskets, which are when someone didn't complete the checkout process. You track the abandonment rate to see how it changes as you test ideas.
 
