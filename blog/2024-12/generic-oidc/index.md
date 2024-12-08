@@ -23,7 +23,7 @@ These accounts allow two fields to be configured, the audience which is specific
 
 ## Authenticating with HashiCorp Vault
 HashiCorp Vault is a powerful tool for managing secrets and identities, and it supports authentication via OIDC.
-A vault instance can be configured to enable OAuth Jwt authentication with the following commands. In this example we include the basic jwt configuration required, for full details on configuration see the [HashiCorp Vault Jwt docs](https://developer.hashicorp.com/vault/docs/auth/jwt).
+A vault instance can be configured to enable OAuth Jwt authentication with the following commands. In this example we include the basic Jwt configuration required, for full details on configuration see the [HashiCorp Vault Jwt docs](https://developer.hashicorp.com/vault/docs/auth/jwt).
 
 ``` bash
 vault auth enable jwt
