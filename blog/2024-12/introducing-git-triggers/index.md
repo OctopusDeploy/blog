@@ -3,7 +3,7 @@ title: Introducing Git triggers
 description: Trigger a deployment straight fromm your Git repository
 author: harriet.alexander@octopus.com
 visibility: public
-published: 2024-12-11-1400
+published: 2024-12-10-1400
 metaImage: img-blog-sourcingscriptsfromgit-2023.png
 bannerImage: img-blog-sourcingscriptsfromgit-2023.png
 bannerImageAlt: Git and Octopus logos connected by plugs with little stars around the connection
@@ -28,13 +28,13 @@ With Git triggers, deployments are no longer tied to explicit CI actions. Instea
 
 There are several common use cases for Git triggers in Octopus that show how this feature can improve your workflow:
 
-1. **Deploying a new version of an application with Helm** – If you're using Helm charts to manage your Kubernetes applications, a change to the version number in your Helm chart repository can automatically trigger a new release and deployment. This eliminates manual interventions and complex CI steps when updating versions.
-2. **Deploying with Kustomize** – If you're deploying off-the-shelf applications with Kustomize, changes to Kustomize YAML files in your Git repository can automatically trigger a new release. Whether you're managing multiple environments or simply updating your configurations, Git triggers make deployments seamless.
-3. **Managing infrastructure with Terraform** – For infrastructure as code (IaC) users, Git triggers are incredibly useful. A commit that changes your Terraform resource files can automatically create a release and update your infrastructure in the cloud, ensuring everything is up to date and aligned with your latest Git commits.
+- Deploying a new version of an application with Helm – If you're using Helm charts to manage your Kubernetes applications, a change to the version number in your Helm chart repository can automatically trigger a new release and deployment. This eliminates manual interventions and complex CI steps when updating versions.
+- Deploying with Kustomize – If you're deploying off-the-shelf applications with Kustomize, changes to Kustomize YAML files in your Git repository can automatically trigger a new release. Whether you're managing multiple environments or simply updating your configurations, Git triggers make deployments seamless.
+- Managing infrastructure with Terraform – For infrastructure as code (IaC) users, Git triggers are incredibly useful. A commit that changes your Terraform resource files can automatically create a release and update your infrastructure in the cloud, ensuring everything is up to date and aligned with your latest Git commits.
 
-## How Git triggers work
+## How Git triggers work in Octopus
 
-Git triggers are simple to set up and work just like other triggers in Octopus (like External Feed or Scheduled triggers). Here's a quick rundown of how they operate:
+Git triggers are simple to set up and work just like other triggers in Octopus (like [external feed](https://octopus.com/docs/projects/project-triggers/external-feed-triggers) or [scheduled triggers](https://octopus.com/docs/projects/project-triggers/scheduled-deployment-trigger)). Here's a quick rundown of how they work:
 
 1. To get started, you configure Git triggers in your project, just like you would with any other trigger type. You select the repositories you want Octopus to monitor for changes.
 
@@ -61,6 +61,6 @@ The benefits of Git triggers go beyond just convenience.
 
 Git triggers aim to make your deployment workflows simpler, faster, and more reliable. 
 
-This feature is now available in all Cloud instances. Our self-hosted customers can expect it in the 2024.4 server release. When you start using Git triggers, we'd love to hear your feedback in the comments below.
+This feature is now available in all Cloud instances. Our self-hosted customers can expect it in the 2024.4 release. When you start using Git triggers, we'd love to hear your feedback in the comments below.
 
 Happy deployments!
