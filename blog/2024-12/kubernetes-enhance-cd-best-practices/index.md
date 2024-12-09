@@ -1,102 +1,83 @@
 ---
-title: Effective DevOps metrics
-description: A summary of the key points from the effective DevOps metrics session at SHIPPED24.
-author: steve.fenton@octopus.com
+title: Using Kubernetes to enhance CD best practices
+description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked which examines how you can use Kubernetes to enhance CD best practices.
+author: liam.mackie@octopus.com
 visibility: public
-published: 2024-12-09-1400
-metaImage: blogimage-calculatingdorametrics-2022.png
-bannerImage: blogimage-calculatingdorametrics-2022.png
-bannerImageAlt: A magnifying glass highlights a chart on a dashboard 
+published: TBC
+metaImage: TBC
+bannerImage: TBC
+bannerImageAlt: TBC
 isFeatured: false
 tags: 
   - DevOps
-  - DORA Metrics
+  - Kubernetes
 ---
 
-At [SHIPPED24](https://www.youtube.com/playlist?list=PLAGskdGvlaw1ykkyds5NXYdYCeF798C7l), I presented a version of my "Effective DevOps metrics" talk, which included a simple framework to help you keep your measurement system healthy.
+In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
 
-When you look at how our idea of value has evolved, you can see why we need to change how we measure software delivery. Let's explore that and see how the time/elevation model keeps things positive.
+This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked) which examines how you can use Kubernetes to enhance CD best practices. Although CD best practices have been around for a long time, there are plenty of opportunities to implement them in modern deployment practices. 
 
-You can [watch the webinar](https://www.youtube.com/watch?v=_gZCUwecZ9E) or read on to explore the healthy metrics model.
+## CD best practices
 
-## Value in software delivery
+The end goal of CD is to deploy quickly according to business needs. Its entire existence is centered around reducing deployment friction so developers can focus on building good products without worrying about their work stopping critical fixes or other features. Though these best practices predate Kubernetes, they're all enhanced by Kubernetes in the modern software ecosystem.
 
-The primary value of software is whether it helps people achieve their objectives, but in technical teams, we tend to consider more localized versions of value. We need short-hop goals that help us see our progress, as the end-to-end system provides feedback too late to be helpful.
+### 1. Always be ready to deploy to production
 
-We can use a simplified version of the [history of software delivery](https://octopus.com/devops/history/) to understand how our idea of value has changed.
+The key tenet of CD is to always be ready to deploy to production. This is important because it decouples the ability to release with the readiness of any given feature. This allows you to release new functionality based on the business's requirements rather than the readiness of all features at any point in time. This also helps to fix bugs quickly, as you can make a fix and deploy it without stepping on the toes of developers working on features. Being able to deploy to production is, in the end, an exercise in risk management. You need to:
 
-- **Heavyweight era**: Large projects were plan-based, and the goal was to be on time and within budget. The localized measures for this tended to focus on activity.
-- **Lightweight era**: Iterative and incremental methods were more adaptable to change. The most famous tagline of the era was "twice the work in half the time" because the localized measures focused on speed.
-- **Modern era**: Continuous Delivery arrived just as we began to look at software delivery through the lens of rigorous academic research. We discovered links between technical and cultural practices that helped us understand what moves the needle. Localized measures now focus on outcomes.
+- Pick an easy-to-use branching strategy with short-lived branches
+- Be able to deploy and test branches
+- Run automated tests on both the main branch, as well as short-lived branches
 
-Measuring outcomes has several key benefits.
+By doing this, you're building confidence in your main branch's ability to be pushed to production, as each change has been tested as a whole and in isolation. This also means that if a bug is being fixed, you can simply fix it and iterate on the main branch, confident that you can roll forward.
 
-You can determine whether all the hard work throughout the value stream results in a real change at the whole system level. That means you can assess whether the organization is achieving its goals.
+Kubernetes helps you be ready to deploy to production by providing easily isolated test environments. Often, you'll see a Kubernetes namespace used as a test environment, allowing a developer or team to simply deploy to an existing cluster. This removes the overhead of VM management that would often prevent developers from running their software off their development environment.
 
-Just as important, you can establish a chain of outcomes. Your localized outcome-based measures provide early feedback on your process improvement efforts. Having this signal helps you connect the result back to the improvement. These lagging indicators of local success should also be early indicators of organizational outcomes.
+### 2. Build once, deploy everywhere
 
-For example, improving your ability to deliver software will increase your chances of success at the organizational level.
+Building once and deploying everywhere is important because it ensures there aren't surprises when you promote an artifact to production - what's signed off is exactly what's deployed. The artifact gets tested with automated tests, and you have confidence that the code approved by the various people involved in planning and building it is the same code that reaches production.
 
-- Software delivery performance is easier to observe
-- Movements are more likely to be related to your changes
-- It will change earlier than the organizational metrics
+Building your code every time it changes is crucial to this process. You should build the main branch as well as short-lived feature branches. You should only use builds from short-lived branches for development and testing and should have pre-release versions to indicate this. Builds from the main branch should get automatically tested and successfully progress through all testing environments before reaching production.
 
-That makes it better to inform your continuous improvement process.
+Since Kubernetes uses containers, which are easily versioned and contain all necessary frameworks and libraries to run, it's well-suited to the task of running versioned build artifacts. This allows you to simply request Kubernetes to run a certain version, and you can be sure that it'll be the same, even between Kubernetes clusters. To further supercharge this functionality, many container registries let you enable immutable tags. This prevents you from overwriting a tag after it already exists. This ensures the code is always what you expect it to be.
 
-## How do you measure software delivery?
+### 3. Include all components
 
-The great news is that there are plenty of ideas for measuring software delivery. In fact, you have too many options to choose from. There are the [DORA 4 keys](https://octopus.com/devops/metrics/dora-metrics/), the [SPACE framework](https://octopus.com/devops/metrics/space-framework/), DX Core, and many more.
+When it comes to software, the only way to ensure that something will work is to test it, and the only way to test every code change effectively is through automation. This is also the case for the supporting components of your application. Manually updating components like your database schema, configuration, and infrastructure is risky and slow. Instead, your database schema and configuration should be in version control, and you should store your infrastructure as code. This concept is called Infrastructure as Code (IaC), and there are many tools that can handle this for you, including:
 
-You need a razor to reduce all the possible options, and the simplest is to ask why you're measuring software delivery.
+- Terraform
+- CloudFormation
+- ARM
+- Bicep
+- OpenTofu
+- CrossPlane
+- Pulumi
 
-You can apply this by reflecting on your actions if the metric you measure goes up, down, or remains unchanged. If you don't have a clear idea of this, the metric won't provide a strong signal. No metric should end up in your model if you can't answer these questions.
+The deployment process should automatically run database schema upgrades, appropriately modify configuration files, and apply any changes to your infrastructure. Automatically running these processes against environments that closely resemble production gives confidence in the final push to production, and prevents bugs from surfacing when you least want them.
 
-Collecting useless metrics isn't the only danger. A more pressing problem is how you make the metrics available.
+Since Kubernetes is a declarative system, much of the supporting infrastructure, such as disks, networking, and configuration, is abstracted from the underlying implementation. Your app simply needs 5GiB of storage, not a folder on a specific filesystem. This layer of abstraction makes it easy to change and validate your configuration consistently.
 
-## Elevation and distraction
+Kubernetes also provides tooling and operators to control external infrastructure, like Crossplane and AWS Controllers for Kubernetes (ACK). These controllers take declarative Kubernetes objects and create external resources like load balancers and databases. Since this infrastructure is declarative in nature, you can easily ensure that your infrastructure is consistent across environments.
 
-The purpose of your metrics is improvement. A common mistake is to show off your improvement by elevating the metric in management reports. When you share the measurements too broadly, it fundamentally changes how people respond to them.
+### 4. Deploy to testing environments the same way as production
 
-Equally, if you put a chart on a dashboard or information radiator, you're sending a signal about the importance of that number. When you make a number prominent, you distract people from anything you omit.
+As we mentioned above, the only way to ensure that something will work as expected is to test it. This is important not only for code and components but also for the deployment process. The best way to test the production deployment process is to use the same process in test environments. This lets you find and fix issues earlier, leading to a shortened feedback loop and less wasted time.
 
-When metrics become too prominent, either through elevation or visible distraction, tasks not reflected in that number get de-prioritized. When someone talks about a development team "gaming the metrics", they're likely admitting that they've created unbalanced signals about what's important.
+Being confident in your deployment processes also helps when you have emergencies. Relying on a trusted, well-tested, automated process is much better than trying to improvise. Using an improvised process in a high-pressure
+situation makes you more likely to cause even more problems. Even if the fix works, you're unlikely to use it again, leading to a bunch of engineering time only being used to fight fires, rather than improve the process. 
 
-To maintain health, it makes sense to be careful about what numbers we actively track, how long the metric is helpful, and how broadly we share it.
+Tools like Helm and Kustomize also let you template your deployments and configuration for each environment. Octopus, Codefresh, and ArgoCD are all tools that can deploy to Kubernetes consistently across environments, even dynamically.
 
-## The model for healthy metrics
+## Conclusion 
 
-The overlay has 3 dimensions:
+The end goal of CD is to deploy quickly according to business needs. These best practices are all enhanced by Kubernetes in the modern software ecosystem, and understanding what the best practices are and how to apply them will help set you up for success. 
 
-- **Elevation**: Whether or not you make a metric visible outside your team.
-- **Lifespan**: Whether a metric is long-term or temporary.
-- **Visibility**: Whether a metric is visible or tracked in the background.
+This blog post was an excerpt from our new guide, Kubernetes delivery unlocked, which helps you understand:
 
-Localized outcomes should be internal metrics. If you want to share metrics outside your team, they should come from a wider part of your outcome chain.
+- How to use Kubernetes' architecture to achieve seamless, zero-downtime deployments
+- How to define and build your deployment process using CD principles
+- Common challenges faced by developers using Kubernetes and how to overcome them
 
-When you run an initiative to improve a specific aspect of your software, you might temporarily measure metrics around the intended outcome. When the initiative achieves its goal, you can choose whether to keep them as long-term measures,  turn them into background checks (with alerts on specific conditions), or remove them.
+[Download the free guide](https://octopus.com/whitepapers/kubernetes-delivery-unlocked)
 
-Here's an example to illustrate. You're working on an e-commerce website.
-
-![A grid split by lifespan (long term, background, temporary) and elevation (internal or elevated)](effective-devops-metrics.png)
-
-Your internal long-term measures are tracking throughput, stability, and reliability. These are great feedback loops for improving how you deliver software.
-
-When you report upwards, you switch into business mode. You report transaction rates, time spent on new features, and developer satisfaction.
-
-In the background, you internally collect queue times and cycle times so you get alerts when work gets blocked. You elevate the revenue per developer metric as this reflects your organization's view of a healthy return on investment.
-
-You've also decided to experiment with ways to reduce abandoned baskets, which are when someone didn't complete the checkout process. You track the abandonment rate to see how it changes as you test ideas.
-
-The transaction rate measure counterbalances the abandonment rate. If you remove the upsell stage from the checkout to test a shorter checkout process, you can see the negative effect on transaction value and back up to try a different idea.
-
-This is how measurement systems should work—sending strong signals to inform your decision-making. They should help you connect the technical work to the humans it touches.
-
-## Not twice the work in half the time
-
-The recent State of DevOps Report highlighted that user-centricity, being genuinely curious about your users' pains and problems, is the surest way to strong performance in software products.
-
-High throughput can help you learn fast and run more experiments, but it should only be seen as a tool that assists user-centricity. Throughput is a way to get feedback earlier and maximize your learning.
-
-When you use measurement well, you don't end up with twice the work in half the time. Instead, you have twice the impact with half the work.
-
-Happy deployments!
+Happy deployments! 
