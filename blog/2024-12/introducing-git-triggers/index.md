@@ -4,9 +4,9 @@ description: Trigger a deployment straight fromm your Git repository
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2024-12-11-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: img-blog-sourcingscriptsfromgit-2023.png
+bannerImage: img-blog-sourcingscriptsfromgit-2023.png
+bannerImageAlt: Git and Octopus logos connected by plugs with little stars around the connection
 isFeatured: false
 tags:
 - Product
