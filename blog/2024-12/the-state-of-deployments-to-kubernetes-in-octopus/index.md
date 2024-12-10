@@ -15,29 +15,39 @@ tags:
   - Kubernetes
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags.
+For the past few years, Kubernetes has been Octopus's main focus, and we plan to continue prioritizing it in 2025. We want to deliver the best experience for enterprises automating deployments to Kubernetes, especially at the scale of hundreds of microservices and many teams.
 
-For the past few years, Kubernetes has been Octopus's main focus, and we plan to continue prioritizing it in 2025. Our goal is to deliver the best experience for enterprises looking to automate deployments to Kubernetes, especially at the scale of hundreds of microservices and numerous teams.
-This blog post will cover the challenges that enterprises encounter when deploying to Kubernetes at scale, and the current state of deployment best practices and tools. We’ll also talk about Octopus's approach to Kubernetes deployments. 
-Following this, we’ll provide a recap of all the Kubernetes capabilities we introduced in Octopus during 2023 and 2024. We will walk through a scenario that demonstrates how these capabilities can be integrated to enhance the experience of deploying to Kubernetes at scale. Finally, we’ll offer a sneak peek into our plans for Kubernetes in 2025.
+This post covers the challenges that enterprises encounter when deploying to Kubernetes at scale, and the current state of deployment best practices and tools. 
+
+We also talk about Octopus's approach to Kubernetes deployments and recap the  capabilities we introduced in 2023 and 2024. We also walk through a scenario that shows how you can use these capabilities to improve the experience of deploying to Kubernetes at scale. Finally, you get a sneak peek into our plans for Kubernetes in 2025.
 
 ## Deployments to Kubernetes, challenges at scale
 
-Kubernetes influenced the way we develop and run applications. With Kubernetes’s capabilities, we’re able to easily break up large applications and run hundreds of microservices, create a bunch of environments dynamically, seamlessly scale resources, and run applications in clouds, on edge devices, or in a private data center using one platform and one configuration.
+Kubernetes has influenced the way we develop and run applications. With Kubernetes’ capabilities, we can: 
 
-Not only that, but deployments also evolved. Previously, a deployment would typically include steps like file shuffling, configuration changes, and service restarts. With Kubernetes, one human-readable manifest has all the information about the application and infrastructure configuration.
+- Easily break up large applications and run hundreds of microservices
+- Create a bunch of environments dynamically
+- Seamlessly scale resources
+- Run applications in clouds, on edge devices, or in a private data center using one platform and one configuration
 
-No surprise that Kubernetes is a new default platform for many companies around the globe.
+Not only that, but deployments have also evolved. Previously, a deployment would typically include steps like file shuffling, configuration changes, and service restarts. With Kubernetes, one human-readable manifest has all the information about the application and infrastructure configuration.
 
-However, these new great capabilities also lead to a more intricate deployment landscape. The north star for any pipeline is still fully automated deployment from Development to Production. The automation allows companies to ship software multiple times a day so they can deliver small and safe regular improvements, decreasing the cost of running deployments due to the absence of manual testing and approvals.
+It's no surprise that Kubernetes is a new default platform for many organizations around the globe.
 
-Deploying monolithic applications was already a challenge, but now we're faced with the need to automate deployments for hundreds of microservices. These microservices run on the same cluster, which means they can potentially affect one another. We also need to find a way to dynamically provision environments with the correct versions of these microservices and manage manifests that combine both application and infrastructure configuration.
+However, these new great capabilities also lead to a more intricate deployment landscape. The north star for any pipeline is still fully automated deployments from development to production. Automation lets you ship software multiple times a day you can deliver small and safe regular improvements. This lowers the cost of deployments due to the absence of manual testing and approvals.
 
-Additionally, existing deployment challenges still remain. We need to run different sets of tests across various environments, comply with regulatory requirements, integrate with change management tools, and more. However, we now have to address these issues for a significantly larger number of applications.
+Deploying monolithic applications was already a challenge, but now we're faced with the need to automate deployments for hundreds of microservices. These microservices run on the same cluster, which means they can affect one another. We also need to find a way to dynamically provision environments with the correct versions of these microservices and manage manifests that combine both application and infrastructure configuration.
 
-The challenge for modern DevOps and Platform teams is to find the right set of tools to automate deployments. On the one hand, these tools should be capable of managing deployments at scale. On the other hand, they should be easy to adopt at the very beginning when you’re starting with just a couple of applications and a few teams on Kubernetes. You really need to plan for the future and consider questions like where will you deploy (the number of environments, regions, clusters), who will own deployments (how easy it would be to self-serve), how many applications will be deployed, what extra requirements your company has.
+Plus, existing deployment challenges remain. We need to run different sets of tests across various environments, comply with regulatory requirements, integrate with change management tools, and more. But now, we have to address these issues for a significantly larger number of applications.
 
-[If you want to learn more, this year I recorded a webinar about deployments to Kubernetes at scale](https://youtu.be/uXUG8s4sFMY?si=PTGchl4U1uTctHYO)
+The challenge for modern DevOps and Platform teams is to find the right set of tools to automate deployments. On the one hand, these tools should be capable of managing deployments at scale. On the other hand, they should be easy to adopt at the very beginning when you’re starting with just a couple of applications and a few teams on Kubernetes. You really need to plan for the future and consider questions like:
+
+- Where will you deploy (the number of environments, regions, clusters)?
+- Who will own deployments (and how easy will it be to self-serve)?
+- How many applications will be deployed?
+- What extra requirements does your organization have?
+
+If you want to learn more, I recorded [a webinar about deployments to Kubernetes at scale](https://youtu.be/uXUG8s4sFMY?si=PTGchl4U1uTctHYO).
 
 ## CD problems and tools evolution
 
