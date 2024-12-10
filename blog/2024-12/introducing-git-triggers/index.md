@@ -14,7 +14,7 @@ tags:
 
 We're excited to introduce Git triggers – a new feature that streamlines the release creation process.
 
-Until now, to deploy new versions of applications or infrastructure, you needed to use an explicit **Create a release** step in a Continuous Integration (CI) pipeline. However, we're seeing more customers transition to a GitOps model, where dependencies and deployments are increasingly controlled through version control. With this in mind, we want to provide more flexibility in how you can trigger your deployments. With Git Triggers, we're moving toward a pull-based deployment model directly from your Git repositories.
+Until now, to deploy new versions of applications or infrastructure, you had to use an explicit **Create a release** step in a Continuous Integration (CI) pipeline. However, we're seeing more customers transition to a GitOps model, where dependencies and deployments are increasingly controlled through version control. With this in mind, we want to provide more flexibility in how you can trigger your deployments. With Git Triggers, we're moving toward a pull-based deployment model directly from your Git repositories.
 
 In this post, I explain our new Git triggers feature and the benefits of using it.
 
