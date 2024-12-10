@@ -1,6 +1,6 @@
 ---
 title: Introducing Git triggers
-description: Trigger a deployment straight fromm your Git repository
+description: Trigger a deployment straight fromm your Git repository.
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2024-12-10-1400
@@ -61,6 +61,8 @@ The benefits of Git triggers go beyond just convenience.
 
 Git triggers aim to make your deployment workflows simpler, faster, and more reliable. 
 
-This feature is now available in all Cloud instances. Our self-hosted customers can expect it in the 2024.4 release. When you start using Git triggers, we'd love to hear your feedback in the comments below.
+This feature has rolled out to our Cloud customers and is available to our self-hosted customers in the 2024.4 release. To learn more about using Git triggers, you can [read our docs](https://octopus.com/docs/projects/project-triggers/git-triggers).
+
+When you start using Git triggers, we'd love to hear your feedback in the comments below.
 
 Happy deployments!
