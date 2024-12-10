@@ -55,72 +55,72 @@ GitOps has been the main topic in Kubernetes deployments for a few years now. Ar
 
 This year, the focus shifted from the GitOps implementation in general to a more narrow problem of environment promotions with GitOps.
 
-As companies scaled on Kubernetes, they realized that OSS tools in their current state don’t have a good solution for promotion orchestration. Till recently, the only way to automate the environment promotions with GitOps tools was to build in-house automation on tools like Jenkins or GitHub Actions. However these solutions don’t scale well and are expensive to maintain long-term.
+As organizations scaled on Kubernetes, they realized that OSS tools don’t have a good solution for promotion orchestration. Until recently, the only way to automate the environment promotion with GitOps tools was to build in-house automation on tools like Jenkins or GitHub Actions. However these solutions don’t scale well and are expensive to maintain long-term.
 
-This year, the market has reacted to the challenges of environment management with GitOps OSS by introducing several specialized tools. Codefresh GitOps was the first of these tools and is currently the most developed project. Meanwhile, Kargo and Argo CD GitOps Promoter aim to address the same issues, but both of these projects are still in their early stages.
+This year, the market has reacted to the challenges of environment management with GitOps OSS by introducing several specialized tools. Codefresh GitOps was the first of these tools and is the most developed project. Meanwhile, Kargo and Argo CD GitOps Promoter aim to address the same issues, but are still in their early stages.
 
-In addition to the trend of developing GitOps OSS tools to tackle environment promotion challenges, there is another movement where sophisticated CI/CD tools are adopting more GitOps principles. GitOps significantly enhances the developer experience. It leverages the tools we already use to manage code and provides greater confidence in achieving the desired state. Building on this value is a logical progression. In the following sections, we’ll touch on how you can already implement the code-first approach in Octopus.
+In addition to the trend of developing GitOps OSS tools to tackle environment promotion challenges, there's another movement where sophisticated CI/CD tools are adopting more GitOps principles. GitOps significantly enhances the developer experience. It uses the tools we already use to manage code and provides greater confidence in achieving the desired state. Building on this value is a logical progression. In the following sections, we touch on how you can implement the code-first approach in Octopus.
 
 ## Octopus and Kubernetes
 
 Octopus Deploy was designed to simplify complex deployments across various environments. This is Octopus's core job, and we do it well.
 
-Since 2018, Octopus has focused on developing native capabilities for Kubernetes, making it our top priority over the past two years. Our vision is to simplify Continuous Delivery for Kubernetes. By "simple," we mean achieving a low cost of ownership, straightforward configuration, easy maintenance, and peace of mind for everyone involved.
+Since 2018, Octopus has focused on developing in-built Kubernetes capabilities, and it's been our top priority for the past 2 years. We're simplifying Continuous Delivery for Kubernetes. By "simple", we mean a low cost of ownership, straightforward configuration, easy maintenance, and peace of mind for everyone involved.
 
-We believe that companies should use one tool and set of practices for all their deployments instead of starting from scratch and building a completely new stack for each hosting platform.
-We simultaneously adopt Kubernetes-native tools, such as Helm and Kustomize, along with best practices like declarative configurations and using Git as the source of truth. Our goal is to integrate these tools and practices into Octopus, making it easier to incorporate them into deployment pipelines.
+We believe organizations should use one tool and set of practices for all their deployments, instead of starting from scratch and building a completely new stack for each hosting platform.
+We simultaneously adopt Kubernetes-native tools, like Helm and Kustomize, along with best practices like declarative configurations and using Git as the source of truth. Our goal is to integrate these tools and practices into Octopus, making it easier to incorporate them into deployment pipelines.
 
-Kubernetes introduced a few new challenges. One of the biggest challenges is that deployment does not finish when you apply a configuration to a cluster. Instead, the cluster should achieve the desired state, eventually. At the same time, knowing the deployment status is vital. That’s why our focus right now is to bring more capabilities to verify deployments to Kubernetes in Octopus. See the sections below to learn more.
+Kubernetes introduced a few new challenges. One of the biggest challenges is that a deployment doesn't finish when you apply a configuration to a cluster. Instead, the cluster should achieve the desired state, eventually. At the same time, knowing the deployment status is vital. That’s why our focus right now is to bring more capabilities to verify deployments to Kubernetes in Octopus. See the sections below to learn more.
 
-Currently, over 400 companies use Octopus for regular deployments to Kubernetes. More than 300 of these companies deploy every week, and over 250 deploy daily!
+Currently, over 400 organizations use Octopus for regular deployments to Kubernetes. More than 300 of these deploy every week, and over 250 deploy daily.
 
-These companies are managing more than 8,000 projects and executing approximately 600,000 Kubernetes steps each month.
+These organizations manage more than 8,000 projects and run approximately 600,000 Kubernetes steps each month.
 
-24% of these projects are deployed with our built-in Helm step and 18% with the plain YAML step. For 18% of the projects our customers decided not to manage manifests outside of Octopus and configured them instead with our ‘Configure and apply Kubernetes resources’ step.
+24% of these projects get deployed with our built-in Helm step and 18% with the plain YAML step. For 18% of the projects, our customers decided not to manage manifests outside of Octopus and configured them instead with our **Configure and apply Kubernetes resources** step.
 
-## New features we added for Kubernetes in Octopus during 2023 and 2024
+## New Kubernetes features in Octopus during 2023 and 2024
 
-Let’s revisit the years 2023 and 2024 to examine the changes in the Octopus’s experience with Kubernetes.
+Let’s revisit 2023 and 2024 to see how the experience with Kubernetes has changed in Octopus.
 
 __[Kubernetes Object Status](https://roadmap.octopus.com/c/73-kubernetes-object-status-check)__
 
-With the release of `2023.2`, Kubernetes Object status became one of the most popular features in Octopus. Now, deployments in Octopus no longer end with a simple manifest application. Instead, Octopus can interpret YAML manifests and monitor the status of objects until the cluster achieves the desired state.
+With the release of 2023.2, Kubernetes Object Status became one of the most popular features in Octopus. Now, deployments in Octopus no longer end with a simple manifest application. Instead, Octopus can interpret YAML manifests and monitor the status of objects until the cluster achieves the desired state.
 
-From this point forward, the success or failure of a deployment in Octopus also reflects whether the desired configuration has successfully started on the target. Additionally, Octopus provides a list of deployed objects along with basic information and health status at the time of deployment, eliminating the need to check other tools for deployment verification.
+With this feature, the success or failure of a deployment in Octopus also reflects if the desired configuration has successfully started on the target. Octopus also provides a list of deployed objects along with basic information and health status at the time of deployment. This removes the need to check other tools for deployment verification.
 
 __[Kubernetes Object Status for Helm](https://roadmap.octopus.com/c/171-kubernetes-object-status-for-helm)__
 
-Just before the end of 2024, we enhanced the Kubernetes Object Status by adding support for Helm. Since Helm already includes built-in capabilities to verify deployment success (using the `--wait` argument), we didn’t want to replace this functionality. Instead, we improved its discoverability and enabled it by default for the newly added steps. Additionally, Octopus can display the object list, health, and details for Helm in the same way it does for all Kubernetes steps.
+Recently, we enhanced the Kubernetes Object Status by adding support for Helm. Since Helm already includes built-in capabilities to verify deployment success (using the `--wait` argument), we didn’t want to replace this functionality. Instead, we improved its discoverability and enabled it by default for the newly added steps. Octopus can also display the object list, health, and details for Helm in the same way it does for all Kubernetes steps.
 
 __[Sourcing Kubernetes Configuration Files from Git](https://roadmap.octopus.com/c/43-sourcing-kubernetes-configuration-files-from-git)__
 
-Kubernetes manifests are essentially code, and the most effective way to manage code is through Git. Therefore, we have streamlined the process between Git and Octopus. Octopus can now directly source files from Git. This feature is available for all built-in Kubernetes steps as well as for script steps.
+Kubernetes manifests are essentially code, and the most effective way to manage code is through Git. So, we streamlined the process between Git and Octopus. Octopus now directly sources files from Git. This feature is available for all built-in Kubernetes steps and for script steps.
 
 __[Smart selection for Helm values sources](https://roadmap.octopus.com/c/114-smart-selection-for-helm-values-sources)__
 
-Later, we incorporated sourcing from Git for Helm charts and values files. As part of this enhancement, we reimagined the entire process of managing values files in Octopus. Now, you can link as many files as you need and specify the order in which they should be applied. This improvement facilitates at-scale scenarios, as demonstrated in the example below.
+Later, we incorporated sourcing from Git for Helm charts and values files. We also reimagined the entire process of managing values files in Octopus. Now, you can link as many files as you need and specify the order they should apply. This facilitates at-scale scenarios, as demonstrated in the example below.
 
 __[Kustomize step](https://roadmap.octopus.com/c/64-kustomize-step)__
 
-Kustomize is a widely used method for scaling Kubernetes configurations. Many customers preferred not to use Helm and expressed the need for a more advanced templating engine in Octopus. We recognized that combining Kustomize with Octopus variables would enable users to apply a single configuration template across hundreds of projects. This prompted us to add the built-in Kustomize step in `2023.3`.
+Kustomize is widely used for scaling Kubernetes configurations. Many customers prefer not to use Helm and told us they wanted a more advanced templating engine in Octopus. We knew that combining Kustomize with Octopus variables would enable users to apply a single configuration template across hundreds of projects. This prompted us to add the built-in Kustomize step in 2023.3.
 
 __External feed triggers for [Helm](https://roadmap.octopus.com/c/72-trigger-release-creation-on-helm-chart-updates) and [container images](https://roadmap.octopus.com/c/69-trigger-release-creation-on-container-image-update)__
 
-In `2024.2`, we introduced external feed triggers. These new triggers enable Octopus to automatically create releases whenever a new version of a container image or Helm chart is published. This is a crucial step towards implementing GitOps principles within Octopus and supporting at-scale scenarios. Additionally, the triggers simplify CI pipelines and make it easier to track changes in third-party applications.
+In 2024.2, we introduced external feed triggers. These new triggers let Octopus automatically create releases whenever a new version of a container image or Helm chart gets published. This is a crucial step towards implementing GitOps principles in Octopus and supporting at-scale scenarios. The triggers also simplify CI pipelines and make it easier to track changes in third-party applications.
 
 __[Git triggers](https://roadmap.octopus.com/c/68-git-triggers-for-release-creation)__
 
-Later this year, we will release another trigger. Now, Octopus can monitor Git repositories for changes and create releases automatically upon updates. This trigger enables advanced scenarios, such as simultaneous updates for multiple projects if a configuration template is modified, or creating a release when Helm values files change.
+We recently released another trigger. Now, Octopus can monitor Git repositories for changes and create releases automatically upon updates. This enables advanced scenarios, like simultaneous updates for multiple projects if a configuration template is modified, or creating a release when Helm values files change.
 
 __[Kubernetes agent](https://roadmap.octopus.com/c/84-octopus-agent-for-kubernetes)__
 
-`2024.2` was a big release for Kubernetes in Octopus. Along with the introduction of new triggers, we also launched the Kubernetes agent, which marks our largest enhancement to the Kubernetes experience in Octopus to date (but this won't be the case for long). The agent allows for worker-less deployments to Kubernetes, greatly enhances cluster authentication, improves security, and simplifies network configuration. We recommend using the agent as the default method for connecting Octopus with Kubernetes clusters.
+2024.2 was a big release for Kubernetes in Octopus. Along with the new triggers, we launched the Kubernetes agent. This is our largest enhancement to the Kubernetes experience in Octopus to date (but this won't be the case for long). The agent allows for workerless deployments to Kubernetes, greatly enhances cluster authentication, improves security, and simplifies network configuration. We recommend using the agent as the default method for connecting Octopus with Kubernetes clusters.
 
 __[Kubernetes worker](https://roadmap.octopus.com/c/108-kubernetes-worker-new-autoscaling-worker-on-kubernetes)__
 
 The Kubernetes agent allows for efficient use of cluster resources by scaling up and down based on deployment load changes. We received extensive feedback requesting the same flexibility for all deployments. As a response, we released a new Kubernetes worker. This scalable worker operates on Kubernetes and can deploy to any target or execute any runbook. Additionally, it provides a solution for customers who cannot install Kubernetes agents on their clusters, such as those with small edge clusters where every megabit of RAM is critical.
 
-Actually, these are not all the Kubernetes improvements released within the last two years. Look at our [roadmap to find more](https://roadmap.octopus.com/tabs/3-released).
+These aren't even all the Kubernetes improvements released in the last 2 years. See our [roadmap for more](https://roadmap.octopus.com/tabs/3-released).
 
 ## How to automate deployments to Kubernetes at scale with Octopus
 
