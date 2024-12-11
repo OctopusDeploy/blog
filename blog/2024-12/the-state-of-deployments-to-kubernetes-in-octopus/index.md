@@ -9,9 +9,8 @@ bannerImage: blogimage-kubernetes-generic-1-2023.png
 bannerImageAlt: Kubernetes inside magnifying glass on computer screen with stars surrounding it
 isFeatured: false
 tags: 
-  - DevOps
-  - Company
   - Product
+  - Company
   - Kubernetes
 ---
 
