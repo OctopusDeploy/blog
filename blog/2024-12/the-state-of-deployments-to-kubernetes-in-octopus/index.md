@@ -15,7 +15,7 @@ tags:
   - Kubernetes
 ---
 
-For the past few years, Kubernetes has been Octopus's main focus, and we plan to continue prioritizing it in 2025. We want to deliver the best experience for enterprises automating deployments to Kubernetes, especially at the scale of hundreds of microservices and many teams.
+For the past few years, Kubernetes has been Octopus's focus, and we plan to continue to strengthen our support for Kubernetes in 2025. We want to deliver the best experience for enterprises automating deployments to Kubernetes, especially at the scale of hundreds of microservices and many teams.
 
 This post covers the challenges that enterprises encounter when deploying to Kubernetes at scale, and the current state of deployment best practices and tools. 
 
@@ -28,15 +28,15 @@ Kubernetes has influenced the way we develop and run applications. With Kubernet
 - Easily break up large applications and run hundreds of microservices
 - Create a bunch of environments dynamically
 - Seamlessly scale resources
-- Run applications in clouds, on edge devices, or in a private data center using one platform and one configuration
+- Run applications in clouds, on edge devices, or in a private data center using one platform with consistent configuration
 
-Not only that, but deployments have also evolved. Previously, a deployment would typically include steps like file shuffling, configuration changes, and service restarts. With Kubernetes, one human-readable manifest has all the information about the application and infrastructure configuration.
+Not only that, but deployments have also evolved. Previously, a deployment would typically include steps like file shuffling, configuration changes, and service restarts. Because Kubernetes uses declarative configuration, you can instead define everything in human-readable manifests. These manifests include all the information you need about your application and the infrastructure it uses.
 
 It's no surprise that Kubernetes is a new default platform for many organizations around the globe.
 
-However, these new great capabilities also lead to a more intricate deployment landscape. The north star for any pipeline is still fully automated deployments from development to production. Automation lets you ship software multiple times a day you can deliver small and safe regular improvements. This lowers the cost of deployments due to the absence of manual testing and approvals.
+However, these new great capabilities also lead to a more intricate deployment landscape. The north star for any pipeline is still fully automated deployments from development to production. This full automation lets you ship software multiple times a day, so you can deliver small, safe and regular improvements. This lowers the cost of the cost of running deployments by reducing the number of people involved.
 
-Deploying monolithic applications was already a challenge, but now we're faced with the need to automate deployments for hundreds of microservices. These microservices run on the same cluster, which means they can affect one another. We also need to find a way to dynamically provision environments with the correct versions of these microservices and manage manifests that combine both application and infrastructure configuration.
+Deploying monolithic applications was already a challenge, but now we're faced with the need to automate deployments for hundreds of microservices. These microservices often run on the same cluster, which means they might affect one another. We also need to find a way to dynamically provision environments with the correct versions of these microservices and manage manifests that combine both application and infrastructure configuration.
 
 Plus, existing deployment challenges remain. We need to run different sets of tests across various environments, comply with regulatory requirements, integrate with change management tools, and more. But now, we have to address these issues for a significantly larger number of applications.
 
@@ -76,7 +76,7 @@ Currently, over 400 organizations use Octopus for regular deployments to Kuberne
 
 These organizations manage more than 8,000 projects and run approximately 600,000 Kubernetes steps each month.
 
-24% of these projects get deployed with our built-in Helm step and 18% with the plain YAML step. For 18% of the projects, our customers decided not to manage manifests outside of Octopus and configured them instead with our **Configure and apply Kubernetes resources** step.
+24% of these projects get deployed with our built-in Helm step and 18% with the plain YAML step. For 18% of the projects, our customers decided not to manage manifests outside of Octopus and configured them instead with our **Configure and apply Kubernetes resources** step (our built-in UI form-based step to create configuration without editing YAML).
 
 ## New Kubernetes features in Octopus during 2023 and 2024
 
@@ -90,7 +90,7 @@ With this feature, the success or failure of a deployment in Octopus also reflec
 
 __[Kubernetes Object Status for Helm](https://roadmap.octopus.com/c/171-kubernetes-object-status-for-helm)__
 
-Recently, we enhanced the Kubernetes Object Status by adding support for Helm. Since Helm already includes built-in capabilities to verify deployment success (using the `--wait` argument), we didn’t want to replace this functionality. Instead, we improved its discoverability and enabled it by default for the newly added steps. Octopus can also display the object list, health, and details for Helm in the same way it does for all Kubernetes steps.
+Recently, we enhanced the Kubernetes Object Status by adding support for Helm. Since Helm already includes built-in capabilities to verify deployment success (using the `--wait` argument), we didn’t want to replace what was already working. Instead, we decided to enhance it providing the object list, health, and details for Helm in the same way it does for all Kubernetes steps. We also improved discoverability and enabled `--wait` by default for the newly added steps.
 
 __[Sourcing Kubernetes Configuration Files from Git](https://roadmap.octopus.com/c/43-sourcing-kubernetes-configuration-files-from-git)__
 
@@ -116,17 +116,13 @@ __[Kubernetes agent](https://roadmap.octopus.com/c/84-octopus-agent-for-kubernet
 
 2024.2 was a big release for Kubernetes in Octopus. Along with the new triggers, we launched the Kubernetes agent. This is our largest enhancement to the Kubernetes experience in Octopus to date (but this won't be the case for long). The agent allows for workerless deployments to Kubernetes, greatly enhances cluster authentication, improves security, and simplifies network configuration. We recommend using the agent as the default method for connecting Octopus with Kubernetes clusters.
 
-__[Kubernetes worker](https://roadmap.octopus.com/c/108-kubernetes-worker-new-autoscaling-worker-on-kubernetes)__
-
-The Kubernetes agent allows for efficient use of cluster resources by scaling up and down based on deployment load changes. We received extensive feedback requesting the same flexibility for all deployments. As a response, we released a new Kubernetes worker. This scalable worker operates on Kubernetes and can deploy to any target or execute any runbook. Additionally, it provides a solution for customers who cannot install Kubernetes agents on their clusters, such as those with small edge clusters where every megabit of RAM is critical.
-
 These aren't even all the Kubernetes improvements released in the last 2 years. See our [roadmap for more](https://roadmap.octopus.com/tabs/3-released).
 
 ## How to automate deployments to Kubernetes at scale with Octopus
 
 Let’s use an example to put all the Octopus capabilities into a scenario of deployment to Kubernetes at scale. This is just one of the ways to configure Octopus, of course, there are so much more options available.
 
-Let’s paint a picture together. Imagine we are part of a company with dozens of developer teams — a significant player in the SaaS market, known for delivering top-notch products (we won’t specify what market it is). We are harnessing the full power of Kubernetes, deploying across multiple environments, and managing production clusters in various regions. Our organization handles over 500 microservices, with many of them being deployed multiple times a day. While our engineers are exceptional, they aren’t necessarily Kubernetes experts; however, thankfully, our Platform team is among the best in the industry.
+Let’s paint a picture. Imagine we're part of a company with dozens of developer teams — a significant player in the SaaS market, known for delivering top-notch products (we won’t specify what market it is). We are harnessing the full power of Kubernetes, deploying across multiple environments, and managing production clusters in various regions. Our organization handles over 500 microservices, with many of them being deployed multiple times a day. While our engineers are exceptional, they aren’t necessarily Kubernetes experts; thankfully, however, our Platform team is among the best in the industry.
 
 Compliance and security are paramount in our environment. Our clients trust us, and we take that responsibility seriously. 
 
@@ -140,9 +136,9 @@ How can we simplify the process of adding a new microservice to our deployment l
 Helm is an ideal solution for this. The Platform team can create a Helm chart that encompasses all the 
 configuration scenarios required by the Application teams. By using values files, the Application teams can easily enable or disable certain configuration elements, such as enabling Ingress or adding PersistentVolumes.
 
-For more complex scenarios, we can create a new Helm chart that includes the original chart as a dependency. 
+For more complex scenarios, we can create a new Helm chart that includes the original chart as a dependency (see [Library charts in Helm documentation](https://helm.sh/docs/topics/library_charts/)). 
 
-Additionally, it’s beneficial to store the Helm chart in an OCI registry to take advantage of versioning. The Helm values files can be stored in the application repositories alongside the application code. This setup also clarifies ownership, as the Platform team can manage the Helm chart independently from the values files that are owned by the Application team.
+In this scenario, the Helm chart can be stored in a centralised place like an OCI registry or a separate Git repo. The Helm values files can be stored in the application repositories alongside the application code. This setup also clarifies ownership, as the Platform team can manage the Helm chart independently from the values files that are owned by the Application team.
 
 Creating a new pipeline becomes straightforward: we simply add the Helm step, point it to the Helm chart, and copy a values file template to our application repository.
 
@@ -180,15 +176,15 @@ You can see how it works in practice in our [Samples instance](https://samples.o
 
 Finally, what if our 500 microservices run across multiple clusters? For instance, we might have a dedicated cluster for each customer or branch. In this scenario, we can expect to frequently provision new clusters and want each new cluster to have the latest versions of the microservices immediately upon creation.
 
-To streamline this process, the first step is to add a Kubernetes agent during the cluster provisioning. Once the agent is installed, it will automatically register the cluster with Octopus.
+To streamline this process, the first step is to add a Kubernetes agent during the cluster provisioning. This could be achieved with any IaC tool like Terraform. Once the agent is installed, it will automatically register the cluster with Octopus.
 
-You can also configure deployment target triggers to initiate deployments to a target as soon as it becomes available. This eliminates the need for manual intervention after adding a new cluster. With Octopus, it’s possible to install all necessary system applications (cluster bootstrapping) as well as any software you want to run on the cluster.
+You can also configure deployment target triggers to initiate deployments to a target as soon as it becomes available. This eliminates the need for manual intervention after adding a new cluster. With Octopus, it’s possible to install all necessary system applications as well as any software you want to run on the cluster as soon as it comes online. So cluster bootstrapping can be fully automated with Octopus.
 
 ## What’s coming in 2025?
 
-2025 is poised to be an exciting year for Kubernetes in Octopus. Currently, we are focusing on a major enhancement: [Kubernetes Live Status](https://roadmap.octopus.com/c/122-kubernetes-live-object-status). With this feature, Octopus will continuously monitor deployed objects even after deployment, providing real-time insights into the health of your applications directly on the Octopus dashboard. Additionally, Octopus will notify you if the cluster configuration drifts from what was deployed with a release. You will also have access to details about objects, events, and logs.
+2025 is poised to be an exciting year for Kubernetes in Octopus. Currently, we are focusing on a major enhancement: [Kubernetes Live Status](https://roadmap.octopus.com/c/122-kubernetes-live-object-status). With this feature, Octopus will continuously monitor deployed objects even after deployment, providing real-time insights into the health of your applications directly on the Octopus dashboard. Additionally, Octopus will show you if the cluster configuration drifts from what was deployed with a release. You will also have access to details about objects, events, and logs.
 
-We are also developing [manifest inspection](https://roadmap.octopus.com/c/144-kubernetes-manifest-inspection). This feature will complement the live status by allowing users to view and compare YAML manifests for all deployed objects.
+We are also developing [manifest inspection](https://roadmap.octopus.com/c/144-kubernetes-manifest-inspection). This feature will complement the live status by allowing users to view and compare the desired manifests for all deployed objects.
 
 Together, these improvements will equip you with a robust toolset for deployment verification and troubleshooting in Octopus.
 
