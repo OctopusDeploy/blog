@@ -1,6 +1,6 @@
 ---
 title: How to choose the tools to run your Kubernetes pipeline
-description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked which examines the main categories of Continuous Delivery (CD) tools
+description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked which examines how to set up your Kubernetes pipeline for success
 author: liam.mackie@octopus.com
 visibility: public
 published: TBC
@@ -15,7 +15,7 @@ tags:
 
 In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
 
-This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked) which examines the main categories of Continuous Delivery (CD) tools, each with their own varying levels of abstraction and complexity, to help you choose the right tool for your Kubernetes deployments.  
+This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked) which examines how to set up your Kubernetes pipeline for success by looking at the different options available throughout the CI/CD process phases.
 
 ## Setting up your Kubernetes pipeline
 
