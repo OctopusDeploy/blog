@@ -20,7 +20,7 @@ This post covers the challenges that enterprises encounter when deploying to Kub
 
 We also talk about Octopus's approach to Kubernetes deployments and recap the  capabilities we introduced in 2023 and 2024. We then walk through a scenario that shows how you can use these capabilities to improve the experience of deploying to Kubernetes at scale. Finally, you get a sneak peek into our plans for Kubernetes in 2025.
 
-## Deployments to Kubernetes, challenges at scale
+## Deployments to Kubernetes – challenges at scale
 
 Kubernetes has influenced the way we develop and run applications. With Kubernetes’ capabilities, we can: 
 
@@ -91,7 +91,7 @@ With this feature, the success or failure of a deployment in Octopus also reflec
 
 Recently, we enhanced the Kubernetes Object Status by adding support for Helm. Since Helm already includes built-in capabilities to verify deployment success (using the `--wait` argument), we didn’t want to replace what was already working. Instead, we decided to enhance it providing the object list, health, and details for Helm in the same way it does for all Kubernetes steps. We also improved discoverability and enabled `--wait` by default for the newly added steps.
 
-**[Sourcing Kubernetes Configuration Files from Git](https://roadmap.octopus.com/c/43-sourcing-kubernetes-configuration-files-from-git)**
+**[Sourcing Kubernetes configuration files from Git](https://roadmap.octopus.com/c/43-sourcing-kubernetes-configuration-files-from-git)**
 
 Kubernetes manifests are essentially code, and the most effective way to manage code is through Git. So, we streamlined the process between Git and Octopus. Octopus now directly sources files from Git. This feature is available for all built-in Kubernetes steps and for script steps.
 
@@ -205,7 +205,7 @@ We'd love to hear your stories about deployments to Kubernetes. What challenges 
 
 ## Learn more
 
-- [Octopus roadmap](https://www.example.com/resource)
+- [Octopus roadmap](https://roadmap.octopus.com/tabs/1-under-consideration)
 - [Webinar: Deployments to Kubernetes at scale](https://www.youtube.com/watch?v=uXUG8s4sFMY)
 - [Webinar: 5 ways to level up your Kubernetes deployments with Octopus](https://www.youtube.com/watch?v=Eo03H_1VxGc&t=18s)
 - [Kubernetes in Octopus documentation](https://octopus.com/docs/kubernetes)
