@@ -80,7 +80,7 @@ These organizations manage more than 8,000 projects and run approximately 600,00
 
 ## New Kubernetes features in Octopus during 2023 and 2024
 
-Let’s revisit 2023 and 2024 to see how the experience with Kubernetes has changed in Octopus.
+Let’s revisit 2023 and 2024 to see some of the ways the experience with Kubernetes has changed in Octopus.
 
 __[Kubernetes Object Status](https://roadmap.octopus.com/c/73-kubernetes-object-status-check)__
 
