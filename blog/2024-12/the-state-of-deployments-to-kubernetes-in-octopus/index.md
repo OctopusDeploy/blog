@@ -128,7 +128,7 @@ Compliance and security are paramount in our environment. Our clients trust us, 
 
 So, how can Octopus help streamline our deployments while ensuring they remain secure? Let’s explore this...
 
-![A project per microservice linked to one Helm chart with invividual per-project values files and Octopus variables for environment-specific parameters](./Helm-at-scale-diagram.jpg "width=500")
+![A project per microservice linked to one Helm chart with invividual per-project values files and Octopus variables for environment-specific parameters](helm-at-scale-diagram.jpg "width=500")
 
 ### Configuration templating with Helm
 
