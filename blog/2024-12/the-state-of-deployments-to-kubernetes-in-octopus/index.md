@@ -4,9 +4,9 @@ description: An overview of the evolution of Octopus's capabilities for deployme
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2024-12-11-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-kubernetes-generic-1-2023.png
+bannerImage: blogimage-kubernetes-generic-1-2023.png
+bannerImageAlt: Kubernetes inside magnifying glass on computer screen with stars surrounding it
 isFeatured: false
 tags: 
   - DevOps
