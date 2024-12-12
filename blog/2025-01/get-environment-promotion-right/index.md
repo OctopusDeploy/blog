@@ -67,7 +67,7 @@ Having confidence in what you released is important for a few reasons:
 
 Every software company has some form of environment and rules around promotion in place. Yet, environment promotion reamins a challenge. 
 
-One of the main benefits of Continuous Delivery (CD) and deployment automation is that it helps you increase deployment frequency, which helps you improve DORA metrics, as all focus on the quality of your environment promotion solution. 
+Continuous Delivery (CD) and deployment automation help you increase deployment frequency and the quality of your promotions between environments. This, in turn, helps you improve your DORA metrics. Teams that perform well against DORA metrics are more likely to achieve better customer satisfaction, operational efficiency, and overall organizational performance.
 
 If you don’t automate environment promotion, there's a higher risk of something going wrong in production because you haven’t tested it rigorously. This means it isn’t as easy to ship as frequently, so smaller changes accumulate, and a new release can introduce major changes to your application. This makes deployment time more uncertain, which usually needs more testing to resolve potential conflicts of different features introduced between releases. You might need a dedicated Quality Assurance (QA) team and change management team to help with the process of approvals. This can make releases even more expensive, which can reduce release frequency further. 
 
