@@ -1,6 +1,6 @@
 ---
 title: Why it’s critical to get environment promotion right
-description: A summary of the key points from the effective DevOps metrics session at SHIPPED24.
+description: This blog post will explore environment promotion and why it can become challenging, particularly as you start to deploy to Kubernetes. 
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2024-12-13
