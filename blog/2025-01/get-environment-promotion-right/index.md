@@ -65,7 +65,7 @@ Having confidence in what you released is important for a few reasons:
 
 ## Automating environment promotion with Continuous Delivery
 
-Every software company has some form of environment and rules around promotion in place. Yet, environment promotion reamins a challenge. 
+Every software company has some form of environment and rules around promotion in place. Yet, environment promotion remains a challenge. 
 
 Continuous Delivery (CD) and deployment automation help you increase deployment frequency and the quality of your promotions between environments. This, in turn, helps you improve your DORA metrics. Teams that perform well against DORA metrics are more likely to achieve better customer satisfaction, operational efficiency, and overall organizational performance.
 
