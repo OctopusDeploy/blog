@@ -6,7 +6,7 @@ visibility: public
 published: 2025-01-08-1400
 metaImage: blog-kubernetes-unlocked-observability-750x400.png
 bannerImage: blog-kubernetes-unlocked-observability-750x400.png
-bannerImageAlt: TBC
+bannerImageAlt: Stylized person with a magnifying glass observing a box that's being unlocked, containing Kubernetes logos.
 isFeatured: false
 tags: 
   - DevOps
