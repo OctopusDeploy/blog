@@ -3,9 +3,9 @@ title: Why observability is so important for Kubernetes deployments
 description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked which examines why observability is so important to Kubernetes deployments.
 author: liam.mackie@octopus.com
 visibility: public
-published: TBC
-metaImage: TBC
-bannerImage: TBC
+published: 2025-01-
+metaImage: blog-kubernetes-unlocked-observability-750x400.png
+bannerImage: blog-kubernetes-unlocked-observability-750x400.png
 bannerImageAlt: TBC
 isFeatured: false
 tags: 
