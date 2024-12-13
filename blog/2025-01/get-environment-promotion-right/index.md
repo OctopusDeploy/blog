@@ -3,7 +3,7 @@ title: Why it’s critical to get environment promotion right
 description: Learn why environment promotion can be challenging, particularly as you start to deploy to Kubernetes. 
 author: nikita.dergilev@octopus.com
 visibility: public
-published: 2025-01-07-1400
+published: 2025-01-06-1400
 metaImage: blog-environment-promotion.png
 bannerImage: blog-environment-promotion.png
 bannerImageAlt: An image of an application being promoted across two environments
@@ -49,13 +49,13 @@ Development environments let developers run and debug their code in environments
 
 You probably know pre-production environments by names like staging and test, but they all share a common purpose. They're the step between development and production. These are where you make sure the application and deployment will run successfully in production, and so should mirror your production environments. These environments should only run code from the main branch, to prevent changes you don't want pushed to your production environment. 
 
-### Productions environments 
+### Production environments 
 
 The most important environment is the production environment, as this is where your application serves customers. By this stage, code has been automatically tested and deployed multiple times to reduce the risk of something going wrong. 
 
 ## Why the sequence in environment promotion is so important
 
-Having a structure in place for your environment promotion means you can be confident in everything that goes to production. If you implemented strict rules for environment promotion, you know that what you deployed to production will work as planned. This is because you've tested the new version of your application and the pipeline itself (including any changes to it) in the pre-production environment.
+Having a structure in place for your environment promotion means you can be confident in everything that goes to production. If you implement strict rules for environment promotion, you know that what you deploy to production will work as planned. This is because you've tested the new version of your application and the pipeline itself (including any changes to it) in the pre-production environment.
 
 Having confidence in what you released is important for a few reasons:
 
@@ -69,7 +69,7 @@ Every software company has some form of environment and rules around promotion i
 
 Continuous Delivery (CD) and deployment automation help you increase deployment frequency and the quality of your promotions between environments. This, in turn, helps you improve your DORA metrics. Teams that perform well against DORA metrics are more likely to achieve better customer satisfaction, operational efficiency, and overall organizational performance.
 
-If you don’t automate environment promotion, there's a higher risk of something going wrong in production because you haven’t tested it rigorously. This means it's not as easy to ship as frequently. Smaller changes accumulate, and a new release can introduce major changes to your application. This makes deployment time uncertain, which usually means more testing to resolve potential conflicts of different features introduced between releases. You might need a dedicated Quality Assurance (QA) team and change management team to help with the approval process. This can make releases even more expensive, and reduce release frequency further. 
+If you don’t automate environment promotion, there's a higher risk of something going wrong in production because you haven’t tested it rigorously. This means it's not as easy to ship as frequently. Smaller changes accumulate, and a new release can introduce major changes to your application. This makes deployment time uncertain, which usually means more testing to resolve potential conflicts of different features introduced between releases. You might need a dedicated quality assurance (QA) team and change management team to help with the approval process. This can make releases even more expensive, and reduce release frequency further. 
 
 However, with environment promotion in place, you have confidence in what you ship, which means you can introduce more incremental changes. These changes are easy to test and have a smaller impact, so you can deliver value to your customers sooner and reduce the risk of something breaking. 
 
@@ -77,7 +77,7 @@ Environment promotion helps increase deployment frequency even more when you can
 
 ## When environment promotion becomes challenging
 
-Whatever method you choose to automate your environment promotion, it should be fairly straightforward for the first few applications or microservices if you don’t have many environments or compliance or security requirements. However, it gets tricky as you start to scale, as you'll likely scale in multiple directions simultaneously. 
+Whatever method you choose to automate your environment promotion, it should be fairly straightforward for the first few applications or microservices if you don’t have many environments or compliance and security requirements. However, it gets tricky as you start to scale, as you'll likely scale in multiple directions simultaneously. 
 
 First, the number of applications will grow. Depending on the size of your organization, you can end up with hundreds, if not thousands, of individual applications you need to deploy independently. Some might have multiple updates daily, while others will get updates once every few months. Even if you reduce the number of updates to help manage the scale, this leads to the risk that the deployments won’t work if they’re not fully automated. 
 
@@ -89,9 +89,9 @@ Finally, your pipeline will become increasingly complicated as you add sophistic
 
 ## How to address the challenges of environment promotion
 
-There are a couple of options to automate environment promotion. You can write custom code to deploy your software to a given environment, run all the required checks, and then deploy to the next environment. Or, you can use a dedicated tool to automate the process. 
+There are a couple of ways to automate environment promotion. You can write custom code to deploy your software to a given environment, run all the required checks, and then deploy to the next environment. Or, you can use a dedicated tool to automate the process. 
 
-With generic tools, like Jenkins or GitHub Actions, that you can use for running any tasks, including Continuous Integration (CI) and Continuous Delivery (CD), you can expect to write more code, as these aren’t specialized. Using custom scripts gets difficult to manage at scale, and you often end up with too many scripts to keep track of. This can incur a huge extra cost supporting a complex deployment landscape. 
+With generic tools, like Jenkins or GitHub Actions, that you can use for running any tasks, including Continuous Integration (CI) and Continuous Delivery (CD), you can expect to write more code, as these aren’t specialized platforms. Using custom scripts gets difficult to manage at scale, and you often end up with too many scripts to keep track of. This can incur a huge extra cost supporting a complex deployment landscape. 
 
 If you use a dedicated CD tool, it will likely have a built-in model for environments, deployment steps, and lifecycles, without needing custom code. Your CD tool should be able to choose the right sequence and promotion conditions for each app, automating environment promotion for you at any scale. Examples of these tools include Octopus Deploy and Codefresh.
 
