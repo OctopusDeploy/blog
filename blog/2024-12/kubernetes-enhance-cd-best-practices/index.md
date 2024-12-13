@@ -4,8 +4,8 @@ description: This blog post is an excerpt from our free guide, Kubernetes delive
 author: liam.mackie@octopus.com
 visibility: public
 published: 2024-12-18-1400
-metaImage: TBC
-bannerImage: TBC
+metaImage: blog-kubernetes-unlocked-cd-best-practices-750x400.png
+bannerImage: blog-kubernetes-unlocked-cd-best-practices-750x400.png
 bannerImageAlt: TBC
 isFeatured: false
 tags: 
