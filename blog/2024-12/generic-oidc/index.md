@@ -6,7 +6,7 @@ visibility: public
 published: 2024-12-16-1400
 metaImage: generic-oidc-banner-img.png
 bannerImage: generic-oidc-banner-img.png
-bannerImageAlt: Generic OpenId Connect accounts
+bannerImageAlt: Keys on a keychain above a recycling bin.
 isFeatured: false
 tags: 
   - Product
@@ -63,10 +63,8 @@ This authentication flow signs in as the provided Workload Identity principal. T
 
 ## Conclusion 
 
-Generic OIDC accounts bring flexibility to your deployment pipelines, so you can authenticate with systems that support OAuth 2.0 JWT flows, like HashiCorp Vault, Google Cloud, and many more. Whether you’re managing secrets, accessing cloud resources, or integrating with custom systems, these accounts provide a simple, secure, and scalable solution, removing the need for static credentials.
+Generic OIDC accounts bring flexibility to your deployment pipelines, so you can authenticate with systems that support OAuth 2.0 JWT flows, like HashiCorp Vault, Google Cloud, and many more. Whether you’re managing secrets, accessing cloud resources, or integrating with custom systems, these accounts provide a simple, secure, and scalable solution, removing the need for static credentials. We hope this helps you unlock new possibilities with Octopus Deploy and OIDC-based authentication. 
 
-We hope this post helps you unlock new possibilities with Octopus Deploy and OIDC-based authentication. If you have any questions or feedback, we’d love to hear from you.
-
-Generic OIDC accounts are coming soon for our Cloud customers and our self-hosted customers can expect this feature in the 2025.1 release.
+Generic OIDC accounts are coming soon for our Cloud customers and our self-hosted customers can expect this feature in the 2025.1 release. If you have any questions or feedback, we’d love to hear from you.
 
 Happy deployments!
