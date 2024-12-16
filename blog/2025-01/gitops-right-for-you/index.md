@@ -3,10 +3,10 @@ title: Is GitOps right for you?
 description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked, which examines GitOps and its implications for setting up pipelines
 author: liam.mackie@octopus.com
 visibility: public
-published: TBC
-metaImage: TBC
-bannerImage: TBC
-bannerImageAlt: TBC
+published: 2025-01-29-1400
+metaImage: blog-kubernetes-unlocked-gitops-750x400.png
+bannerImage: blog-kubernetes-unlocked-gitops-750x400.png
+bannerImageAlt: An illustration of a box that's being unlocked, containing Kubernetes logos, set against a dark blue gradient background.
 isFeatured: false
 tags: 
   - Kubernetes
