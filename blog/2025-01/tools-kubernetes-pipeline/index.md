@@ -3,10 +3,10 @@ title: How to choose the tools to run your Kubernetes pipeline
 description: This blog post is an excerpt from our free guide, Kubernetes delivery unlocked which examines how to set up your Kubernetes pipeline for success
 author: liam.mackie@octopus.com
 visibility: public
-published: TBC
-metaImage: TBC
-bannerImage: TBC
-bannerImageAlt: TBC
+published: 2025-01-15-1400
+metaImage: blog-kubernetes-unlocked-choosing-tools-750x400-x1.png
+bannerImage: blog-kubernetes-unlocked-choosing-tools-750x400-x1.png
+bannerImageAlt: Illustration of a toolbox containing Kubernetes logos, surrounded by icons of various software tools, interconnected on an isometric grid.
 isFeatured: false
 tags: 
   - Kubernetes
