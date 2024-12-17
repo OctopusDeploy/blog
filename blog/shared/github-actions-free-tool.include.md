@@ -1,1 +1,1 @@
-[Try our free GitHub Actions workflow tool](https://oc.to/GithubActionsWorkflowGenerator) to help you quickly generate customizable workflows for your GitHub Actions deployments.
+[Try our free GitHub Actions workflow tool](https://oc.to/GithubActionsWorkflowGenerator) to help you quickly generate customizable workflows for your [GitHub Actions deployments](https://octopus.com/devops/github-actions/deployments/).

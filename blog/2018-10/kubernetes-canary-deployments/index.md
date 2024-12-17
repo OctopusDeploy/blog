@@ -12,7 +12,7 @@ tags:
 
 When rolling out new versions of an application, it can be useful to direct a small amount of traffic to the new version and watch for any errors. This strategy, known as a canary deployment, means that any errors that are present in the new version can only affect a small number of users. Incrementally increasing the amount of traffic to the new version provides an increasing degree of confidence that there are no issues, and the deployment can be rolled back to the previous version if any issues are present.
 
-Kubernetes is particularly well suited to canary deployments thanks to the flexibility it provides for managing deployments and directing traffic. In this blog post, we'll look at how canary deployments can be achieved using the [Voyager ingress controller](https://appscode.com/products/voyager) and Octopus.
+Kubernetes is particularly well suited to canary deployments thanks to the flexibility it provides for managing deployments and directing traffic. In this blog post, we'll look at how canary deployments can be achieved using the [Voyager ingress controller](https://voyagermesh.com/) and Octopus.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ The Kubernetes cluster will also need to have Helm installed. Google offers [the
 
 ## Installing Voyager
 
-Before we can start deploying any application to Kubernetes, we need to install Voyager to our cluster. Voyager offers many [different installation methods](https://appscode.com/products/voyager/5.0.0/setup/), but I find Helm to be the most convenient for situations like this.
+Before we can start deploying any application to Kubernetes, we need to install Voyager to our cluster. Voyager offers many [different installation methods](https://voyagermesh.com/docs/v2024.8.30/setup/), but I find Helm to be the most convenient for situations like this.
 
 We'll make use of the Helm step in Octopus itself to deploy the Voyager Helm chart.
 
@@ -292,7 +292,7 @@ With those values set, we will see a container summary like the following.
 
 In the `Pod Annotations` section, we define an annotation called `ingress.appscode.com/backend-weight` with the value from the variable `PreviousTraffic`. The `PreviousTraffic` variable is either `0`, `25` or `75` depending on the environment we are deploying to.
 
-The annotation is [recognized by the Voyager ingress controller](https://appscode.com/products/voyager/5.0.0/guides/ingress/http/blue-green-deployment/) as defining the amount of traffic to send to the Pod resource.
+The annotation is [recognized by the Voyager ingress controller](https://voyagermesh.com/docs/v2024.8.30/guides/ingress/http/blue-green-deployment/) as defining the amount of traffic to send to the Pod resource.
 
 So, when deploying to the `Canary 25%` environment, `PreviousTraffic` is set to `75`, meaning the previous deployment will receive 75% of the traffic.
 

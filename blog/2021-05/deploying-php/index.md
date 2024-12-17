@@ -18,7 +18,7 @@ In this post, I demonstrate how to deploy a PHP application to an NGINX web serv
 
 ## Sample application
 
-The sample application application I chose for this post is the [Car Rental Project](https://projectnotes.org/php/car-rental-project-in-php-and-mysqli-with-source-code/).  
+The sample application application I chose for this post is the Car Rental Project.  
 
 With minor modifications to a single file, this application worked out of the box and is a perfect fit for this demonstration.  The source code includes a database script for MySQL that will create the table schema and seeds the database with data.  I'll go over the required modifications later in this post.  Here's the link to the [modified project](https://bitbucket.org/octopussamples/carrental/src/main/).
 

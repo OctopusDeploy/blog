@@ -25,6 +25,8 @@ GitHub allows you to store secrets at 3 different levels:
 
 In this post, we look at those 3 levels and how to add secrets to them. We also look at how to call secrets in an example workflow.
 
+This is part of a series of articles about [GitHub Actions](https://octopus.com/devops/github-actions/).
+
 ## Repository secrets
 
 GitHub ties repository secrets to only one repository. They’re available to anyone with the collaborator role to use in actions.

@@ -38,7 +38,7 @@ In this blog post, you’re going to learn how to use the most popular testing f
 
 To follow along in this blog post, you need the following:
 
-- An understanding of [unit testing](http://softwaretestingfundamentals.com/unit-testing/#:~:text=UNIT%20TESTING%20is%20a%20level,and%20usually%20a%20single%20output.) and what it’s used for.
+- An understanding of [unit testing](https://codefresh.io/learn/unit-testing/) and what it’s used for.
 - A beginner to intermediate level knowledge of PowerShell.
 - [PowerShell Core](https://github.com/PowerShell/PowerShell) installed on any operating system.
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) installed.
