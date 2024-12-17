@@ -6,7 +6,7 @@ visibility: public
 published: 2024-12-18-1400
 metaImage: blog-kubernetes-unlocked-cd-best-practices-750x400.png
 bannerImage: blog-kubernetes-unlocked-cd-best-practices-750x400.png
-bannerImageAlt: TBC
+bannerImageAlt: Illustration of a box with Kubernetes logos, connected via a line to a screen displaying a ticked checklist of best practices, against a dark blue gradient background.
 isFeatured: false
 tags: 
   - DevOps
