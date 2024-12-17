@@ -8,16 +8,10 @@ metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
- - DevOps
- - Company
- - Product
- - Engineering
+tags: 
+ - AWS
+ - Kubernetes
 ---
-
-
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags.
-
 
 The release of the Kubernetes Agent Worker allows customers to scale workers on demand.  The Agent Worker automatically scales pods to carry out tasks using a single worker registration.  This means customers no longer need to provision worker machines or containers, which may be idle most of the time.  Assigning workers an IAM role is common practice when using AWS to interact with other AWS resources securely.  In this post, I will demonstrate how to attach an IAM role to the agent worker pods.
 
