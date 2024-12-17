@@ -1,6 +1,6 @@
 ---
 title: How to assign an IAM role as an EKS Pod Identity for the Octopus Kubernetes worker agent.
-description: Learn how to configure an IAM role to be used as a Pod Identity in an EKS cluster for the Octopus Kubernetes worker agent.
+description: Learn how to configure an IAM role to be used for the Octopus Kubernetes worker agent.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01
