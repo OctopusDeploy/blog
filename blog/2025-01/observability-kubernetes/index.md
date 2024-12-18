@@ -15,7 +15,7 @@ tags:
 
 Nothing over the last decade has changed deployments more than Kubernetes. It brings many benefits and a new level of flexibility, but also adds a layer of complexity for developers to overcome.
 
-This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked), which examines why observability is so important to Kubernetes deployments, and how to implement the principles in practice. 
+This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog), which examines why observability is so important to Kubernetes deployments, and how to implement the principles in practice. 
 
 ## Observability in Kubernetes deployments 
 
@@ -91,6 +91,6 @@ This blog post was an excerpt from our new guide, Kubernetes delivery unlocked, 
 - How to define and build your deployment process using CD principles
 - Common challenges faced by developers using Kubernetes and how to overcome them
 
-[Download the free guide, Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked).
+[Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
 Happy deployments! 

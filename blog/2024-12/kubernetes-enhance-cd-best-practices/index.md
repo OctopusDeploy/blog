@@ -16,7 +16,7 @@ tags:
 
 In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
 
-This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked), which examines how you can use Kubernetes to enhance CD best practices. Although CD best practices have been around for a long time, there are plenty of opportunities to implement them in modern deployment practices. 
+This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog), which examines how you can use Kubernetes to enhance CD best practices. Although CD best practices have been around for a long time, there are plenty of opportunities to implement them in modern deployment practices. 
 
 ## CD best practices
 
@@ -78,6 +78,6 @@ This post was an excerpt from our new guide, Kubernetes delivery unlocked, which
 - How to define and build your deployment process using CD principles
 - Common challenges faced by developers using Kubernetes and how to overcome them
 
-[Download the free guide, Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked).
+[Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
 Happy deployments! 

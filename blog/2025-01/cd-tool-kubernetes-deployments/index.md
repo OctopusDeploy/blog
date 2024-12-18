@@ -15,7 +15,7 @@ tags:
 
 In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
 
-This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked). It examines the main categories of Continuous Delivery (CD) tools, each with its own levels of abstraction and complexity, to help you choose the right tool for your Kubernetes deployments. 
+This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog). It examines the main categories of Continuous Delivery (CD) tools, each with its own levels of abstraction and complexity, to help you choose the right tool for your Kubernetes deployments. 
 
 ## Choosing your CD tooling
 
@@ -51,6 +51,6 @@ This post was an excerpt from our new guide, Kubernetes delivery unlocked, which
 - How to define and build your deployment process using CD principles
 - Common challenges faced by developers using Kubernetes and how to overcome them
 
-[Download the free guide, Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked).
+[Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
 Happy deployments! 

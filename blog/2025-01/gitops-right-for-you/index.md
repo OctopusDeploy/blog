@@ -16,7 +16,7 @@ tags:
 
 In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
 
-This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked). This section examines GitOps and its implications for setting up pipelines, and the benefits and challenges of opting for a GitOps approach. 
+This post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog). This section examines GitOps and its implications for setting up pipelines, and the benefits and challenges of opting for a GitOps approach. 
 
 ## What is GitOps, and what does it mean for setting up your pipelines? 
 
@@ -81,6 +81,6 @@ This post was an excerpt from our new guide, Kubernetes delivery unlocked, which
 - How to define and build your deployment process using CD principles
 - Common challenges faced by developers using Kubernetes and how to overcome them
 
-[Download the free guide, Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked).
+[Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
 Happy deployments! 

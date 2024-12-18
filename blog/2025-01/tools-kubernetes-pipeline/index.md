@@ -13,7 +13,7 @@ tags:
   - Kubernetes
 ---
 
-This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked), which examines how to set up your Kubernetes pipeline for success by looking at the different options available throughout the CI/CD process phases.
+This blog post is an excerpt from our free guide, [Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog), which examines how to set up your Kubernetes pipeline for success by looking at the different options available throughout the CI/CD process phases.
 
 ## Setting up your Kubernetes pipeline
 
@@ -159,6 +159,6 @@ This blog post was an excerpt from our new guide, Kubernetes delivery unlocked, 
 - How to define and build your deployment process using CD principles
 - Common challenges faced by developers using Kubernetes and how to overcome them
 
-[Download the free guide, Kubernetes delivery unlocked](https://octopus.com/whitepapers/kubernetes-delivery-unlocked).
+[Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
 Happy deployments! 
