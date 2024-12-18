@@ -4,9 +4,9 @@ description: This post is an excerpt from our free guide, Kubernetes delivery un
 author: liam.mackie@octopus.com
 visibility: public
 published: 2025-01-22-1400
-metaImage: TBC
-bannerImage: TBC
-bannerImageAlt: TBC
+metaImage: unlocked-choosing-the-right-cd-tools-750x400.png
+bannerImage: unlocked-choosing-the-right-cd-tools-750x400.png
+bannerImageAlt: Illustration of tech toolbox with Kubernetes logo, surrounded by icons for GitHub, Docker, Kubernetes, AWS, and Octopus Deploy, connected by a CD pipeline.
 isFeatured: false
 tags: 
   - DevOps
