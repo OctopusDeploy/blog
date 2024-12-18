@@ -6,7 +6,7 @@ visibility: public
 published: 2025-01-22-1400
 metaImage: unlocked-choosing-the-right-cd-tools-750x400.png
 bannerImage: unlocked-choosing-the-right-cd-tools-750x400.png
-bannerImageAlt: Illustration of tech toolbox with Kubernetes logo, surrounded by icons for GitHub, Docker, Kubernetes, AWS, and Octopus Deploy, connected by a CD pipeline.
+bannerImageAlt: Tech toolbox with Kubernetes logo, surrounded by icons for GitHub, Docker, Kubernetes, AWS, and Octopus Deploy, connected by a CD pipeline.
 isFeatured: false
 tags: 
   - DevOps
