@@ -83,6 +83,8 @@ The commit selected during release creation gets recorded. At deployment time, t
 
 - A full clone of the relevant project repository on the Octopus Server machine takes place during deployment to extract relevant files. Octopus Server can't know which files to use from deep within a customer’s potentially dynamic scripts. As such, the entire repository contents get transferred across to the target or Worker during a deployment. In the future, we may support cloning on the target or performing shallow clones. In this release, though, you should expect some time spent on the initial clone for each repository used.
 
+- Sourcing files from submodules are not supported. If your repository is detected to contain submodules, these files will not be available during deployment and a warning will be displayed in the deployments logs.
+
 ### Config as Code project references
 
 If you're using Config as Code in Octopus, you'll soon be able to use files stored in the same repository as Octopus's deployment process files. Like the externally sourced scripts above, this will let you write and commit your files directly into a Git repository and use them in your project. 
