@@ -35,7 +35,7 @@ For regular maintenance windows or recurring business cycles, you can set up aut
 
 ## Understanding Scope of Deployment Freezes
 
-Deployment freezes in Octopus Deploy offer flexible scoping options for precise control over deployment restrictions. The scoping system provides two powerful options to give you granular control over your deployment activities.
+Deployment freezes in Octopus Deploy offer flexible scoping options for precise control over deployment restrictions. The scoping configuration provides two powerful options to give you granular control over your deployment activities.
 
 Project scope allows you to freeze deployments for specific projects in particular environments. For instance, you might freeze deployments to production for your e-commerce application during peak shopping seasons while allowing deployments to continue for internal tools. This targeted approach ensures critical systems remain stable during important business periods.
 
