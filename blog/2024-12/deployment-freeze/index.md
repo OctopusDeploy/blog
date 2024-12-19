@@ -93,4 +93,4 @@ Deployment freezes in Octopus Deploy provide the control and flexibility organiz
 
 Ready to get started with deployment freezes? Check out our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes) for detailed setup instructions and best practices.
 
-Happy deploying!
+Happy deployments!
