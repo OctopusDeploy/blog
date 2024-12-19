@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Kubernetes
+  - Continuous Delivery
 ---
 
 Whether you're deploying to Kubernetes, or anywhere else, environment promotion isn't a new concept. However, it can get challenging to manage, particularly at scale. So what are those challenges, and how can you mitigate them?
@@ -117,12 +118,12 @@ It's common to manage configuration files manually with pull requests (PRs). How
 
 Another option is to create a CD solution using custom scripts and run them with general CI/CD tools like Jenkins or GitHub Actions. However, similar to environment promotion without Kubernetes, this becomes difficult to scale as you manage a mountain of custom scripts. 
 
-Another option is to use a dedicated CD tool that works with Kubernetes and Kubernetes tools like Helm and Kustomize. Octopus Deploy is an example of a best-of-breed tool that helps automate environment promotion for Kubernetes or anything else.
+Another option is to use a dedicated CD tool that works with Kubernetes and Kubernetes tools like Helm and Kustomize. Octopus Deploy is an example of a best-of-breed tool that helps automate [environment promotion](https://octopus.com/use-case/environment-promotion) for Kubernetes or anything else.
 
 ## Conclusion
 
 Environment promotion is critical to software delivery, but it gets challenging as you scale. Although many tools and solutions, like custom scripts, can automate environment promotion, they become difficult to manage when deploying hundreds or thousands of applications across multiple environments. A dedicated best-of-breed CD tool helps automate this process, whether you're deploying to Kubernetes or anywhere else. 
 
-[Learn more about environment promotion using Octopus Deploy](use case page). 
+[Learn more about environment promotion using Octopus Deploy](https://octopus.com/use-case/environment-promotion). 
 
 Happy deployments!
