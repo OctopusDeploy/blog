@@ -22,7 +22,7 @@ Our new deployment freeze feature addresses these scenarios by providing precise
 
 ## Creating and Managing Freezes
 
-The deployment freeze interface allows you to create both immediate and scheduled freezes. You can specify exactly which projects, environments, and tenants should be affected, providing the flexibility to protect critical systems while allowing development to continue in other areas.
+The deployment freeze interface allows you to create both immediate and scheduled freezes. You can specify exactly which projects, environments, and tenants should be affected, providing the flexibility to protect critical systems while allowing deployments to continue in other areas.
 
 Each freeze can be configured with:
 - A descriptive name for easy identification
