@@ -31,7 +31,8 @@ Each freeze can be configured with:
 - Scope settings for projects, tenants, and environments
 
 For regular maintenance windows or recurring business cycles, you can set up automated recurring freezes that align with your organization's needs.
-![Deployment Freeze Detail](deployment-freeze-detail.png)
+
+![Deployment Freeze Detail](deployment-freeze-detail.png "width=500")
 
 ## Understanding Scope of Deployment Freezes
 
@@ -39,14 +40,13 @@ Deployment freezes in Octopus Deploy offer flexible scoping options for precise 
 
 Project scope allows you to freeze deployments for specific projects in particular environments. For instance, you might freeze deployments to production for your e-commerce application during peak shopping seasons while allowing deployments to continue for internal tools. This targeted approach ensures critical systems remain stable during important business periods.
 
-![Project Scope](deployment-freeze-project-scope.png)
+![Project Scope](deployment-freeze-project-scope.png "width=500")
 
 Tenant scope provides even more refined control by allowing you to freeze deployments for specific tenants on selected projects and environments. This is particularly valuable for organizations managing multi-tenant deployments across different time zones or business requirements. For example, you could freeze deployments to production for your Asia-Pacific tenants during their business hours while continuing deployments for other regions.
 
-![Tenant Scope](deployment-freeze-tenant-scope.png)
+![Tenant Scope](deployment-freeze-tenant-scope.png "width=500")
 
 By combining these scoping options, you can create highly targeted freeze policies that align with your organization's specific needs. The system's flexibility ensures you can maintain stability where needed while allowing development and deployment activities to continue in other areas.
-
 
 ## Understanding Freeze Behavior
 
@@ -68,7 +68,7 @@ The system supports various recurrence patterns:
 - Monthly patterns for coordinated release cycles
 - Annual schedules for recurring business events
 
-![Deployment Freeze Recurrence](deployment-freeze-recurrence.png)
+![Deployment Freeze Recurrence](deployment-freeze-recurrence.png "width=500")
 
 ## Override Capabilities and Audit Trail
 
@@ -79,7 +79,7 @@ The audit system maintains detailed records of:
 - Deployment Freeze Override and their justifications
 - Deployment attempts during freeze periods
 
-![Screenshot of the Deployment Freeze interface](deployment-freeze-override.png)
+![Screenshot of the Deployment Freeze interface](deployment-freeze-override.png "width=500")
 
 ## Automation and Integration
 
