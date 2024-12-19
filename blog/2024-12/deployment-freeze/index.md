@@ -1,3 +1,17 @@
+---
+title: Introducing Deployment Freezes
+description: Octopus Deploy introduces a new feature called deployment freezes, allowing you to restrict deployments during specific periods to ensure system stability and meet business requirements.
+author: huy.nguyen@octopus.com
+visibility: public
+published: 2024-12-19-1600
+metaImage: blogimage-deploymentfreezes-2024-750x400.png
+bannerImage: blogimage-deploymentfreezes-2024-750x400.png
+bannerImageAlt: Two people looking at an Octopus Deploy interface showing deployment versions with a winter theme and snowflakes
+tags: 
+  - Product
+  - Deployment
+---
+
 Change control during critical periods is essential for maintaining system stability and meeting business requirements. Today, we're introducing deployment freezes in Octopus Deploy, a feature designed to help you manage deployment schedules and enforce deployment policies across your organization.
 
 ## Why Deployment Freezes?
@@ -65,7 +79,7 @@ The audit system maintains detailed records of:
 - Deployment Freeze Override and their justifications
 - Deployment attempts during freeze periods
 
-[Screenshot of the Deployment Freeze interface]
+![Screenshot of the Deployment Freeze interface](deployment-freeze-override.png)
 
 ## Automation and Integration
 
