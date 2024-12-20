@@ -86,14 +86,11 @@ The audit trail keeps a record of:
 
 ## Automation and Integration
 
-You can automate and integrate deployment freezes into your existing workflows using the Octopus REST API and Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider also includes a `octopusdeploy_deployment_freeze` resource that can be used to automate freeze configuration. For more information, see the following resources:
+You can automate and integrate deployment freezes into your workflows. Use the Octopus REST API and Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider includes an `octopusdeploy_deployment_freeze` resource. It can automate freeze configuration. For more information, see the following resources:
 - [Octopus REST API - Go Client](https://github.com/OctopusDeploy/go-octopusdeploy)
 - [Terraform provider: Deployment Freeze example](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/main/examples/resources/octopusdeploy_deployment_freeze)
 
 ## Conclusion
-
-Deployment freezes in Octopus Deploy give you the control and flexibility you need to manage your deployment schedules effectively. Whether you're protecting critical systems during peak business periods, managing reduced staffing windows, or coordinating deployments across multiple teams, this feature helps you maintain stability while staying agile.
-
-Ready to get started with deployment freezes? Check out our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes) for detailed setup instructions and best practices.
+Deployment freezes in Octopus Deploy let you control your deployment schedule. This feature helps you protect critical systems during peak times. It helps with reduced staffing and coordinating deployments across teams. It lets you stay agile while maintaining stability. Ready to start with deployment freezes? Check out our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes) for detailed setup instructions and best practices.
 
 Happy deployments!
