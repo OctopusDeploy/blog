@@ -33,19 +33,19 @@ Setting up a deployment freeze is straightforward. You can create them for right
 
 Need to set up regular freezes for maintenance? No problem! You can set up automated recurring freezes that match your schedule.
 
-![Deployment Freeze Detail](deployment-freeze-detail.png "width=500")
+![Deployment Freeze Detail](deployment-freeze-detail_w.png "width=500")
 
 ## Choosing What to Freeze
 
-You get two main ways to control your freezes: project scope and tenant scope.
+You can control your freezes by scoping them to projects or tenants.
 
-With project scope, you can freeze specific projects in certain environments. For example, you might want to freeze your online store deployments during Black Friday but keep working on your internal tools.
+With project scopes, you can freeze specific projects by environments. For example, you might want to freeze your online store production deployments during Black Friday but keep working on your development and test environments.
 
-![Project Scope](deployment-freeze-project-scope.png "width=500")
+![Project Scope](deployment-freeze-project-scope_w.png "width=500")
 
-Tenant scope lets you get even more specific. You can freeze deployments for particular tenants in selected projects and environments. This is super helpful if you're managing systems across different time zones or regions.
+Tenant scope lets you get even more specific. You can freeze deployments for particular tenants in selected projects and environments. This is helpful if you're managing systems across different time zones or regions.
 
-![Tenant Scope](deployment-freeze-tenant-scope.png "width=500")
+![Tenant Scope](deployment-freeze-tenant-scope_w.png "width=500")
 
 By mixing these options, you can create freezes that match exactly what your team needs.
 
@@ -71,7 +71,7 @@ The system lets you set up these recurring patterns:
 - Monthly patterns for release cycles
 - Annual schedules for recurring business events
 
-![Deployment Freeze Recurrence](deployment-freeze-recurrence.png "width=500")
+![Deployment Freeze Recurrence](deployment-freeze-recurrence_w.png "width=500")
 
 ## Override Capabilities and Audit Trail
 
@@ -82,11 +82,11 @@ The audit trail keeps a record of:
 - Deployment Freeze Override and their justifications
 - Deployment attempts during freeze periods
 
-![Screenshot of the Deployment Freeze interface](deployment-freeze-override.png "width=500")
+![Screenshot of the Deployment Freeze interface](deployment-freeze-override_w.png "width=500")
 
 ## Automation and Integration
 
-You can automate and integrate deployment freezes into your workflows. Use the Octopus REST API and Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider includes an `octopusdeploy_deployment_freeze` resource. It can automate freeze configuration. For more information, see the following resources:
+You can automate and integrate deployment freezes into your workflows using the Octopus REST API or the Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider offers an `octopusdeploy_deployment_freeze` resource for creating and managing deployment freezes. For more information, see the following resources:
 - [Octopus REST API - Go Client](https://github.com/OctopusDeploy/go-octopusdeploy)
 - [Terraform provider: Deployment Freeze example](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/main/examples/resources/octopusdeploy_deployment_freeze)
 
