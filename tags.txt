@@ -25,6 +25,7 @@ Enterprise
 Getting Started
 GitHub Actions
 GitHub Copilot
+GitOps
 Google Cloud Platform
 Hackathon
 Incident Reports
