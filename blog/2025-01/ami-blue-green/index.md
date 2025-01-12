@@ -478,3 +478,57 @@ build {
 }
 ```
 
+## Deploying the AMI with a Blue/Green deployment
+
+The previous CloudFormation and Packer templates create the necessary infrastructure in our AWS account. With this infrastructure in place, we can now orchestrate a Blue/Green deployment with Octopus.
+
+Step 1 is to determine which target group is receiving any network traffic. We assume this target group is the active stack, and the other target group is the inactive stack.
+
+The [AWS - Find Blue-Green Target Group](https://library.octopus.com/step-templates/2f5f8b7b-5deb-45a9-966b-bf52c6e7976c/actiontemplate-aws-find-blue-green-target-group) step is used to find the active target group in a load balancer. The step requires the following inputs:
+
+* `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
+* `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
+* `Listener ARN`: The ARN of the listener.
+* `Blue Target Group ARN`: The ARN of the blue target group.
+* `Green Target Group ARN`: The ARN of the green target group.
+* `Rule ARN`: The ARN of the listener rule.
+
+The step generates 4 [output variables](https://octopus.com/docs/projects/variables/output-variables):
+
+* `ActiveGroupArn`: The ARN of the active (or online) target group receiving network traffic.
+* `InactiveGroupArn`: The ARN of the inactive (or offline) target group not receiving network traffic.
+* `ActiveGroupColor`: The color of the active target group.
+* `InactiveGroupColor`: The color of the inactive target group.
+
+Step 2 determines the active and inactive ASGs based on the inactive target group.
+
+The [AWS - Find Blue-Green ASG](https://library.octopus.com/step-templates/6b72995e-500c-4b4b-9121-88f3a988ec71/actiontemplate-aws-find-blue-green-asg) step provides this functionality. The step requires the following inputs:
+
+* `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
+* `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
+* `Inactive Color`: The inactive color as determined by the previous step.
+* `Green ASG Name`: The name of the green ASG.
+* `Blue ASG Name`: The name of the blue ASG.
+
+The step generates 2 output variables:
+
+* `ActiveGroup`: The name of the active (or online) ASG.
+* `InactiveGroup`: The name of the inactive (or offline) ASG.
+
+Step 3 is to update the inactive [ASG launch template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html) with the new AMI.
+
+The [AWS - Update Launch Template AMI](https://library.octopus.com/step-templates/143400df-19a9-42f5-a6c0-68145489482a/actiontemplate-aws-update-launch-template-ami) step provides this functionality. The step requires the following inputs:
+
+* `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
+* `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
+* `ASG Name`: The name of the ASG to update. This will be the inactive ASG group found in the previous step.
+* `AMI`: The AMI ID to use in the launch template.
+* `Launch Template Version Description`: The description of the new lunch version template.
+
+Step 4 is to initiate an [instance refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html) which recreates the EC2 instances in the inactive ASG with the new AMI.
+
+The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates/150c46d1-f33f-493b-a8c6-f5bd22f540f3/actiontemplate-aws-initiate-instance-refresh) step provides this functionality. The step requires the following inputs:
+
+* `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
+* `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
+* `ASG Name`: The name of the ASG to update. This will be the inactive ASG group found in step 2.
