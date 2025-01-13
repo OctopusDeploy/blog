@@ -38,7 +38,7 @@ Listener rules are very flexible and able to distribute traffic to target groups
 
 The Blue/Green deployment presented in this post requires a number of AWS resources to be created. 
 
-We first need a VPC with public subnets. These subnets will host our EC2 instances, as well as our load balancer. It also defines a security group allowing HTTP and SSH traffic:
+We first need a Virtual Private Cloud (VPC) with public subnets. These subnets will host our EC2 instances, as well as our load balancer. It also defines a security group allowing HTTP and SSH traffic:
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -370,7 +370,7 @@ Outputs:
 
 ## Building the AMI
 
-The deployable artifact with an ASG is an [AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html). There are many ways to create an AMI, but here will use [Packer](https://github.com/hashicorp/packer) to automate the process of creating an EC2, configuring it, and then creating an AMI based on the EC2 instance.
+The deployable artifact to an ASG is an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html). There are many ways to create an AMI, but here will use [Packer](https://github.com/hashicorp/packer) to automate the process of creating an EC2 instance, configuring it, and then creating an AMI based on the EC2 instance.
 
 The following Packer template creates an EC2 instance, installs Apache, and then creates an AMI:
 
