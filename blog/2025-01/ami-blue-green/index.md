@@ -3,9 +3,9 @@ title: Blue/Green deployments with Amazon EC2 Auto Scaling Groups
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2025-01-20-1400
-metaImage: todo.png
-bannerImage: todo.png
-bannerImageAlt: 
+metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImageAlt: Hexagons falling into an AWS-styled cube
 isFeatured: false
 tags:
 - DevOps
