@@ -13,7 +13,7 @@ tags:
 - AWS
 ---
 
-AWS EC2 Auto Scaling groups (ASG) have been the workhorse of cloud deployments for almost as long as we have had the concept of the cloud. ASGs provide teams deploying Virtual Machines (VMs) with the ability to scale up and down based on demand, and to replace instances that have failed. When combined with load balancers, ASGs can also provide advanced deployment processes such as blue/green deployments.
+AWS EC2 Auto Scaling groups (ASG) have been the workhorse of cloud deployments for almost as long as we have had the concept of the cloud. ASGs provide teams deploying virtual machines (VMs) with the ability to scale up and down based on demand, and to replace instances that have failed. When combined with load balancers, ASGs can also provide advanced deployment processes such as blue/green deployments.
 
 In this post, we look at how to set up blue/green deployments with ASGs, and how Octopus Deploy can help automate the process.
 
