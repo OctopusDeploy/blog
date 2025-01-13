@@ -1,5 +1,6 @@
 ---
 title: Blue/Green deployments with Amazon EC2 Auto Scaling Groups
+description: Learn how to orchestrate ASG Blue/Green deployments with Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2025-01-20-1400
