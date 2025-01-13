@@ -4,8 +4,8 @@ description: Learn how to orchestrate ASG Blue/Green deployments with Octopus De
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2025-01-20-1400
-metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
-bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+metaImage: blogimage-asg-bluegreen.png
+bannerImage: blogimage-asg-bluegreen.png
 bannerImageAlt: Hexagons falling into an AWS-styled cube
 isFeatured: false
 tags:
