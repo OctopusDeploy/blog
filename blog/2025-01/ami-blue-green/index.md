@@ -482,7 +482,11 @@ build {
 
 The previous CloudFormation and Packer templates create the necessary infrastructure in our AWS account. With this infrastructure in place, we can now orchestrate a Blue/Green deployment with Octopus.
 
+### Step 1: Determine the active and inactive target groups
+
 Step 1 is to determine which target group is receiving any network traffic. We assume this target group is the active stack, and the other target group is the inactive stack.
+
+![Step 1](step-1.png)
 
 The [AWS - Find Blue-Green Target Group](https://library.octopus.com/step-templates/2f5f8b7b-5deb-45a9-966b-bf52c6e7976c/actiontemplate-aws-find-blue-green-target-group) step is used to find the active target group in a load balancer. The step requires the following inputs:
 
@@ -500,9 +504,14 @@ The step generates 4 [output variables](https://octopus.com/docs/projects/variab
 * `ActiveGroupColor`: The color of the active target group.
 * `InactiveGroupColor`: The color of the inactive target group.
 
+
+### Step 2: Determine the active and inactive ASGs
+
 Step 2 determines the active and inactive ASGs based on the inactive target group.
 
-The [AWS - Find Blue-Green ASG](https://library.octopus.com/step-templates/6b72995e-500c-4b4b-9121-88f3a988ec71/actiontemplate-aws-find-blue-green-asg) step provides this functionality. The step requires the following inputs:
+![Step 2](step-2.png)
+
+The [AWS - Find Blue-Green ASG](https://library.octopus.com/step-templates/6b72995e-500c-4b4b-9121-88f3a988ec71/actiontemuntitled(1)plate-aws-find-blue-green-asg) step provides this functionality. The step requires the following inputs:
 
 * `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
 * `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
@@ -515,7 +524,11 @@ The step generates 2 output variables:
 * `ActiveGroup`: The name of the active (or online) ASG.
 * `InactiveGroup`: The name of the inactive (or offline) ASG.
 
+### Step 3: Update the inactive ASG with the new AMI
+
 Step 3 is to update the inactive [ASG launch template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html) with the new AMI.
+
+![Step 3](step-3.png)
 
 The [AWS - Update Launch Template AMI](https://library.octopus.com/step-templates/143400df-19a9-42f5-a6c0-68145489482a/actiontemplate-aws-update-launch-template-ami) step provides this functionality. The step requires the following inputs:
 
@@ -525,10 +538,32 @@ The [AWS - Update Launch Template AMI](https://library.octopus.com/step-template
 * `AMI`: The AMI ID to use in the launch template.
 * `Launch Template Version Description`: The description of the new lunch version template.
 
-Step 4 is to initiate an [instance refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html) which recreates the EC2 instances in the inactive ASG with the new AMI.
+### Step 4: Initiate an instance refresh
+
+Step 4 is to initiate an [instance refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html) which recreates the EC2 instances in the inactive ASG with the new AMI. We must also wait for the instance refresh to complete, after which the new EC2 instances are healthy and ready to receive network traffic.
+
+![Step 4](step-4.png)
 
 The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates/150c46d1-f33f-493b-a8c6-f5bd22f540f3/actiontemplate-aws-initiate-instance-refresh) step provides this functionality. The step requires the following inputs:
 
 * `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
 * `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
 * `ASG Name`: The name of the ASG to update. This will be the inactive ASG group found in step 2.
+
+### Step 5: Adjust the listener rule
+
+Step 5 is to adjust the listener rule to direct network traffic to the target group associated with the ASG that was just updated.
+
+![Step 5](step-5.png)
+
+The [AWS - Set Blue-Green Target Group](https://library.octopus.com/step-templates/4b5f56c1-61f9-4d85-88f8-14dbe8cf8122/actiontemplate-aws-set-blue-green-target-group) step provides this functionality. The step requires the following inputs:
+
+* `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
+* `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
+* `Rule ARN`: The ARN of the listener rule. 
+* `Offline Target Group ARN`: The ARN of the target group to stop receiving network traffic. This is the active target group found in step 1.
+* `Online Target Group ARN`: The ARN of the target group to start receiving network traffic. This is the inactive target group found in step 1.
+
+## Conclusion
+
+By combining the power of AWS ASGs, load balancers, and Octopus Deploy, you can create a robust Blue/Green deployment process that minimizes downtime and reduces the risk of failed deployments. The steps outlined in this post can be automated with Octopus Deploy, providing a repeatable and reliable deployment process that can be executed with the click of a button.
