@@ -27,7 +27,7 @@ Blue/Green deployments provide a way to minimize downtime and reduce the risk of
 Implementing Blue/Green deployments with ASGs requires a few key components:
 
 * Two ASGs: one for the blue stack and one for the green stack.
-* A [NLB](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) or [ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) with a [Listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) and [Listener Rule](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to handle network traffic.
+* A [Network Load Balancer (NLB)](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) or [Application Load Balancer (ALB)](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) with a [Listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) and [Listener Rule](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html) to handle network traffic.
 * Two [target groups](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html): one for the blue stack and one for the green stack.
 
 ![Blue/Green deployment with ASGs](blue-green-diagram.png)
