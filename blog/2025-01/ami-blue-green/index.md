@@ -486,7 +486,7 @@ The previous CloudFormation and Packer templates create the necessary infrastruc
 
 Step 1 is to determine which target group is receiving any network traffic. We assume this target group is the active stack, and the other target group is the inactive stack.
 
-![Step 1](step-1.png)
+![Diagram showing the AWS resources used in the first step](step-1.png)
 
 The [AWS - Find Blue-Green Target Group](https://library.octopus.com/step-templates/2f5f8b7b-5deb-45a9-966b-bf52c6e7976c/actiontemplate-aws-find-blue-green-target-group) step is used to find the active target group in a load balancer. The step requires the following inputs:
 
@@ -509,7 +509,7 @@ The step generates 4 [output variables](https://octopus.com/docs/projects/variab
 
 Step 2 determines the active and inactive ASGs based on the inactive target group.
 
-![Step 2](step-2.png)
+![Diagram showing the AWS resources used in the second step](step-2.png)
 
 The [AWS - Find Blue-Green ASG](https://library.octopus.com/step-templates/6b72995e-500c-4b4b-9121-88f3a988ec71/actiontemuntitled(1)plate-aws-find-blue-green-asg) step provides this functionality. The step requires the following inputs:
 
@@ -528,7 +528,7 @@ The step generates 2 output variables:
 
 Step 3 is to update the inactive [ASG launch template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html) with the new AMI.
 
-![Step 3](step-3.png)
+![Diagram showing the AWS resources used in the third step](step-3.png)
 
 The [AWS - Update Launch Template AMI](https://library.octopus.com/step-templates/143400df-19a9-42f5-a6c0-68145489482a/actiontemplate-aws-update-launch-template-ami) step provides this functionality. The step requires the following inputs:
 
@@ -542,7 +542,7 @@ The [AWS - Update Launch Template AMI](https://library.octopus.com/step-template
 
 Step 4 is to initiate an [instance refresh](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html) which recreates the EC2 instances in the inactive ASG with the new AMI. We must also wait for the instance refresh to complete, after which the new EC2 instances are healthy and ready to receive network traffic.
 
-![Step 4](step-4.png)
+![Diagram showing the AWS resources used in the fourth step](step-4.png)
 
 The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates/150c46d1-f33f-493b-a8c6-f5bd22f540f3/actiontemplate-aws-initiate-instance-refresh) step provides this functionality. The step requires the following inputs:
 
@@ -554,7 +554,7 @@ The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates
 
 Step 5 is to adjust the listener rule to direct network traffic to the target group associated with the ASG that was just updated.
 
-![Step 5](step-5.png)
+![Diagram showing the AWS resources used in the fifth step](step-5.png)
 
 The [AWS - Set Blue-Green Target Group](https://library.octopus.com/step-templates/4b5f56c1-61f9-4d85-88f8-14dbe8cf8122/actiontemplate-aws-set-blue-green-target-group) step provides this functionality. The step requires the following inputs:
 
