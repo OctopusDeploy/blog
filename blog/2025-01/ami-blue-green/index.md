@@ -554,6 +554,8 @@ The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates
 
 Step 5 is to adjust the listener rule to direct network traffic to the target group associated with the ASG that was just updated.
 
+Once the network traffic is directed to the new target group, the Blue/Green deployment is complete.
+
 ![Diagram showing the AWS resources used in the fifth step](step-5.png)
 
 The [AWS - Set Blue-Green Target Group](https://library.octopus.com/step-templates/4b5f56c1-61f9-4d85-88f8-14dbe8cf8122/actiontemplate-aws-set-blue-green-target-group) step provides this functionality. The step requires the following inputs:
