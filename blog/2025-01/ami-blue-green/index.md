@@ -20,7 +20,7 @@ In this post, we'll look at how to set up Blue/Green deployments with ASGs, and 
 
 Blue/Green deployments involve maintaining two stacks: the blue stack and the green stack. One of these stacks is live, while the other is inactive. When a new version of the application is ready to be deployed, the inactive stack is updated with the new version. Once the update is complete and all health checks pass, the inactive stack becomes the live stack, and the old live stack is deactivated.
 
-Blue/Green deployments provide a way to mimimize downtime and reduce the risk of a failed deployment. If the new version of the application fails to start, the inactive stack remains offline and the live stack continues to serve traffic. Or, if an issue is detected after deployment, the two stacks can be quickly switched back, reverting to the previous version of the application.
+Blue/Green deployments provide a way to minimize downtime and reduce the risk of a failed deployment. If the new version of the application fails to start, the inactive stack remains offline and the live stack continues to serve traffic. Or, if an issue is detected after deployment, the two stacks can be quickly switched back, reverting to the previous version of the application.
 
 ## Blue/Green deployments with ASGs
 
