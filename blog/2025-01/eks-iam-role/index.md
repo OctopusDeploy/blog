@@ -1,50 +1,57 @@
 ---
-title: How to assign an IAM role as an EKS Pod Identity for the Octopus Kubernetes worker agent.
-description: Learn how to configure an IAM role to be used for the Octopus Kubernetes worker agent.
+title: How to assign an IAM role as an EKS Pod Identity for the Octopus Kubernetes worker
+description: Learn how to configure an IAM role to be used for the Octopus Kubernetes worker.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 3020-01-01
+visibility: public
+published: 2025-01-20-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
+ - DevOps
  - AWS
  - Kubernetes
 ---
 
-The release of the Kubernetes Agent Worker allows customers to scale workers on demand.  The Agent Worker automatically scales pods to carry out tasks using a single worker registration.  This means customers no longer need to provision worker machines or containers, which may be idle most of the time.  Assigning workers an IAM role is common practice when using AWS to interact with other AWS resources securely.  In this post, I will demonstrate how to attach an IAM role to the agent worker pods.
+Our [Kubernetes worker](https://octopus.com/docs/infrastructure/workers/kubernetes-worker) lets you scale workers on demand. The Kubernetes worker automatically scales pods to carry out tasks using a single worker registration. This means you no longer need to provision worker machines or containers, which may be idle most of the time. 
 
+Assigning workers an IAM role is common practice when using AWS to interact with other AWS resources securely. In this post, I show you how to attach an IAM role to the worker pods.
 
-## Methods for assigning the IAM roles to the Kubernetes Agent Worker
-There are two methods that can be used to assign an IAM role to Elastic Kubernetes Service (EKS) pod:
-- IAM Roles for Service Accounts
+## Methods for assigning the IAM roles to the Kubernetes worker
+
+You can use 2 methods to assign an IAM role to an Elastic Kubernetes Service (EKS) pod: 
+
+- IAM roles for service accounts 
 - EKS Pod Identity
 
+The steps to configure these differ based on the method you choose.
 
-The steps necessary to configure these differ depending on which method you choose.
 
+### IAM roles for service accounts
 
-### IAM Roles for Service Accounts
-The first method is to assign the IAM role to the Kubernetes Service Account that the pods will run as.  Configuring a Kubernetes Service Account to use an IAM role consists of the following steps:
-- Configure the OIDC provider for the EKS cluster
-- Creating or updating the IAM role to be used with a Service Account
-- Specifying the Service Account (sa) annotation in the Octopus Deploy Helm Chart values
+The first method is to assign the IAM role to the Kubernetes service account that the pods will run as. To configure a Kubernetes service account to use an IAM role:
+
+- Configure the OIDC provider for the EKS cluster 
+- Create or update the IAM role for use with a service account 
+- Specify the service sccount (sa) annotation in the Octopus Deploy Helm Chart values
 
 
 #### Configure the OIDC provider for the EKS cluster
-To use the IAM Roles for Service Account method, you will need to configure the OIDC provider for the EKS cluster.  Configuration of the OIDC provider can be done via:
+
+To use the IAM roles for service account method, you need to configure the OIDC provider for the EKS cluster. You can configure the OIDC provider via: 
+
 - AWS Management Console
-- [eksctl](https://eksctl.io/) command line utility
+- [eksctl](https://eksctl.io/) command-line utility
 
 
 ##### AWS Management Console
-This post will not cover the steps for the AWS Management Console, see [AWS official documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) for more details.
 
+This post doesn't cover the steps for the AWS Management Console. See the [AWS official documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) for more details.
 
 ##### Using EKSCTL
-The `eksctl` utility is included in the `octopusdeploy\worker-tools` Docker image and can be used to automate the configuration of the OIDC provider.  Below is an example PowerShell script to configure the OIDC provider using the eksctl command-line utlity:
 
+The `eksctl` utility is included in the `octopusdeploy\worker-tools` Docker image and you can use it to automate configuration of the OIDC provider. Below is an example PowerShell script to configure the OIDC provider using the eksctl command-line utility:
 
 ```powershell
 # Assign variables
@@ -56,10 +63,9 @@ $region = $OctopusParameters["Project.AWS.Region.Code"]
 eksctl utils associate-iam-oidc-provider --cluster $clusterName --region $region --approve
 ```
 
+#### Create/update the IAM role
 
-#### Create/update the IAM Role
-Aside from granting permissions to the IAM role you wish to use, you will also need to configure the **Trust relationships** for the role.  Below is the minimum JSON needed for the Service Account to be able to assume the role:
-
+As well as granting permissions to the IAM role you wish to use, you also need to configure the **Trust relationships** for the role.  Below is the minimum JSON needed for the service account to assume the role:
 
 ```json
 {
@@ -83,16 +89,14 @@ Aside from granting permissions to the IAM role you wish to use, you will also n
 
 
 :::info
-The **cluster id** is required for the Trust relationship as indicated above.  The id can be found on the **Overview** tab of an EKS cluster on the AWS console.  The id is in the first part of the `API server endpoint` or the last part of the `OpenID Connect provider URL`
-
-
-![EKS Cluster Id](aws-eks-cluster-id.png)
+You need the **cluster id** for the Trust relationship as indicated above. You can find the ID on the **Overview** tab of an EKS cluster on the AWS console.  The ID is in the first part of the `API server endpoint` or the last part of the `OpenID Connect provider URL`.
 :::
 
+![EKS Cluster Id](aws-eks-cluster-id.png)
 
-#### Create/update the Kubernetes Service Account
-The last step is to add the annotation to the Service Account.  This is done by assigning the `scriptPods.serviceAccount.annotations` value for the Octopus Deploy Helm Chart
+#### Create/update the Kubernetes service account
 
+The last step adding the annotation to the service account.  You do this by assigning the `scriptPods.serviceAccount.annotations` value for the Octopus Deploy Helm Chart.
 
 ```bash
 helm upgrade --install --atomic \
@@ -112,29 +116,30 @@ mycluster \
 oci://registry-1.docker.io/octopusdeploy/kubernetes-agent
 ```
 
-
-With all of the above configured, all pods used for executing worker activities will be assigned the specified IAM role.
-
+With everything above configured, all pods used for executing worker activities get assigned the specified IAM role.
 
 #### Adding annotation after agent is already installed
-The annotation can also be added manually using the following command:
 
+You can also add the annotation manually using the following command:
 
 ```
 kubectl annotate sa <service-account-name> eks.amazonaws.com/role-arn=arn:aws:iam::<account-id>:role/<iam-role-name> -n <namespace>
 ```
 
-
 ### EKS Pod Identity
-An alternative method is to use the Amazon EKS Pod Identity Agent addon.  This addon facilitates the IAM role assignment to pods created by the Agent.  There are a couple of pre-requisites to complete before installing the addon:
-- Create/update the IAM Role
+
+An alternative method is to use the Amazon EKS Pod Identity Agent add-on. This add-on facilitates the IAM role assignment to pods created by the agent.  
+
+Before installing the add-on:
+
+- Create/update the IAM role
 - Create a Pod Identity Association
-- Add the `Amazon EKS Pod Identity Agent` addon to your EKS cluster
+- Add the `Amazon EKS Pod Identity Agent` add-on to your EKS cluster
 
 
-#### Create/update the IAM Role
-You'll first need to configure an IAM Role for the pods to use.  Below is the minimum JSON for the **Trust relationships** needed for the addon to work:
+#### Create/update the IAM role
 
+You first need to configure an IAM Role for the pods to use. Below is the minimum JSON for the **Trust relationships** needed for the add-on to work:
 
 ```json
 {
@@ -155,29 +160,29 @@ You'll first need to configure an IAM Role for the pods to use.  Below is the mi
 }
 ```
 
-
 #### Create a Pod Identity Association
-With the role configured, run the `aws eks create-pod-identity-association` CLI command to associate the role to the service account `octopus-agent-scripts`
+
+With the role configured, run the `aws eks create-pod-identity-association` CLI command to associate the role to the service account `octopus-agent-scripts`.
 
 
 ```powershell
 aws eks create-pod-identity-association --cluster-name <ClusterName> --role-arn <RoleArn> --namespace "<Namespace>" --service-account octopus-agent-scripts
 ```
 
+#### Add the Amazon EKS Pod Identity Agent add-on to your EKS cluster
 
-#### Add the Amazon EKS Pod Identity Agent addon to your EKS cluster
-The final step is to install the [Amazon EKS Pod Identity Agent](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) addon to your EKS cluster.  This agent grants the identity to pods when they're created.  Adding the add-on can be done manually using the AWS Management Console or programmatically using the AWS CLI.  This post will not cover installing the addon via the AWS Management Console.
+The final step is installinf the [Amazon EKS Pod Identity Agent](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) add-on to your EKS cluster. This agent grants the identity to pods when they're created. 
 
+You can add the add-on manually using the AWS Management Console or programmatically using the AWS CLI. This post doesn't cover installing the add-on via the AWS Management Console.
 
 ```powershell
 # Add pod identity addon
 aws eks create-addon --cluster-name <ClusterName> --addon-name "eks-pod-identity-agent"
 ```
 
-
 #### Example script to automate
-All of the above commands can conveniently be placed within a [Runbook](https://octopus.com/docs/runbooks) to automate installation when spinning up a new cluster
 
+You can place all the above commands conveniently in a [runbook](https://octopus.com/docs/runbooks) to automate installation when spinning up a new cluster.
 
 ```powershell
 # Assign variables
@@ -198,9 +203,8 @@ aws eks create-pod-identity-association --cluster-name $clusterName --role-arn $
 aws eks create-addon --cluster-name $clusterName --addon-name "eks-pod-identity-agent"
 ```
 
-
 ## Conclusion
-In this post, I demonstrated the two methods that can be used to apply IAM roles to the Octopus Deploy Kubernetes Agent Worker pods to facilitate secure communication and or access to other AWS resources.
 
+In this post, I showed you 2 two ways to apply IAM roles to the Octopus Kubernetes worker pods to facilitate secure communication and access to other AWS resources.
 
 Happy deployments!
