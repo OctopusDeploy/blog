@@ -4,9 +4,9 @@ description: Learn how to configure an IAM role to be used for the Octopus Kuber
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2025-01-20-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: img-blog-iam-kubernetes-worker-agent-2024-v2.png
+bannerImage: img-blog-iam-kubernetes-worker-agent-2024-v2.png
+bannerImageAlt: Kubernetes-branded cube with a security shield and silhoutte with green tick on its side.
 isFeatured: false
 tags: 
  - DevOps
