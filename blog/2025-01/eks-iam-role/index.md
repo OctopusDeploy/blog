@@ -96,7 +96,7 @@ You need the **cluster id** for the Trust relationship as indicated above. You c
 
 #### Create/update the Kubernetes service account
 
-The last step adding the annotation to the service account.  You do this by assigning the `scriptPods.serviceAccount.annotations` value for the Octopus Deploy Helm Chart.
+The last step is adding the annotation to the service account. You do this by assigning the `scriptPods.serviceAccount.annotations` value for the Octopus Deploy Helm Chart.
 
 ```bash
 helm upgrade --install --atomic \
@@ -171,7 +171,7 @@ aws eks create-pod-identity-association --cluster-name <ClusterName> --role-arn 
 
 #### Add the Amazon EKS Pod Identity Agent add-on to your EKS cluster
 
-The final step is installinf the [Amazon EKS Pod Identity Agent](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) add-on to your EKS cluster. This agent grants the identity to pods when they're created. 
+The final step is installing the [Amazon EKS Pod Identity Agent](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) add-on to your EKS cluster. This agent grants the identity to pods when they're created. 
 
 You can add the add-on manually using the AWS Management Console or programmatically using the AWS CLI. This post doesn't cover installing the add-on via the AWS Management Console.
 
@@ -205,6 +205,6 @@ aws eks create-addon --cluster-name $clusterName --addon-name "eks-pod-identity-
 
 ## Conclusion
 
-In this post, I showed you 2 two ways to apply IAM roles to the Octopus Kubernetes worker pods to facilitate secure communication and access to other AWS resources.
+In this post, I showed you 2 ways to apply IAM roles to the Octopus Kubernetes worker pods to facilitate secure communication and access to other AWS resources.
 
 Happy deployments!
