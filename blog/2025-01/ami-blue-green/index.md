@@ -13,15 +13,15 @@ tags:
 - AWS
 ---
 
-AWS EC2 Auto Scaling groups (ASG) have been the workhorse of cloud deployments for almost as long as we have had the concept of the cloud. ASGs provide teams deploying virtual machines (VMs) with the ability to scale up and down based on demand, and to replace instances that have failed. When combined with load balancers, ASGs can also provide advanced deployment processes such as blue/green deployments.
+AWS EC2 Auto Scaling groups (ASG) have been the workhorse of cloud deployments for almost as long as we've had the concept of the cloud. ASGs allow teams deploying virtual machines (VMs) to scale up and down based on demand, and to replace instances that have failed. When combined with load balancers, ASGs can also provide advanced deployment processes such as blue/green deployments.
 
-In this post, we look at how to set up blue/green deployments with ASGs, and how Octopus Deploy can help automate the process.
+In this post, we look at how to set up blue/green deployments with ASGs, and how Octopus can help automate the process.
 
 ## What are blue/green deployments?
 
-Blue/green deployments involve maintaining two stacks: the blue stack and the green stack. One of these stacks is live, while the other is inactive. When a new version of the application is ready to be deployed, the inactive stack is updated with the new version. Once the update is complete and all health checks pass, the inactive stack becomes the live stack, and the old live stack is deactivated.
+Blue/green deployments involve maintaining 2 stacks: the blue stack and the green stack. One of these stacks is live, while the other is inactive. When a new version of the application is ready to be deployed, the inactive stack gets updated with the new version. After the update is complete and all health checks pass, the inactive stack becomes the live stack, and the old live stack gets deactivated.
 
-Blue/green deployments provide a way to minimize downtime and reduce the risk of a failed deployment. If the new version of the application fails to start, the inactive stack remains offline and the live stack continues to serve traffic. Or, if an issue is detected after deployment, the two stacks can be quickly switched back, reverting to the previous version of the application.
+Blue/green deployments help minimize downtime and reduce the risk of a failed deployment. If the new version of the application fails to start, the inactive stack remains offline and the live stack continues to serve traffic. Or, if an issue is detected after deployment, the 2 stacks can be quickly switched back, reverting to the previous version of the application.
 
 ## Blue/green deployments with ASGs
 
@@ -33,13 +33,13 @@ Implementing blue/green deployments with ASGs requires a few key components:
 
 ![Blue/green deployment with ASGs](blue-green-diagram.png)
 
-Listener rules are very flexible and able to distribute traffic to target groups in a variety of ways. However, for blue/green deployments, we assume that either the blue or green target group is receiving 100% of traffic, and that a deployment will switch all traffic from one target group to the other.
+Listener rules are very flexible and can distribute traffic to target groups in a variety of ways. However, for blue/green deployments, we assume that either the blue or green target group is receiving 100% of traffic, and that a deployment will switch all traffic from one target group to the other.
 
 ## Creating the AWS infrastructure
 
-The blue/green deployment presented in this post requires a number of AWS resources to be created. 
+The blue/green deployment presented in this post requires you to create a number of AWS resources. 
 
-We first need a Virtual Private Cloud (VPC) with public subnets. These subnets will host our EC2 instances, as well as our load balancer. It also defines a security group allowing HTTP and SSH traffic:
+We first need a Virtual Private Cloud (VPC) with public subnets. These subnets will host our EC2 instances, and our load balancer. It also defines a security group allowing HTTP and SSH traffic:
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -136,7 +136,7 @@ Outputs:
     Description: Security Group ID
 ```
 
-Next we create an ALB, a listener, two target groups, and a security group that allows HTTP traffic:
+Next we create an ALB, a listener, 2 target groups, and a security group that allows HTTP traffic:
 
 ```yaml
 Parameters:
@@ -371,7 +371,7 @@ Outputs:
 
 ## Building the AMI
 
-The deployable artifact to an ASG is an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html). There are many ways to create an AMI, but here will use [Packer](https://github.com/hashicorp/packer) to automate the process of creating an EC2 instance, configuring it, and then creating an AMI based on the EC2 instance.
+The deployable artifact to an ASG is an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html). There are many ways to create an AMI, but here we use [Packer](https://github.com/hashicorp/packer) to automate the process of creating an EC2 instance, configuring it, and then creating an AMI based on the EC2 instance.
 
 The following Packer template creates an EC2 instance, installs Apache, and then creates an AMI:
 
@@ -489,7 +489,7 @@ Step 1 is to determine which target group is receiving any network traffic. We a
 
 ![Diagram showing the AWS resources used in the first step](step-1.png)
 
-The [AWS - Find Blue-Green Target Group](https://library.octopus.com/step-templates/2f5f8b7b-5deb-45a9-966b-bf52c6e7976c/actiontemplate-aws-find-blue-green-target-group) step is used to find the active target group in a load balancer. The step requires the following inputs:
+The [AWS - Find Blue-Green Target Group](https://library.octopus.com/step-templates/2f5f8b7b-5deb-45a9-966b-bf52c6e7976c/actiontemplate-aws-find-blue-green-target-group) step finds the active target group in a load balancer. The step requires the following inputs:
 
 - `Region`: The [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) hosting the load balancer.
 - `Account`: The [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) used to query the load balancer.
@@ -555,7 +555,7 @@ The [AWS - Initiate Instance Refresh](https://library.octopus.com/step-templates
 
 Step 5 is to adjust the listener rule to direct network traffic to the target group associated with the ASG that was just updated.
 
-Once the network traffic is directed to the new target group, the blue/green deployment is complete.
+After the network traffic gets directed to the new target group, the blue/green deployment is complete.
 
 ![Diagram showing the AWS resources used in the fifth step](step-5.png)
 
@@ -569,4 +569,6 @@ The [AWS - Set Blue-Green Target Group](https://library.octopus.com/step-templat
 
 ## Conclusion
 
-By combining the power of AWS ASGs, load balancers, and Octopus Deploy, you can create a robust blue/green deployment process that minimizes downtime and reduces the risk of failed deployments. The steps outlined in this post can be automated with Octopus Deploy, providing a repeatable and reliable deployment process that can be executed with the click of a button.
+By combining the power of AWS ASGs, load balancers, and Octopus Deploy, you can create a robust blue/green deployment process that minimizes downtime and reduces the risk of failed deployments. You can automate the steps outlined in this post with Octopus Deploy, providing a repeatable and reliable deployment process that you can execute with the click of a button.
+
+Happy deployments!
