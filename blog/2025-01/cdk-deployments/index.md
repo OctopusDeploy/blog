@@ -136,6 +136,8 @@ RUN apt-get update && apt-get install -y npm
 RUN npm install -g aws-cdk
 ```
 
+![Inline docker image screenshot](inline-docker-image.png)
+
 This is the script used to deploy the CDK package:
 
 ```bash
