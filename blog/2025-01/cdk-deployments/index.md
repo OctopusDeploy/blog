@@ -33,7 +33,7 @@ SAM treats application code and CloudFormation infrastructure templates as separ
 
 > In addition to generating AWS CloudFormation templates for deploying infrastructure, the AWS CDK also bundles runtime assets like Lambda functions and Docker images and deploys them alongside your infrastructure. This makes it possible to combine the code that defines your infrastructure and the code that implements your runtime logic into a single construct. It's a best practice to do this. These two kinds of code don't need to live in separate repositories or even in separate packages.
 
-The different approaches taken by SAM and CDK mean we need to adopt a new way to deploy CDK applications with Octopus Deploy.
+The different approaches taken by SAM and CDK mean we need to adopt a new strategy to deploy CDK applications with Octopus Deploy.
 
 ## Deploying CDK applications
 
