@@ -21,19 +21,19 @@ The AWS Cloud Development Kit (CDK) takes this concept further by allowing devel
 
 ## Differences between SAM and CDK
 
-With SAM, you are responsible for writing CloudFormation templates directly. The SAM CloudFormation syntax is simplified to remove much of the boilerplate configuration required to deploy a Lambda, but you're still writing JSON or YAML files.
+You are responsible for writing CloudFormation templates directly with SAM. The SAM CloudFormation syntax is simplified to remove much of the boilerplate configuration required to deploy a Lambda, but you're still writing JSON or YAML files.
 
 CDK also uses CloudFormation to deploy infrastructure and applications, but [the generated CloudFormation templates are treated as an implementation detail](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
 
 > Treat AWS CloudFormation as an implementation detail that the AWS CDK uses for robust cloud deployments, not as a language target. You're not writing AWS CloudFormation templates in TypeScript or Python, you're writing CDK code that happens to use CloudFormation for deployment.
 
-SAM keeps application code and CloudFormation infrastructure templates separate concepts (with [inline code](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-inlinecode) being the exception to the rule). While it is common to have a SAM template stored alongside the application code, each can be deployed independently.
+SAM treats application code and CloudFormation infrastructure templates as separate concepts (with [inline code](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-inlinecode) being the exception to the rule). While it is common to have a SAM template stored alongside the application code, each can be deployed independently.
 
 [CDK combines the application code and infrastructure into a single codebase](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
 
 > In addition to generating AWS CloudFormation templates for deploying infrastructure, the AWS CDK also bundles runtime assets like Lambda functions and Docker images and deploys them alongside your infrastructure. This makes it possible to combine the code that defines your infrastructure and the code that implements your runtime logic into a single construct. It's a best practice to do this. These two kinds of code don't need to live in separate repositories or even in separate packages.
 
-The different approaches take by SAM and CDK mean we need to adopt a new way to deploy CDK applications with Octopus Deploy.
+The different approaches taken by SAM and CDK mean we need to adopt a new way to deploy CDK applications with Octopus Deploy.
 
 ## Deploying CDK applications
 
@@ -46,3 +46,74 @@ Because CDK provides a self-contained package for deploying application code and
     ENV=${{ inputs.Environment }} IMAGETAG=${{ inputs.DOCKER_TAG}} ECR_ARN="arn:aws:ecr:${{ inputs.AWS_REGION }}:${{ inputs.AWS_ACCOUNT_ID }}:repository/${{ inputs.ECR_REPOSITORY }}" cdk deploy --require-approval never
 ```
 
+We'll do the same in Octopus.
+
+### Building the CDK package
+
+We'll make use of GitHub Actions to package our CDK application into a zip file and push it to Octopus:
+
+```yaml
+name: Deploy to Octopus
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Version
+        run: echo "PACKAGE_VERSION=$(date +'%Y%m%d').${{ github.run_number }}.${{ github.run_attempt }}" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Compress directory
+        run: zip -r cdkdemo.${PACKAGE_VERSION}.zip .
+
+      - name: Push packages to Octopus Deploy
+        uses: OctopusDeploy/push-package-action@v3
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+          OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
+          OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        with:
+          packages: cdkdemo.${{ env.PACKAGE_VERSION }}.zip
+          overwrite_mode: OverwriteExisting
+
+      - name: Create Octopus Release
+        uses: OctopusDeploy/create-release-action@v3
+        env:
+          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+          OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
+          OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        with:
+          project: CDK Demo
+          packages: cdkdemo.${{ env.PACKAGE_VERSION }}
+```
+
+This workflow requires 3 secrets to be defined in the GitHub repository:
+* `OCTOPUS_API_KEY`: The API key for the Octopus Deploy user.
+* `OCTOPUS_URL`: The URL of the Octopus Deploy server.
+* `OCTOPUS_SPACE`: The name of the Octopus Deploy space.
+
+### Environment agnostic CDK deployments
+
+Our CDK application must be able to deploy to a new CloudFormation stack for each environment. This is done by setting the `stackName` value in the `StackProps` object passed to the `cdk.Stack` constructor. Here we extract the stack name from the `stackName` context value:
+
+```typescript
+#!/usr/bin/env node
+import * as cdk from 'aws-cdk-lib';
+import { CdkDemoStack } from '../lib/cdk_demo-stack';
+
+const app = new cdk.App();
+const stackName = app.node.tryGetContext('stackName') ?? 'CdkDemoStack';
+new CdkDemoStack(app, 'CdkDemoStack', {
+    stackName: stackName
+});
+```
