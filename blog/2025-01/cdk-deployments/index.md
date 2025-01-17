@@ -48,6 +48,14 @@ Because CDK provides a self-contained package for deploying application code and
 
 We'll do the same in Octopus.
 
+### Bootstrapping the CDK application
+
+The region must be [bootstrapped](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html) to support CDK with the command:
+
+```bash
+cdk bootstrap
+```
+
 ### Building the CDK package
 
 We'll make use of GitHub Actions to package our CDK application into a zip file and push it to Octopus:
@@ -104,7 +112,7 @@ This workflow requires 3 secrets to be defined in the GitHub repository:
 
 ### Environment agnostic CDK deployments
 
-Our CDK application must be able to deploy to a new CloudFormation stack for each environment. This is done by setting the `stackName` value in the `StackProps` object passed to the `cdk.Stack` constructor. Here we extract the stack name from the `stackName` context value:
+Our CDK application must be able to deploy to a new CloudFormation stack for each environment. This is done by setting the `stackName` value in the `StackProps` object passed to the `cdk.Stack` constructor. Here we extract the stack name from the `stackName` [context value](https://docs.aws.amazon.com/cdk/v2/guide/context.html):
 
 ```typescript
 #!/usr/bin/env node
@@ -117,3 +125,29 @@ new CdkDemoStack(app, 'CdkDemoStack', {
     stackName: stackName
 });
 ```
+
+### Deploying the CDK package
+
+Our CDK application will be deployed as part of a `Run an AWS CLI Script` step. This step requires access to the `cdk` CLI which we will install into the [AWS Worker Tools](https://github.com/OctopusDeployLabs/workertools?tab=readme-ov-file#aws-workertools) Docker image using the [inline docker image](https://octopus.com/docs/projects/steps/execution-containers-for-workers#inline-execution-containers) feature:
+
+```Dockerfile
+FROM octopuslabs/aws-workertools
+RUN apt-get update && apt-get install -y npm
+RUN npm install -g aws-cdk
+```
+
+This is the script used to deploy the CDK package:
+
+```bash
+cd cdkdemo
+npm ci
+cdk deploy --context stackName=CDKDemo#{Octopus.Environment.Name}
+```
+
+Note we call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
+
+We also pass the `stackName` context value to the `cdk deploy` command. This value is set to `CDKDemo#{Octopus.Environment.Name}` which will be replaced with the name of the Octopus environment at deployment time.
+
+The step must also define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions.
+
+![A screenshot of the AWS Script step](step-screenshot.png)
