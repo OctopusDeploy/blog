@@ -4,9 +4,8 @@ description: "Learn how to orchestrate CDK deployments with Octopus Deploy."
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2025-01-13-1400
-metaImage: blogimage-asg-bluegreen.png
-bannerImage: blogimage-asg-bluegreen.png
-bannerImageAlt: Hexagons falling into an AWS-styled cube
+bannerImage: blogimage_deploy_aws_sam_apps.png
+bannerImageAlt: Illustration showing a Lambda deployment with Octopus Deploy
 isFeatured: false
 tags:
 - DevOps
