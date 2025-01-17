@@ -110,7 +110,7 @@ This workflow requires 3 secrets to be defined in the GitHub repository:
 * `OCTOPUS_URL`: The URL of the Octopus Deploy server.
 * `OCTOPUS_SPACE`: The name of the Octopus Deploy space.
 
-### Environment agnostic CDK deployments
+### Environment specific CDK deployments
 
 Our CDK application must be able to deploy to a new CloudFormation stack for each environment. This is done by setting the `stackName` value in the `StackProps` object passed to the `cdk.Stack` constructor. Here we extract the stack name from the `stackName` [context value](https://docs.aws.amazon.com/cdk/v2/guide/context.html):
 
