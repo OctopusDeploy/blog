@@ -139,15 +139,42 @@ RUN npm install -g aws-cdk
 This is the script used to deploy the CDK package:
 
 ```bash
+STACKNAME="CDKDemo#{Octopus.Environment.Name}"
+
 cd cdkdemo
-npm ci
-cdk deploy --context stackName=CDKDemo#{Octopus.Environment.Name}
+npm ci 2>&1
+cdk deploy --context stackName=CDKDemo#{Octopus.Environment.Name} --require-approval never 2>&1
+
+ENDPOINT=$(aws cloudformation describe-stacks \
+    --stack-name ${STACKNAME}  \
+    --query "Stacks[0].Outputs" \
+    --output json | jq -rc '.[] | select(.OutputKey=="Endpoint") | .OutputValue')
+
+set_octopusvariable "Endpoint" ${ENDPOINT}
 ```
 
 Note we call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
 
 We also pass the `stackName` context value to the `cdk deploy` command. This value is set to `CDKDemo#{Octopus.Environment.Name}` which will be replaced with the name of the Octopus environment at deployment time.
 
+This example uses a CDK application defining a `CfnOutput` which creates a CloudFormation output variable named `Endpoint`:
+
+```typescript
+new CfnOutput(this, 'Endpoint', { key: 'Endpoint', value: endpoint.url })
+```
+
+We use the `aws` CLI to query the CloudFormation stack for the value of the `Endpoint` output variable. This value is then set as an [Octopus output variable](https://octopus.com/docs/projects/variables/output-variables) named `Endpoint`.
+
 The step must also define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions.
 
 ![A screenshot of the AWS Script step](step-screenshot.png)
+
+To demonstrate how the output variable is consumed, we have a second script step with a single line writing the output variable as a [highlight](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts):
+
+```bash
+write_highlight "Endpoint: [#{Octopus.Action[Deploy CDK].Output.Endpoint}](#{Octopus.Action[Deploy CDK].Output.Endpoint})"
+```
+
+This is what a highlight message looks like in the deployment log:
+
+![A screenshot of the output](log-output.png)
