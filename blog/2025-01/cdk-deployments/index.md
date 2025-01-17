@@ -145,12 +145,17 @@ cd cdkdemo
 npm ci 2>&1
 cdk deploy --context stackName=CDKDemo#{Octopus.Environment.Name} --require-approval never 2>&1
 
-ENDPOINT=$(aws cloudformation describe-stacks \
-    --stack-name ${STACKNAME}  \
-    --query "Stacks[0].Outputs" \
-    --output json | jq -rc '.[] | select(.OutputKey=="Endpoint") | .OutputValue')
+# Get the stack outputs in JSON format
+outputs=$(aws cloudformation describe-stacks --stack-name $STACKNAME --query "Stacks[0].Outputs" --output json)
 
-set_octopusvariable "Endpoint" ${ENDPOINT}
+# Loop over each item in the array
+echo "${outputs}" | jq -c '.[]' | while read -r item; do
+    OutputKey=$(echo "${item}" | jq -r '.OutputKey')
+    OutputValue=$(echo "${item}" | jq -r '.OutputValue')
+
+    set_octopusvariable "${OutputKey}" "${OutputValue}"
+    echo "Output variable ##{Octopus.Action[#{Octopus.Step.Name}].Output.${OutputKey}}"
+done
 ```
 
 Note we call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
@@ -163,9 +168,9 @@ This example uses a CDK application defining a `CfnOutput` which creates a Cloud
 new CfnOutput(this, 'Endpoint', { key: 'Endpoint', value: endpoint.url })
 ```
 
-We use the `aws` CLI to query the CloudFormation stack for the value of the `Endpoint` output variable. This value is then set as an [Octopus output variable](https://octopus.com/docs/projects/variables/output-variables) named `Endpoint`.
+We use the `aws` CLI to query the CloudFormation stack for the output values. We then loop over these values to define equivalent [Octopus output variables](https://octopus.com/docs/projects/variables/output-variables).
 
-The step must also define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions.
+Note the step must also define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions.
 
 ![A screenshot of the AWS Script step](step-screenshot.png)
 
@@ -178,3 +183,9 @@ write_highlight "Endpoint: [#{Octopus.Action[Deploy CDK].Output.Endpoint}](#{Oct
 This is what a highlight message looks like in the deployment log:
 
 ![A screenshot of the output](log-output.png)
+
+And with that we have deployed the CDK application to an environment specific CloudFormation stack and captured the output of the stack in an Octopus output variable.
+
+## Conclusion
+
+CDK provides a powerful framework to define application infrastructure and code in a self-contained package. Making use of CDK context allows us to inject environment specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables allows us to capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an `Run an AWS CLI Script` step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
