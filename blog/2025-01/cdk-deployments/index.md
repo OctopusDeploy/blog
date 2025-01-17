@@ -160,7 +160,7 @@ echo "${outputs}" | jq -c '.[]' | while read -r item; do
 done
 ```
 
-Note we call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
+We call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
 
 We also pass the `stackName` context value to the `cdk deploy` command. This value is set to `CDKDemo#{Octopus.Environment.Name}` which will be replaced with the name of the Octopus environment at deployment time.
 
