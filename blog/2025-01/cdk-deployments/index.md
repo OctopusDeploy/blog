@@ -186,8 +186,8 @@ This is what a highlight message looks like in the deployment log:
 
 ![A screenshot of the output](log-output.png)
 
-And with that we have deployed the CDK application to an environment specific CloudFormation stack and captured the output of the stack in an Octopus output variable.
+And with that we have deployed the CDK application to an environment specific CloudFormation stack and captured the output of the stack in Octopus output variables.
 
 ## Conclusion
 
-CDK provides a powerful framework to define application infrastructure and code in a self-contained package. Making use of CDK context allows us to inject environment specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables allows us to capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an `Run an AWS CLI Script` step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
+CDK provides a powerful framework to define infrastructure and application code in a self-contained package. Making use of CDK context allows us to inject environment specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables allows us to capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an `Run an AWS CLI Script` step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
