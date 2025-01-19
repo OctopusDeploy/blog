@@ -1,6 +1,6 @@
 ---
-title: Introducing Deployment Freezes
-description: Octopus Deploy introduces a new feature called deployment freezes, allowing you to restrict deployments during specific periods to ensure system stability and meet business requirements.
+title: More control over Deployment Freezes: Recurring freezes and freeze by tenant
+description: We've improved our Deployment Freezes feature, allowing you to create maintenance windows with recurring freezes and have more granular control over the scope of freezes with freezes by tenant.
 author: huy.nguyen@octopus.com
 visibility: public
 published: 2024-12-19-1400
@@ -12,7 +12,8 @@ tags:
 - Deployment
 ---
 
-Have you ever needed to stop deployments during busy periods? Maybe during holidays when most of your team is away, or during big sales events? We've got great news! We're launching deployment freezes in Octopus Deploy to help you manage these situations better.
+Do you have specific windows where you don't want deployments going out? Do you want to prevent deployments to certain tenants without blocking the whole project?
+We've got great news! We're releasing improvements to our Deployment Freezes feature in Octopus Deploy to allow you to do just that.
 
 ## Why Do You Need Deployment Freezes?
 
@@ -20,6 +21,8 @@ Let's face it - there are times when deploying new changes is just too risky. Th
 - Holiday seasons when your team is short-staffed
 - Critical business periods like tax season or elections
 - Important demos or testing cycles when you need your systems stable
+- You need to prevent deployments to production during business hours
+- Your customers / branches are modelled with tenants and require more granular control around when deployments to those customers can proceed
 
 Our new feature helps you handle all these cases. It lets you control exactly when and where deployments can happen, keeping your systems stable when it matters most.
 
@@ -31,7 +34,7 @@ Setting up a deployment freeze is straightforward. You can create them for right
 - How long it lasts
 - Which projects, environments, and tenants it affects
 
-Need to set up regular freezes for maintenance? No problem! You can set up automated recurring freezes that match your schedule.
+Need to set up regular maintenance windows? No problem! You can set up automated recurring freezes that match your schedule.
 
 ![Deployment Freeze Detail](deployment-freeze-detail_w.png "width=500")
 
