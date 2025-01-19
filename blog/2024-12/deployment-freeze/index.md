@@ -18,21 +18,21 @@ We've got great news! We're releasing improvements to our Deployment Freezes fea
 ## Why Do You Need Deployment Freezes?
 
 Let's face it - there are times when deploying new changes is just too risky. Think about:
-- Holiday seasons when your team is short-staffed
-- Critical business periods like tax season or elections
-- Important demos or testing cycles when you need your systems stable
-- You need to prevent deployments to production during business hours
-- Your customers / branches are modelled with tenants and require more granular control around when deployments to those customers can proceed
+- Holiday seasons when your team is short-staffed.
+- Critical business periods like tax season or elections.
+- Important demos or testing cycles when you need your systems stable.
+- You need to prevent deployments to production during business hours.
+- Your customers / branches are modelled with tenants and require more granular control around when deployments to those customers can proceed.
 
-Our new feature helps you handle all these cases. It lets you control exactly when and where deployments can happen, keeping your systems stable when it matters most.
+Our new feature helps you handle all these cases. It lets you control when and where deployments can happen, keeping your systems stable when it matters most.
 
 ## Setting Up Your Freezes
 
 Setting up a deployment freeze is straightforward. You can create them for right now or schedule them for later. You get to choose:
-- A clear name so everyone knows what the freeze is for
-- When it starts and ends
-- How long it lasts
-- Which projects, environments, and tenants it affects
+- A clear name so everyone knows what the freeze is for.
+- When it starts and ends?
+- How long it lasts?
+- Which projects, environment, and tenants it affects?
 
 Need to set up regular maintenance windows? No problem! You can set up automated recurring freezes that match your schedule.
 
@@ -42,7 +42,7 @@ Need to set up regular maintenance windows? No problem! You can set up automated
 
 You can control your freezes by scoping them to projects or tenants.
 
-With project scopes, you can freeze specific projects by environments. For example, you might want to freeze your online store production deployments during Black Friday but keep working on your development and test environments.
+With project scopes, you can freeze specific projects by environment. For example, you might want to freeze your online store production deployments during Black Friday but keep working on your development and test environments.
 
 ![Project Scope](deployment-freeze-project-scope_w.png "width=500")
 
@@ -55,24 +55,24 @@ By mixing these options, you can create freezes that match exactly what your tea
 ## What Happens During a Freeze?
 
 Here's what you can expect when a freeze is active:
-- Existing deployments that started before the freeze will continue to completion
-- New deployments attempted during the freeze will need to provide an override reason to be able to deploy
-- Scheduled deployments that would start during a freeze period will not execute
-- Automatic deployments based on deployment target triggers are allowed to ensure your deployment targets stay updated when scaling up
-- Other automatic deployments, such as scheduled deployments or automatic lifecycle promotions, are blocked during the freeze
+- Existing deployments that started before the freeze will continue to completion.
+- New deployments attempted during the freeze will need to provide an override reason to be able to deploy.
+- Scheduled deployments that would start during a freeze period will not execute.
+- Automatic deployments based on deployment target triggers are allowed to ensure your deployment targets stay updated when scaling up.
+- Other automatic deployments, such as scheduled deployments or automatic lifecycle promotions, are blocked during the freeze.
 
 ## Setting Up Regular Freezes
 
 Need to set up regular freeze periods? Our recurring schedule feature has got you covered. You can:
-- Set up different freezes for each global region
-- Match your maintenance windows
-- Create daily protection windows
+- Set up different freezes for each global region.
+- Match your maintenance windows.
+- Create daily protection windows.
 
 The system lets you set up these recurring patterns:
-- Daily windows to protect business hours
-- Weekly schedules for regular maintenance
-- Monthly patterns for release cycles
-- Annual schedules for recurring business events
+- Daily windows to protect business hours.
+- Weekly schedules for regular maintenance.
+- Monthly patterns for release cycles.
+- Annual schedules for recurring business events.
 
 ![Deployment Freeze Recurrence](deployment-freeze-recurrence_w.png "width=500")
 
@@ -81,9 +81,9 @@ The system lets you set up these recurring patterns:
 We know that sometimes you need to make exceptions. That's why we've made it easy for authorized users to override active freezes. They just need to provide a reason, which we'll keep track of in the audit trail.
 
 The audit trail keeps a record of:
-- Freeze creation and modification
-- Deployment Freeze Override and their justifications
-- Deployment attempts during freeze periods
+- Freeze creation and modification.
+- Deployment Freeze Override and their justifications.
+- Deployment attempts during freeze periods.
 
 ![Screenshot of the Deployment Freeze interface](deployment-freeze-override_w.png "width=500")
 
@@ -94,6 +94,6 @@ You can automate and integrate deployment freezes into your workflows using the 
 - [Terraform provider: Deployment Freeze example](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/main/examples/resources/octopusdeploy_deployment_freeze)
 
 ## Conclusion
-Deployment freezes in Octopus Deploy let you control your deployment schedule. This feature helps you protect critical systems during peak times. It helps with reduced staffing and coordinating deployments across teams. It lets you stay agile while maintaining stability. Ready to start with deployment freezes? Check out our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes) for detailed setup instructions and best practices.
+Deployment freezes in Octopus Deploy lets you control your deployment schedule. This feature helps you protect critical systems during peak times. It helps with reduced staffing and coordinating deployments across teams. It lets you stay agile while maintaining stability. Ready to start with deployment freezes? Check out our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes) for detailed setup instructions and best practices.
 
 Happy deployments!
