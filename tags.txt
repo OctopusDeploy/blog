@@ -22,6 +22,7 @@ Deployment Patterns
 Docker
 DORA Metrics
 Enterprise
+Environment Promotion
 Getting Started
 GitHub Actions
 GitHub Copilot
