@@ -3,7 +3,7 @@ title: Repeatable CDK deployments with Octopus
 description: Learn how to orchestrate CDK deployments with Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2025-01-21-1400
+published: 2025-01-17-1400
 metaImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImageAlt: Illustration of a blue locked padlock branded with a closed eye to signal private VPC, sitting amongst clouds. 
