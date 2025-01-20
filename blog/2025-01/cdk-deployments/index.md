@@ -1,9 +1,9 @@
 ---
-title: "Repeatable CDK deployments with Octopus"
-description: "Learn how to orchestrate CDK deployments with Octopus Deploy."
+title: Repeatable CDK deployments with Octopus
+description: Learn how to orchestrate CDK deployments with Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2025-01-13-1400
+published: 2025-01-21-1400
 metaImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImageAlt: Illustration of a blue locked padlock branded with a closed eye to signal private VPC, sitting amongst clouds. 
@@ -11,13 +11,14 @@ isFeatured: false
 tags:
 - DevOps
 - AWS
+- Environment Promotion
 ---
 
-Cloud providers have invested a lot of effort into streamlining the development and deployment of cloud native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like Virtual Private Clouds (VPCs) and subnets.
+Cloud providers have invested a lot of effort into streamlining the development and deployment of cloud-native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like Virtual Private Clouds (VPCs) and subnets.
 
-The [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/) introduced tooling and streamlined CloudFormation syntax to automate the testing and deployment of Lambdas. While the CLI tooling improved developers local testing experience, it was not mandatory, as the application code and SAM CloudFormation templates were still separate entities and both could be deployed using traditional AWS CLI tooling. For example, [Quarkus](https://quarkus.io/guides/aws-lambda) supplies SAM CloudFormation Lambda templates, but also provides a custom script to deploy functions that does not rely on the SAM CLI. 
+The [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/) introduced tooling and streamlined CloudFormation syntax to automate the testing and deployment of Lambdas. While the CLI tooling improved developers local testing experience, it wasn't mandatory, as the application code and SAM CloudFormation templates were still separate entities and you could deploy both using traditional AWS CLI tooling. For example, [Quarkus](https://quarkus.io/guides/aws-lambda) supplies SAM CloudFormation Lambda templates, but also provides a custom script to deploy functions that don't rely on the SAM CLI. 
 
-The post [Deploying AWS SAM templates with Octopus](https://octopus.com/blog/aws-sam-and-octopus) describes how to deploy a SAM application using standard Octopus Deploy features such as uploading files to S3 and deploying CloudFormation stacks.
+The post [Deploying AWS SAM templates with Octopus](https://octopus.com/blog/aws-sam-and-octopus) describes how to deploy a SAM application using standard Octopus Deploy features, like uploading files to S3 and deploying CloudFormation stacks.
 
 The [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) takes this concept further by allowing developers to define their infrastructure and applications using a programming language like TypeScript or Python. While conceptually similar to AWS SAM, CDK approaches the process of developing and deploying applications differently enough that we must adopt a new way to deploy CDK applications with Octopus Deploy.
 
@@ -31,7 +32,7 @@ CDK also uses CloudFormation to deploy infrastructure and applications, but [the
 
 > Treat AWS CloudFormation as an implementation detail that the AWS CDK uses for robust cloud deployments, not as a language target. You're not writing AWS CloudFormation templates in TypeScript or Python, you're writing CDK code that happens to use CloudFormation for deployment.
 
-SAM treats application code and CloudFormation infrastructure templates as separate concepts (with [inline code](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-inlinecode) being the exception to the rule). While it is common to have a SAM template stored alongside the application code, each can be deployed independently.
+SAM treats application code and CloudFormation infrastructure templates as separate concepts (with [inline code](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-inlinecode) being the exception to the rule). While it's common to have a SAM template stored alongside the application code, you can deploy each independently.
 
 [CDK, on the other hand, combines the application code and infrastructure into a single codebase](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
 
@@ -110,9 +111,10 @@ jobs:
 ```
 
 This workflow requires 3 secrets to be defined in the GitHub repository:
-* `OCTOPUS_API_KEY`: The API key for the Octopus Deploy user.
-* `OCTOPUS_URL`: The URL of the Octopus Deploy server.
-* `OCTOPUS_SPACE`: The name of the Octopus Deploy space.
+
+- `OCTOPUS_API_KEY`: The API key for the Octopus Deploy user.
+- `OCTOPUS_URL`: The URL of the Octopus Deploy server.
+- `OCTOPUS_SPACE`: The name of the Octopus Deploy space.
 
 ### Environment specific CDK deployments
 
@@ -132,7 +134,7 @@ new CdkDemoStack(app, 'CdkDemoStack', {
 
 ### Deploying the CDK package
 
-Our CDK application will be deployed as part of a `Run an AWS CLI Script` step. This step requires access to the `cdk` CLI which we will install into the [AWS Worker Tools](https://github.com/OctopusDeployLabs/workertools?tab=readme-ov-file#aws-workertools) Docker image using the [inline docker image](https://octopus.com/docs/projects/steps/execution-containers-for-workers#inline-execution-containers) feature:
+Our CDK application will deploy as part of a **Run an AWS CLI Script** step. This step requires access to the `cdk` CLI which we'll install into the [AWS Worker Tools](https://github.com/OctopusDeployLabs/workertools?tab=readme-ov-file#aws-workertools) Docker image using the [inline docker image](https://octopus.com/docs/projects/steps/execution-containers-for-workers#inline-execution-containers) feature:
 
 ```Dockerfile
 FROM octopuslabs/aws-workertools
@@ -164,11 +166,11 @@ echo "${outputs}" | jq -c '.[]' | while read -r item; do
 done
 ```
 
-The step must define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions. The contents of this package are extracted to the `cdkdemo` directory by the script step, which we then `cd` into.
+The step must define a [referenced package](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages) pointing to the `cdkdemo` package uploaded by GitHub Actions. The script step extracts the contents of this package to the `cdkdemo` directory, which we then `cd` into.
 
 We call `npm ci` to restore the node dependencies explicitly defined in the `package-lock.json` file. This ensures the build process is repeatable and does not restore different versions of packages between builds.
 
-We call the `cdk deploy` command, passing in the `--stack-name` argument. This value is set to `CDKDemo#{Octopus.Environment.Name}` which will be replaced with the name of the Octopus environment at deployment time.
+We call the `cdk deploy` command, passing in the `--stack-name` argument. This value is set to `CDKDemo#{Octopus.Environment.Name}` which gets replaced with the name of the Octopus environment at deployment time.
 
 This example uses a CDK application defining a `CfnOutput` which creates a CloudFormation output variable named `Endpoint`, meaning this code is found in the CD application:
 
@@ -194,14 +196,16 @@ And with that we have deployed the CDK application to an environment specific Cl
 
 ## Environment progression
 
-One of the benefits you get from deploying CDK applications with Octopus is the ability to promote releases between environments. Because the CloudFormation stack name is unique for each environment, we can deploy the same CDK package to multiple environments, with each environment maintaining its own infrastructure via a separate CloudFormation stack.
+One of the benefits of deploying CDK applications with Octopus is the ability to promote releases between environments. Because the CloudFormation stack name is unique for each environment, we can deploy the same CDK package to multiple environments, with each environment maintaining its own infrastructure via a separate CloudFormation stack.
 
-Importantly, Octopus ensures the same version of the CDK application is promoted between environments. This means you can be sure that the version you tested in a lower environment, like `Development`, is the same version that is deployed to `Staging` and `Production`.
+Importantly, Octopus ensures the same version of the CDK application gets promoted between environments. This means you can be sure that the version you tested in a lower environment, like Development, is the same version that is deployed to Staging and Production.
 
 This means DevOps teams can promote their application with a single button click.
 
 ## Conclusion
 
-CDK provides a powerful framework to define infrastructure and application code in a self-contained package. Making use of CDK context allows us to inject environment specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables allows us to capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an `Run an AWS CLI Script` step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
+CDK provides a powerful framework to define infrastructure and application code in a self-contained package. Making use of CDK context allows us to inject environment-specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables lets us capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an **Run an AWS CLI Script** step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
 
 With a CI tool like GitHub Actions packaging the CDK files, pushing the artifact to Octopus, and then creating a release, we can establish a CI/CD pipeline for CDK applications.
+
+Happy deployments!
