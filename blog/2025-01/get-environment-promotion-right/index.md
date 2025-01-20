@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Kubernetes
   - Continuous Delivery
+  - Environment Promotion
 ---
 
 Whether you're deploying to Kubernetes, or anywhere else, environment promotion isn't a new concept. However, it can get challenging to manage, particularly at scale. So what are those challenges, and how can you mitigate them?
