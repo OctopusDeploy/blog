@@ -12,7 +12,7 @@ tags:
 - AWS
 ---
 
-Cloud providers have invested a lot of effort into streaming the development and deployment of cloud native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like VPCs and subnets.
+Cloud providers have invested a lot of effort into streamlining the development and deployment of cloud native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like VPCs and subnets.
 
 The AWS Serverless Application Model (SAM) introduced tooling and streamlined CloudFormation syntax to automate the testing and deployment of Lambdas. While the CLI tooling improved developers local testing experience, it was not mandatory, as the application code and SAM CloudFormation templates were still separate entities and both could be deployed using traditional AWS CLI tooling. For example, [Quarkus](https://quarkus.io/guides/aws-lambda) supplies SAM CloudFormation Lambda templates, but also provides a custom script to deploy functions that does not rely on the SAM CLI. 
 
