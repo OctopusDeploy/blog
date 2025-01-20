@@ -24,7 +24,7 @@ The [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) takes this co
 
 There are a number of differences between the SAM and CDK workflows that impact how we deploy applications with Octopus Deploy.
 
-You are responsible for writing CloudFormation templates directly with SAM. The SAM CloudFormation syntax is simplified to remove much of the boilerplate configuration required to deploy a Lambda, but you're still writing JSON or YAML files.
+You are responsible for writing CloudFormation templates directly with SAM. The SAM CloudFormation syntax is simplified to remove much of the boilerplate configuration required to deploy a Lambda, but you're still writing JSON or YAML CloudFormation files.
 
 CDK also uses CloudFormation to deploy infrastructure and applications, but [the generated CloudFormation templates are treated as an implementation detail](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
 
@@ -32,7 +32,7 @@ CDK also uses CloudFormation to deploy infrastructure and applications, but [the
 
 SAM treats application code and CloudFormation infrastructure templates as separate concepts (with [inline code](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-inlinecode) being the exception to the rule). While it is common to have a SAM template stored alongside the application code, each can be deployed independently.
 
-[CDK combines the application code and infrastructure into a single codebase](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
+[CDK, on the other hand, combines the application code and infrastructure into a single codebase](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
 
 > In addition to generating AWS CloudFormation templates for deploying infrastructure, the AWS CDK also bundles runtime assets like Lambda functions and Docker images and deploys them alongside your infrastructure. This makes it possible to combine the code that defines your infrastructure and the code that implements your runtime logic into a single construct. It's a best practice to do this. These two kinds of code don't need to live in separate repositories or even in separate packages.
 
