@@ -191,6 +191,14 @@ This is what a highlight message looks like in the deployment log:
 
 And with that we have deployed the CDK application to an environment specific CloudFormation stack and captured the output of the stack in Octopus output variables.
 
+## Environment progression
+
+One of the benefits you get from deploying applications with Octopus is the ability to promote release between environments. Because the CloudFormation stack name is unique for each environment, we can deploy the same CDK package to multiple environments, with each environment maintaining its own infrastructure via a separate CloudFormation stack.
+
+Importantly, Octopus ensures the same version of the CDK application is promoted between environments. This means you can be sure that the version you tested in a lower environment, like `Development`, is the same version that is deployed to `Staging` and `Production`.
+
+This means DevOps teams can promote their application with a single button click.
+
 ## Conclusion
 
 CDK provides a powerful framework to define infrastructure and application code in a self-contained package. Making use of CDK context allows us to inject environment specific values into the deployment, and the combination of CloudFormation output variables and Octopus output variables allows us to capture the results of the deployment for use in subsequent steps. Scripting the deployment of CDK packages in an `Run an AWS CLI Script` step means Octopus takes care of building the execution environment, specifically exposing account credentials and region settings.
