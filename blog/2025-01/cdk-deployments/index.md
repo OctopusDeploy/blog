@@ -4,8 +4,9 @@ description: "Learn how to orchestrate CDK deployments with Octopus Deploy."
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2025-01-13-1400
-bannerImage: blogimage_deploy_aws_sam_apps.png
-bannerImageAlt: Illustration showing a Lambda deployment with Octopus Deploy
+metaImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
+bannerImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
+bannerImageAlt: Illustration of a blue locked padlock branded with a closed eye to signal private VPC, sitting amongst clouds. 
 isFeatured: false
 tags:
 - DevOps
