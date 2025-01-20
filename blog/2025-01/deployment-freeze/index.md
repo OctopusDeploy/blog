@@ -11,8 +11,11 @@ tags:
 - Product
 ---
 
-Do you have specific windows where you don't want deployments going out? Do you want to prevent deployments to certain tenants without blocking the whole project?
-We've got great news! We're releasing improvements to our Deployment Freezes feature in Octopus Deploy to allow you to do just that.
+We recently updated our Deployment Freeze feature with 2 new capabilities. 
+
+The first helps you set specific windows where you don't want deployments going out. The second lets you prevent deployments to certain tenants without blocking the whole project.
+
+In this post, I introduce these new deployment freeze capabilities and how to use them.
 
 ## Why you need deployment freezes
 
@@ -30,10 +33,10 @@ Our improvements to deployment freezes help you handle all these cases. They let
 
 You can create deployment freezes for immediate use or schedule them for later. You get to choose:
 
-- A clear name so everyone knows what the freeze is for.
-- When it starts and ends.
-- How long it lasts.
-- Which projects, environment, and tenants it affects.
+- A clear name so everyone knows what the freeze is for
+- When it starts and ends
+- How long it lasts
+- Which projects, environment, and tenants it affects
 
 If you need to set up regular maintenance windows, you can configure automated recurring freezes that match your schedule.
 
@@ -65,13 +68,14 @@ Here's what you can expect when a freeze is active:
 
 ## Setting up regular freezes
 
-You can also set up regular freeze periods with uur recurring schedule feature. You can:
+You can also set up regular freeze periods with our recurring schedule feature. You can:
 
-- Set up different freezes for each global region.
+- Set up different freezes for each global region
 - Match your maintenance windows
 - Create daily protection windows
 
 The system lets you set up these recurring patterns:
+
 - Daily windows to protect business hours
 - Weekly schedules for regular maintenance
 - Monthly patterns for release cycles
@@ -93,7 +97,9 @@ The audit trail keeps a record of:
 
 ## Automation and integration
 
-You can automate and integrate deployment freezes into your workflows using the Octopus REST API or the Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider offers an `octopusdeploy_deployment_freeze` resource for creating and managing deployment freezes. For more information, see the following resources:
+You can automate and integrate deployment freezes into your workflows using the Octopus REST API or the Terraform provider. For example, you can use the Go client to automate the creation and management of deployment freezes as part of your CI/CD pipeline. The Terraform provider offers an `octopusdeploy_deployment_freeze` resource for creating and managing deployment freezes. 
+
+For more information, see the following resources:
 
 - [Octopus REST API - Go Client](https://github.com/OctopusDeploy/go-octopusdeploy)
 - [Terraform provider: Deployment Freeze example](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/main/examples/resources/octopusdeploy_deployment_freeze)
