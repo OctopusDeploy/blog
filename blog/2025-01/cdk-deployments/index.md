@@ -22,6 +22,8 @@ The [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) takes this co
 
 ## Differences between SAM and CDK
 
+There are a number of differences between the SAM and CDK workflows that impact how we deploy applications with Octopus Deploy.
+
 You are responsible for writing CloudFormation templates directly with SAM. The SAM CloudFormation syntax is simplified to remove much of the boilerplate configuration required to deploy a Lambda, but you're still writing JSON or YAML files.
 
 CDK also uses CloudFormation to deploy infrastructure and applications, but [the generated CloudFormation templates are treated as an implementation detail](https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html#best-practices-code):
