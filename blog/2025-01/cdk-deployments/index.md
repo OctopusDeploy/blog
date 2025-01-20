@@ -12,13 +12,13 @@ tags:
 - AWS
 ---
 
-Cloud providers have invested a lot of effort into streamlining the development and deployment of cloud native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like VPCs and subnets.
+Cloud providers have invested a lot of effort into streamlining the development and deployment of cloud native applications. Developers used to be responsible for provisioning infrastructure and developing their applications separately, but this made local testing difficult, and often forced developers to have a deep understanding of network configuration like Virtual Private Clouds (VPCs) and subnets.
 
-The AWS Serverless Application Model (SAM) introduced tooling and streamlined CloudFormation syntax to automate the testing and deployment of Lambdas. While the CLI tooling improved developers local testing experience, it was not mandatory, as the application code and SAM CloudFormation templates were still separate entities and both could be deployed using traditional AWS CLI tooling. For example, [Quarkus](https://quarkus.io/guides/aws-lambda) supplies SAM CloudFormation Lambda templates, but also provides a custom script to deploy functions that does not rely on the SAM CLI. 
+The [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/) introduced tooling and streamlined CloudFormation syntax to automate the testing and deployment of Lambdas. While the CLI tooling improved developers local testing experience, it was not mandatory, as the application code and SAM CloudFormation templates were still separate entities and both could be deployed using traditional AWS CLI tooling. For example, [Quarkus](https://quarkus.io/guides/aws-lambda) supplies SAM CloudFormation Lambda templates, but also provides a custom script to deploy functions that does not rely on the SAM CLI. 
 
 The post [Deploying AWS SAM templates with Octopus](https://octopus.com/blog/aws-sam-and-octopus) describes how to deploy a SAM application using standard Octopus Deploy features such as uploading files to S3 and deploying CloudFormation stacks.
 
-The AWS Cloud Development Kit (CDK) takes this concept further by allowing developers to define their infrastructure and applications using a programming language like TypeScript or Python. While conceptually similar to AWS SAM, CDK approaches the process of developing and deploying applications differently enough that we must adopt a new way to deploy CDK applications with Octopus Deploy.
+The [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) takes this concept further by allowing developers to define their infrastructure and applications using a programming language like TypeScript or Python. While conceptually similar to AWS SAM, CDK approaches the process of developing and deploying applications differently enough that we must adopt a new way to deploy CDK applications with Octopus Deploy.
 
 ## Differences between SAM and CDK
 
