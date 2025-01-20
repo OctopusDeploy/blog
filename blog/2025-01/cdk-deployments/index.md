@@ -193,7 +193,7 @@ And with that we have deployed the CDK application to an environment specific Cl
 
 ## Environment progression
 
-One of the benefits you get from deploying applications with Octopus is the ability to promote release between environments. Because the CloudFormation stack name is unique for each environment, we can deploy the same CDK package to multiple environments, with each environment maintaining its own infrastructure via a separate CloudFormation stack.
+One of the benefits you get from deploying CDK applications with Octopus is the ability to promote releases between environments. Because the CloudFormation stack name is unique for each environment, we can deploy the same CDK package to multiple environments, with each environment maintaining its own infrastructure via a separate CloudFormation stack.
 
 Importantly, Octopus ensures the same version of the CDK application is promoted between environments. This means you can be sure that the version you tested in a lower environment, like `Development`, is the same version that is deployed to `Staging` and `Production`.
 
