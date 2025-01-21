@@ -15,7 +15,9 @@ We recently updated our Deployment Freeze feature with 2 new capabilities.
 
 The first helps you set specific windows where you don't want deployments going out. The second lets you prevent deployments to certain tenants without blocking the whole project.
 
-In this post, I introduce these new deployment freeze capabilities and how to use them.
+These updates are available now for our Cloud customers, and our self-hosted customers can expect them in the 2025.1 release.
+
+In this post, I introduce these new deployment freeze capabilities and explain how to use them.
 
 ## Why you need deployment freezes
 
@@ -50,7 +52,7 @@ With project scopes, you can freeze specific projects by environment. For exampl
 
 ![Project Scope](deployment-freeze-project-scope_w.png "width=500")
 
-Tenant scope lets you get even more specific. You can freeze deployments for particular tenants in selected projects and environments. This is helpful if you're managing systems across different time zones or regions.
+Our new tenant scope lets you get even more specific. You can freeze deployments for particular tenants in selected projects and environments. This is helpful if you're managing systems across different time zones or regions.
 
 ![Tenant Scope](deployment-freeze-tenant-scope_w.png "width=500")
 
@@ -66,7 +68,7 @@ Here's what you can expect when a freeze is active:
 - Automatic deployments based on deployment target triggers still execute, which ensures your deployment targets stay updated when scaling up.
 - Other automatic deployments, like scheduled deployments or automatic lifecycle promotions, get blocked during the freeze.
 
-## Setting up regular freezes
+## Setting up recurring freezes
 
 You can also set up regular freeze periods with our recurring schedule feature. You can:
 
@@ -74,7 +76,7 @@ You can also set up regular freeze periods with our recurring schedule feature. 
 - Match your maintenance windows
 - Create daily protection windows
 
-The system lets you set up these recurring patterns:
+The system lets you set up these recurring patterns with:
 
 - Daily windows to protect business hours
 - Weekly schedules for regular maintenance
@@ -108,6 +110,6 @@ For more information, see the following resources:
 
 Deployment freezes in Octopus let you control your deployment schedule. This feature helps you protect critical systems during peak times. It helps with reduced staffing and coordinating deployments across teams. It lets you stay agile while maintaining stability. 
 
-To get started or learn more, you can read our [deployment freeze documentation](https://octopus.com/docs/deployments/deployment-freezes).
+To get started or learn more, you can read our [deployment freezes documentation](https://octopus.com/docs/deployments/deployment-freezes).
 
 Happy deployments!
