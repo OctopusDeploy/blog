@@ -3,7 +3,7 @@ title: "More control over Deployment Freezes: Recurring freezes and freeze by te
 description: We improved our Deployment Freezes feature, letting you create maintenance windows with recurring freezes and giving you more granular control with freezes by tenant.
 author: huy.nguyen@octopus.com
 visibility: public
-published: 2024-01-27-1400
+published: 2025-01-27-1400
 metaImage: blogimage-deploymentfreezes-2024-750x400.png
 bannerImage: blogimage-deploymentfreezes-2024-750x400.png
 bannerImageAlt: Two people looking at an Octopus Deploy interface showing deployment versions with a winter theme and snowflakes.
