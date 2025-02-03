@@ -21,16 +21,16 @@ This post summarizes some those changes to expect in Octopus Server 2025.1.
 ### Clarification To our support policies
 Octopus supports a range of Windows and [non-Windows](https://octopus.com/docs/infrastructure/deployment-targets/linux#supported-distributions) platforms for use as targets and workers.
 
- Previously, we tied this list of supported platforms to those which we explicitly ran our full suite of automated tests against for every build. While this approach does give some degree of confidence that workloads _will_ generally work on those operating systems, it does make that list a little arbitrary. 
+ Previously, we tied this list of supported platforms to those which we explicitly ran against our full suite of automated tests on every build. While this approach does give some degree of confidence that workloads _will_ generally work on those operating systems, it does make that list a little arbitrary. 
  
- Moving forward we will instead describe our platform support in terms of those platforms that are supported by the underlying tooling used for Octopus task execution, as well as being supported by the vendors themselves. Since the execution tooling, [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), is currently built on [.NET 6](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md#linux), this defines for us the lower bound version of those platforms that we expect workloads be able to run on. Note that we do intend to upgrade to [.NET 8](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md#linux) in the next several months which may have some impact on support for older Linux platforms, such as Debian 11.
+ Moving forward we will instead describe our platform support in terms of those platforms that are supported by the underlying tooling used for Octopus task execution, as well as being supported by the vendors themselves. Since the execution tooling, [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), is currently built on [.NET 6](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md#linux), this defines for us the lower bound version of those platforms that we expect workloads be able to run on. Note that we do intend to upgrade to [.NET 8](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md#linux) in the next several months which may have some impact on support for older Linux platforms, such as Debian 11. 
 
 #### What to expect
-Based on the reported usage metrics, for the vast majority of our customers this will not impact their targets that are in use. Most customers are utilizing Operating Systems, either Windows or Linux, which continue to be well within the supported version range.
+Based on the reported usage metrics, for the vast majority of our customers this will not impact any targets that are in use. Most customers are utilizing Operating Systems, either Windows or Linux, which continue to be well within the supported version range.
 
-It is also possible for some older Linux platforms that are not listed as explicitly supported, that deployments continue to work. This change in our policy does not mean we will necessarily do anything to _explicitly prevent_ tasks from running, only that we can only reasonably support and consider targets and workers that all our relevant dependencies also support. 
+It is also possible that deployments may still continue to work for some older Linux platforms which are not listed explicitly. This change in our policy does not mean we will necessarily do anything to _explicitly prevent_ tasks from running, only that we can only reasonably support and consider targets and workers that all our relevant dependencies also support. 
 
-In future as we update the tooling used, expect to see the details on this support page to continue to be updated. Rest assured however that our goal is to continue to provide as much coverage to platforms that are in use by our customers, while providing  improved predictability into what we support and why.
+In future as we update the tooling used, expect to see the details on this support page to continue to be updated. Rest assured however that our goal is to continue to provide as much coverage to platforms that are in use by our customers, while providing improved predictability into what we support and why.
 
 ### Windows Server 2008 targets
 
@@ -38,7 +38,7 @@ The latest version of [Tentacle](https://octopus.com/docs/infrastructure/deploym
 
 Microsoft [dropped extended support](https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2008) for the Windows Server 2008 family in January 2020. This operating system is also the last Windows OS that does not support .NET Core, one of the languages used to build Octopus Deploy. The complexity required to support this legacy platform now outweighs the value to our customers.
 
-As noted above, we are updating our support policy to only cover platforms supported by the vendors themselves, so from `2025.1` Octopus will no longer support running workloads on Windows machines running on any version of Windows Server 2008 or older. Users should expect that changes may be introduced at any point that prevent standard deployment and runbook tasks from executing on these operating system.
+As noted above, we are updating our support policy to only cover platforms supported by the vendors themselves, so from `2025.1` Octopus will no longer support running workloads on Windows machines running on any version of Windows Server 2008 or older. Users should expect that changes will be introduced in an upcoming release that prevents standard deployment and runbook tasks from executing on these operating system.
 
 :::hint
 Please note, there is no requirement changes for later Windows versions or Linux targets as part of this change since modern platforms instead utilize .NET Core.
@@ -52,14 +52,14 @@ If your organization is not yet ready for these changes to the supported Windows
 ### Bundled Tooling
 When Octopus introduced first class support for Azure and Aws steps, some of the CLI tooling required to interact with these cloud vendors were bundled with Octopus Server. Although this was a convenient way to bootstrap the ability to perform these deployments with minimal configuration on the target, this mechanism has had many drawbacks.
 
-Since the tool is bundled into the Octopus Server instance itself, not only does this increase the installation size dramatically, users have less control over what version of that tool is used during a deployment. This means that potentially outdated or vulnerable versions of that tool continue to be used by older versions of Octopus Server when newer versions are available. 
+Since the tool is bundled into the Octopus Server instance itself, not only does this increase the installation size dramatically, users have less control over what version of that tool is used during a deployment. This means that potentially outdated or vulnerable versions of that tool continue to be used by older versions of Octopus Server when newer ones are available. 
 
 #### What to expect
 From `2025.1`, Azure, Aws and Terraform bundled CLI tools will no longer be distributed with Octopus itself and instead deployments will rely on them being available on the target or worker.
 
-If you’re currently using these bundled tools today, you will already be seeing warnings indicating their imminent removal. From `2025.1` however, targets that rely on these tools to be distributed during a deployment may result in failed deployments.
+If you’re currently using these bundled tools today, you will already be seeing warnings indicating their imminent removal. In an upcoming release however, targets that rely on these tools to be distributed during a deployment may result in failed deployments.
 
-You will need to either ensure the required tools are pre-installed on your targets, or alternatively you make use of [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) that execute the workload from inside a container.
+You will need to either ensure the required tools are pre-installed on your targets, or alternatively make use of [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) that execute the workload from inside a container which itself contains all the dependencies.
 
 ### Helm v2
 Helm Deployments in Octopus currently rely on the Helm v3 CLI. This means that the behaviour that you expect when running Helm locally, is the same behaviour that Octopus utilizes during your deployments. As Helm v2 was officially deprecated in [November 2020](https://helm.sh/blog/helm-v2-deprecation-timeline/) we have decided that attempting to provide fallback support for users opting into using the v2 executable is no longer providing value.
