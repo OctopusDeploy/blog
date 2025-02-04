@@ -4,8 +4,8 @@ description: Octopus will do some spring cleaning in 2025 and drop support for o
 author: robert.erez@octopus.com
 visibility: private
 published: 2026-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
+bannerImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
 bannerImageAlt: Silhouette of a woman wearing headphones with a mic in an Octopus branded tee holding a tablet.
 isFeatured: false
 tags: 
