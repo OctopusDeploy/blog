@@ -38,7 +38,7 @@ Based on the usage metrics, this change to our support won't impact targets in u
 
 Deployments may continue to work for some older Linux platforms which aren't explicitly listed. The change in our policy doesn't mean we'll necessarily do anything to specifically prevent tasks from running. It instead means we can only reasonably support and consider targets and workers that all our relevant dependencies also support. 
 
-In future, as we update the tooling used, we'll continue to share details on this support page. Our goal is to continue providing as much coverage to the platforms our customers use, while improving predictability about what we support and why.
+In future, as we update the tooling used, we'll continue to share details [in our docs, under Supported distributions](https://octopus.com/docs/infrastructure/deployment-targets/linux#supported-distributions). Our goal is to continue providing as much coverage to the platforms our customers use, while improving predictability about what we support and why.
 
 ### Windows Server 2008 targets
 
