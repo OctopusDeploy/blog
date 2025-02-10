@@ -4,41 +4,40 @@ description: Everything you need to know about the new config as code for Runboo
 author: harriet.alexander@octopus.com
 visibility: private
 published: 2025-02-17-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: cacrunbooks image.png
+bannerImage: cacrunbooks image.png
+bannerImageAlt: Runbook within code syntax.
 isFeatured: false
 tags: 
   - product, Configuration as Code, Runbooks
 ---
 
-
-We are excited to announce a feature that many have anticipated for a long time: Config as Code for Runbooks. This feature adds Config as Code support to Runbooks it gives you a seamless, version-controlled way to manage your workflows. This new addition boosts your DevOps process and brings you runbooks in together with youur Deployment Process reducing the places you need to make changes.  It gives you more control over your workflow, whether you're automating routine tasks or managing emergencies.
-
-### What is Config as Code for Runbooks?
-Config as Code for Runbooks builds on our existing version-controlled deployment processes. This feature lets you track your Runbook tasks in your Git repository. You can keep them together with your application code. This means you can store your deployment processes, configurations, and non-sensitive variables together keeping everything in sync.
+### Introducing Config as Code for Runbooks
+We are excited to announce a feature that many have anticipated for a long time: Config as Code for Runbooks. This feature adds Config as Code support to Runbooks it gives you a seamless, version-controlled way to manage your workflows. This new addition lets you run, create and track your Runbooks in your chosen Git respository bringing your runbooks together with your Deployments process. This means less places to make changes and provides more control over your workflows. 
 
 ## Why Config as Code for Runbooks?
 
-Octopus Runbooks automates routine and emergency operations tasks. It gives you one platform for DevOps automation. Storing your Runbooks in your Git repo with your app code, deployment process, and non-sensitive variables unlocks the full power of version control. You can:
-Stay in Sync: Store your Runbooks in your Git repo. This lets you make and test changes alongside your app code. This ensures that your code and operational processes never get out of sync.
-Version Control for Operational Tasks: Store your Runbooks in Git. This way, you can manage versions with minimal effort. If you need to roll back or retrieve an earlier configuration, you can run the Runbook for a specific commit or tag.
-Complete History and Audibility: You can review all changes via pull requests. You have a complete history of all changes to your Runbooks.
-Easy Rollbacks: Mistakes happen! But with version control in place, it's easier than ever to revert to an old version of your Runbooks. The complete history lets you track and manage past configurations.
+[Octopus Runbooks] (https://octopus.com/docs/runbooks) automates routine and emergency operations tasks. Storing your Runbooks in your Git repo with your application code, deployment process, and non-sensitive variables unlocks the full power of version control by:
+* Stay in Sync: Store your Runbooks in your Git repo. This lets you make and test changes alongside your app code. This ensures that your code and operational processes never get out of sync.
+* Version Control for Operational Tasks: Store your Runbooks in Git. This way, you can manage versions with minimal effort. If you need to roll back or retrieve an earlier configuration, you can run the Runbook for a specific commit or tag.
+* Complete History and Audibility: You can review all changes via pull requests providing a complete history of all changes to your Runbooks.
+* Easy Rollbacks: Mistakes happen! But with version control in place, it's easier than ever to revert to an old version of your Runbooks. The complete history lets you track and manage past configurations.
 
 ## How do I use Config as Code for Runbooks?
-* Version Control is a Requirement: If your projects are version-controlled, the setup and migration will be smooth and easy. If you're not using version control yet, don't worry! See our docs for a guide on enabling version control for your project.
+* Version Control is a Requirement: If your projects are version-controlled, the setup and migration will be smooth and easy. If you're not using version control yet, don't worry! [See our docs for a guide on enabling version control for your project](https://octopus.com/docs/projects/version-control/converting)
 * Familiar Workflow: If you're used to version-controlled projects, you'll find Config as Code for Runbooks natural. Following Git principles will make the process straightforward.
 
 ### Migrating Existing Runbooks
 If you use Octopus's Runbooks, we have a tool to help you migrate to Config as Code for Runbooks.
-* Migration Process: When you start the migration, Octopus will move your published Runbooks to a new folder, /runbooks, in your chosen repository. This folder will store the published snapshot and configuration from the Runbook.
-* We will migrate any draft versions of your Runbook to a separate sub-folder /runbooks/migrated-draft. You won't see these in the UI. But you can access them by moving them into the main Runbooks folder using a pull request (PR).
+* Migration Process: When you start the migration, Octopus will move your published Runbooks to a new folder, `/runbooks`, in your chosen repository. This folder will store the published snapshot and configuration from the Runbook.
+* We will migrate any draft versions of your Runbook to a separate sub-folder `/runbooks/migrated-draft`. You won't see these in the UI. But you can access them by moving them into the main Runbooks folder using a pull request (PR).
 * History Retention: Don't worry about losing your history. The UI will still show your existing Runbook runs.
 
+![CaC Runbook Migration] (2025-02-11 08.07.28.gif) 
+
 ### What's new in Config as Code for Runbooks?
-As with any new feature, there are a few tweaks to how Runbooks work within the Config as Code setup. We've made these adjustments to enhance functionality and streamline your workflow. If you're curious about these changes, read our recent blog post.
-Note: These changes apply exclusively to Config as Code for Runbooks. If you're not using version control, they won't impact your Runbooks.
+As with any new feature, there are a few tweaks to how Runbooks work within the Config as Code setup. We've made these adjustments to enhance functionality and streamline your workflow. If you're curious about these changes, [read our recent blog post] (https://octopus.com/blog/introducing-config-as-code-runbooks).
+*Note*: These changes apply exclusively to Config as Code for Runbooks. If you're not using version control, they won't impact your Runbooks.
 
 ## Conclusion
 
