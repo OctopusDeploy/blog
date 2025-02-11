@@ -207,18 +207,18 @@ Run the following **before installing Octopus**:
 
 cmdkey /add:octostorage.file.core.windows.net /user:Azure\octostorage /pass:XXXXXXXXXXXXXX
 
-# Add Octopus folder to add symbolic links
-
-New-Item -ItemType directory -Path C:\Octopus
-New-Item -ItemType directory -Path C:\Octopus\Artifacts
-New-Item -ItemType directory -Path C:\Octopus\Packages
-New-Item -ItemType directory -Path C:\Octopus\TaskLogs
-
 # Add the Symbolic Links. Do this before installing Octopus.
 
 mklink /D C:\Octopus\TaskLogs \\octostorage.file.core.windows.net\octoha\TaskLogs
 mklink /D C:\Octopus\Artifacts \\octostorage.file.core.windows.net\octoha\Artifacts
 mklink /D C:\Octopus\Packages \\octostorage.file.core.windows.net\octoha\Packages
+
+# Now add the Octopus folders to the new symbolic links:
+
+New-Item -ItemType directory -Path C:\Octopus
+New-Item -ItemType directory -Path C:\Octopus\Artifacts
+New-Item -ItemType directory -Path C:\Octopus\Packages
+New-Item -ItemType directory -Path C:\Octopus\TaskLogs
 ````
 
 [Install Octopus](https://octopus.com/docs/installation) and then run the following:
