@@ -9,6 +9,7 @@ Is this post for a specific release? If so, which one?
 # Blog image idea
 
 The design team will work on a design for the blog image. Add any ideas you have about the graphic image here. (Tegan will request the image from design and add it to the post when it's ready.)
+Please note that the design team asks for a 1–2 week turnaround time.
 
 # Before you submit your post
 
@@ -21,7 +22,6 @@ Check everything off this list before you submit your post for review.
 - [ ] I've added alt text for all the images I've included (alt text describes an image to people unable to see it, 125 characters max)
 - [ ] The draft is complete and this post is ready to be reviewed. (Please mark the post 'ready for review' at the bottom of the PR.)
 - [ ] I've dropped a note in Slack in #topic-content-marketing to let Tegan Ali know my post is ready for review. (No need to fill out a content brief.)
-- [ ] I'll draft social media posts for Twitter and LinkedIn. I'll post them for review in #topic-social-media after the post has been edited or after the PR has been merged.
 
 ## How to review this PR
 
@@ -30,5 +30,4 @@ If there's anything you'd like reviewers to focus on, mention it here.
 
 ## Publication date
 
-If there are considerations for when to publish this post, mention them here. For example, this post is supporting material for a webinar I'll be conducting on date, or this post should not published until after a specific release on date.
-
+If there are considerations for when to publish this post, mention them here. For example, this post is supporting material for a webinar I'm conducting on [date], or this post should not get published until after a specific release on [date].
