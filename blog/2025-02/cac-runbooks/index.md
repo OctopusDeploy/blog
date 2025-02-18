@@ -6,7 +6,7 @@ visibility: private
 published: 2025-02-17-1400
 metaImage: cacrunbooks image.png
 bannerImage: cacrunbooks image.png
-bannerImageAlt: Runbook within code syntax.
+bannerImageAlt: Graphic of a woman sitting on a large stack of books while working on laptop, surrounded by large, 3 dimensional curly braces
 isFeatured: false
 tags: 
   - product, Configuration as Code, Runbooks
