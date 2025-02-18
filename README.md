@@ -34,12 +34,4 @@ If you'd like feedback on a work in progress, create a draft PR and tag @TeganAl
 
 When you're happy with your post and it's ready to be reviewed, please create a PR. Go through the checklist on the PR template, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
-When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post **and** LinkedIn post to promote your blog post in **#topic-social-media**. (The marketing team will edit and post these on social media.) 
-
-- Please make sure your tweet is no more than 280 characters, including spaces and the link to the blog post. 
-- LinkedIn posts have a 3000-character limit, so you can include more detail, but still keep it brief. 
-- Please refer to our [writing tips for social media](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2608464184/Writing+tips+for+social+media) before writing your social posts. 
-- Please also check the copy using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice.
-- Submit your social posts in #topic-social-media.
-
-The editing process takes time and we have a schedule of posts, so giving us at least 1 week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
+The editing process takes time and we have a schedule of posts, so giving us at least one week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
