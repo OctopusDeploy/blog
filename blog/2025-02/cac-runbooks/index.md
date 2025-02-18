@@ -1,6 +1,6 @@
 ---
 title: Introducing Config as Code for Runbooks
-description: Everything you need to know about the new config as code for Runbooks
+description: Everything you need to know about the new Config as Code for Runbooks
 author: harriet.alexander@octopus.com
 visibility: private
 published: 2025-02-17-1400
