@@ -33,7 +33,7 @@ If you use Octopus's Runbooks, we have a tool to help you migrate to Config as C
 * We will migrate any draft versions of your Runbook to a separate sub-folder `/runbooks/migrated-draft`. You won't see these in the UI. But you can access them by moving them into the main Runbooks folder using a pull request (PR).
 * History Retention: Don't worry about losing your history. The UI will still show your existing Runbook runs.
 
-![CaC Runbook Migration] (2025-02-11 08.07.28.gif) 
+![Screen recording of Runbooks migration process. Starting on the Runbook list, the user opens the wizard, reviews the changes, creates a new branch named feat/migrate-runbooks, uses the default commit message, reviews the migration and completes it. Once completed, the Runbooks list screen is automatically refreshed showing a branch selector and an alert showing there are un-migrated drafts] (2025-02-11 08.07.28.gif) 
 
 ### What's new in Config as Code for Runbooks?
 As with any new feature, there are a few tweaks to how Runbooks work within the Config as Code setup. We've made these adjustments to enhance functionality and streamline your workflow. If you're curious about these changes, [read our recent blog post] (https://octopus.com/blog/introducing-config-as-code-runbooks).
