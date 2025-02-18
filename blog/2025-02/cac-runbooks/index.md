@@ -13,7 +13,7 @@ tags:
 ---
 
 ### Introducing Config as Code for Runbooks
-We are excited to announce a feature that many have anticipated for a long time: Config as Code for Runbooks. This feature adds Config as Code support to Runbooks it gives you a seamless, version-controlled way to manage your workflows. This new addition lets you run, create and track your Runbooks in your chosen Git respository bringing your runbooks together with your Deployments process. This means less places to make changes and provides more control over your workflows. 
+We are excited to announce a feature that many have anticipated for a long time: Config as Code for Runbooks. This feature adds Config as Code support to Runbooks it gives you a seamless, version-controlled way to manage your workflows. This new addition lets you run, create, and track your Runbooks in your chosen Git repository bringing your runbooks together with your deployment process. This means fewer places to make changes and provides more control over your workflows. 
 
 ## Why Config as Code for Runbooks?
 
