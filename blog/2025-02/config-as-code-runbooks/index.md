@@ -43,7 +43,7 @@ If you use Octopus Runbooks, we have a tool to help you migrate to Config as Cod
 - Octopus migrates any draft versions of your runbook to a separate sub-folder `/runbooks/migrated-draft`. You won't see these in the UI, but you can access them by moving them into the main runbooks folder using a pull request (PR).
 - History retention: You don't need to worry about losing your history. The UI will still show your existing runbook runs.
 
-![Screen recording of Runbooks migration process. Starting on the Runbook list, the user opens the wizard, reviews the changes, creates a new branch named feat/migrate-runbooks, uses the default commit message, reviews the migration and completes it. Once completed, the Runbooks list screen is automatically refreshed showing a branch selector and an alert showing there are un-migrated drafts](2025-02-11 08.07.28.gif) 
+![Screen recording of Runbooks migration process. Starting on the Runbook list, the user opens the wizard, reviews the changes, creates a new branch named feat/migrate-runbooks, uses the default commit message, reviews the migration and completes it. Once completed, the Runbooks list screen is automatically refreshed showing a branch selector and an alert showing there are un-migrated drafts](configascode.gif) 
 
 ## New in Config as Code for Runbooks
 
