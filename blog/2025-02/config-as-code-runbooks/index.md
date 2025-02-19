@@ -4,8 +4,8 @@ description: Everything you need to know about the new Config as Code for Runboo
 author: harriet.alexander@octopus.com
 visibility: private
 published: 2025-02-17-1400
-metaImage: cacrunbooks image.png
-bannerImage: cacrunbooks image.png
+metaImage: img-configascode-runbooks-2024.png
+bannerImage: img-configascode-runbooks-2024.png
 bannerImageAlt: Graphic of a woman sitting on a large stack of books while working on laptop, surrounded by large, 3 dimensional curly braces
 isFeatured: false
 tags: 
