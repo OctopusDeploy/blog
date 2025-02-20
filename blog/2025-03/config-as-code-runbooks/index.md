@@ -24,7 +24,7 @@ You can run, create, and track your runbooks in your chosen Git repository, brin
 
 - Store your runbooks in your Git repo to stay in sync. You can make and test changes alongside your app code, so your code and operational processes never get out of sync.
 - Store your runbooks in Git to version-control your operational tasks. This way, you can manage versions with minimal effort. If you need to roll back or retrieve an earlier configuration, you can run the runbook for a specific commit or tag.
-- Access the complete history for audibility. You can review all changes via pull requests, providing a full history of all changes to your runbooks.
+- Access the complete history for auditability. You can review all changes via pull requests, providing a full history of all changes to your runbooks.
 - Rollback easily. Mistakes happen! But with version control in place, it's easier than ever to revert to a previous version of your runbooks. The complete history lets you track and manage past configurations.
 
 ## How to use Config as Code for Runbooks
