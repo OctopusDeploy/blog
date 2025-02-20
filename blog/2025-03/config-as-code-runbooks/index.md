@@ -57,7 +57,7 @@ These changes apply exclusively to Config as Code for Runbooks. If you're not us
 
 Config as Code for Runbooks has been one of our most highly requested features. Our community wanted it, and we're excited to deliver it. 
 
-Putting runbooks in your Git repos with your app code simplifies DevOps workflow management. It ensures everything is version-controlled and fully auditable. To see it in action, you can [watch our webinar, Introducing Config as Code for Runbooks](https://www.youtube.com/watch?v=oRWKDUzYBYA).
+Putting runbooks in your Git repos with your app code simplifies DevOps workflow management. It ensures everything is version-controlled and fully auditable. To see it in action, you can [watch our webinar](https://www.youtube.com/watch?v=oRWKDUzYBYA).
 
 Config as Code for Runbooks has rolled out to Cloud customers and will be available soon for self-hosted customers in the 2025.1 release. We can't wait for you to try it out and experience the benefits for yourself.
 
