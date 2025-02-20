@@ -20,7 +20,7 @@ You can run, create, and track your runbooks in your chosen Git repository, brin
 
 ## Why Config as Code for Runbooks?
 
-[Octopus Runbooks] (https://octopus.com/docs/runbooks) automates routine and emergency operations tasks. Storing your runbooks in your Git repo with your application code, deployment process, and non-sensitive variables unlocks the full power of version control.
+[Octopus Runbooks](https://octopus.com/docs/runbooks) automates routine and emergency operations tasks. Storing your runbooks in your Git repo with your application code, deployment process, and non-sensitive variables unlocks the full power of version control.
 
 - Store your runbooks in your Git repo to stay in sync. You can make and test changes alongside your app code, so your code and operational processes never get out of sync.
 - Store your runbooks in Git to version-control your operational tasks. This way, you can manage versions with minimal effort. If you need to roll back or retrieve an earlier configuration, you can run the runbook for a specific commit or tag.
