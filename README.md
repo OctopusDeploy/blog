@@ -28,10 +28,10 @@ For specific instructions, please see the section on [creating a new branch, pul
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
-Posts are organized in year-month directories (i.e., 2023-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
+Posts are organized in year-month directories (e.g., 2025-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
 
-If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request, however she'll do a full review and edit when the post is submitted as a PR and she's assigned as a reviewer.
+If you'd like feedback on a work in progress, you can create a draft PR and tag @TeganAli with your request, however she'll do a full review and edit when the post is submitted as a PR and she's assigned as a reviewer.
 
-When you're happy with your post and it's ready to be reviewed, please create a PR. Go through the checklist on the PR template, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
+When you're happy with your post and it's ready for review, please create a PR. Go through the checklist on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md), assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
 The editing process takes time and we have a schedule of posts, so giving us at least one week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
