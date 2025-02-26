@@ -8,8 +8,6 @@ Authors must sign the [Contribution License Agreement (CLA)](https://cla-assista
 
 The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/templates) to help you get started.
 
-If you're drafting a post that you'd like to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
-
 See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writing) for the following information:
 
 - [The Octopus voice and style](https://www.octopus.design/932c0f1a9/p/13df3a-voice-and-style)
@@ -21,6 +19,7 @@ Please note the advice about [adding resources to your post](https://www.octopus
 
 You'll also find some helpful links and information on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md#before-you-submit-your-post).
 
+If you're drafting a post that you need to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
 
 # How to submit a blog post 
 
