@@ -2,7 +2,7 @@
 title: "Revamping our Careers page: More than just a makeover"
 description: Learn how our new careers page reflects the evolution of Octopus.
 author: stephanie.king@octopus.com
-visibility: private
+visibility: public
 published: 2025-03-05-1400
 metaImage: 
 bannerImage: 
@@ -14,7 +14,7 @@ tags:
 
 If you’ve been through a website redesign, you know it’s a lot like refactoring old code. You start with confidence that it should be an easy fix, and before you know it, you’re knee-deep in overhaul and questioning how you got here. 
 
-Our careers page revamp was no different. Before the redesign, our page was fine. It was functional, informative, and technically accurate. But with the evolution of Octopus over the last few years, it wasn’t quite us anymore. So we did what any DevOps team would do when faced with legacy infrastructure—we rebuilt it.
+Our [careers page](https://octopus.com/company/careers) revamp was no different. Before the redesign, our page was fine. It was functional, informative, and technically accurate. But with the evolution of Octopus over the last few years, it wasn’t quite us anymore. So we did what many DevOps teams do when faced with legacy infrastructure—we rebuilt it.
 
 ## Why we overhauled the page
 
@@ -35,7 +35,7 @@ With each question, it became clear that we'd barely scratched the surface of wh
 ## What’s changed?
 
 - A more human touch - You’ll see more real Octonauts sharing their experiences because culture isn’t something you describe; it’s something you show.
-- Remote work, represented - As a remote-first company, we made it clear how we work, collaborate, and keep things fun across multiple timezones
+- Remote work, represented - As a remote-first company, we made it clear how we work, collaborate, and keep things fun across multiple timezones.
 - A careers page with personality - No corporate jargon or fluff. It's just an authentic, engaging, and maybe even slightly quirky look at life at Octopus.
 - More than just jobs - We’re shining a light on what it truly means to work at Octopus, from career growth to the perks that matter, with more transparency than ever.
 
