@@ -19,15 +19,15 @@ Our top priority at Octopus Deploy is ensuring our customers can deploy safely a
 Today, we’re happy to announce improvements to the Octopus Server, which have already been rolled out to Octopus Cloud customers. We’ve made changes to enhance our encryption support across data at rest and in transit. These changes provide customers with enhanced security, lower network latency, and the potential for improved operational efficiency.
 
 The changes include:
-* Using AES-256 by default for Master Key encryption of sensitive data in the Octopus database for all new server instances, and
-* Adding TLS 1.3 support to Octopus Server and Octopus Cloud for the Octopus Tentacle communication channel.
+- Using AES-256 by default for Master Key encryption of sensitive data in the Octopus database for all new server instances, and
+- Adding TLS 1.3 support to Octopus Server and Octopus Cloud for the Octopus Tentacle communication channel.
 
 ## Security and compliance programs
 
 We're dedicated to maintaining and continuously improving our security and compliance programs alongside (continued product improvements)[https://roadmap.octopus.com/]. We undergo regular third-party audits and technical assessments of our data security to ensure privacy and safety. Our security credentials include:
 
-* SOC 2 (Type 2): Demonstrates the robustness of our controls around security, privacy, availability, and confidentiality in Octopus Deploy. It reflects our commitment to earning and maintaining customer trust in our product and service.
-* ISO 27001:2013 Certifies that Octopus’ information security management system meets industry-standard requirements for protecting customers’ information.
+- SOC 2 (Type 2): Demonstrates the robustness of our controls around security, privacy, availability, and confidentiality in Octopus Deploy. It reflects our commitment to earning and maintaining customer trust in our product and service.
+- ISO 27001:2013 Certifies that Octopus’ information security management system meets industry-standard requirements for protecting customers’ information.
 
 ## Conclusion
 
