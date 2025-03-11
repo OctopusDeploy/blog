@@ -3,7 +3,7 @@ title: Scoped Tenant Variables
 description: Learn about new scoping capabilities of Tenant Variables.
 author: susan.pan@octopus.com
 visibility: public
-published: 2025-03-17-0900
+published: 2025-03-24-0900
 metaImage: blogimage-variable-tenants-ui-dashboard-2024.png
 bannerImage: blogimage-variable-tenants-ui-dashboard-2024.png
 bannerImageAlt: Graphic image of woman viewing scoped tenant variables page.
@@ -16,9 +16,9 @@ tags:
 
 I'm here to announce exciting new improvements to tenant variables - scoped tenant variables! 
 
-[Tenant variables](https://octopus.com/docs/tenants/tenant-variables) are great for managing variables both within a tenanted project and across all project environments connected to a tenant. However, there is no easy way to manage variables across all projects connected to a tenant. Scoped tenant variables aims to solve this.
+[Tenant variables](https://octopus.com/docs/tenants/tenant-variables) are great for managing variables both within a tenanted project and across all project environments connected to a tenant. However, there isn't an easy way to manage variables across all projects connected to a tenant. Scoped tenant variables aims to solve this.
 
-Assigning environment scopes to your tenant variables will make variable management across tenant projects so much simpler. In this post I will walk you through how to scope tenant variables and discuss the current capabilities and integrations.
+Assigning environment scopes to your tenant variables will make variable management across tenant projects so much simpler. In this post I will walk you through how to scope tenant variables and discuss the current integration capabilities.
 
 These updates are now available to our Cloud customers and will be available to self-hosted customers from v2025.2.
 
@@ -37,9 +37,9 @@ This is particularly useful if your non-production environments all share one va
 ## How to assign scopes to your tenant variables
 Tenant variables can be set both from the projects page and from the tenants page. I will show you how to set tenant common variables from the project page. 
 
-Create a tenant with a connected project and environments. Create a variableset with a variable template and connect it to the tenanted project. 
+Create a tenant with a connected project and connected environments. Create a Variableset with a variable template and connect it to the tenanted project. 
 
-- Select the tenant variables page from the sidebar.
+- Select the tenant variables page from the sidebar and click on the common templates tab.
 ![Screenshot of common tenant variables tab on tenant variables page.](scoped-tenant-vars-view.png)
 
 - To add a new tenant variable, select the overflow menu and click 'Add'. Type in a value and select the environments in the 'scope' column. Click 'Save'.
@@ -51,7 +51,12 @@ Create a tenant with a connected project and environments. Create a variableset 
 Unscoped variables will apply to all environments with no explicitly scoped variables. [See our docs for more information on scoping variables](https://octopus.com/docs/projects/variables/getting-started#scoping-variables)
  
 ### Migrating existing tenant variables
-Existing tenant variables will automatically be migrated over to the new scoped tenant variables when upgraded to 2025.2. The migration will scope tenant project variables to the previous single scope and common variables to be unscoped. If your instance detects scoped tenant variables being used, it will prevent the use of the old tenant variable endpoint. The endpoint ```tenants/{tenantId}/tenantvariables``` will be deprecated from 2026.2.
+Existing tenant variables will automatically be migrated over to the new scoped tenant variables when upgraded to 2025.2. The migration will scope tenant project variables to the previous single scope and common variables to be unscoped. This ensures your deployments can proceed without any changes required. 
+. Once your instance detects scoped tenant variables being used, it will prevent the use of the old tenant variable endpoint. 
+
+:::info
+The endpoint ```tenants/{tenantId}/tenantvariables``` will be deprecated from 2026.2.
+:::
 
 We have introduced 2 new endpoints for GET/UPDATE requests for scoped tenant variables. These will replace the use of the endpoint above: 
 - ```tenants/{tenantId}/projectvariables```
