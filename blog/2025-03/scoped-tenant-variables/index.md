@@ -30,7 +30,7 @@ Previously, there were both constraints and differences in how tenant variables 
 
 Now, both project variables and common variables can be scoped to environments as needed. This means they can be unscoped (variable applies to all connected environments), singly-scoped or multi-scoped. 
 
-Adding the ability to assign scopes to tenant variables creates more simplicity and flexibility with variable management. For example, to assign different variable values for different environments across all tenant projects, customers had to create a tenant for each environment. A common variable could then be set for each tenant. Now, simply set multiple common variables with the appropriate environment scope. 
+The ability to assign scopes to tenant variables makes variable management simple and flexible. For example, to assign different variable values for different environments across all tenant projects, customers had to create a tenant for each environment. A common variable could then be set for each tenant. Now, simply set multiple common variables with the appropriate environment scope. 
 
 This is particularly useful if your non-production environments all share one value, while production has a separate value; maintenance of variables becomes more straightforward as values only need to be updated once.
 
