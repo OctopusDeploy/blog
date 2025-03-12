@@ -67,3 +67,5 @@ To all Octopus and Codefresh customers - thank you for your continued loyalty, s
 We are excited about our future together. 
  
 Happy deployments!
+
+!include <related-content>
