@@ -178,3 +178,5 @@ Perhaps the biggest source of confusion around GitOps is the misconception that 
 In practice, GitOps encapsulates one step in your infrastructure and deployment pipelines, and must be complemented with other processes and platforms to fulfill common business requirements.
 
 Happy deployments!
+
+!include <related-content>
