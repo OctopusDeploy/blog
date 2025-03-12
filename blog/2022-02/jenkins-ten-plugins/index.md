@@ -162,3 +162,5 @@ These are some of our favorite plugins to help you with your Jenkins pipeline, b
 !include <q1-2022-newsletter-cta>
 
 Happy deployments! 
+
+!include <related-content>
