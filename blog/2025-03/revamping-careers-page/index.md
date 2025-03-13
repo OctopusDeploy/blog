@@ -4,9 +4,9 @@ description: Learn how our new careers page reflects the evolution of Octopus.
 author: stephanie.king@octopus.com
 visibility: public
 published: 2025-03-17-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blog-revamp-careers-page-2025-750x400-x1.png
+bannerImage: blog-revamp-careers-page-2025-750x400-x1.png
+bannerImageAlt: Painters painting and revealing the careers webpage, with sticky notes around the image featuring photos of Octopus employees.
 isFeatured: false
 tags: 
   - Company
