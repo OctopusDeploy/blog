@@ -3,7 +3,7 @@ title: "Revamping our Careers page: More than just a makeover"
 description: Learn how our new careers page reflects the evolution of Octopus.
 author: stephanie.king@octopus.com
 visibility: public
-published: 2025-03-05-1400
+published: 2025-03-17-1400
 metaImage: blogimage-introductiontodevops-2022.png
 bannerImage: blogimage-introductiontodevops-2022.png
 bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity loop, with people on laptops sitting on and around the tentacle.
@@ -17,6 +17,8 @@ If you’ve been through a website redesign, you know it’s a lot like refactor
 Our [careers page](https://octopus.com/company/careers) revamp was no different. Before the redesign, our page was fine. It was functional, informative, and technically accurate. But with the evolution of Octopus over the last few years, it wasn’t quite us anymore. So we did what many DevOps teams do when faced with legacy infrastructure—we rebuilt it.
 
 ## Why we overhauled the page
+
+The careers page is part of a larger, strategic effort to strengthen our employer brand. It isn’t just a recruitment tool but an integral piece of our broader employer strategy. Just as we want customers to know and trust the Octopus brand, we want potential employees to have a clear sense of who we are and what it means to work here.
 
 A talent team should think of their careers page as far more than just a list of open jobs and advertisement space. It’s the first (and sometimes only) impression, a handshake, and a small window into what it truly means to work at your company. From the content to the emotions visitors leave with, a careers page should tell a story. It should give potential candidates a real sense of the culture, values, and experience of being part of the team.
 
