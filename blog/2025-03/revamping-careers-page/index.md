@@ -1,5 +1,5 @@
 ---
-title: "Revamping our Careers page: More than just a makeover"
+title: "Revamping our careers page: More than just a makeover"
 description: Learn how our new careers page reflects the evolution of Octopus.
 author: stephanie.king@octopus.com
 visibility: public
