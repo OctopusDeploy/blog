@@ -504,6 +504,6 @@ For further information, you can read:
 - HashiCorp Vault documentation for the [K/V v1 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v1)
 - HashiCorp Vault documentation for the [K/V v2 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v2)
 
-Happy deployments!
-
 !include <related-content>
+
+Happy deployments!
