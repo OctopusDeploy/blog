@@ -80,6 +80,6 @@ This post was an excerpt from our new guide, Kubernetes delivery unlocked, which
 
 [Download the free guide, Kubernetes delivery unlocked](https://oc.to/k8s-delivery-unlocked-excerpts-blog).
 
-Happy deployments! 
-
 !include <related-content>
+
+Happy deployments! 
