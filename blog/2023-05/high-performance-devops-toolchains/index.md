@@ -115,6 +115,6 @@ Keep in mind the 4 steps to a great toolchain:
 3. Keep workloads clean
 4. Limit tool dependencies
 
-Happy deployments!
-
 !include <related-content>
+
+Happy deployments!
