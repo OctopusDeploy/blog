@@ -4,9 +4,9 @@ description: Learn how our new careers page reflects the evolution of Octopus.
 author: stephanie.king@octopus.com
 visibility: public
 published: 2025-03-17-1400
-metaImage: blogimage-introductiontodevops-2022.png
-bannerImage: blogimage-introductiontodevops-2022.png
-bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity loop, with people on laptops sitting on and around the tentacle.
+metaImage: 
+bannerImage: 
+bannerImageAlt:
 isFeatured: false
 tags: 
   - Company
