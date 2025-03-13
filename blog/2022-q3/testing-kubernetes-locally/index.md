@@ -61,6 +61,6 @@ Thanks to the eager adoption of Kubernetes by the open-source community, DevOps 
 
 If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, check out the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
-Happy deployments! 
-
 !include <related-content>
+
+Happy deployments! 
