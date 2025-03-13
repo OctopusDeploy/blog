@@ -117,10 +117,10 @@ To choose the right language, it helps to decide on configuration goals early in
 
 As configuration itself becomes a first-class citizen in the DevOps environment and cloud computing, choosing the right language for your application becomes critical to ensure success. Although any of these configuration languages will work well, you need to weigh the advantages and disadvantages for a successful configuration framework.
 
+!include <related-content>
+
 Happy deployments!
 
 ---
 
 Adam Bertram is a 20+ year veteran of IT and an experienced online business professional. He’s a consultant, Microsoft MVP, blogger, trainer, published author and content marketer for multiple technology companies. Catch up on Adam’s articles at [adamtheautomator.com](http://adamtheautomator.com/), connect on [LinkedIn](https://www.linkedin.com/in/adbertram), or follow him on Twitter at [@adbertram](https://twitter.com/adbertram).
-
-!include <related-content>
