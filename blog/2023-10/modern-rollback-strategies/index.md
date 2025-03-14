@@ -406,4 +406,6 @@ Next, implement the expand and contract pattern.  Making small, incremental, bac
 
 Implement the 3-minute and immediate rollback strategies strategically.  They're not needed for every application.  Discuss it with your team, business owner, and product owner, and get a consensus.  
 
+!include <related-content>
+
 Happy deployments!

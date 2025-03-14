@@ -87,4 +87,6 @@ You can also read our other posts about multi-tenancy:
 - [What is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy)
 - [Why multi-tenancy is a confusing term and what it means for Octopus](https://octopus.com/blog/why-multi-tenancy-is-a-confusing-term)
 
+!include <related-content>
+
 Happy deployments!

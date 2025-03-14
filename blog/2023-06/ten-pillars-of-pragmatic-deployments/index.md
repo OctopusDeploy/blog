@@ -424,4 +424,6 @@ Those are the 10 pillars of pragmatic deployments that shape the [features](http
 
 You might also like to read our ebook about the [10 pillars of pragmatic Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments) with Octopus.
 
+!include <related-content>
+
 Happy deployments!

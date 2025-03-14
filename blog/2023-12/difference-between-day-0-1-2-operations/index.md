@@ -97,4 +97,6 @@ As we talked about, operations teams can help keep ideas in check. They're impor
 
 Octopus believes good deployment tools should recognize and cater for the roles of operations in the pipeline. [Octopus's built-in Runbooks feature](https://octopus.com/features/runbooks) can help organizations automate many of the tasks we mentioned in this post, routine or otherwise.
 
+!include <related-content>
+
 Happy deployments!

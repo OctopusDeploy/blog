@@ -95,4 +95,6 @@ Instead of aiming for a specific performance level, seek to improve performance 
 
 As Nathen Harvey says, "Elite improvement is more important than elite performance."
 
+!include <related-content>
+
 Happy deployments!

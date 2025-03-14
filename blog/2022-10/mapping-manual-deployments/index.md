@@ -209,4 +209,6 @@ You may find existing step templates that will help you with your automation; fo
 
 You can now map a manual deployment in Octopus Deploy and understand some of the benefits of doing this. You can use Octopus's process control and tracking to introduce or improve several of the [ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), as your deployments will be more repeatable, visible, auditable, standardized, and coordinated.
 
+!include <related-content>
+
 Happy deployments!

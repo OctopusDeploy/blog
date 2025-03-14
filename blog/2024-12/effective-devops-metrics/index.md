@@ -99,4 +99,6 @@ High throughput can help you learn fast and run more experiments, but it should 
 
 When you use measurement well, you don't end up with twice the work in half the time. Instead, you have twice the impact with half the work.
 
+!include <related-content>
+
 Happy deployments!

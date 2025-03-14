@@ -65,5 +65,7 @@ We are also very proud of the culture we have built at Octopus (you can read mor
 To all Octopus and Codefresh customers - thank you for your continued loyalty, support, and feedback. 
 
 We are excited about our future together. 
+
+!include <related-content>
  
 Happy deployments!
