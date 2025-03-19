@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Rollbacks
+  - Featured
 ---
 
 Rollbacks are the escape hatch everyone wants. 
