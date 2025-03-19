@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - DORA Metrics
+  - Featured
 ---
 
 At [SHIPPED24](https://www.youtube.com/playlist?list=PLAGskdGvlaw1ykkyds5NXYdYCeF798C7l), I presented a version of my "Effective DevOps metrics" talk, which included a simple framework to help you keep your measurement system healthy.
