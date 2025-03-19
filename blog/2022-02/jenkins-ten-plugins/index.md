@@ -14,6 +14,7 @@ tags:
   - Continuous Integration
   - Jenkins
   - Testing
+  - Featured
 ---
 
 As an open-source Continuous Integration (CI) platform, one of our favorite things about Jenkins is its strong community. Nowhere is this more evident than in the Jenkins Plugins Index.
