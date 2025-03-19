@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Kubernetes
+  - Featured
 ---
 
 In the last 10 years, the deployment landscape has shifted significantly, but nothing has changed it more than Kubernetes. With the obvious benefits of Kubernetes comes yet another layer of complexity that developers need to overcome.
