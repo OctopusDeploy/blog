@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Runbooks
+  - Featured
 ---
 
 Operations teams have always been important in any organization that uses tech to do business. Thanks to [DevOps](https://octopus.com/devops/) (the best methodology we know to improve processes between developers and operations), we can see just how important they are when that business *is* tech.
