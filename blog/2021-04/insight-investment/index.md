@@ -10,6 +10,7 @@ bannerImageAlt: Insight Partners and Octopus Deploy
 isFeatured: false
 tags:
   - Company
+  - Featured
 ---
 
 ![Insight Partners and Octopus Deploy](blogimage-insight-blog-post-2021.png)
