@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - DORA Metrics
+  - Featured
 ---
 
 Your approach to DevOps is likely to be influenced by the methods and practices that came before. For organizations that gave teams autonomy to adapt their process, DevOps would have been a natural progression. Where an organization has been more prescriptive in the past, people will look for familiar tools to run a DevOps implementation, such as maturity models.
