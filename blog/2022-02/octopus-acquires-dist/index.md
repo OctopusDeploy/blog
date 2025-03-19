@@ -10,6 +10,7 @@ bannerImageAlt: An Octopus-branded crane unloading containers from a ship named 
 isFeatured: false
 tags: 
   - Company
+  - Featured
 ---
 
 Today I'm thrilled to announce that Octopus Deploy has acquired Dist, a cloud-based container registry and artifact repository service. 
