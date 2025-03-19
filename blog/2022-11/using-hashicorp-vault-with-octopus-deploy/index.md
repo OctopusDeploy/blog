@@ -12,6 +12,7 @@ tags:
  - DevOps
  - Security
  - Step Templates
+ - Featured
 ---
 
 Storing sensitive values in Octopus Deploy solves many problems. If your organization has standardized on a secrets manager, though, that might mean storing sensitive values twice, making secrets management more complicated.
