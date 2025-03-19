@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Getting Started
   - Product
+  - Featured
 ---
 
 While Octopus Deploy makes complex deployment automation easy, you may have a scenario where you're still running a manual deployment. We've talked to customers with legacy applications that need special steps during the release process or with esoteric technology that makes it hard to work out where to start the automation journey.
