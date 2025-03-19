@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Runbooks Series
+ - Featured
 ---
  
 You like books. You want to learn more about DevOps. Either you're new to the topic, or you're looking to expand your knowledge, but you’re overwhelmed by the options. It seems like everyone has an opinion, and you don't know where to start or what to read first/next.
