@@ -23,6 +23,7 @@ Docker
 DORA Metrics
 Enterprise
 Environment Promotion
+Featured
 Getting Started
 GitHub Actions
 GitHub Copilot
