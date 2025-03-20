@@ -16,9 +16,9 @@ tags:
 
 I'm here to announce exciting new improvements to tenant variables - scoped tenant variables! 
 
-[Tenant variables](https://octopus.com/docs/tenants/tenant-variables) are great for managing variables both within a tenanted project and across all project environments connected to a tenant. However, there isn't an easy way to manage variables across all projects connected to a tenant. Scoped tenant variables aims to solve this.
+[Common Tenant variables](https://octopus.com/docs/tenants/tenant-variables) are great for managing variables within tenants. Assigning a common tenant variable means that every connected project has access to that variable. This is great for deploying and managing multi-tenanted deployments at scale, and simplifies deployments by using the same value for every connected environment. We wanted to create more flexibility by allowing customers to set different common variable values for each environment across all tenant projects. Scoped common tenant variables aims to solve this.
 
-Assigning environment scopes to your tenant variables will make variable management across tenant projects so much simpler. In this post I will walk you through how to scope tenant variables and discuss the current integration capabilities.
+Assigning environment scopes to your common tenant variables will make variable management across tenant projects so much simpler. In this post I will walk you through how to scope tenant variables and discuss the current integration capabilities and limitations.
 
 These updates are now available to our Cloud customers and will be available to self-hosted customers from v2025.2.
 
@@ -28,7 +28,7 @@ Previously, there were both constraints and differences in how tenant variables 
 - Tenant project variables were required to have one value per project environment. 
 - Tenant common variables were limited to one value across all environments connected to a tenant. 
 
-Now, both project variables and common variables can be scoped to environments as needed. This means they can be unscoped (variable applies to all connected environments), singly-scoped or multi-scoped. 
+Now, common variables can be scoped to environments as needed. This means they can be unscoped (variable applies to all connected environments), singly-scoped or multi-scoped. 
 
 Adding the ability to assign scopes to tenant variables creates more simplicity and flexibility with variable management. For example, to assign different variable values for different environments across all tenant projects, customers had to create a tenant for each environment. A common variable could then be set for each tenant. Now, simply set multiple common variables with the appropriate environment scope. 
 
@@ -67,7 +67,7 @@ Scoped tenant variables are now supported through our dotnet, typescript and go 
 
 Octopus CLI will also support the use of scoped tenant variables. As our CLI matches tenant variables on the variable's name and environment, the tenant variable update function currently doesn't support changing variable scopes of existing tenant variables. To select the correct tenant variable, the exact scope must be specified. 
 
-Our terraform provider does not currently support the new scoped tenant variables, however, plans are in place to add support in the near future.
+Our terraform provider does not currently support the new scoped tenant variables. If you'd like this to be supported, please don't hesitate to [get in contact](https://octopus.com/support) with us.
 
 ## Conclusion
 Scoped tenant variables give you finer control of your tenant variables. Now, you can simply assign a scope to your tenant variables and watch the magic happen.
