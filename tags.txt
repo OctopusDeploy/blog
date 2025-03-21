@@ -23,7 +23,6 @@ Docker
 DORA Metrics
 Enterprise
 Environment Promotion
-Featured
 Getting Started
 GitHub Actions
 GitHub Copilot
@@ -59,6 +58,6 @@ Workers
 CI Series
 Runbooks Series
 Kubernetes Training
-
 At The Helm
 Inside DevOps
+Featured
