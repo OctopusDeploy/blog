@@ -20,7 +20,7 @@ We recently improved tenant variables by introducing scoped tenant variables.
 
 Assigning environment scopes to your common tenant variables will make variable management across tenant projects so much simpler. 
 
-In this post, I walk you through how to scope tenant variables and discuss the integration capabilities and limitations.
+In this post, I walk you through how to scope tenant variables and discuss the integration capabilities.
 
 These updates are now available to our Cloud customers and will be available to self-hosted customers from v2025.2.
 
@@ -33,15 +33,16 @@ Previously, there were both constraints and differences in how you managed tenan
 
 Now, you can scope common variables to environments as needed. This means they can be unscoped (variable applies to all connected environments), singly-scoped, or multi-scoped. 
 
-Adding the ability to assign scopes to tenant variables creates more simplicity and flexibility with variable management. For example, to assign different variable values for different environments across all tenant projects, you had to create a tenant for each environment. You could then set a common variable for each tenant. Now, you simply set multiple common variables with the appropriate environment scope. 
+The ability to assign scopes to tenant variables creates more simplicity and flexibility with variable management. For example, to assign different variable values for different environments across all tenant projects, you previously had to create a tenant for each environment. You could then set a common variable for each tenant. Now, you simply set multiple common variables with the appropriate environment scope. 
 
 This is particularly useful if your non-production environments all share one value, while production has a separate value. Maintaining variables becomes more straightforward as you only need to update values once.
 
 ## How to assign scopes to your tenant variables
 
-You can set tenant variables from the projects page and from the tenants page. To set tenant common variables from the project page, you need to create a tenant with a connected project and connected environments. Then you create a Variableset with a variable template and connect it to the tenanted project. 
+You can set tenant variables from the projects page and from the tenants page. To set tenant common variables from the project page, you need to create a tenant with a connected project and connected environments. Then you create a variable set with a variable template and connect it to the tenanted project. 
 
-- Select the tenant variables page from the sidebar and click on the common templates tab.
+- Select the **Tenant Variables** page from the sidebar and click on the **Common Templates** tab.
+
 ![Screenshot of common tenant variables tab on tenant variables page.](scoped-tenant-vars-view.png)
 
 - To add a new tenant variable, select the overflow menu and click **Add**. 
@@ -59,11 +60,12 @@ Unscoped variables apply to all environments with no explicitly scoped variables
 
 Existing tenant variables will automatically get migrated to the new scoped tenant variables when upgraded to 2025.2. The migration will scope tenant project variables to the previous single scope and common variables will be unscoped. This ensures your deployments can proceed without making any changes. After your instance detects scoped tenant variables in use, it will prevent the use of the old tenant variable endpoint. 
 
-:::info
+:::warning
 We'll deprecate the endpoint ```tenants/{tenantId}/tenantvariables``` from 2026.2.
 :::
 
 We introduced 2 new endpoints for GET/UPDATE requests for scoped tenant variables. These will replace the use of the endpoint above: 
+
 - ```tenants/{tenantId}/projectvariables```
 - ```tenants/{tenantId}/commonvariables```
  
