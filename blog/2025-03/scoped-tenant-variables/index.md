@@ -66,8 +66,8 @@ We'll deprecate the endpoint ```tenants/{tenantId}/tenantvariables``` from 2026.
 
 We introduced 2 new endpoints for GET/UPDATE requests for scoped tenant variables. These will replace the use of the endpoint above: 
 
-- ```tenants/{tenantId}/projectvariables```
-- ```tenants/{tenantId}/commonvariables```
+- `tenants/{tenantId}/projectvariables`
+- `tenants/{tenantId}/commonvariables`
  
 ## Automation and integration
 
