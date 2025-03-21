@@ -3,7 +3,7 @@ title: Scoped tenant variables
 description: Learn about new scoping capabilities of tenant variables.
 author: susan.pan@octopus.com
 visibility: public
-published: 2025-03-24-0900
+published: 2025-03-24-1400
 metaImage: blogimage-variable-tenants-ui-dashboard-2024.png
 bannerImage: blogimage-variable-tenants-ui-dashboard-2024.png
 bannerImageAlt: Graphic image of woman viewing scoped tenant variables page.
