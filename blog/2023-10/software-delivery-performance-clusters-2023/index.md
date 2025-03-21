@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - DORA Metrics
+  - Featured
 ---
 
 The 2023 Accelerate State of DevOps Report has arrived, and we're excited to be sponsors again this year. This long-running research effort has shown how software delivery performance positively impacts organizational performance. Using the insights into concrete practices that drive performance, you can impact your commercial and non-commercial goals.

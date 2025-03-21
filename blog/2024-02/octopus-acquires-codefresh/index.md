@@ -10,6 +10,7 @@ bannerImageAlt: Codefresh and Octopus Deploy logos in a yin and yang symbol.
 isFeatured: true
 tags: 
   - Company
+  - Featured
 ---
 
 I am very excited to share that Octopus has acquired Codefresh! Our [press release](https://octopus.com/news/octopus-acquires-codefresh) has a good summary, but I want to share with you why I’m so excited about Codefresh joining Octopus, what we love about the Codefresh team, and why we think this is excellent news for our customers, Codefresh customers, and the Argo open-source community. 

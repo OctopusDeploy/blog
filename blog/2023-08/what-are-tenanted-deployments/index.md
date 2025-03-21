@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Multi-Tenancy
+  - Featured
 ---
 
 As we explained in our post, [what is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy), multi-tenancy is where software or its infrastructure splits into manageable chunks called 'tenants'. These splits can save costs, simplify processes, or allow customization per customer or destination.

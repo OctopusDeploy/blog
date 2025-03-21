@@ -9,6 +9,7 @@ bannerImage: blogimage-config-as-code-explanation_2020.png
 tags:
  - DevOps
  - Configuration as Code
+ - Featured
 ---
 
 ![The state of config file formats: XML vs. YAML vs. JSON vs. HCL](blogimage-config-as-code-explanation_2020.png)

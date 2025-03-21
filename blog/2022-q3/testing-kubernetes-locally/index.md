@@ -13,6 +13,7 @@ tags:
   - Containers
   - Cloud Orchestration
   - Kubernetes
+  - Featured
 ---
 
 Kubernetes is a complex platform typically deployed across a number of servers to achieve high availability. However, creating multi-node clusters is often not practical for individual DevOps engineers performing local testing.

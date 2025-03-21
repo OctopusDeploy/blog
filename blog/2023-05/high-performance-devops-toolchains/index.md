@@ -11,6 +11,7 @@ isFeatured: false
 tags:
   - DevOps
   - Continuous Delivery
+  - Featured
 ---
 
 Last week, the [2023 State of CD report](https://cd.foundation/reports/) was released. The Continuous Delivery Foundation commission the report and it's authored by SlashData. The State of CD report looks at the adoption, practices, and performance of teams using DevOps and Continuous Delivery.

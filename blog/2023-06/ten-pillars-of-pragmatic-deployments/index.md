@@ -11,6 +11,7 @@ isFeatured: true
 tags:
  - DevOps
  - Deployment Patterns
+ - Featured
 ---
 
 As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real-world deployment processes. We constantly shape the features through conversations with customers, support requests, and our own internal deployment requirements and discussions about what we think good deployments look like.
