@@ -49,11 +49,11 @@ We're open to feedback about how this decision affects your ability to manage yo
 
 When a Tentacle is registered with the Octopus Server, the 2 entities exchange their thumbprints, identifying their certificates. This process lays the foundation for a secure and trusted relationship. When the Octopus Server connects to a Tentacle, it checks that the Tentacle presents a valid certificate matching the expected thumbprint. This verification process is reciprocal; the Tentacle similarly checks that the connection originates from a trusted Octopus Server. If any discrepancies arise, the connection is immediately rejected. 
 
-This model mirrors principles in other secure communication protocols, such as SSH, used in UNIX systems, providing a robust and familiar security framework.
+This model mirrors principles in other secure communication protocols, like SSH, used in UNIX systems, providing a robust and familiar security framework.
 
 ## How can I determine if I’m affected?
 
-Below is an example command that will print out the machines (Deployment Target Tentacles) with sha1RSA set as their certificate signature algorithm. You'll need to replace the `instance-name` with your instance name or the full URL if you’re a self-host customer, `space-id` with a space ID (e.g., `Spaces-1`), and replace the API key with a key that has at least the MachineView permission.
+Below is an example command that will print out the machines (deployment target Tentacles) with sha1RSA set as their certificate signature algorithm. You'll need to replace the `instance-name` with your instance name or the full URL if you’re a self-host customer, `space-id` with a space ID (e.g., `Spaces-1`), and replace the API key with a key that has at least the MachineView permission.
 
 ```
 curl -H "X-Octopus-Apikey: API-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" -H "Accept: application/json" "https://<instance-name>.octopus.app/api/<space-id>/machines" |  jq '.Items .[] | select(.Endpoint.CertificateSignatureAlgorithm=="sha1RSA")'
@@ -79,17 +79,17 @@ We plan to start emailing affected customers about the deprecation on March 31, 
 
 ### Octopus Server Linux container customers
 
-We plan to release an in-product configuration option to turn on/off the SHA-1 tentacle support in Octopus Server 2025.2 and remove support for SHA-1 Tentacles in the subsequent Octopus Server 2025.3 release. These changes will impact Octopus Server Linux container customers only. 
+We plan to release an in-product configuration option to turn on/off the SHA-1 Tentacle support in Octopus Server 2025.2 and remove support for SHA-1 Tentacles in the subsequent Octopus Server 2025.3 release. These changes will impact Octopus Server Linux container customers only. 
 
 As a self-hosted customer, you control the update cycle of your Octopus Server and, therefore, have some flexibility around how and when to perform the appropriate updates. We recommend you take action as soon as possible.
-
-In the future, we expect to add features in Octopus Server to support automatically regenerating certificates on the Octopus Server and all Tentacles. We're currently in the discovery phase of this work. We're particularly interested in hearing from customers who'd like to discuss their current credential management and rotation practices.
 
 ### Octopus Server Windows customers
 
 There are no immediate required actions for Octopus Server Windows self-hosted customers. This is because we can continue to support SHA-1 certificates using supported operating systems and runtime environments for the time being. 
 
 As a self-hosted customer, you control the update cycle of your Octopus Server and, therefore, have some flexibility around how and when to perform updates. We still recommend you take action and move off SHA-1 certificates as soon as possible.
+
+### Future work
 
 In the future, we expect to add features in Octopus Server to support automatically regenerating certificates on the Octopus Server and all Tentacles. We're currently in the discovery phase of this work. We're particularly interested in hearing from customers who would like to discuss their current credential management and rotation practices.
 
