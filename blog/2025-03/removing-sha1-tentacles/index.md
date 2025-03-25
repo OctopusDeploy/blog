@@ -42,7 +42,7 @@ A common question about Octopus Deploy’s security model is why it defaults to 
 2. *Operational efficiency*: Using self-signed certificates simplifies the installation and setup, particularly in automated environments. Instead of relying on a CA to generate certificates, which can introduce delays and complexities, Tentacles can quickly generate their certificates upon installation. Additionally, importing existing certificates can be streamlined, facilitating the automation of Tentacle installation.
    
 :::hint
-We're open to feedback about how this decision affects your ability to manage your Octopus Server and Tentacles at scale. We're particularly interested in hearing from customers who'd like to discuss their current credential management and rotation practices.
+We're [open to feedback](https://roadmap.octopus.com/c/194-tentacle-certificate-management-improvements) about how this decision affects your ability to manage your Octopus Server and Tentacles at scale. We're particularly interested in hearing from customers who'd like to discuss their current credential management and rotation practices.
 :::
 
 ### How it all comes together
@@ -91,7 +91,7 @@ As a self-hosted customer, you control the update cycle of your Octopus Server a
 
 ### Future work
 
-In the future, we expect to add features in Octopus Server to support automatically regenerating certificates on the Octopus Server and all Tentacles. We're currently in the discovery phase of this work. We're particularly interested in hearing from customers who would like to discuss their current credential management and rotation practices.
+In the future, we expect to add features in Octopus Server to support automatically regenerating certificates on the Octopus Server and all Tentacles. We're currently in the discovery phase of this work. We're particularly interested in hearing from customers who would like to [discuss their current credential management and rotation practices](https://roadmap.octopus.com/c/194-tentacle-certificate-management-improvements).
 
 ## Conclusion
 
@@ -99,6 +99,6 @@ Removing support for SHA-1 certificates in Octopus Tentacles is part of our comm
 
 While most customers have moved to the more secure SHA-256 certificates, it's crucial for those still using SHA-1 to understand the implications of this deprecation. The communication between Octopus Server and Tentacles relies on secure TLS connections and self-signed certificates, promoting customized trust relationships and operational efficiency. As the move towards stronger cryptographic algorithms continues, we encourage customers to regenerate their certificates to align with best practices. 
 
-We welcome feedback about credential management and practices to ensure the Octopus platform meets your needs effectively. This transition bolsters security measures, further safeguarding the deployment processes critical to businesses.
+We [welcome feedback about credential management and practices](https://roadmap.octopus.com/c/194-tentacle-certificate-management-improvements) to ensure the Octopus platform meets your needs effectively. This transition bolsters security measures, further safeguarding the deployment processes critical to businesses.
 
 Happy deployments!
