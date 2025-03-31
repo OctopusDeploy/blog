@@ -4,8 +4,8 @@ description: Find out about 3 general types of measurement that will help you be
 author: steve.fenton@octopus.com
 visibility: public
 published: 2025-04-02-1400
-metaImage: blogimage-bestpracticecicd-2022.png
-bannerImage: blogimage-bestpracticecicd-2022.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: Person with a checklist stands in front of DevOps infinity symbol.
 isFeatured: false
 tags: 
