@@ -4,9 +4,9 @@ description: Find out about 3 general types of measurement that will help you be
 author: steve.fenton@octopus.com
 visibility: public
 published: 2025-04-02-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Person with a checklist stands in front of DevOps infinity symbol.
+metaImage: blog-generic-statistics-metrics-v2-2025-750x400-x2.jpg
+bannerImage: blog-generic-statistics-metrics-v2-2025-750x400-x2.jpg
+bannerImageAlt: Person standing in front of floating rectangles that contain different metrics.
 isFeatured: false
 tags: 
   - DevOps
