@@ -10,12 +10,12 @@ The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/
 
 See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writing) for the following information:
 
-- [The Octopus voice and style](https://www.octopus.design/932c0f1a9/p/13df3a-voice-and-style)
-- [Writing educational content](https://www.octopus.design/932c0f1a9/p/137b06-educational-content---how-we-write-about-what-we-do) 
-- [Writing tips for the blog](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content)
-- [Markdown quick reference](https://www.octopus.design/932c0f1a9/p/074e30-markdown-reference)
+- [The Octopus voice and style](https://www.octopus.design/latest/brand/writing/voice-and-style-fUurR0ng)
+- [Writing educational content](https://www.octopus.design/latest/brand/writing/educational-content-how-we-write-about-what-we-do-PP3ny9gk-PP3ny9gk)
+- [Writing tips for the blog](https://www.octopus.design/latest/brand/writing/blog-content-basics-WtUy91nY-WtUy91nY)
+- [Markdown quick reference](https://www.octopus.design/latest/brand/writing/markdown-reference-z3FeFK04-z3FeFK04)
 
-Please note the advice about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+Please note the advice about [adding resources to your post](https://www.octopus.design/latest/brand/writing/blog-content-basics-WtUy91nY-WtUy91nY#section-adding-resources-to-your-post-12).
 
 You'll also find some helpful links and information on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md#before-you-submit-your-post).
 
