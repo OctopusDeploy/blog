@@ -15,15 +15,15 @@ tags:
   - Monitoring
 ---
 
-Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus, we want to provide the best experience for deploying to and monitoring your applications on Kubernetes.
+Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus, we want to provide the best experience for deploying and monitoring your applications on Kubernetes.
 To make your deployments to Kubernetes simpler, faster, and safer, Octopus has a deployment target called the Kubernetes agent.
  
-The Kubernetes agent is a small, lightweight application you install into your Kubernetes cluster. The Kubernetes monitor is the next major expansion of capabilities of this deployment agent.
+The Kubernetes agent is a small, lightweight application you install into your Kubernetes cluster. The Kubernetes monitor is the next major expansion of the capabilities of this deployment agent.
 
-## Post deployment monitoring
-Monitoring is an important part in a deployment process and is even more important when it comes to Kubernetes. It gives you confidence that your applications are running as expected.
+## Post-deployment monitoring
+Monitoring is an important part of the deployment process and is even more important when it comes to Kubernetes. It gives you confidence that your applications are running as expected.
  
-When troubleshooting an unhealthy app, you often need to use a combination of tools and login credentials to figure out what's going wrong, and that can be quite fiddly, especially with Kubernetes. Your Octopus Deploy instance already has these credentials and awareness of your apps similar-to run books. We're aiming to make octopus the first port of call as you and your team continuously deliver software.
+When troubleshooting an unhealthy app, you often need to use a combination of tools and login credentials to figure out what's going wrong, and that can be quite fiddly, especially with Kubernetes. Your Octopus Deploy instance already has these credentials and awareness of your applications similar to run books. We're aiming to make Octopus the first port of call as you and your team continuously deliver software.
 
 We roll up the combined status for the objects in a given release, per environment into a single live status.
 
@@ -34,7 +34,7 @@ Great! Your upgrade path will be simple.
 
 ### Upgrading your agents to the version containing the monitor
 [Upgrading an existing Kubernetes agent](https://octopus.com/docs/kubernetes/live-object-status/installation#upgrading-an-existing-kubernetes-agent)
-We are working on a one click upgrade process you can access within Octopus Deploy. If you can’t wait until then, you can upgrade existing Kubernetes agents by running a Helm command on your cluster.
+We are working on a one-click upgrade process you can access within Octopus Deploy. If you can’t wait until then, you can upgrade existing Kubernetes agents by running a Helm command on your cluster.
 [See this documentation page for all the details.](https://octopus.com/docs/kubernetes/live-object-status/installation#upgrading-an-existing-kubernetes-agent)
 
 ## New to using Octopus for Kubernetes deployments?
@@ -77,7 +77,7 @@ Similar to the Octopus Tentacle, the Kubernetes agent is a small, lightweight ap
 The Kubernetes agent is installed using Helm via the octopusdeploy/kubernetes-agent chart, see the “[Installing the Kubernetes(https://octopus.com/docs/kubernetes/targets/kubernetes-agent#installing-the-kubernetes-agent)” page for the complete details.
 
 ### When can I use it?
-The Kubernetes agent is available now as an Early Access Preview (EAP) in Octopus Cloud starting today! If you don’t see the feature available, please reach out and we can fast track your cloud instance getting this release.
+The Kubernetes agent is available now as an Early Access Preview (EAP) in Octopus Cloud starting today! If you don’t see the feature available, please reach out and we can fast-track your cloud instance getting this release.
 
 Remember this is an opt-in upgrade for existing Octopus Agents installed on your cluster(s), [see this documentation page for all the details.](https://octopus.com/docs/kubernetes/live-object-status/installation#upgrading-an-existing-kubernetes-agent)
 
@@ -85,29 +85,29 @@ Remember this is an opt-in upgrade for existing Octopus Agents installed on your
 ![Kubernetes agent as Deployment Targets](kubernetes-agent-wizard-config.png "width=500")*Kubernetes agent as Deployment Targets*
 
 ## How we built it
-To facilitate a potentially large flow of new data coming to Octopus Server a separate and non-disruptive web host runs alongside the main host. This isolation level gives us confidence that this is an additive feature and if there are performance complications they will be isolated and managed with minimal impact to Octopus Server regular operations.
+To facilitate a potentially large flow of new data coming to Octopus Server a separate and non-disruptive web host runs alongside the main host. This isolation level gives us confidence that this is an additive feature and if there are performance complications they will be isolated and managed with minimal impact on Octopus Server's regular operations.
 
-The cluster-based monitoring capability uses two values to identify the incoming request: the client certificate thumbprint and an installation ID in the request headers. Octopus Server uses a long lived bearer token as shared secret for authentication, that is generated when the monitoring capability installs in the cluster and registers with Octopus Server. This token will be rotatable by customers and only be valid for use on the gRPC endpoint.
+The cluster-based monitoring capability uses two values to identify the incoming request: the client certificate thumbprint and an installation ID in the request headers. Octopus Server uses a long-lived bearer token as a shared secret for authentication, which is generated when the monitoring capability installs in the cluster and registers with Octopus Server. This token will be rotatable by customers and only be valid for use on the gRPC endpoint.
 
-This allowed us to build gRPC services to handle the data flowing from the monitoring agent in the Kubernetes clusters. [gRPC](https://grpc.io/) is a modern open-source high performance Remote Procedure Call (RPC) framework. This is the first time we’re using gRPC as part of an Octopus feature.
+This allowed us to build gRPC services to handle the data flowing from the monitoring agent in the Kubernetes clusters. [gRPC](https://grpc.io/) is a modern open-source high-performance Remote Procedure Call (RPC) framework. This is the first time we’re using gRPC as part of an Octopus feature.
 
 Within the cluster alongside the Octopus Kubernetes Agent, we have this new component that's responsible for the monitoring aspect. It sits in the cluster and monitors the resources that are deployed, pumping relevant live-status data back out over gRPC to Octopus Deploy.
 
-As we also run Octopus Deploy in Kubernetes for customers as part of our hosted offering, we have new nginx based ingress controllers to help with scalability. To find out more have a look at [How we use Kubernetes for Octopus Cloud](https://www.youtube.com/watch?v=DH7YDySEPHU)
+As we also run Octopus Deploy in Kubernetes for customers as part of our hosted offering, we have new nginx-based ingress configuration to help with partitioning and scalability. To find out more have a look at [How we use Kubernetes for Octopus Cloud](https://www.youtube.com/watch?v=DH7YDySEPHU)
  
 ### Written in Go
-This is the first large scale feature our team has built in [Golang](https://go.dev/) within Octopus Deploy. This has given us access to a large set of great libraries built for Kubernetes, examples include Helm packages, the Argo GitOps engine as we got the expertise uplift from the Codefresh engineers that are now part of Octopus.
+This is the first large-scale feature our team has built in [Golang](https://go.dev/) within Octopus Deploy. This has given us access to a large set of great libraries built for Kubernetes, examples include Helm packages, the Argo GitOps engine as we got the expertise uplift from the Codefresh engineers that are now part of Octopus.
 
-The GitOps engine is a flexible library, with enough configuration and extension points for us to save very specific information on a per resource basis to help get the right information out of the cluster and back to Octopus.
+The GitOps engine is a flexible library, with enough configuration and extension points for us to save very specific information on a per-resource basis to help get the right information out of the cluster and back to Octopus.
 
 Along with Go being the de facto programming language for Kubernetes.
  
-We are exploring options about what and when we can open-source parts of our implementation, so stay tuned when that’s all decided we will have a follow up blog post. The likely first step will be making the source available for inspection, as part of offering more transparency into the tools we’re asking customers to run within the security context of their clusters.
+We are exploring options about what and when we can open-source parts of our implementation, so stay tuned when that’s all decided we will have a follow-up blog post. The likely first step will be making the source available for inspection, as part of offering more transparency into the tools we’re asking customers to run within the security context of their clusters.
  
 ## What is coming next
-Today’s release is the EAP, this list currently represents more capabilities we think are worth adding next (it is not the complete list). If you have thoughts and opinions please reach out to us – see the bottom of the blog post for ways to contact us. 
+Today’s release is the EAP. This list currently represents more capabilities we think are worth adding next (it is not the complete list). If you have thoughts and opinions, please reach out to us. See the bottom of the blog post for ways to contact us. 
 
- - Terraform based setup
+ - Terraform-based setup
  - Support Kubernetes API targets 
  - Self-hosting; this feature is only available on Octopus Cloud
  - Octopus HA (multi-node server) support
@@ -115,9 +115,9 @@ Today’s release is the EAP, this list currently represents more capabilities w
  - Orphan and drift detection
 
 ### This looks cool, but what if I don’t deploy to Kubernetes?
-Currently there’s no plans to extend this beyond Kubernetes deployments, but please reach out and let us know where and why you would like to use this monitoring capability.
+Currently, there are no plans to extend this beyond Kubernetes deployments, but please let us know where and why you would like to use this monitoring capability.
 
 ## Let us know your thoughts
-We're excited to see how you find using this monitoring feature. Please let us know in the comments section below or on our [community slack](https://octopus.com/slack), what new capabilities this does (or doesn't) open-up for your application delivery objectives.
+We're excited to see how you use this monitoring feature. Please let us know in the comments section below or on our [community Slack](https://octopus.com/slack) what new capabilities this does (or doesn't) open up for your application delivery objectives.
 
-Happy deployments and post deployment monitoring!
+Happy deployments and post-deployment monitoring!
