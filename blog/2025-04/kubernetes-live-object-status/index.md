@@ -4,9 +4,9 @@ description: The Octopus Kubernetes monitor is the next major expansion of capab
 author: nick.josevski@octopus.com
 visibility: public
 published: 2025-04-11-1400
-metaImage: img-blog-octopus-k8-2025.png
-bannerImage: img-blog-octopus-k8-2025.png
-bannerImageAlt: Octopus Deploy logo connected to a Kubernetes-branded box with an Octopus logo in it.
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
   - Product
