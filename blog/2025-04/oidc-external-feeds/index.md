@@ -18,7 +18,7 @@ tags:
 
 We recently updated our external feeds to support OpenID Connect (OIDC) authentication. 
 
-Octopus can now use OAuth 2.0 to access your container feeds. This means you won’t have to manage or rotate credentials manually. This includes OIDC support for AWS Elastic, Azure, and Google Container Registries.
+Octopus can now use OAuth 2.0 to access your container feeds. This means you won’t have to manage or rotate credentials manually. This includes OIDC support for AWS, Azure, and Google Container Registries.
 
 This feature is now ready for our Cloud customers and will be available to self-hosted customers in 2025.2.
 
@@ -64,7 +64,7 @@ For more guidance, see our [Google Container Registry docs](https://octopus.com/
 
 ## Conclusion
 
-OIDC external feeds bring security and flexibility to your deployments by removing the need for static credentials. This method fits in with modern cloud practices and gives you more control over your feeds. With support for AWS, Azure, and Google registries, Octopus makes it easy to integrate secure, token-based authentication into your pipelines. 
+OIDC external feeds bring security and flexibility to your deployments by removing the need for static credentials. This method is consistent with modern cloud practices and gives you more control over your feeds. With support for AWS, Azure, and Google registries, Octopus makes it easy to integrate secure, token-based authentication into your pipelines. 
 
 We hope you give it a try, and let us know what you think. If you have any questions or feedback, we’d love to hear from you.
 
