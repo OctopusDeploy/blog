@@ -3,7 +3,7 @@ title: Introducing Kubernetes Live Object Status
 description: The Octopus Kubernetes monitor is the next major expansion of capabilities of the Octopus Kubernetes agent.
 author: nick.josevski@octopus.com
 visibility: public
-published: 2025-04-14-1400
+published: 2025-04-16-1400
 metaImage: kubernetes-live-object-status-2024-1500x800.png
 bannerImage: kubernetes-live-object-status-2024-1500x800.png
 bannerImageAlt: Stylized image of Kubernetes Live Object status in the Octopus UI showing a healthy status.
