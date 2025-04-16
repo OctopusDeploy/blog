@@ -3,10 +3,10 @@ title: OpenID Connect authentication for external feeds
 description: External feeds now support OpenID Connect as an authentication method for container registries.
 author: grace.rehn@octopus.com
 visibility: public
-published:
+published: 3020-01-01-1400
 metaImage:
 bannerImage:
-bannerImageAlt:
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - Product
