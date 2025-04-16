@@ -20,7 +20,9 @@ We recently updated our external feeds to support OpenID Connect (OIDC) authenti
 
 Octopus can now use OAuth 2.0 to access your container feeds. This means you won’t have to manage or rotate credentials manually. This includes OIDC support for AWS, Azure, and Google Container Registries.
 
-This feature is now ready for our Cloud customers and will be available to self-hosted customers in 2025.2.
+This is especially beneficial for AWS Elastic Container Registries, where authentication tokens expire after 12 hours. OIDC eliminates the need for stored access keys by generating fresh credentials at deployment time.
+
+This feature is now available for our Cloud customers and will be available to self-hosted customers in 2025.2.
 
 In this post, I explain how OIDC external feeds work and how to set them up for each provider.
 
