@@ -4,8 +4,8 @@ description: Find out all the changes we've made for the V1.0 release of the Ter
 author: venkatesh.vasudevan@octopus.com 
 visibility: public 
 published: 2025-05-05-1400  
-metaImage: img-terraform.png 
-bannerImage: img-terraform.png 
+metaImage: 
+bannerImage:  
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
 isFeatured: false
 tags: 
