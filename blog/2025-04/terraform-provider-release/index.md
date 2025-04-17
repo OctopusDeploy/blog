@@ -4,14 +4,14 @@ description: Find out all the changes we've made for the V1.0 release of the Ter
 author: venkatesh.vasudevan@octopus.com 
 visibility: public 
 published: 2025-05-05-1400  
-metaImage: 
-bannerImage:  
+metaImage: img-terraform-provider-2025.png
+bannerImage: img-terraform-provider-2025.png
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
 isFeatured: false
 tags: 
 - Product   
-- Configuration as Code   
 - Terraform
+- Configuration as Code 
 ---
 
 The Octopus Deploy Terraform provider has officially reached version 1.0. This release introduces expanded capabilities, fixes long-standing bugs, and provides improved documentation. 
