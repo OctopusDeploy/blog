@@ -54,7 +54,7 @@ Octopus Deploy has fine-grained role-based access controls (RBAC) that integrate
 
 You can use RBAC to prevent unauthorized changes and enforce segregation of duties. You can also safely create self-service actions, like letting testers deploy to the test environment or clear a web cache to speed up their testing without giving them more extensive permissions.
 
-RBAC screenshot
+![A list of built-in user roles.](role-based-access.png)
 
 ### Extensive audit trail
 
@@ -62,7 +62,7 @@ Octopus Deploy automatically captures a detailed audit log for all significant s
 
 These tamper-resistant audit logs let you demonstrate what changes were made to applications or infrastructure. When you need to delve into the audit trail, it's easy to filter actions by user or by a specific area within Octopus, like spaces, projects, environments, event types, and more.
 
-audit trail screenshot
+![The audit trail screen shows recent changes, deployments, and runbook runs and has filters to easily find what you need.](audit-trail.png)
 
 ### IT service management integrations
 
@@ -70,7 +70,7 @@ Our integrations with ServiceNow and Jira Service Management remove manual hand-
 
 The integrations automatically create change requests associated with a deployment. You can block deployments until the change approval is given. This increases compliance, as no unapproved changes get deployed to production - but it does so without creating toil for the developers.
 
-approval-flow@2x.png (from EOD)
+![When a protected environment is selected, the integration with ITSM tools is triggered and a change approval is created and linked. The deployment continues when the change is approved in the ITSM tool.](approval-flow.png)
 
 ### Octolint
 
@@ -78,7 +78,11 @@ Octolint is a tool that scans your Octopus instance and recommends improvements 
 
 Instead of manually auditing for good practices, Octolint can automatically scan and report on items that need your attention.
 
-Octolint screenshot
+```text
+[OctoLintDefaultProjectGroupChildCount] The default project group contains 79 projects. You may want to organize these projects into additional project groups.
+[OctoLintEmptyProject] The following projects have no runbooks and no deployment process: Azure Octopus test
+[OctoLintTooManySteps] The following projects have 20 or more steps: K8s Yaml Import 2
+```
 
 ### Runbooks
 
@@ -86,7 +90,7 @@ Financial institutions need good plans for both daily operations and emergencies
 
 Automated runbooks are safer and more reliable, reducing the need for broad distribution of elevated access. Runbooks in Octopus also log changes and runs to the standard Octopus audit trail. You may even find opportunities to use runbooks to automate compliance tasks.
 
-Runbooks screenshot
+![A list of runbooks that have been triggered and whether they succeeded.](operations-overview.png)
 
 ## Octopus loves compliance
 
