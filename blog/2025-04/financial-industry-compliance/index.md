@@ -4,12 +4,13 @@ description: A brief summary of the post, 170 characters max including spaces.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: security.png
+bannerImage: security.png
+bannerImageAlt: A stylized Octopus and shield icon.
 isFeatured: false
 tags: 
-  - tag
+  - Product
+  - Trust and Security
 ---
 
 If you work in the financial industry, you know there can sometimes be a high burden of regulation. This is understandable when you consider the risk of financial loss and how it can impact people's lives. But if you don't take the right approach to compliance, it can become a time and energy leak that threatens your ability to compete in the market.
