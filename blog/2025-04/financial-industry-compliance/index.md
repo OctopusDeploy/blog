@@ -1,6 +1,6 @@
 ---
 title: Financial industry compliance, the DevOps way
-description: A brief summary of the post, 170 characters max including spaces.
+description: Find out how to apply DevOps thinking to financial industry regulation and compliance.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
