@@ -67,12 +67,6 @@ The requirement for SBOMs can be seen as just an additional step in the build pr
 
 At Octopus, we built a free tool that answers all of those questions for you and meets your SBOM requirements.
 
-## How the Octopus Workflow Builder helps with SBOM requirements
-
-The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com) helps you generate SBOMs and build them into your deployment process. The tool demonstrates how SBOM files are constructed as part of the build, and then demonstrates how Octopus Deploy can scan the SBOM as part of the deployment. 
-
-With the Builder, you're provided with a sample project demonstrating how deployable artifacts and their associated SBOMs are tightly coupled in a release, allowing you to orchestrate and publish the SBOM with any application deployment, schedule SBOM scanning, or access old SBOM versions.
-
 ## Conclusion
 
 In 2021, the US government issued an Executive Order to improve the nation's cybersecurity. The Order mandated that software components be known to the government to minimize security risks. If you work in software, this requires you to expose the components of your applications or risk being excluded from government IT-related projects. 
