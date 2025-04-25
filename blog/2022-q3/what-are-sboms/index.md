@@ -1,7 +1,7 @@
 ---
 title: "What are SBOMs?"
 description: Find out what SBOMs are, learn about the US government's Executive Order, and how Octopus can help with your SBOMs.
-author: terence.wong@octopus.com
+author: steve.fenton@octopus.com
 visibility: public
 published: 2022-09-26-1400
 metaImage: blogimage-devsecopsvulnerabilities-2022.png
@@ -73,6 +73,8 @@ In 2021, the US government issued an Executive Order to improve the nation's cyb
 
 You can make your software components known through SBOMs. SBOMs are a list of components in a software application that is sharable and generated automatically on each application release. 
 
-To help you with this requirement, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com) produces SBOMs as part of the build and scans them as part of the deployment.  
+We increasingly see our customers looking to implement SBOM to enhance their security posture and comply with regulatory requirements, and we see Octopus Releases to be a natural place to store and surface the SBOMs for the attached artifacts.
+
+As we are shaping requirements for [adding native support for SBOMs to Octopus Releases](https://roadmap.octopus.com/c/206-sbom-support-on-releases), please share your feedback with us.
 
 Happy deployments!
