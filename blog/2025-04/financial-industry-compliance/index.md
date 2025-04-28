@@ -2,8 +2,8 @@
 title: Financial industry compliance, the DevOps way
 description: Find out how to apply DevOps thinking to financial industry regulation and compliance.
 author: steve.fenton@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2025-04-30-1400
 metaImage: security.png
 bannerImage: security.png
 bannerImageAlt: A stylized Octopus and shield icon.
@@ -15,7 +15,7 @@ tags:
 
 If you work in the financial industry, you know there can sometimes be a high burden of regulation. This is understandable when you consider the risk of financial loss and how it can impact people's lives. But if you don't take the right approach to compliance, it can become a time and energy leak that threatens your ability to compete in the market.
 
-The best compliance teams look for ways to protect the organization and its customers from risk without overburdening teams with bureaucratic procedures. You want compliance set to maximum and the ability to deliver high-quality, valuable software set to maximum, not some compromise between the two.
+The best compliance teams look for ways to protect the organization and its customers from risk without overburdening teams with bureaucratic procedures. You want compliance set to maximum, and the ability to deliver high-quality, valuable software set to maximum. You don't want some compromise between the two.
 
 ## Good compliance sounds like DevOps
 
@@ -25,7 +25,7 @@ Just as the solution to the software delivery problem was to align both teams to
 
 Rather than calling this DevSecOps or DevSecCompOps, we can call it DevOps because everything that relates to software fitness is part of DevOps.
 
-The non-DevOps way is for stability to be an afterthought and compliance to be an ominous late reaction to an upcoming audit. The DevOps way is to make these part of the daily work, automate as much as possible, and deliver the outcome of compliance instead of the frantic output of audit theatre.
+The non-DevOps way is for stability to be an afterthought and compliance to be an ominous late reaction to an upcoming audit. The DevOps way is to make these part of the daily work, automate as much as possible, and deliver the outcome of compliance instead of the frantic output of audit theater.
 
 It's about being safe and secure, not looking safe and secure.
 
@@ -41,7 +41,7 @@ This isn't just about making audits easy; it's about making compliance easy, and
 
 ## How Octopus supports easy compliance
 
-Octopus has many features that will ease your compliance burden and increase safety, from enterprise-grade access controls and audit trails to innovative automation. Let's take a quick tour of some crucial compliance features:
+Octopus has many features that ease your compliance burden and increase safety, from enterprise-grade access controls and audit trails to innovative automation. Let's take a quick tour of some crucial compliance features:
 
 - Role-based access control
 - Extensive audit trails
@@ -51,7 +51,7 @@ Octopus has many features that will ease your compliance burden and increase saf
 
 ### Role-based access control
 
-Octopus Deploy has fine-grained role-based access controls (RBAC) that integrate with single sign-on providers. You can define roles and permissions to control who can change deployment processes, runbooks, and other configurations and who can access the automation for different projects and environments.
+Octopus Deploy has fine-grained role-based access controls (RBAC) that integrate with single sign-on (SSO) providers. You can define roles and permissions to control who can change deployment processes, runbooks, and other configurations. You can also define who can access the automation for different projects and environments.
 
 You can use RBAC to prevent unauthorized changes and enforce segregation of duties. You can also safely create self-service actions, like letting testers deploy to the test environment or clear a web cache to speed up their testing without giving them more extensive permissions.
 
@@ -59,9 +59,9 @@ You can use RBAC to prevent unauthorized changes and enforce segregation of duti
 
 ### Extensive audit trail
 
-Octopus Deploy automatically captures a detailed audit log for all significant system events, including deployments, configuration changes, user access events, and more. Every action that changes state is recorded, including who initiated it.
+Octopus automatically captures a detailed audit log for all significant system events. This includes deployments, configuration changes, user access events, and more. Octopus records every action that changes a state, including who initiated it.
 
-These tamper-resistant audit logs let you demonstrate what changes were made to applications or infrastructure. When you need to delve into the audit trail, it's easy to filter actions by user or by a specific area within Octopus, like spaces, projects, environments, event types, and more.
+These tamper-resistant audit logs let you demonstrate the changes made to applications or infrastructure. When you need to delve into the audit trail, it's easy to filter actions by user or by a specific area in Octopus, like spaces, projects, environments, event types, and more.
 
 ![The audit trail screen shows recent changes, deployments, and runbook runs and has filters to easily find what you need.](audit-trail.png)
 
@@ -69,7 +69,7 @@ These tamper-resistant audit logs let you demonstrate what changes were made to 
 
 Our integrations with ServiceNow and Jira Service Management remove manual hand-offs between Octopus and your IT service management (ITSM) platform. This makes it easy to ensure changes have the appropriate approval before progressing.
 
-The integrations automatically create change requests associated with a deployment. You can block deployments until the change approval is given. This increases compliance, as no unapproved changes get deployed to production - but it does so without creating toil for the developers.
+The integrations automatically create change requests associated with a deployment. You can block deployments until the change gets approved. This increases compliance, as no unapproved changes get deployed to production—but it does so without creating toil for the developers.
 
 ![When a protected environment is selected, the integration with ITSM tools is triggered and a change approval is created and linked. The deployment continues when the change is approved in the ITSM tool.](approval-flow.png)
 
@@ -87,7 +87,12 @@ Instead of manually auditing for good practices, Octolint can automatically scan
 
 ### Runbooks
 
-Financial institutions need good plans for both daily operations and emergencies. Octopus Runbooks help with this. You can turn routine and emergency operations tasks into reusable automations, whether for database maintenance, restarting systems, applying urgent fixes, or recovering backed-up data.
+Financial institutions need good plans for both daily operations and emergencies. Octopus Runbooks help with this. You can turn routine and emergency operations tasks into reusable automations for things like: 
+
+- Database maintenance
+- Restarting systems
+- Applying urgent fixes
+- Recovering backed-up data
 
 Automated runbooks are safer and more reliable, reducing the need for broad distribution of elevated access. Runbooks in Octopus also log changes and runs to the standard Octopus audit trail. You may even find opportunities to use runbooks to automate compliance tasks.
 
@@ -95,8 +100,8 @@ Automated runbooks are safer and more reliable, reducing the need for broad dist
 
 ## Octopus loves compliance
 
-Octopus Deploy has many features that reduce the compliance burden and help you build security, privacy, and compliance into your DevOps process. As an organization, Octopus also maintains compliance with ISO 27001:2013, SOC 2 Type II, and SOC 3 with regular third-party audits and technical assessments for security, safety, and privacy. You can find out more about this in our trust center.
+Octopus has many features that reduce the compliance burden and help you build security, privacy, and compliance into your DevOps process. As an organization, Octopus also maintains compliance with ISO 27001:2013, SOC 2 Type II, and SOC 3 with regular third-party audits and technical assessments for security, safety, and privacy. You can find out more about this in our [trust center](https://trust.octopus.com/).
 
-Tools that reduce the compliance burden are crucial to organizations in the financial industry or other regulated and safety-critical environments. Your toolchain can help maintain innovation and compliance just like it brings your throughput and stability.
+Tools that reduce the compliance burden are crucial to organizations in the financial industry or other regulated and safety-critical environments. Your toolchain can help maintain innovation and compliance just like it brings you throughput and stability.
 
 Happy deployments!
