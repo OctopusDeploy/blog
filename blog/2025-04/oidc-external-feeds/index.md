@@ -4,9 +4,9 @@ description: External feeds now support OpenID Connect as an authentication meth
 author: grace.rehn@octopus.com
 visibility: public
 published: 3020-01-01-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: generic-oidc-banner-img.png
+bannerImage: generic-oidc-banner-img.png
+bannerImageAlt: Keys on a keychain above a recycling bin.
 isFeatured: false
 tags: 
   - Product
