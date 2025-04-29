@@ -20,14 +20,13 @@ In the midst of this momentum, we realized something important: to stay grounded
 
 Enter: the Leadership CODE.
 
-Octopus was founded with a philosophy of creating a working environment where employees can [do the best work of their](https://octopus.com/company/careers) lives, and our leaders are key in maintaining and strengthening this culture in the face of our growth and development. As time went by, we understood we were missing a framework to help them do that, so we put our heads together to come up with our new Leadership CODE. The process of its creation was much more meaningful than I had expected, so we are excited to share its story with you.
+Octopus was founded with a philosophy of creating a working environment where employees can [do the best work of their lives](https://octopus.com/company/careers), and our leaders are key in maintaining and strengthening this culture in the face of our growth and development. As time went by, we understood we were missing a framework to help them do that, so we put our heads together to come up with our new Leadership CODE. The process of its creation was much more meaningful than I had expected, so we're excited to share its story with you.
 
 ## The Leadership CODE concept
 
-There are countless leadership behaviors and skills out there—just like with values, none are inherently wrong. But part of leading well is knowing how to focus. As we grow and evolve as a company, we recognized the need to align on the *core* leadership principles that matter most right now—at this particular stage in our journey.
+There are countless leadership behaviors and skills out there, and just like with values, none are inherently wrong. But part of leading well is knowing how to focus. As we grow and evolve as a company, we recognize the need to align on the *core* leadership principles that matter most right now, at this particular stage in our journey.
 
-That’s what inspired the Leadership CODE.  
- Our idea was to create a simple, concrete, and actionable guide to help leaders at Octopus balance delivering on ambitious goals while staying deeply committed to their people and to our values.
+That’s what inspired the Leadership CODE. Our idea was to create a simple, concrete, and actionable guide to help leaders at Octopus balance delivering on ambitious goals while staying deeply committed to their people and to our values.
 
 The CODE isn’t meant to capture every great leadership trait—it’s a purposeful selection of the principles we believe leaders should **embrace and model today**, to help us scale thoughtfully, collaborate effectively, and stay true to what makes Octopus special.
 
@@ -35,23 +34,23 @@ In essence, the CODE serves as a shared leadership language. It helps us set cle
 
 ## How we built it
 
-Creating the Leadership CODE was as meaningful as the outcome itself. We started by gathering insights from across the organization—through surveys and interviews with all managers and senior leaders—to uncover what makes leadership successful at Octopus. Leading themes we found were humility, trust, and clear communications alongside the need to  foster contagious energy and leadership by example.
+Creating the Leadership CODE was as meaningful as the outcome itself. We started by gathering insights from across the organization—through surveys and interviews with all managers and senior leaders—to uncover what makes leadership successful at Octopus. Leading themes we found were humility, trust, and clear communication, alongside the need to foster contagious energy and leadership by example.
 
-After we analyzed the data, we focused on  defining principles that could act as a shared leadership vocabulary  to promote the themes we discovered. These practices focused on effective communication,  aligning on priorities and modeling the behaviors we want to see across the organization. This shared language, our CODE, is the basis for building trust, breaking down silos, and enabling collaboration.
+After we analyzed the data, we focused on  defining principles that could act as a shared leadership vocabulary  to promote the themes we discovered. These practices focused on effective communication,  aligning on priorities, and modeling the behaviors we want to see across the organization. This shared language, our CODE, is the basis for building trust, breaking down silos, and enabling collaboration.
 
 ## The CODE
 
-Our CODE relies on five guiding principles:
+Our CODE relies on 5 guiding principles:
 
 - Be humble and stay curious
 - Level up the team
-- Communicate, directly, and with anyone
+- Communicate directly, and with anyone
 - Aim for the greater good
 - Make it happen
 
 Each principle is more than just a statement—it’s a call to action. When we set out to define these, we didn’t just want to say *what good leadership looks like*. We also felt it was equally important to clarify *what it doesn’t look like*.
 
-This was intentional. In fast-moving environments like ours, ambiguity can lead to misalignment. So we wanted to provide more clarity—not in the form of rigid rules, but as **guidance leaders can interpret thoughtfully for themselves**. These are starting points, not the full story. We trust our leaders to bring their own judgment and experience to the table.
+This was intentional. In fast-moving environments like ours, ambiguity can lead to misalignment. So we wanted to provide more clarity, not in the form of rigid rules, but as **guidance leaders can interpret thoughtfully for themselves**. These are starting points, not the full story. We trust our leaders to bring their own judgment and experience to the table.
 
 ### Be humble and stay curious
 
@@ -82,10 +81,10 @@ What it means:
 What it doesn’t mean:
 
 - Micromanaging or stepping in unnecessarily.
-- Abandoning your team under the guise of “trust.”
+- Abandoning your team under the guise of trust.
 - Needing to have all the answers yourself.
 
-### Communicate, directly, and with anyone
+### Communicate directly, and with anyone
 
 We believe communication is a leadership superpower. It’s not just about speaking clearly—it’s about creating space for honest dialogue, listening with intent, and maintaining transparency at every level.
 
@@ -131,25 +130,25 @@ What it doesn’t mean:
 
 - Rushing into decisions without a clear plan.
 - Taking on too much and risking burnout.
-- Engaging in “busy work” that lacks tangible impact.
+- Engaging in busy work that lacks tangible impact.
 
 ## What’s next?
 
 Creating the CODE was only the beginning. We now have a lot of work to embed these principles into daily leadership practices. This includes:
 
-- Mentor and provide feedback to the company leaders on following the CODE
-- When assessing potential new leaders, understand if they can embrace the CODE and embody its principles 
+- Mentor and provide feedback to the company leaders on following the CODE.
+- When assessing potential new leaders, understand if they can embrace the CODE and embody its principles.
 - Challenging ourselves as leaders by regularly reflecting on our actions and identifying ways to better support our people and the company.
 - Fostering a culture of accountability, where feedback is a two-way conversation and leaders at all levels strive to improve continuously.
 
-By making the CODE central to how we hire, develop and assess leaders, we aim to build a leadership culture that supports our people and drives Octopus toward its long-term goals.
+By making the CODE central to how we hire, develop, and assess leaders, we aim to build a leadership culture that supports our people and drives Octopus toward its long-term goals.
 
 ## Reflections 
 
 This journey reinforced my belief that leadership is  a collaborative effort. By defining and sharing our expectations, we set our leaders up for success and create a culture where everyone can thrive.
 
-Whether you’re a leader yourself or aspire to become one—my advice is simple: take the time to define what leadership means to you personally. It’s one of the most impactful ways to ensure alignment, growth, and success.
+Whether you’re a leader yourself or aspire to become one, my advice is simple: take the time to define what leadership means to you personally. It’s one of the most impactful ways to ensure alignment, growth, and success.
 
-If you’re curious to learn more about Octopus Deploy and how we’re building our future, stay tuned for more stories from our People team.
+If you’re curious to learn more about Octopus and how we’re building our future, stay tuned for more stories from our People team.
 
 Happy deployments!
