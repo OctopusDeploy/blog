@@ -125,7 +125,7 @@ In the early days of Octopus Deploy, we implemented canary deployments using rel
 - We'd wait seven says, and if the early adopters didn't report anything, we'd deploy to the stable customers.
 - Then we'd deploy to any laggards (very rarely did we have any).
 
-![Octopus Cloud v1 Canary](ReleaseRingsOnOctopusCloud.png)
+![Octopus Cloud v1 Canary](ReleaseRingsOctopusCloud.png)
 
 We thought that canary deployments would be a panacea.  But in truth, it had many limitations.
 
@@ -143,7 +143,7 @@ Our engineering leaders (managers and senior engineers), realized we needed to c
 - Feature toggles, which could be turned on or off for a specific customer instance.
 - Shorten release rings, and deploy to our main instance that deploys Octopus Deploy (we use Octopus Deploy to deploy Octopus Deploy).
 
-![Octopus Cloud v2 Canary](ReleaseRingsOnOctopusCloud_v2.png)
+![Octopus Cloud v2 Canary](ReleaseRingsOctopusCloud_v2.png)
 
 There have been numerous benefits to this approach.
 
