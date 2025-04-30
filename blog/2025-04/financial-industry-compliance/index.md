@@ -4,9 +4,9 @@ description: Find out how to apply DevOps thinking to financial industry regulat
 author: steve.fenton@octopus.com
 visibility: public
 published: 2025-04-30-1400
-metaImage: security.png
-bannerImage: security.png
-bannerImageAlt: A stylized Octopus and shield icon.
+metaImage: 
+bannerImage: 
+bannerImageAlt:
 isFeatured: false
 tags: 
   - Product
