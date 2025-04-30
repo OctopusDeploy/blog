@@ -4,9 +4,9 @@ description: Find out how to apply DevOps thinking to financial industry regulat
 author: steve.fenton@octopus.com
 visibility: public
 published: 2025-04-30-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blog-img-fsi-2025-1500x800.png
+bannerImage: blog-img-fsi-2025-1500x800.png
+bannerImageAlt: Building with three pillars and dollar symbol surrounded by icons that represent security and compliance.
 isFeatured: false
 tags: 
   - Product
