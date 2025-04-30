@@ -38,6 +38,8 @@ Creating the Leadership CODE was as meaningful as the outcome itself. We started
 
 After we analyzed the data, we focused on  defining principles that could act as a shared leadership vocabulary  to promote the themes we discovered. These practices focused on effective communication,  aligning on priorities, and modeling the behaviors we want to see across the organization. This shared language, our CODE, is the basis for building trust, breaking down silos, and enabling collaboration.
 
+![Leadership code process](code-process.png)
+
 ## The CODE
 
 Our CODE relies on 5 guiding principles:
