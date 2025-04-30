@@ -81,7 +81,7 @@ The advantage of progressive delivery is that every user remains on the old vers
 
 Many people believe feature toggles are a simple binary.  It's either on or off for everyone.  Turn it on in testing environments, but leave it off for production.  Feature toggles must follow the specification provided by [Openfeature](https://openfeature.dev).  Instead of an application-level binary, multiple user segments are created.  The feature toggle is then turned on for each segment.  
 
-![Feature Toggle Segments](FeatureToggleSegments.png)
+![Feature Toggle Segments](feature-toggle-segments.png)
 
 The segments can be whatever you want them to be:
 
@@ -125,7 +125,7 @@ In the early days of Octopus Deploy, we implemented canary deployments using rel
 - We'd wait seven says, and if the early adopters didn't report anything, we'd deploy to the stable customers.
 - Then we'd deploy to any laggards (very rarely did we have any).
 
-![Octopus Cloud v1 Canary](ReleaseRingsOctopusCloud.png)
+![Octopus Cloud v1 Canary](release-rings-octopus-cloud.png)
 
 We thought that canary deployments would be a panacea.  But in truth, it had many limitations.
 
@@ -143,7 +143,7 @@ Our engineering leaders (managers and senior engineers), realized we needed to c
 - Feature toggles, which could be turned on or off for a specific customer instance.
 - Shorten release rings, and deploy to our main instance that deploys Octopus Deploy (we use Octopus Deploy to deploy Octopus Deploy).
 
-![Octopus Cloud v2 Canary](ReleaseRingsOctopusCloud_v2.png)
+![Octopus Cloud v2 Canary](release-rings-octopus-cloud_v2.png)
 
 There have been numerous benefits to this approach.
 
