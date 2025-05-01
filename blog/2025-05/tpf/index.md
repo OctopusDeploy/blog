@@ -13,23 +13,35 @@ tags:
   - Continuous Delivery
 ---
 
+Everyone building deployment pipelines sees two revolutions.
+
+- The initial automation, implementing a modern build server and a deployment tool like Octopus Deploy.  Doing that results in going from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures.
+- Implementing [something] to go from weekly deployments to daily deployments.  The prevalent opinion is that [something] is implementing progressive delivery, canary deployments, blue/green deployments, or feature flags.
+
+The problem to solve is **not** downtime.  That is not what continuous delivery is about.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  
+
+Applications that require daily deployments will generally have more than two developers working on them.  There are multiple streams of work in flight.  Continuously delivering to production requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
+
+## Coordinating multiple streams of work
+
 Ten years ago, I was an Octopus Deploy customer.  After implementing Octopus Deploy (and Redgate for DB changes), my application went from quarterly deployments taking two (or more) hours to taking 15 minutes and deploying every ten(ish) days.  Even better, deployment failures and emergency fixes went from a virtual guarantee to never happening.  Our deployments were consistent and reliable.  It was a considerable accomplishment involving many people.  
 
-But, we hadn't improved on how we _deliver new functionality_ to our users.  That was a problem, as new features and functionality carry tremendous risk.  There could be critical bugs, unknown use cases, performance, or UI issues with unexpected configurations.  In addition, many features fail to meet user expectations.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one main character states that only 10% of new features are helpful to users.
+But, we hadn't improved on how we _create and release new functionality_ to our users.  We were still making feature changes like we did when we had monthly or quarterly releases.
 
-The problem I faced ten years ago was that we were still making feature changes like we did when we had monthly or quarterly releases.  
-
-- Despite working on an internal application, we could not get direct feedback from users after hands-on usage. We often demoed new functionality to our Business Owner from our local machines to see if we were on the right track.
-- The features were delivered in a nearly complete state. The feature branches lived for several weeks, resulting in merge hell.
+- Over a half-dozen programming pairs all working in the same code base, each working on a new feature, fixing a bug, or improving performance.
+- To "avoid stepping on each others toes," feature branches would live for multiple days or weeks.  
+- The features were delivered in a nearly complete state. Because of long-lived feature branches, we'd frequently encounter merge hell.
+- To avoid merging into main, we often demoed new functionality to our Business Owner from our local machines to see if we were on the right track.
+- Because we didn't merge into main for weeks, we couldn't get direct feedback from users in early stages of building new features.
 - Main wasn't always ready to deploy.  After merging a feature into the main, finding and fixing all the bugs might take another week or two.
+- Often, one feature would create a conflict with another feature.  It could be a UX quirk with naming, or it could be on the backend.  We wouldn't know until both features were merged into main.  It might be a month or two until we knew there was a conflict.
 - When a critical bug needed to be fixed, we'd implement a simplistic configuration to turn on the feature for dev and QA but off for staging and production.
 - We'd "turn on" the feature during a production deployment, but it'd be on for everyone. Users could access the new feature while we were verifying, resulting in bug reports or panicked emails (often because a third-party system hadn't finished updating).
-- Over a half-dozen programming pairs all working in the same code base, causing more and more merge conflicts.
 - Merge "freezes" preventing new features from being merged after deploying a new feature to allow a few days for hot fixes and performance improvements.
 
-[Continuous Delivery](https://continuousdelivery.com) solves that by getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  Production deployments should be predictable, routine affairs, that can be performed on demand.  That is achieved by ensuring the code is _always_ in a deployable state.  
+## The risk of adding new features and functionality
 
-To achieve Continuous Delivery, we needed to adopt TPF, or [trunk based development](https://trunkbaseddevelopment.com/), [Progressive delivery (canary, blue/green, or staging)](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [Feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
+Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is even worse, as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."
 
 ## Trunk based development
 
@@ -56,13 +68,17 @@ It requires developers to adopt two key concepts.
 1. Short-lived feature branches - no more than a couple of days.  Ideally, less than a day.
 1. Incremental changes - no more delivering a feature as a "big bang."  
 
-That does not mean merging unfinished code into main after a few hours or a couple of days. Many features can take weeks or months to finish. Developers and product managers are responsible for creating small units of work that incrementally add functionality (and tests) until the feature is "done."  Each incremental change can be deployed to production. The feature should be hidden behind a feature toggle until it is ready for users.
+That does not mean merging unfinished code into main after a few hours or a couple of days. Many features can take weeks or months to finish. Developers and product managers are responsible for creating small units of work that incrementally add functionality (and tests) until the feature is "done."  Each incremental change can be deployed to production, including database changes.
+
+Hide the feature behind a feature toggle until it is ready for users.  
+
+This allows you to have multiple features "in flight" and merged into main.  Because developers are incrementally checking in code, they can find conflicts with other developer's work much sooner.  Changes are integrated much sooner, and tests can be created to verify sensible combinations of features.  
 
 ## Progressive delivery
 
-Trunk based deployments encourage frequent production deployments. However, you cannot deploy to production daily if each deployment has downtime. Any downtime might breach SLAs, frustrate customers, or prevent employees from doing their work. In addition, automation isn't perfect; a deployment could still fail. A progressive delivery, canary, blue/green, or staging is required to prevent deployment failures and zero-downtime deployments.
+Trunk based deployments encourage frequent production deployments. However, you cannot deploy to production daily if each deployment has downtime. Any downtime might breach SLAs, frustrate customers, or prevent employees from doing their work. In addition, automation isn't perfect; a deployment could still fail. Progressive delivery solves those problems.
 
-Every progressive delivery strategy follows the same core principle.  Deploy a new version to a "staging" location in production.  Verify the new version while all the users remain on the old version.  Once verification is complete, route users to the new version.  The difference between canary, blue/green, and staging is the percentage of traffic routed.
+Blue/Green, Canary, or "staging" strategies follows the same core principle.  Deploy a new version to a "staging" location in production.  Verify the new version while all the users remain on the old version.  Once verification is complete, route users to the new version.  The difference between canary, blue/green, and staging is the percentage of traffic routed.
 
 ![Canary Deployment Diagram](https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2021/07/14/ecs_canary_2.gif)
 
@@ -75,7 +91,9 @@ Deployments can fail for a number of reasons.
 - The new application version won't start after deployments.
 - The new application version crashes minutes after the deployment.
 
-The advantage of progressive delivery is that every user remains on the old version while those failures are happening. Users don't have to be routed to the new version as soon as verification is completed. For example, you might deploy at 2 pm and wait to route traffic at 9 pm when there are fewer users.  
+The advantage of progressive delivery is that every user remains on the old version while those failures are happening. Users don't have to be routed to the new version as soon as verification is completed. For example, you might deploy at 2 pm and wait to route traffic at 9 pm when there are fewer users. 
+
+[Many articles](https://codefresh.io/learn/software-deployment/understanding-progressive-delivery-concepts-and-best-practices/) on [progressive delivery](https://launchdarkly.com/blog/what-is-progressive-delivery-all-about/), use [feature flags](https://amplitude.com/explore/experiment/what-is-progressive-delivery).  Lorem ipsum (more to come).
 
 ## Feature Toggles
 
