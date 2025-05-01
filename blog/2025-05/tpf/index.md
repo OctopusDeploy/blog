@@ -13,15 +13,26 @@ tags:
   - Continuous Delivery
 ---
 
-We have seen thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  The next logical step is to go from weekly 15 minute (or less) deployments to daily zero-downtime deployments.  The prevalent opinion is that is achieved by implementing canary or blue/green deployments.
+We have seen thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  It is a big accomplishment.  But, there is still more work to do.  Often, we talk to many customers who believe the next step is to fully embrace Continuous Delivery, and add even more automation.  Go from weekly 15 minute (or less) deployments to daily zero-downtime deployments by implementing canary or blue/green deployments.
 
-The primary problem to solve is **not** downtime.  That is not what continuous delivery is about.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  The code is _always_ in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
+That is a fundamental misunderstanding of Continuous delivery.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  The code is _always_ in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
 
-Applications that require zero-downtime and (near) daily deployments typically have more than a couple of developers.  There are multiple streams of work in flight.  Be it bug fixes, new features, performance improvements, or security enhancements.  Being able to continuously deliver changes from multiple developers is the primary problem to solve.  By solving that, you'll also solve downtime (among other problems).  
+After getting to weekly 15 minute (or less) deployments the next challenges to solve for Continuous Delivery are:
 
-Continuously delivering changes, safely and quickly in a sustainable way, from multiple developers requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
+- Getting feedback faster and ensuring new features being built are useful to users.
+- Making it easy for several developers to work in the same code base and coordinate multiple streams of work.
+- Ensuring bug fixes, performance improvements, and security enhancements aren't blocked by new features and can deploy to production as soon as they are ready.
+- Quality is built-in to every step of the process, and not allowing non-useful functionality or critical issues reach users.
 
-## Coordinating multiple streams of work
+all that requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
+
+## The risk of adding new features and functionality
+
+Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is worse than not building the feature at all as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters, Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."  
+
+Even though it is a work of fiction, the thought that only ten, twenty, or even thirty percent of new features will get the desired benefits is a scary thought.  The sooner you can get feedback, the better it will be.  Trying to pivot after months of work will take substantially more effort than pivoting after a few days or weeks.  
+
+## Challenges coordinating multiple streams of work
 
 Ten years ago, I was an Octopus Deploy customer.  After implementing Octopus Deploy (and Redgate for DB changes), my application went from quarterly deployments taking two (or more) hours to taking 15 minutes and deploying every ten(ish) days.  Even better, deployment failures and emergency fixes went from a virtual guarantee to never happening.  Our deployments were consistent and reliable.  It was a considerable accomplishment involving many people.  
 
@@ -38,9 +49,33 @@ But, we hadn't improved on how we _create and release new functionality_ to our 
 - We'd "turn on" the feature during a production deployment, but it'd be on for everyone. Users could access the new feature while we were verifying, resulting in bug reports or panicked emails (often because a third-party system hadn't finished updating).
 - Merge "freezes" preventing new features from being merged after deploying a new feature to allow a few days for hot fixes and performance improvements.
 
-## The risk of adding new features and functionality
+## Impact of new features blocking deployments to production
 
-Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is even worse, as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."
+Octopus users reading through that list above might be asking, why didn't you use channels?  That'd stop you from needing a "merge freeze" on the main branch.  With Octopus Deploy's [channel](https://octopus.com/docs/releases/channels) functionality users can create different lifecycles (or pipelines) for their application.  We could've created a "hotfix" channel and a "main" channel.  Hotfix deploys to staging -> production, while the main channel deploys to dev -> QA -> staging -> production.  
+
+The idea behind a hotfix and main channel is it provides a path to production while a new feature is being tested in the QA environment.  But that configuration raises many questions.  
+
+- What branch deploys to the hotfix channel?
+- How do we know what code is running in production to create the hotfix branch from?
+- When do we merge the fix into the main branch and all the developers' branches?
+- What happens when multiple fixes are needed?  Does everyone work off the same hotfix branch?  Do you branch off the hotfix branch?
+- Are there any verification steps that run in dev and QA that won't run in staging or production?
+
+As a result, a complex branching strategy is implemented with some form of release, feature, hotfix, and main branches.  But this solution doesn't address the two biggest problems:
+
+- Why was main in a state it couldn't be deployed to production?
+- Why were so many changes from features merged into main at the same time that it required days or weeks of testing?
+
+## Delaying quality checks and relying on QA
+
+One of the most interesting questions I've been asked recently is "Does Octopus Deploy have the capability to monitor logs after a deployment and establish an error budget?  If that budget is exceeded, then automatically rollback to the previous version?"  Sometimes, but not always, that question is associated with canary deployments.  Route a percentage of traffic to the new version, monitor the logs for errors, and if the errors are within budget, increase the traffic to the new version.  
+
+The concept of an error budget and automatically rolling back has many problems.
+
+- The code is in such a bad state that critical errors occur post-deployment frequently enough that a process is needed.
+- Errors occur frequently enough in production that they can be seen within minutes post-deployment.
+- There is the possibility of something surprising you during a production deployment that wasn't caught in earlier environments.  Meaning the deployment process hasn't been tested multiple times and how you deploy to dev, test/QA, staging, isn't how you deploy to production.  Or, the build artifact that was tested and verified in testing environments isn't what is being deployed.
+- Unit tests do not cover all the possible code paths, and that users are being relied on to hit all the possible paths.
 
 ## Trunk based development
 
@@ -66,15 +101,15 @@ Trunk based development at scale works nicely with [GitHub flow](https://docs.gi
 
 That does not mean merging unfinished code into main after a few hours or a couple of days. Many features can take weeks or months to finish. Developers and product managers are responsible for creating small units of work that incrementally add functionality (and tests) until the feature is "done."  Each incremental change can be deployed to production, including database changes.
 
-Features take weeks or months to complete.  They will require dozens of short-lived feature branches.  That requires hiding feature behind a feature toggle until it is ready for users.  
+It is common for features to take weeks or months to be completed.  They will require dozens of short-lived feature branches.  That requires hiding feature behind a feature toggle until it is ready for users.  
 
-This allows you to have multiple features "in flight" and merged into main.  Because developers are incrementally checking in code, they can find conflicts with other developer's work much sooner.  Changes are integrated much sooner, and tests can be created to verify sensible combinations of features.  
+Combining trunk based development and feature toggles allows you to have multiple features "in flight" and merged into main.  Because developers are incrementally checking in code, they can find conflicts with other developer's work much sooner.  Changes are integrated much sooner, and tests can be created to verify sensible combinations of features.  
 
 ## Progressive delivery
 
-Trunk based deployments encourage frequent production deployments. However, you cannot deploy to production daily if each deployment has downtime. Any downtime might breach SLAs, frustrate customers, or prevent employees from doing their work. In addition, automation isn't perfect; a deployment could still fail. Progressive delivery solves those problems.
+Trunk based deployments encourage frequent production deployments. However, you cannot deploy to production daily if each deployment has downtime or there is even a chance of deployment failure. Any downtime might breach SLAs, frustrate customers, or prevent employees from doing their work. In addition, automation isn't perfect; a deployment could still fail. Progressive delivery solves those problems.
 
-Blue/Green, Canary, or "staging" strategies follows the same core principle.  Deploy a new version to a "staging" location in production.  Verify the new version while all the users remain on the old version.  Once verification is complete, route users to the new version.  The difference between canary, blue/green, and staging is the percentage of traffic routed.
+Blue/Green and Canary strategies follows the same core principle.  Deploy a new version to a "staging" location in production.  Verify the new version while all the users remain on the old version.  Once verification is complete, route users to the new version.  The difference between canary, blue/green, and staging is the percentage of traffic routed.
 
 ![Canary Deployment Diagram](https://d2908q01vomqb2.cloudfront.net/fe2ef495a1152561572949784c16bf23abb28057/2021/07/14/ecs_canary_2.gif)
 
@@ -93,7 +128,9 @@ The advantage of progressive delivery is that every user remains on the old vers
 
 ## Feature Toggles
 
-Many people believe feature toggles are a simple binary.  It's either on or off for everyone.  Turn it on in testing environments, but leave it off for production.  Feature toggles must follow the specification provided by [Openfeature](https://openfeature.dev).  Instead of an application-level binary, multiple user segments are created.  The feature toggle is then turned on for each segment.  
+All too often I hear from people who think feature toggles are a simple binary.  It's either on or off for everyone.  Turn it on in testing environments, but leave it off for production.   Feature toggles are much more robust than a simple binary.  [Openfeature](https://openfeature.dev) provides specifications and libraries to create robust feature toggles for getting feedback and progressively rolling out changes.  
+
+Instead of an application-level binary, multiple user segments are created.  The feature toggle is then turned on for each segment.  
 
 ![Feature Toggle Segments](feature-toggle-segments.png)
 
@@ -108,11 +145,13 @@ The segments can be whatever you want them to be:
 
 But that focuses on how you deliver functionality to users.  Feature toggles are so much more useful than progressively delivering functionality to users.
 
-Feature toggles can answer the question "Am I building the right thing?"  Combining feature toggles with trunk-based development, incrementally adds functionality to a feature until it is complete.  Features can be built using milestones.  A user segment can be created per milestone, allowing for faster feedback.
+Feature toggles can answer the question "Am I building the right thing?"  Combining feature toggles with trunk-based development, you can incrementally add functionality to a feature until it is complete.  What's powerful is you can let users try the functionality in production as it is being built.  Concepts such as pre-alpha, alpha, and beta are possible for your application.
 
 1. Pre-alpha - internal or staff users can [dogfood](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) new functionality.
 2. Alpha - early access to a subset of (willing) users for early feedback.  These users have to be willing to accept incomplete functionality and be willing to provide detailed feedback.
 3. Beta - test near complete functionality with a larger group of users before everyone.  Ideally, users can volunteer easily.  Beta testers ensure the feature works "at scale" and there are no unknown show-stopping bugs.  
+
+Depending on the feature, each stage can last a few weeks to months.  That will increase the likelihood of all unknown use cases being discovered.
 
 The advantages to this approach are numerous for building new features:
 
@@ -123,7 +162,7 @@ The advantages to this approach are numerous for building new features:
 
 ## TPF and roll backs
 
-The number one cause of wanting to roll back is critical bugs in new functionality.  I cannot tell you how many times I get asked about automating roll backs. Roll backs are a "break glass in case of emergency," not a default recovery strategy. 
+The number one cause of wanting to roll back is critical bugs that occur in new functionality.  I cannot tell you how many times I get asked about automating roll backs. Roll backs are a "break glass in case of emergency," not a default recovery strategy. 
 
 There are many problems with rolling back:
 
@@ -136,7 +175,9 @@ There are many problems with rolling back:
 The deployment pipeline should be treated like an assembly line.  Always moving forward.  Never backward.  By adopting TPF, rolling back to a previous version is no longer needed. 
 
 - Incrementally adding functionality instead of merging everything as a "big bang."  Smaller changes means less can go wrong, and they are much easier to test.
+- With pre-alpha, alpha, and beta release rings via feature toggles, the functionality will have been used and tested by a subset of users in production.  It decreases the likelihood of an unknown configuration causing a critical issue.
 - Blue/Green, Canary, and "Staging" patterns allow you to deploy and verify changes in production while users remain on the old version.  Users remain on the old version if the verification fails.
+- With a canary approach, if a critical issue impacting all users is discovered, stop routing more traffic to the new version.  Fix the issue, and start again.  
 - Providing the capability _from the start_ to turn it off new features to a subset of users (or all users) in case something goes wrong.  
 - The new functionality is already in production and has been used in a variety of scenarios by a subset of your user base.
 - It isn't an emergency to fix the issue, the fix can be made and pushed through the regular deployment pipeline.  After it has been deployed, it can be tested with a subset of users impacted.
