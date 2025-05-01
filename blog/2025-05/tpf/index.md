@@ -13,14 +13,13 @@ tags:
   - Continuous Delivery
 ---
 
-Everyone building deployment pipelines sees two revolutions.
+We have seen thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  The next logical step is to go from weekly 15 minute (or less) deployments to daily zero-downtime deployments.  The prevalent opinion is that is achieved by implementing canary or blue/green deployments.
 
-- The initial automation, implementing a modern build server and a deployment tool like Octopus Deploy.  Doing that results in going from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures.
-- Implementing [something] to go from weekly deployments to daily deployments.  The prevalent opinion is that [something] is implementing progressive delivery, canary deployments, blue/green deployments, or feature flags.
+The primary problem to solve is **not** downtime.  That is not what continuous delivery is about.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  The code is _always_ in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
 
-The problem to solve is **not** downtime.  That is not what continuous delivery is about.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  
+Applications that require zero-downtime and (near) daily deployments typically have more than a couple of developers.  There are multiple streams of work in flight.  Be it bug fixes, new features, performance improvements, or security enhancements.  Being able to continuously deliver changes from multiple developers is the primary problem to solve.  By solving that, you'll also solve downtime (among other problems).  
 
-Applications that require daily deployments will generally have more than two developers working on them.  There are multiple streams of work in flight.  Continuously delivering to production requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
+Continuously delivering changes, safely and quickly in a sustainable way, from multiple developers requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
 
 ## Coordinating multiple streams of work
 
@@ -45,7 +44,9 @@ Building new features and functionality is risky.  Software development is a zer
 
 ## Trunk based development
 
-[Trunk based development](https://trunkbaseddevelopment.com/) promotes frequent check-ins to the main or default branch.  
+The requirement of the code is always in a deployable state has created a number of branching strategies.  With [feature branches](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) / [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow), [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), [Forking](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow), and [Trunk based development](https://trunkbaseddevelopment.com/) being among the most popular.
+
+One of the core principles of Continuous Delivery is to work in small batches and incrementally build features.  That is the best way to ensure the code is always in a deployable state.  The branching strategy that promotes small batches and incrementally building features is Trunk based development.  
 
 > A source-control branching model, where developers collaborate on code in a single branch called "trunk", resist any pressure to create other long-lived development branches by employing documented techniques. 
 
@@ -61,16 +62,11 @@ My personal preference is trunk based development "at scale."  
 
 Source: https://trunkbaseddevelopment.
 
-Trunk based development at scale works nicely with [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow), where changes are made in short-lived branches and merged via pull requests.
-
-It requires developers to adopt two key concepts.
-
-1. Short-lived feature branches - no more than a couple of days.  Ideally, less than a day.
-1. Incremental changes - no more delivering a feature as a "big bang."  
+Trunk based development at scale works nicely with [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow), where changes are made in short-lived branches and merged via pull requests.  Each branch should live no more than a couple of days, ideally no more than a few hours.  
 
 That does not mean merging unfinished code into main after a few hours or a couple of days. Many features can take weeks or months to finish. Developers and product managers are responsible for creating small units of work that incrementally add functionality (and tests) until the feature is "done."  Each incremental change can be deployed to production, including database changes.
 
-Hide the feature behind a feature toggle until it is ready for users.  
+Features take weeks or months to complete.  They will require dozens of short-lived feature branches.  That requires hiding feature behind a feature toggle until it is ready for users.  
 
 This allows you to have multiple features "in flight" and merged into main.  Because developers are incrementally checking in code, they can find conflicts with other developer's work much sooner.  Changes are integrated much sooner, and tests can be created to verify sensible combinations of features.  
 
@@ -93,7 +89,7 @@ Deployments can fail for a number of reasons.
 
 The advantage of progressive delivery is that every user remains on the old version while those failures are happening. Users don't have to be routed to the new version as soon as verification is completed. For example, you might deploy at 2 pm and wait to route traffic at 9 pm when there are fewer users. 
 
-[Many articles](https://codefresh.io/learn/software-deployment/understanding-progressive-delivery-concepts-and-best-practices/) on [progressive delivery](https://launchdarkly.com/blog/what-is-progressive-delivery-all-about/), use [feature flags](https://amplitude.com/explore/experiment/what-is-progressive-delivery).  Lorem ipsum (more to come).
+[Many articles](https://codefresh.io/learn/software-deployment/understanding-progressive-delivery-concepts-and-best-practices/) on [progressive delivery](https://launchdarkly.com/blog/what-is-progressive-delivery-all-about/), use [feature flags](https://amplitude.com/explore/experiment/what-is-progressive-delivery).  Those articles focus on progressively delivering functionality to users over several hours, days, or even weeks.  With TPF, feature toggles have been promoted, as they provide a way to get feedback faster from users and support multiple streams of work.
 
 ## Feature Toggles
 
@@ -110,28 +106,42 @@ The segments can be whatever you want them to be:
 - Country
 - Specific entitlements
 
-The advantages to this approach are numerous:
+But that focuses on how you deliver functionality to users.  Feature toggles are so much more useful than progressively delivering functionality to users.
 
-1. Internal or staff users can [dogfood](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) new functionality in production before anyone else.
-2. Provide early access to a subset of alpha users for early feedback.
-3. Beta-test new functionality with a large group of users before it goes live for everyone.
-4. Being able to pivot and change functionality based on user feedback.
-5. Rolling back involves turning off a feature toggle, not redeploying a previous version.
-6. Turning off the toggle is often low-risk, as it has already been off for weeks or months in production.
+Feature toggles can answer the question "Am I building the right thing?"  Combining feature toggles with trunk-based development, incrementally adds functionality to a feature until it is complete.  Features can be built using milestones.  A user segment can be created per milestone, allowing for faster feedback.
 
-## Rollbacks become a thing of the past
+1. Pre-alpha - internal or staff users can [dogfood](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) new functionality.
+2. Alpha - early access to a subset of (willing) users for early feedback.  These users have to be willing to accept incomplete functionality and be willing to provide detailed feedback.
+3. Beta - test near complete functionality with a larger group of users before everyone.  Ideally, users can volunteer easily.  Beta testers ensure the feature works "at scale" and there are no unknown show-stopping bugs.  
 
-The number one driver of rolling back is critical bugs in new functionality.  By adopting TPF, you are preventing that from happening by: 
+The advantages to this approach are numerous for building new features:
 
-- Incrementally adding functionality instead of merging everything as a "big bang."
-- Providing the capability _from the start_ of the new feature to turn it off.
-- Frequently deploying with that functionality turned off.
+- Features that take months to build can be used _in production_ for weeks by a subset of users.  Bugs will be found and reported before reaching the entire user base.
+- Application teams get feedback faster, allowing them to verify assumptions, and if necessary, make changes to build a more useful feature.
+- Multiple features can be worked on at the same time.  Each feature can have different alpha and beta testers.
+- Developers can test how features interact with each other much sooner.  Either manually or via automated tests.  If a critical collision occurs, they can turn off a specific combo of features and get unblocked while the issue is fixed.
 
-That is not to say every feature will be bug-free, far from it.  You'll always encounter unknown use cases, random configurations you weren't expecting that cause your feature to fail, or substandard performance.
+## TPF and roll backs
 
-The big difference is that with feature toggles, you can turn off that functionality for specific users. Before TPF, you'd roll back to a previous version and turn it off _for all users_. Imagine being able to say to a user, "We've identified the root cause. We'll push out a fix overnight. In the meantime, we've turned it off for you to prevent any issues."
+The number one cause of wanting to roll back is critical bugs in new functionality.  I cannot tell you how many times I get asked about automating roll backs. Roll backs are a "break glass in case of emergency," not a default recovery strategy. 
 
-The deployment pipeline should be treated like an assembly line.  Always moving forward.  Never backward.  
+There are many problems with rolling back:
+
+- Rolling back would turn off the new feature _for all users_, even if the issue impacted a small (but important) group of users.  
+- Any other change included in the new release is rolled back, including bug fixes, security enhancements, or performance improvements.  
+- Roll back plans are often untested, the first time the plan is executed is when you do the roll back.  Typically in Production.
+- Restoring a database from a recent back up _will result_ in data loss.  Or, the previous version runs on the newest version of the database, increasing the chance of data corruption.
+- The window to roll back is much smaller than most people think.  For a lot of applications, it's less than an hour.  After a few hours, a roll back is not a viable option.
+
+The deployment pipeline should be treated like an assembly line.  Always moving forward.  Never backward.  By adopting TPF, rolling back to a previous version is no longer needed. 
+
+- Incrementally adding functionality instead of merging everything as a "big bang."  Smaller changes means less can go wrong, and they are much easier to test.
+- Blue/Green, Canary, and "Staging" patterns allow you to deploy and verify changes in production while users remain on the old version.  Users remain on the old version if the verification fails.
+- Providing the capability _from the start_ to turn it off new features to a subset of users (or all users) in case something goes wrong.  
+- The new functionality is already in production and has been used in a variety of scenarios by a subset of your user base.
+- It isn't an emergency to fix the issue, the fix can be made and pushed through the regular deployment pipeline.  After it has been deployed, it can be tested with a subset of users impacted.
+
+That is not to say every feature will be bug-free, far from it.  You'll always encounter unknown use cases, random configurations you weren't expecting that cause your feature to fail, or substandard performance.  But you'll have a ready-to-use mechanism, that has already been tested, to turn off the feature.  Imagine being able to say to a user, "We've identified the root cause. We'll push out a fix overnight. In the meantime, we've turned the feature off for you to get you unblocked."
 
 ## TPF and Octopus Cloud
 
@@ -174,6 +184,6 @@ There have been numerous benefits to this approach.
 
 TPF, trunk based development, progressive delivery, and feature toggles are a tripod.  All three are needed to achieve true Continuous Delivery; getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  Without trunk-based development, you cannot iteratively make changes to a feature to gather feedback faster.  Without progressive delivery, you increase the risk of a deployment failure or prolonged downtime.  And without feature toggles, you cannot get feedback for the feature from a subset of users, or if something wrong happens, unable to turn off the new feature.
 
-We have seen two revolutionary jumps happen with our customers.  The first one is from two-hour deployments to 15-minute deployments.  The second one is from 15-minute deployments to zero downtime.  The first revolution is accomplished by implementing Octopus Deploy, having a single deployment process for all environments, automating the deployment for all components, and leveraging runbooks for day 0 and day 2 operations.  The second revolution is accomplished by implementing TPF.  In 2025, expect more functionality in Octopus Deploy to support this.  [Feature Toggles](https://roadmap.octopus.com/c/121-feature-toggles) and [Ephemeral Environments](https://roadmap.octopus.com/c/31-ephemeral-environments) are actively being worked on.  With easier [modeling of canary and blue/green deployments](https://roadmap.octopus.com/c/145-easy-blue-green-and-canary-modeling) is being shaped.
+We believe that the best way to achieve Continuous Delivery is to adopt TPF.  In 2025, expect more functionality in Octopus Deploy to support this.  [Feature Toggles](https://roadmap.octopus.com/c/121-feature-toggles) and [Ephemeral Environments](https://roadmap.octopus.com/c/31-ephemeral-environments) are actively being worked on.  We are also working on plans to make [modeling of canary and blue/green deployments](https://roadmap.octopus.com/c/145-easy-blue-green-and-canary-modeling) in Octopus Deploy even easier.
 
 Until next time, Happy Deployments!
