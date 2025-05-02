@@ -13,9 +13,11 @@ tags:
   - Continuous Delivery
 ---
 
-We have helped thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  When I talk to customers, many believe the next step is implementing blue/green or canary deployments.  But what they don't realize is the problem is no longer _how we deploy_.  The problem has shifted to _functionality is created and released_ to users.
+We have helped thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  When I talk to customers, they want to further improve their DORA metrics.  To do that, many of them believe the next step is implementing blue/green or canary deployments to increase the deployment frequency from weekly to daily with zero downtime.  
 
-Solving that problem requires implementing the principles of Continuous Delivery and focusing on:
+Automating deployments made production deployments _consistent, predictable, and reliable_.  To achieve that, application teams had to change _how they introduced changes_ into the deployment pipeline.  Typically application teams were required to adopt new tooling, such as git or containers.  Or, storing everything as code, database migration scripts, build and deployment processes, infrastructure, and hosting configuration.  
+
+Applications teams were not required to change how they _built and released new functionality_.  A lot of application teams I've encountered still build features like they did when they had monthly or quarterly releases.  Even the ones with weekly 15-minute deployments.   It is impossible to achieve the benefits of Continuous Delivery, low risk releases, faster time to market, higher quality, lower costs, better products, and happier teams without addressing the following:
 
 - Getting feedback faster and ensuring new features being built are useful to users.
 - Making it easy for several developers to work in the same code base and coordinate multiple streams of work.
@@ -23,7 +25,7 @@ Solving that problem requires implementing the principles of Continuous Delivery
 - Ensuring bug fixes, performance improvements, and security enhancements aren't blocked by new features and can deploy to production in the same pipeline as soon as they are ready.
 - Quality is built-in to every step of the process, and not allowing non-useful functionality or critical issues reach users.
 
-There are many ways to accomplish Continuous Delivery.  As a company, we believe the best approach is implementing TPF:
+There are many ways to solve those challenges.  As a company, we believe the best approach is implementing TPF:
 
 - [[T]runk based development](https://trunkbaseddevelopment.com/) for making small incremental changes instead of long-lived feature branches. 
 - [[P]rogressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) for frequent zero-downtime deployments of small incremental changes.
@@ -44,9 +46,9 @@ This section discusses the dangers of avoiding:
 
 ### The risk of adding new features and functionality
 
-Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is worse than not building the feature at all as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters, Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."  
+Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is worse than not building the feature at all as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters, Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."  Microsoft's own research showed [2/3 of features they build deliver zero or negative value](https://ai.stanford.edu/~ronnyk/ExPThinkWeek2009Public.pdf).
 
-Even though it is a work of fiction, the thought that only ten, twenty, or even thirty percent of new features will get the desired benefits is a scary thought.  The sooner you can get feedback, the better it will be.  Trying to pivot after months of work will take substantially more effort than pivoting after a few days or weeks.  
+The sooner you can get feedback, the better it will be.  Trying to pivot after months of work will take substantially more effort than pivoting after a few days or weeks.  
 
 ### Challenges coordinating multiple streams of work
 
