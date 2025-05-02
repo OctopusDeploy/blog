@@ -13,26 +13,42 @@ tags:
   - Continuous Delivery
 ---
 
-We have seen thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  It is a big accomplishment.  But, there is still more work to do.  Often, we talk to many customers who believe the next step is to fully embrace Continuous Delivery, and add even more automation.  Go from weekly 15 minute (or less) deployments to daily zero-downtime deployments by implementing canary or blue/green deployments.
+We have helped thousands of customers go from quarterly multi-hour deployments with frequent failures to 15 minute (or less) deployments every week with infrequent failures after implementing Octopus Deploy.  When I talk to customers, many believe the next step is implementing blue/green or canary deployments.  But what they don't realize is the problem is no longer _how we deploy_.  The problem has shifted to _functionality is created and released_ to users.
 
-That is a fundamental misunderstanding of Continuous delivery.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  The code is _always_ in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
-
-After getting to weekly 15 minute (or less) deployments the next challenges to solve for Continuous Delivery are:
+Solving that problem requires implementing the principles of Continuous Delivery and focusing on:
 
 - Getting feedback faster and ensuring new features being built are useful to users.
 - Making it easy for several developers to work in the same code base and coordinate multiple streams of work.
+- Separating the concept of deploying a new version from releasing new functionality.
+- Ensuring bug fixes, performance improvements, and security enhancements aren't blocked by new features and can deploy to production in the same pipeline as soon as they are ready.
+- Quality is built-in to every step of the process, and not allowing non-useful functionality or critical issues reach users.
+
+There are many ways to accomplish Continuous Delivery.  As a company, we believe the best approach is implementing TPF:
+
+- [[T]runk based development](https://trunkbaseddevelopment.com/) for making small incremental changes instead of long-lived feature branches. 
+- [[P]rogressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) for frequent zero-downtime deployments of small incremental changes.
+- [[F]eature toggles](https://martinfowler.com/articles/feature-toggles.html) to get faster feedback from a subset of users in production while the feature is being built via small incremental changes and to allow for multiple streams of work.
+
+## Why Continuous Delivery is the next step
+
+Implementing Octopus Deploy changes applications are built and deployed.  It solves a lot of problems by creating a consistent deployment process for all environments and reduced surprises when deploying to production.  Getting from quarterly multi-hour error prone deployments to 15 minute weekly zero-error deployments is a big accomplishment, and worth celebrating.
+
+The problem is, you don't really have to change how new features and functionality are added to the application.  Long running feature branches, merging in big changes, delivering near-complete functionality to every user are typical.  That isn't Continuous Delivery.  [Continuous Delivery](https://continuousdelivery.com) focuses on getting changes of all types—including new features, configuration changes, bug fixes and experiments—into production, or into the hands of users, _safely and quickly_ in a _sustainable_ way.  The code is _always_ in a deployable state, even in the face of teams of thousands of developers making changes on a daily basis.
+
+This section discusses the dangers of avoiding:
+- Getting feedback faster and ensuring new features being built are useful to users.
+- Making it easy for several developers to work in the same code base and coordinate multiple streams of work.
+- Separating the concept of deploying a new version from releasing new functionality.
 - Ensuring bug fixes, performance improvements, and security enhancements aren't blocked by new features and can deploy to production as soon as they are ready.
 - Quality is built-in to every step of the process, and not allowing non-useful functionality or critical issues reach users.
 
-all that requires a fundamental change in how you _create and release functionality_ to your users.  It requires TPF, [trunk based development](https://trunkbaseddevelopment.com/), [progressive delivery](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus), and [feature toggles](https://martinfowler.com/articles/feature-toggles.html). 
-
-## The risk of adding new features and functionality
+### The risk of adding new features and functionality
 
 Building new features and functionality is risky.  Software development is a zero-sum game, a developer working on one feature cannot work on other features.  It requires an investment from the company in both time and resources.  Building the wrong feature is worse than not building the feature at all as the time and money could have been spent elsewhere.  In the [Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592), one of the main characters, Erik states "If you're lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you'll be."  
 
 Even though it is a work of fiction, the thought that only ten, twenty, or even thirty percent of new features will get the desired benefits is a scary thought.  The sooner you can get feedback, the better it will be.  Trying to pivot after months of work will take substantially more effort than pivoting after a few days or weeks.  
 
-## Challenges coordinating multiple streams of work
+### Challenges coordinating multiple streams of work
 
 Ten years ago, I was an Octopus Deploy customer.  After implementing Octopus Deploy (and Redgate for DB changes), my application went from quarterly deployments taking two (or more) hours to taking 15 minutes and deploying every ten(ish) days.  Even better, deployment failures and emergency fixes went from a virtual guarantee to never happening.  Our deployments were consistent and reliable.  It was a considerable accomplishment involving many people.  
 
@@ -49,9 +65,19 @@ But, we hadn't improved on how we _create and release new functionality_ to our 
 - We'd "turn on" the feature during a production deployment, but it'd be on for everyone. Users could access the new feature while we were verifying, resulting in bug reports or panicked emails (often because a third-party system hadn't finished updating).
 - Merge "freezes" preventing new features from being merged after deploying a new feature to allow a few days for hot fixes and performance improvements.
 
-## Impact of new features blocking deployments to production
+### Dangers of coupling deploying new versions and releasing functionality to users
 
-Octopus users reading through that list above might be asking, why didn't you use channels?  That'd stop you from needing a "merge freeze" on the main branch.  With Octopus Deploy's [channel](https://octopus.com/docs/releases/channels) functionality users can create different lifecycles (or pipelines) for their application.  We could've created a "hotfix" channel and a "main" channel.  Hotfix deploys to staging -> production, while the main channel deploys to dev -> QA -> staging -> production.  
+The number one cause of critical bugs happens when a new feature is released to users.  They are caused by an edge case, conflict with another feature, or unintended usage.  Deploying a new feature carries significantly more risk than deploying a bug fix or a security enhancement.  
+
+Once users start using the new feature there is no going back.  Rolling back to a previous version risks data corruption, user interface issues, and reputational damage from a substandard user experience.  Rolling back will make a problem turn into a catastrophe.  
+
+Not only that, there are no controls in place to control when users start using the new feature.  If it is a feature on the home page or a primary landing page, it is likely the feature will be used right away by many users.  But, you won't discover problems until the users start using the new feature.
+
+The common retort I hear is "this is what canary deployments will solve."  Canary Deployments _do not_ de-risk new features and functionality.  They de-risk deployment failures and provide a zero-downtime strategy.  For new functionality they ensure the new version passes smoke tests.  Unless the application is being used by tens of thousands of users every hour, there is no guarantee routing 5%, 10% or even 25% of traffic will find all the edge cases, conflicts with other features, or unintended usage.  Those issues might not happen until days or weeks after the feature is deployed.  
+
+### Impact of new features blocking deployments to production
+
+Octopus users reading through the list of issues coordinating multiple work streams might be asking, why didn't you use channels?  That'd stop you from needing a "merge freeze" on the main branch.  Octopus Deploy's [channel](https://octopus.com/docs/releases/channels) functionality allows users can create different lifecycles (or pipelines) for their application.  A common configuration I see is a "hotfix" channel and a "main" channel.  Hotfix deploys to staging -> production, while the main channel deploys to dev -> QA -> staging -> production.  
 
 The idea behind a hotfix and main channel is it provides a path to production while a new feature is being tested in the QA environment.  But that configuration raises many questions.  
 
@@ -60,24 +86,36 @@ The idea behind a hotfix and main channel is it provides a path to production wh
 - When do we merge the fix into the main branch and all the developers' branches?
 - What happens when multiple fixes are needed?  Does everyone work off the same hotfix branch?  Do you branch off the hotfix branch?
 - Are there any verification steps that run in dev and QA that won't run in staging or production?
+- The issue made it through all the gates in place for the full pipeline, why would we want to skip those same gates for the fix?
 
 As a result, a complex branching strategy is implemented with some form of release, feature, hotfix, and main branches.  But this solution doesn't address the two biggest problems:
 
 - Why was main in a state it couldn't be deployed to production?
 - Why were so many changes from features merged into main at the same time that it required days or weeks of testing?
 
-## Delaying quality checks and relying on QA
+The same pipeline should be used for all deployments to production.  There shouldn't be a "cut down" or simplistic pipeline for hot fixes or security enhancements.  
+
+### Concerns of shifting quality gates to production
 
 One of the most interesting questions I've been asked recently is "Does Octopus Deploy have the capability to monitor logs after a deployment and establish an error budget?  If that budget is exceeded, then automatically rollback to the previous version?"  Sometimes, but not always, that question is associated with canary deployments.  Route a percentage of traffic to the new version, monitor the logs for errors, and if the errors are within budget, increase the traffic to the new version.  
 
-The concept of an error budget and automatically rolling back has many problems.
+The core concept makes sense, look for critical errors, and if something is "wrong" automatically roll back to a previous version.  But, the problems soon appear when attempting to implement the process.
 
-- The code is in such a bad state that critical errors occur post-deployment frequently enough that a process is needed.
+- The code is in such a state that critical errors occur post-deployment frequently enough that a process is needed.
 - Errors occur frequently enough in production that they can be seen within minutes post-deployment.
-- There is the possibility of something surprising you during a production deployment that wasn't caught in earlier environments.  Meaning the deployment process hasn't been tested multiple times and how you deploy to dev, test/QA, staging, isn't how you deploy to production.  Or, the build artifact that was tested and verified in testing environments isn't what is being deployed.
-- Unit tests do not cover all the possible code paths, and that users are being relied on to hit all the possible paths.
+- The same critical errors happen that they can be identified automatically. 
+- All critical errors are equal, and that the best solution is to roll back to the previous version of the code.
+- Releasing new functionality to users isn't separated from deploying a new version of code.
+- There is the possibility of something surprising you during a production deployment that wasn't caught in earlier environments.  Either in testing or via the deployment process itself.
+- The belief that a subset of users could try all the possible use cases in a few minutes or hours.
+- Unit tests do not cover all the possible code paths; it isn't until production that all code paths are exercised.
+- The deployment window is large enough for a rollback to be successfully executed.  The window to roll back is significantly smaller than most people realize.
 
-## Trunk based development
+Prior to joining Octopus Deploy I was a developer for 15 years.  I've done thousands of deployments, with hundreds going to production.  I _never once_ successfully rolled back a production deployment.  In fact, the small number of times a roll back was considered, the risk of data corruption and negative user impact was too high.  Fixing the issue and rolling forward was _always_ the safest and fastest option.  
+
+## Why TPF is the best Continuous Delivery implementation
+
+### Trunk based development
 
 The requirement of the code is always in a deployable state has created a number of branching strategies.  With [feature branches](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) / [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow), [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), [Forking](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow), and [Trunk based development](https://trunkbaseddevelopment.com/) being among the most popular.
 
@@ -105,7 +143,7 @@ It is common for features to take weeks or months to be completed.  They will re
 
 Combining trunk based development and feature toggles allows you to have multiple features "in flight" and merged into main.  Because developers are incrementally checking in code, they can find conflicts with other developer's work much sooner.  Changes are integrated much sooner, and tests can be created to verify sensible combinations of features.  
 
-## Progressive delivery
+### Progressive delivery
 
 Trunk based deployments encourage frequent production deployments. However, you cannot deploy to production daily if each deployment has downtime or there is even a chance of deployment failure. Any downtime might breach SLAs, frustrate customers, or prevent employees from doing their work. In addition, automation isn't perfect; a deployment could still fail. Progressive delivery solves those problems.
 
@@ -126,7 +164,7 @@ The advantage of progressive delivery is that every user remains on the old vers
 
 [Many articles](https://codefresh.io/learn/software-deployment/understanding-progressive-delivery-concepts-and-best-practices/) on [progressive delivery](https://launchdarkly.com/blog/what-is-progressive-delivery-all-about/), use [feature flags](https://amplitude.com/explore/experiment/what-is-progressive-delivery).  Those articles focus on progressively delivering functionality to users over several hours, days, or even weeks.  With TPF, feature toggles have been promoted, as they provide a way to get feedback faster from users and support multiple streams of work.
 
-## Feature Toggles
+### Feature Toggles
 
 All too often I hear from people who think feature toggles are a simple binary.  It's either on or off for everyone.  Turn it on in testing environments, but leave it off for production.   Feature toggles are much more robust than a simple binary.  [Openfeature](https://openfeature.dev) provides specifications and libraries to create robust feature toggles for getting feedback and progressively rolling out changes.  
 
@@ -160,11 +198,11 @@ The advantages to this approach are numerous for building new features:
 - Multiple features can be worked on at the same time.  Each feature can have different alpha and beta testers.
 - Developers can test how features interact with each other much sooner.  Either manually or via automated tests.  If a critical collision occurs, they can turn off a specific combo of features and get unblocked while the issue is fixed.
 
-## TPF and roll backs
+## Benefits of TPF
 
-The number one cause of wanting to roll back is critical bugs that occur in new functionality.  I cannot tell you how many times I get asked about automating roll backs. Roll backs are a "break glass in case of emergency," not a default recovery strategy. 
+### TPF and roll backs
 
-There are many problems with rolling back:
+Roll backs are a "break glass in case of emergency," not a default recovery strategy. There are many problems with rolling back:
 
 - Rolling back would turn off the new feature _for all users_, even if the issue impacted a small (but important) group of users.  
 - Any other change included in the new release is rolled back, including bug fixes, security enhancements, or performance improvements.  
@@ -184,7 +222,7 @@ The deployment pipeline should be treated like an assembly line.  Always moving
 
 That is not to say every feature will be bug-free, far from it.  You'll always encounter unknown use cases, random configurations you weren't expecting that cause your feature to fail, or substandard performance.  But you'll have a ready-to-use mechanism, that has already been tested, to turn off the feature.  Imagine being able to say to a user, "We've identified the root cause. We'll push out a fix overnight. In the meantime, we've turned the feature off for you to get you unblocked."
 
-## TPF and Octopus Cloud
+### TPF and Octopus Cloud
 
 In the early days of Octopus Deploy, we implemented canary deployments using release rings.  
 
