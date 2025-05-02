@@ -94,7 +94,7 @@ Financial institutions need good plans for both daily operations and emergencies
 - Applying urgent fixes
 - Recovering backed-up data
 
-Automated runbooks are safer and more reliable, reducing the need for broad distribution of elevated access. Runbooks in Octopus also log changes and runs to the standard Octopus audit trail. You may even find opportunities to use runbooks to automate compliance tasks.
+Automated runbooks are safer and more reliable, reducing the need for broad distribution of elevated access. Runbooks in Octopus also log changes and runs to the standard Octopus audit trail. You can also use runbooks to automate compliance tasks like recovery testing, audit reporting, or probing firewall ports.
 
 ![A list of runbooks that have been triggered and whether they succeeded.](operations-overview.png)
 
