@@ -1,8 +1,8 @@
 ---
-title: New to Enterprise
-description: 2025.2 includes a new features for our enterprise tier.
+title: New to our Enterprise tier
+description: Octopus 2025.2 includes a new features for our Enterprise tier.
 author: michelle.obrien@octopus.com
-visibility: private
+visibility: public
 published: 2025-06-02-1400
 metaImage: additions_and_improvements_to_enterprise_offering_2025_1500x800.jpg
 bannerImage: additions_and_improvements_to_enterprise_offering_2025_1500x800.jpg
@@ -15,51 +15,64 @@ tags:
   - Integrations
 ---
 
+This quarter, we challenged ourselves to make small but impactful changes to our enterprise offering. In Octopus Server 2025.2, we added:
 
-## Additions and improvements to our enterprise tier offering
+- Global deployment freezes 
+- Priority deployments 
+- ITSM for runbooks 
 
-This quarter we challenged ourselves to make small but impactful changes to our enterprise offering.  In 2025.2 we have added;
-- Global Deployment Freezes 
-- Priority Deployments 
-- ITSM for Runbooks 
+We also added new capabilities to the Deployment Freeze and Priority Deployments features.
 
-We have also added new capabilities to both Deployment Freezes and Priority Deployments as explored below.
+In this post, I take you through the changes to our Enterprise tier.
+
+### Deployment freezes
+
+From Octopus Server 2025.2, all enterprise customers have access to both global freezes and our new project-level freezes. 
+
+Project freezes provide an entry level to deployment freezes with lower permission requirements. They empower your teams to create their own freezes for projects without needing administrator permissions. [Read more about project freezes](https://octopus.com/docs/deployments/deployment-freezes/project-deployment-freezes).
+
+Recent enhancements to our Deployment Freeze feature include:
+
+- Recurring deployment freezes—providing the ability to create maintenance windows.
+- Freeze by tenant—for more granular freezes.
 
 ![Create Deployment Freeze window showing new functionality of recurring freezes](global-freeze.png)
 
-### Deployment Freezes
-From 2025.2 all enterprise customers will have access to both Global Freezes and our new Project Level Freezes. Project Freezes provide an entry level to Deployment Freezes with lower permission requirements, empowering your teams to create their own freezes for projects without needing administrator permissions. Read more about Project Freezes [here](https://octopus.com/docs/deployments/deployment-freezes/project-deployment-freezes).
+### Priority deployments
 
-Recent enhancements to our Deployment Freeze feature are;
-- Recurring Deployment Freezes providing the ability to create maintenance windows
-- Freeze by Tenant for more granular freezes
+Our Priority Deployments feature provides 2 ways to automate deployment priority:
+
+1. Prioritize the deployment when creating a new deployment.
+2. Prioritize an environment in a lifecycle phase. This prioritizes all deployments to the environments in the lifecycle.
+
+In 2025.2, we expanded priority deployments to Runbooks. This makes it easier to proactively manage your task queue. Inidividual runbooks will inherit the lifecycle priority, or you can prioritize individuals runs on an adhoc basis.
 
 ![New Runbook run window showing new functionality of Priority Deployments for Runbooks](priority-runbooks.png)
 
-### Priority Deployments
-Our priority deployments feature provides two ways to automate deployment priority:
+### ITSM for runbooks
 
-1. Prioritize the deployment when creating a new deployment
-2. Prioritize an environment in a lifecycle phase. This prioritizes all deployments to that environment(s) in the lifecycle.
+You can now create ITSM change requests from your runbooks. This is particularly useful if you use runbooks to provision infrastructure and need to attach change requests to progress through the relevant approvals. You can choose which runbooks you'd like to be change-controlled in your ITSM settings.
 
-In 2025.2 we have expanded priority deployments to Runbooks, improving the ability the proactively manage your task queue. Inidividual Runbooks will inherit the lifecycle priority or individuals runs can be prioritised on an adhoc basis.
+![ITSM settings window showing new functionality of ITSM for Runbooks](itsm-runbooks.png)
 
-![ISTM settings window showing new functionality of ITSM for Runbooks](itsm-runbooks.png)
+## What's next?
 
-### ITSM for Runbooks
-ITSM change requests can now be created from your Runbooks. This functionality will be particularly useful for customers who use Runbooks to provision infrastructure and need change requests attached to these to progress through the relevant approvals. Choose which Runbooks you would like to be change controlled within your ITSM settings.
+We also have more exciting changes coming soon to our Enterprise tier.
 
-
-### What's next for Enterprise?
 #### Standardized, reusable, and flexible deployment processes with Process Templates
-Process Templates will soon be available for Early Access Preview for Enterprise customers. This gives teams reusable blocks of steps to use as blueprints to reduce process duplication and standardize best practices across pipelines. Platform Teams can update and roll out changes to these templates from a new area within Octopus, the Platform Hub, making them easier to maintain in the long term. Some steps can also be flexible, so teams have the freedom to diverge without sacrificing quality or compliance.     
 
-This is the first feature from our Blueprints and Guardrails set of capabilities, allowing you to automate compliance and standardize best practices across your organization's deployment processes. Keep an eye on our roadmap for what else the team has planned, including:
+Process Templates will soon be available as an early access preview (EAP) for enterprise customers. This gives teams reusable blocks of steps to use as blueprints to reduce process duplication and standardize best practices across pipelines. 
+
+Platform Teams can update and roll out changes to these templates from a new area in Octopus, the Platform Hub, making them easier to maintain in the long term. Some steps will also be flexible, so teams have the freedom to diverge without sacrificing quality or compliance.     
+
+This is the first feature from our Blueprints and Guardrails set of capabilities, letting you automate compliance and standardize best practices across your organization's deployment processes. Keep an eye on [our roadmap](https://roadmap.octopus.com/tabs/2-planned) for what else the team has planned, including:
+
 - Deployment Policies
 - Project Templates
 
 
 #### Interested in upgrading to the Enterprise tier?
-Please contact sales@octopus.com.
+
+Please contact our helpful [Sales team](sales@octopus.com).
 
 Happy deployments!
