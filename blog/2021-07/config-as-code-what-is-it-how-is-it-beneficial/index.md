@@ -47,7 +47,7 @@ Infrastructure as Code and Config as Code still complement each other though and
 
 ## Practical use of Config as Code
 
-What does using Config as Code in practice actually imply? There are several ways to implement it in practice, and not all of them make sense for every organization. Read how the broad strokes outlined below may fit your unique needs:
+What does using [Config as Code](https://configu.com/blog/what-is-configuration-as-code-cac-and-5-tips-for-success/) in practice actually imply? There are several ways to implement it in practice, and not all of them make sense for every organization. Read how the broad strokes outlined below may fit your unique needs:
 
 - Using unique configuration source control repositories.
 - Developing a tailored build and deployment process.
