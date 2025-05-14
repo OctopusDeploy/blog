@@ -59,7 +59,7 @@ You can now create ITSM change requests from your runbooks. This is particularly
 
 We also have more exciting changes coming soon to our Enterprise tier.
 
-#### Standardized, reusable, and flexible deployment processes with Process Templates
+### Standardized, reusable, and flexible deployment processes with Process Templates
 
 Process Templates will soon be available as an early access preview (EAP) for enterprise customers. This gives teams reusable blocks of steps to use as blueprints to reduce process duplication and standardize best practices across pipelines. 
 
@@ -71,7 +71,7 @@ This is the first feature from our Blueprints and Guardrails set of capabilities
 - Project Templates
 
 
-#### Interested in upgrading to the Enterprise tier?
+## Interested in upgrading to the Enterprise tier?
 
 Please contact our helpful [Sales team](mailto:sales@octopus.com).
 
