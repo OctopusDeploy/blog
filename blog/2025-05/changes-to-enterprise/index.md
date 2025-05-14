@@ -25,7 +25,7 @@ We also added new capabilities to the Deployment Freeze and Priority Deployments
 
 In this post, I take you through the changes to our Enterprise tier.
 
-### Deployment freezes
+## Deployment freezes
 
 From Octopus Server 2025.2, all enterprise customers have access to both global freezes and our new project-level freezes. 
 
@@ -38,7 +38,7 @@ Recent enhancements to our Deployment Freeze feature include:
 
 ![Create Deployment Freeze window showing new functionality of recurring freezes](global-freeze.png)
 
-### Priority deployments
+## Priority deployments
 
 Our Priority Deployments feature provides 2 ways to automate deployment priority:
 
@@ -49,7 +49,7 @@ In 2025.2, we expanded priority deployments to Runbooks. This makes it easier to
 
 ![New Runbook run window showing new functionality of Priority Deployments for Runbooks](priority-runbooks.png)
 
-### ITSM for runbooks
+## ITSM for runbooks
 
 You can now create ITSM change requests from your runbooks. This is particularly useful if you use runbooks to provision infrastructure and need to attach change requests to progress through the relevant approvals. You can choose which runbooks you'd like to be change-controlled in your ITSM settings.
 
@@ -73,6 +73,6 @@ This is the first feature from our Blueprints and Guardrails set of capabilities
 
 #### Interested in upgrading to the Enterprise tier?
 
-Please contact our helpful [Sales team](sales@octopus.com).
+Please contact our helpful [Sales team](mailto:sales@octopus.com).
 
 Happy deployments!
