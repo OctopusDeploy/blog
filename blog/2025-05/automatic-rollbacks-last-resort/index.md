@@ -4,9 +4,9 @@ description: Find out why automatic rollbacks are rarely the right answer to dep
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: devops-2022.png
-bannerImage: devops-2022.png
-bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity loop, with people on laptops sitting on and around the tentacle.
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
   - tag
