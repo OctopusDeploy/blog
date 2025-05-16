@@ -4,9 +4,9 @@ description: Explore how GitOps shifts elevated access from infrastructure to co
 author: matthew.allford@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-whatisgitops-2025.png
+bannerImage: blogimage-whatisgitops-2025.png
+bannerImageAlt: Person holds magnifying glass over GitOps logo, surrounded by icons for declarative, versioned and immutable, pulled automatically, and continuously reconciled.
 isFeatured: false
 tags: 
   - DevOps
@@ -19,7 +19,7 @@ Recently, we surveyed the industry to gain insights into the adoption and challe
 
 Overall, 66% of respondents agreed. Among organizations with higher GitOps maturity, agreement rose to 77%, but interestingly, there was also a slight increase in disagreement among the highest performers.
 
-![Bar chart showing agreement with the statement 'GitOps reduces elevated access' across different GitOps maturity score groups.](gitops-reduces-elevated-access.png)
+![Bar chart showing responses to ‘GitOps reduces elevated access’ across groups with different GitOps maturity scores.](gitops-reduces-elevated-access.png)
 
 So, does GitOps change or reduce the need for elevated environment access, and should it?
 
