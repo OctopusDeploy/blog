@@ -3,7 +3,7 @@ title: Our new leadership code
 description: Learn about our new leadership code and how it came to be.
 author: orli.remez@octopus.com
 visibility: public
-published: 2025-05-19-1400
+published: 2025-05-20-1400
 metaImage: img-blog-leadership-code-2025.png
 bannerImage: img-blog-leadership-code-2025.png
 bannerImageAlt: Stylized image of people scaling a rock in the clouds, helping each other up, with 2 people at the top
