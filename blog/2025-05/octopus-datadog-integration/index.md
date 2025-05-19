@@ -1,12 +1,12 @@
 ---
 title: Introducing the Octopus Datadog integration
-description: Learn how the new Octopus Datadog integration helps orchestrate the insights from all your tools and connect the dots when something goes wrong. 
+description: Learn how the new Octopus Datadog integration gives you visibility across your entire CI/CD pipeline, helping you correlate data, to find and solve issues faster.
 author: tegan.ali@octopus.com
 visibility: public
 published: 2025-05-21-1400
-metaImage: blogimage-modernrollbackstratgies-2023.png
-bannerImage: blogimage-modernrollbackstratgies-2023.png
-bannerImageAlt: 4 release boxes labelled 1.1 to 1.4, the 3rd with a green tick, 4th on fire with a red cross. A rocket travels back from 1.4 to 1.3.
+metaImage: img-blog-datadog-octopus-integration-2025.png
+bannerImage: img-blog-datadog-octopus-integration-2025.png
+bannerImageAlt: Octopus and Datadog logos connected by plugs with little stars around the connection.
 isFeatured: false
 tags: 
   - Product
