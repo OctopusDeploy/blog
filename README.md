@@ -25,11 +25,11 @@ If you're drafting a post that you need to keep private until it's ready for rev
 
 # How to submit a blog post 
 
-For specific instructions, please see the section on [creating a new branch, pull request, and blog post in Confluence](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2828959895/Managing+the+blog#Creating-a-new-branch%2C-pull-request%2C-and-blog-post).
+For detailed instructions, please see the section on [creating a new branch, pull request, and blog post in Confluence](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2828959895/Managing+the+blog#Creating-a-new-branch%2C-pull-request%2C-and-blog-post).
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
-Posts are organized in year-month directories (e.g., 2025-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
+Posts are organized in year-month directories (e.g., 2025-01/). Find or create the directory that is roughly when your post is going out, and add your files there. 
 
 When you're happy with your post, please create a PR. Go through the checklist on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md) and complete all the steps before you assign @TeganAli as reviewer. When ready, please drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
