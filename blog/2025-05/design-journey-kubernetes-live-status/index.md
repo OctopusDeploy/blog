@@ -25,7 +25,7 @@ With these challenges in mind, we aimed to create a tool for developers to troub
 
 Here’s how we designed Kubernetes Live Object Status and how a few unexpected discoveries shaped our choices.
 
-## Integrating verus separating live status
+## Integrating versus separating live status
 
 The first big choice was whether to create separate dashboards for live status or integrate it into our existing dashboards. We used low-fidelity wireframes to explore both options and get early feedback from Octopus leaders. 
 
