@@ -4,9 +4,9 @@ description: A deep dive into how we designed Kubernetes Live Object Status to h
 author: kirsten.schwarzer@octopus.com
 visibility: public
 published: 2025-05-26-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: img-blog-design-journey-kubernetes-live-status.png 
+bannerImage: img-blog-design-journey-kubernetes-live-status.png  
+bannerImageAlt: Stylized image of a designer thinking about the Kubernetes live status interface.
 isFeatured: false
 tags: 
   - Product
@@ -33,7 +33,7 @@ Ultimately, we didn't want to create a separate space for Kubernetes. Our users 
 
 We decided to let you toggle between live and deployment status on your main Octopus dashboard. To improve usability, your preference gets saved in the browser for your next visit.
 
-[Main dashboard screenshot]
+![Octopus main dashboard](live-status-main-dashboard.png)
 
 Integrating live status into existing dashboards lets us extend it to other types of applications in future. While that's not currently on our roadmap, we'd love to hear if it’s something you'd find useful.
 
@@ -45,9 +45,7 @@ However, we had to make a few modifications to fit the Octopus model. Our team a
 
 We also decided to combine the Argo CD sync and health status to simplify it for users. 
 
-We ended up with 2 sets of live statuses, one for applications and one for Kubernetes objects.
-
-[Application status screenshot]
+We ended up with 2 sets of live statuses, one for applications and one for Kubernetes objects.                                              
 
 ## Evolving with user feedback
 
@@ -57,9 +55,9 @@ We quickly realised that we needed to separate sync status from health status in
 
 Our first instinct was to simplify the experience, but that's the reality of building real software—once it's out in the wild and customers start using it, you realize there's complexity for a reason.
 
-Our team did a quick pivot to separate health status from sync status for both applications and objects. Here’s the updated status model:
+Our team did a quick pivot to separate health status from sync status for both applications and objects. 
 
-[Updated application status screenshot]
+You can [read our documentation](https://octopus.com/docs/kubernetes/live-object-status#application-status) to explore the updated status model.
 
 We also introduced a setting that prioritizes health status on the dashboards as a default. We’re planning extra work in this space to give users more granular control and better visibility of both statuses.
 
@@ -69,7 +67,7 @@ This surprising lesson is a great example of why we try to ship early and get cu
 
 In addition to the dashboards, we created a dedicated live status page for each project, environment, and tenant combination. This gives you an easily shareable link for a specific application that you can bookmark or share with your team.
 
-[Live status page screenshot]
+![Live status page with sync and health status](live-status-sync-health-status.png)
 
 ## Choosing the object visualisation
 
@@ -100,9 +98,9 @@ When viewing the live status page, you can now click on an object’s name to ge
 
 Kubernetes events can be quite verbose, so we wanted to make it easy to find the issue you're looking for. It was important to add filters based on the type of event, especially if you're only looking for warnings.
 
-The error row shows a snippet of the message to make it easily scannable. But we also have an expandable element that lets you read the full message and see the first and last seen dates.
+The event row shows a snippet of the message to make it easily scannable. But we also have an expandable element that lets you read the full message and see the first and last seen dates.
 
-[Error screenshot]
+![Kubernetes events drawer](live-kubernetes-events.png)
 
 The engineers on our team felt strongly that it was important to deliver a great experience interacting with logs. We added a few nice touches, like highlighting a row when you hover over it and including toggles for:
 
@@ -114,7 +112,7 @@ We opted to keep things simple for refresh behaviour and give users more granula
 
 Because the logs are live, we didn't want things to move and scroll while you were looking at them. We decided to provide a refresh button you can use to update the logs without unexpected behaviour.
 
-[Logs screenshot]
+![Kubernetes logs drawer](live-kubernetes-logs.png)
 
 A small but significant design choice, championed by the engineers on our team, was using a monospace font. This differentiates the actual machine output from the rest of the Octopus interface. 
 
@@ -124,7 +122,7 @@ We wanted users to know that this was the raw output from their cluster and that
 
 On the Manifest tab, you can see the YAML currently running in your cluster and compare it to your last deployment.
 
-[Diff screenshot]
+![Kubernetes live manifest diff](live-manifest-diff.png)
 
 You’ll notice the diff view looks quite similar to other developer tools you've used before. That's on purpose. 
 
@@ -138,7 +136,7 @@ That's exactly what we did with the design for diffs.
 
 We originally created the deployment timeline to simplify navigation between Octopus deployments and the live status page.
 
-[Timeline screenshot]
+![Deployment timeline](deployment-timeline.png)
 
 After sharing a mockup in our internal Slack, Paul Stovell, our CEO, commented that we should add a redeploy button to it. That would let you quickly roll back to a previous successful release if you see an issue with the live status. That’s how we (accidentally) designed a feature that helps close the loop from diagnosing an issue to actually fixing it.
 
