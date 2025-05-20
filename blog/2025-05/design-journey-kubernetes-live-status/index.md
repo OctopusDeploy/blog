@@ -3,7 +3,7 @@ title: The surprising design journey behind Kubernetes Live Object Status
 description: A deep dive into how we designed Kubernetes Live Object Status to help developers confidently troubleshoot their apps.
 author: kirsten.schwarzer@octopus.com
 visibility: public
-published: 2025-05-26-1400
+published: 2025-05-21-1400
 metaImage: img-blog-design-journey-kubernetes-live-status.png 
 bannerImage: img-blog-design-journey-kubernetes-live-status.png  
 bannerImageAlt: Stylized image of a designer thinking about the Kubernetes live status interface.
@@ -69,7 +69,7 @@ In addition to the dashboards, we created a dedicated live status page for each 
 
 ![Live status page with sync and health status](live-status-sync-health-status.png)
 
-## Choosing the object visualisation
+## Choosing the object visualization
 
 We considered multiple ways to visualize your Kubernetes objects and key information about them.
 
