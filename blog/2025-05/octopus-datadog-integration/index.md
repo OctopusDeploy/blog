@@ -88,7 +88,7 @@ To set up the Octopus Datadog integration, [follow the simple instructions provi
 
 ## Conclusion
 
-Datadog is a best-of-breed monitoring platform that provides full-stack observability, letting you see inside any stack, any app, at any scale, anywhere. When integrated with Octopus as a best-of-breed Continuous Delivery platform, you get world-class observability and CD that let you find problems quickly, recover fast, and deliver software quickly and reliably at scale.
+Datadog is a best-of-breed monitoring platform that provides full-stack observability, letting you see inside any stack, any app, at any scale, anywhere. When integrated with Octopus as a best-of-breed Continuous Delivery platform, you get world-class observability and CD that let you find problems fast, recover rapidly, and deliver software quickly and reliably at scale.
 
 If you're already using both Octopus and Datadog, you can [set up the integration following Datadog's instructions](https://github.com/DataDog/integrations-core/blob/master/octopus_deploy/README.md).
 
