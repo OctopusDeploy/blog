@@ -76,7 +76,7 @@ The Datadog Agent collects:
 - Deployment logs, which are useful for debugging failed deployments. 
 - Server logs, which provide diagnostic information about the Octopus server. 
 
-After the integration is set up to send data to Datadog, you can use the out-of-the-box dashboard to get an overview of each deployment by project. Build monitors alert you of notable events, like a failed deployment, so you can take action promptly. Octopus's [audit log stream](https://octopus.com/docs/security/users-and-teams/auditing/audit-stream#configure-audit-stream) can further enrich this data, which you can combine within Datadog for more insights.
+After the integration is set up to send data to Datadog, you can use out-of-the-box dashboards to get an overview of each deployment by project. Build monitors alert you of notable events, like a failed deployment, so you can take action promptly. Octopus's [audit log stream](https://octopus.com/docs/security/users-and-teams/auditing/audit-stream#configure-audit-stream) can further enrich this data, which you can combine within Datadog for more insights.
 
 ## Who can use the integration
 
