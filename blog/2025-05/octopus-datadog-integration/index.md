@@ -1,9 +1,9 @@
 ---
 title: Introducing the Octopus Datadog integration
-description: Learn how the new Octopus Datadog integration gives you visibility across your entire CI/CD pipeline, helping you correlate data, to find and solve issues faster.
+description: Learn how Octopus and Datadog give you visibility across your entire CI/CD pipeline, helping you correlate data, to find and solve issues faster.
 author: tegan.ali@octopus.com
 visibility: public
-published: 2025-05-21-1400
+published: 2025-05-26-1400
 metaImage: img-blog-datadog-octopus-integration-2025.png
 bannerImage: img-blog-datadog-octopus-integration-2025.png
 bannerImageAlt: Octopus and Datadog logos connected by plugs with little stars around the connection.
@@ -15,11 +15,12 @@ tags:
   - Peformance
 ---
 
-Octopus is a best-of-breed tool that provides Continuous Delivery at scale and integrates with all your tools across the software delivery pipeline. Datadog is another best-of-breed platform that monitors, secures, and provides alerts for all the tools in your DevOps stack. This includes infrastructure monitoring, application performance, and software delivery pipelines. 
+Octopus is a best-of-breed platform that provides Continuous Delivery at scale and integrates with all your tools across the software delivery pipeline. Datadog is the best-of-breed monitoring platform that monitors, secures, and provides alerts for all the tools in your DevOps stack. This includes infrastructure monitoring, application performance, and software delivery pipelines. 
 
 Now, with the Octopus Datadog integration, it's even easier to use Octopus and Datadog together. 
 
 The Octopus Datadog integration monitors Octopus deployments through the Datadog Agent. This gives customers using Datadog and Octopus visibility across their entire CI/CD pipeline on Datadog’s Infrastructure Monitoring dashboard, helping you correlate data, to find and solve issues faster.
+
 In this post, we introduce the Octopus Datadog integration. We explain how it helps orchestrate the insights from all your tools and connect the dots when something goes wrong. 
 
 ## The need for better observability across your entire pipeline
@@ -49,7 +50,7 @@ Octopus's [DevOps Insights](https://octopus.com/docs/insights) uses DORA metrics
 
 While Octopus provides visibility and monitoring for your deployments at scale, it can be hard to correlate data across the entirety of your CI/CD pipeline when things happen in systems outside your deployment pipeline. 
 
-That’s where Datadog helps. It monitors everything in your stack, covering all systems, apps, and services in one place. 
+That’s where Datadog helps. It monitors everything in your stack, covering all infrastructure, systems, apps, and services in one place. 
 
 Used together, Octopus and Datadog become part of your world-class pipeline, with both tools supporting software at scale and integrating with any technology. You get a single pane of glass for monitoring, making it easier to track, visualize, and improve key metrics across all projects.
 
@@ -75,10 +76,7 @@ The Datadog Agent collects:
 - Deployment logs, which are useful for debugging failed deployments. 
 Server logs, which provide diagnostic information about the Octopus server. 
 
-After the integration is set up to send data to Datadog, you can use the out-of-the-box dashboard to get an overview of each deployment by project. Build monitors alert you of notable events, like a failed deployment, so you can take action promptly.
-
-## See the Octopus Datadog integration in action
-{Insert Rob’s demo video or John’s video here}
+After the integration is set up to send data to Datadog, you can use the out-of-the-box dashboard to get an overview of each deployment by project. Build monitors alert you of notable events, like a failed deployment, so you can take action promptly. Octopus's [audit log stream](https://octopus.com/docs/security/users-and-teams/auditing/audit-stream#configure-audit-stream) can further enrich this data, which you can combine within Datadog for more insights.
 
 ## Who can use the integration
 
@@ -90,7 +88,7 @@ To set up the Octopus Datadog integration, [follow the simple instructions provi
 
 ## Conclusion
 
-Datadog is a best-of-breed monitoring platform that provides full-stack observability, letting you see inside any stack, any app, at any scale, anywhere. When integrated with Octopus as a best-of-breed Continuous Delivery tool, you get world-class observability and CD that let you find problems quickly, recover fast, and deliver software quickly and reliably at scale.
+Datadog is a best-of-breed monitoring platform that provides full-stack observability, letting you see inside any stack, any app, at any scale, anywhere. When integrated with Octopus as a best-of-breed Continuous Delivery platform, you get world-class observability and CD that let you find problems quickly, recover fast, and deliver software quickly and reliably at scale.
 
 If you're already using both Octopus and Datadog, you can [set up the integration following Datadog's instructions](https://github.com/DataDog/integrations-core/blob/master/octopus_deploy/README.md).
 
