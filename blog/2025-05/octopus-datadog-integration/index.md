@@ -19,7 +19,7 @@ Octopus is a best-of-breed platform that provides Continuous Delivery at scale a
 
 Now, with the Octopus Datadog integration, it's even easier to use Octopus and Datadog together. 
 
-The Octopus Datadog integration monitors Octopus deployments through the Datadog Agent. This gives customers using Datadog and Octopus visibility across their entire CI/CD pipeline on Datadog’s Infrastructure Monitoring dashboard, helping you correlate data, to find and solve issues faster.
+The Octopus Datadog integration monitors Octopus deployments through the Datadog Agent. This gives customers using Datadog and Octopus visibility across their entire CI/CD pipeline, helping you correlate data, to find and solve issues faster.
 
 In this post, we introduce the Octopus Datadog integration. We explain how it helps orchestrate the insights from all your tools and connect the dots when something goes wrong. 
 
