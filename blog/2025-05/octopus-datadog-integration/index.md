@@ -62,9 +62,9 @@ For DevOps and platform engineers, you can track the performance of your teams�
 
 For site reliability engineers (SREs) and operations folks, the Octopus Datadog integration lets you monitor your applications running in production. You can see logs, detect issues fast, and debug issues with critical context to resolve them quickly.
 
-If you’re deploying to Kubernetes but don’t have access to the Kubernetes cluster, you can check the status in Octopus using Kubernetes Live Object Status. Using both Octopus and Datadog, you can see what’s broken, then easily redeploy in Octopus using runbooks to roll back or forward. 
+If you’re deploying to Kubernetes but don’t have access to the Kubernetes cluster, you can check the status in Octopus using Kubernetes Live Object Status. Using both Octopus and Datadog, you can see what’s broken, then easily redeploy in Octopus using [runbooks](https://octopus.com/docs/runbooks) to roll back or forward. 
 
-If you’re using heritage systems, Datadog monitors those, too, and provides alerts so you can find issues fast. You can easily redeploy in Octopus to fix configuration values that teams sometimes change directly. Octopus also lets you restart web servers quickly and reliably with [runbooks](https://octopus.com/docs/runbooks). 
+If you’re using heritage systems, Datadog monitors those, too, and provides alerts so you can find issues fast. You can easily redeploy in Octopus to fix configuration values that teams sometimes change directly. Octopus also lets you restart web servers quickly and reliably with runbooks. 
 
 ## How the integration works
 
