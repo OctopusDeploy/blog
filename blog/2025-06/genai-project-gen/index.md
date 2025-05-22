@@ -38,15 +38,15 @@ LLMs excel at generating text, and so to have the LLM generate an Octopus projec
 
 Terraform is a natural choice because:
 
-* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples. This is easy to verify by asking the LLM to generate Terraform code for a popular target like AWS or Azure.
-* HCL files can contain multiple resources and express their relationships via interpolations.
-* It is trivial to determine if the generated text is semantically valid Terraform configuration.
+* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples. This is easy to verify by asking the LLM to generate Terraform code for a popular platform like AWS or Azure.
+* HCL files contain multiple resources and express their relationships via interpolations.
+* It is trivial to determine result is semantically valid Terraform configuration.
 
 [Octoterra](https://github.com/OctopusSolutionsEngineering/OctopusTerraformExport) is used to convert an existing Octopus project into Terraform configuration. This process is automated, providing a short feedback loop where projects can be updated, serialized, and supplied as an example as part of a LLM prompt.
 
 That said, we could not generate a typical Terraform representation of a project. Terraform relies on persistent external state to track the resources it manages, and we wanted to avoid persisting any information about an Octopus instance were possible. Treating the Octopus instance as the single source of truth meant all data stayed securely behind the Octopus API, removed issues around keeping external data in sync, and removed the security concerns around storing and accessing potentially sensitive data.
 
-To support these requirements, we generated what we call "Stateless Terraform" modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resources if it was already present. This is an example:
+To support these requirements, we generated what we call "Stateless Terraform" modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resource if it was already present. This is an example:
 
 ```hcl
 data "octopusdeploy_environments" "environment_development" {
@@ -64,7 +64,7 @@ resource "octopusdeploy_environment" "environment_development" {
 }
 ```
 
-This data source and resource pair result in the `count` attribute being set to 1 if `Development` environment if it doesn't exist, thus creating the environment, or set the `count` to 0 if the environment is present.
+This data source and resource pair result in the `count` attribute being set to 1 if the `Development` environment doesn't exist, thus creating the environment, or set the `count` to 0 if the environment is present.
 
 Other resources then use a ternary expression to either reference the existing resource or the newly created one:
 
@@ -88,7 +88,7 @@ resource "octopusdeploy_lifecycle" "lifecycle_application" {
 
 This Terraform configuration would not work as expected if it was applied multiple times with a persistent state. Resources would be alternatively created and destroyed as the count associated with a resource toggled between 0 and 1.
 
-However, when the Terraform configuration is run against an empty state, this style of configuration works perfectly. Missing resources are created, and existing resources are left unmodified. This is exactly the behavior we want when generating Octopus resources via the LLM. It provides an imperative method of creating resources if they do not exist without needing to know anything about the Octopus space where the configuration will be applied.
+However, when the Terraform configuration is run against an empty state, this style of configuration works perfectly. Missing resources are created, and existing resources are left unmodified. This is exactly the behavior we want when generating Octopus resources via the LLM. It provides an imperative method for creating resources if they do not exist without needing to know anything about the Octopus space where the configuration will be applied.
 
 ## Training the LLM
 
