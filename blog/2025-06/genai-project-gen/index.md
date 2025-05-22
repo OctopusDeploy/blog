@@ -1,5 +1,5 @@
 ---
-title: Generating projects with GenAI
+title: Building Octopus projects with GenAI
 description: Learn about how we're using GenAI to generate projects in Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: provate
