@@ -148,10 +148,35 @@ You can view the instructions from the [GitHub repository](https://github.com/Oc
 
 ## Generating the project
 
+Once the LLM was trained, the next step was to execute the generated Terraform configuration to populate the Octopus space.
 
+This was a relatively easy task since we did not have to persist any state. So we created an Azure function that:
 
-## Security considerations
+* Embedded the OpenTofu executable
+* Exposed an HTTP endpoint to generate a plan
+* Applied the plan once it was approved by the end user
 
-## Refining the instructions
+While this is a simple process at a high level, there are a number of security concerns we needed to address:
+
+* The Terraform configuration should only create Octopus resources, not other resources for platforms like Azure or AWS
+* We needed to fail if any sensitive data was included in the generated Terraform configuration because the prompt interface is not secure
+* We needed to enforce the use of local Terraform state and not allow Terraform to try and save state in any external location
+* Any existing resource must not be modified when creating AI generated resources
+
+The first two concerns were addressed by testing the JSON representation of the Terraform plan file with Open Policy Agent. Thanks to the declarative nature of Terraform, it is possible to [determine the provider that will be used to create a resource](https://developer.hashicorp.com/terraform/language/resources/syntax#providers). We can also identify which attributes the provider marks as sensitive and fail unless the sensitive values are set to dummy values like `CHANGE ME`.
+
+To enforce the use of local state we implemented [Terraform override files](https://developer.hashicorp.com/terraform/language/files/override). These files are created alongside the generated Terraform configuration and take precidence over the generated configuration.
+
+Finally, we could take advantage of the fact that Terraform will not modify resources it does not own, and it will never own anything because Terraform was always executed with a blank state.
+
+The combination of OPA policies run against plan JSON files and override files allowed us to restrict the creation of AI-generated resources in a way that would have been all but impossible with custom scripts or raw API calls.
+
+## Creating a Virtuous Cycle
+
+We now had a process that allowed us to generate Octopus projects from hand-crafted template projects. Our engineers could contribute new examples simply by creating an example of a best practice project in Octopus. The process of serializing it to Terraform and associated it was an LLM prompt was either scripted or involved a fairly trivial code change. This created a tight feedback loop that we'll take advantage of to continually improve the quality of the generated projects.
 
 ## Conclusion
+
+One of the challenges when integrating AI into an existing platform is identifying where AI adds unique value to solve real-world problems. By training an LLM to generate Octopus projects using their inherent affinity for generating text, we can empower new Octopus users to populate an entire Octopus space with a functional sample project, built on top of our hand-crafted examples, in a matter of minutes. 
+
+This is just one way that we're using GenAI to improve the experience of using Octopus Deploy, and we're excited to see how our customers will use this functionality to accelerate their DevOps processes.
