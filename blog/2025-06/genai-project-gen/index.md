@@ -22,7 +22,9 @@ To help teams get up and running quickly on Octopus, we're introducing a new fea
 
 ## Building the templates
 
-GenAI is only as good as the data it has learned from. For GenAI to build a project, along with all the supporting resources, we start by hand crafting a number of template projects according to a set of best practices that we've evolved over the years. At this stage the projects are nothing more than regular projects manually created via the web UI.
+GenAI is only as good as the data it has learned from. For GenAI to build a project, along with all the supporting resources, we start by hand crafting a number of template projects according to a set of best practices that we've evolved over the years. 
+
+At this stage the template projects are nothing more than regular projects manually created via the web UI. This makes it easy to build and test the project as if it were any other project in Octopus.
 
 Best practices capture aspects like variable and target tag naming conventions, release versioning schemes, worker images, supporting runbooks, and much more. There are hundreds of configurable fields in an Octopus project, and we have a continually evolving set of opinions to provide DevOps teams with a solid foundation for their deployment workflows.
 
@@ -32,9 +34,121 @@ Once we have a template project that embodies our best practices, the next step 
 
 ## Serializing the template
 
+LLMs excel at generating text, and so to have the LLM generate an Octopus project, we need to define projects in a text-based format. We use Terraform, and specifically Terraform implementing the Octopus Terraform provider, to represent the project configuration.
+
+Terraform is a natural choice because:
+
+* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples. This is easy to verify by asking the LLM to generate Terraform code for a popular target like AWS or Azure.
+* HCL files can contain multiple resources and express their relationships via interpolations.
+* It is trivial to determine if the generated text is semantically valid Terraform configuration.
+
+[Octoterra](https://github.com/OctopusSolutionsEngineering/OctopusTerraformExport) is used to convert an existing Octopus project into Terraform configuration. This process is automated, providing a short feedback loop where projects can be updated, serialized, and supplied as an example as part of a LLM prompt.
+
+That said, we could not generate a typical Terraform representation of a project. Terraform relies on persistent external state to track the resources it manages, and we wanted to avoid persisting any information about an Octopus instance were possible. Treating the Octopus instance as the single source of truth meant all data stayed securely behind the Octopus API, removed issues around keeping external data in sync, and removed the security concerns around storing and accessing potentially sensitive data.
+
+To support these requirements, we generated what we call "Stateless Terraform" modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resources if it was already present. This is an example:
+
+```hcl
+data "octopusdeploy_environments" "environment_development" {
+  ids          = null
+  partial_name = "Development"
+  skip         = 0
+  take         = 1
+}
+resource "octopusdeploy_environment" "environment_development" {
+  count                        = "${length(data.octopusdeploy_environments.environment_development.environments) != 0 ? 0 : 1}"
+  name                         = "Development"
+  description                  = ""
+  allow_dynamic_infrastructure = true
+  use_guided_failure           = false
+}
+```
+
+This data source and resource pair result in the `count` attribute being set to 1 if `Development` environment if it doesn't exist, thus creating the environment, or set the `count` to 0 if the environment is present.
+
+Other resources then use a ternary expression to either reference the existing resource or the newly created one:
+
+```hcl
+
+resource "octopusdeploy_lifecycle" "lifecycle_application" {
+  count       = "${length(data.octopusdeploy_lifecycles.lifecycle_devsecops.lifecycles) != 0 ? 0 : 1}"
+  name        = "Application"
+
+  phase {
+    automatic_deployment_targets = [
+      "${length(data.octopusdeploy_environments.environment_development.environments) != 0 ? data.octopusdeploy_environments.environment_development.environments[0].id : octopusdeploy_environment.environment_development[0].id}"
+    ]
+    optional_deployment_targets = []
+    name                                  = "Development"
+    is_optional_phase                     = false
+    minimum_environments_before_promotion = 0
+  }
+}
+```
+
+This Terraform configuration would not work as expected if it was applied multiple times with a persistent state. Resources would be alternatively created and destroyed as the count associated with a resource toggled between 0 and 1.
+
+However, when the Terraform configuration is run against an empty state, this style of configuration works perfectly. Missing resources are created, and existing resources are left unmodified. This is exactly the behavior we want when generating Octopus resources via the LLM. It provides an imperative method of creating resources if they do not exist without needing to know anything about the Octopus space where the configuration will be applied.
+
 ## Training the LLM
 
+Once the ability to serialize projects to stateless Terraform modules is in place, we can pass these modules as part of the context of an LLM prompt. This is called one-shot or few-shot prompting, where the LLM is given an example of the task it is being asked to perform.
+
+These examples got us almost all the way to having an LLM generate a project, and all the supporting resources, from a plain text prompt. However, because the LLMs had not been explicitly trained or fine-tuned on the stateless Terraform modules, we needed some additional prompt instructions to avoid edge cases and steer the LLM towards generating the correct Terraform configuration.
+
+Generating the instructions involved:
+
+* Having an LLM generate multiple sample prompts that we might expect end users to write themselves.
+* Running the generated prompts and observing the generated Terraform configuration.
+* Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases.
+
+This is the prompt we used to generate sample prompts:
+
+```text
+Given these prompts:
+
+'Create a Kubernetes project called "My K8s Project 2". Add a step to deploy a K8s deployment. Add a step to deploy a Kubernetes ClusterIP service. Use the "Security" lifecycle. Add a step to deploy a Kubernetes ingress resource. Enable variable debugging.'
+
+'Create an Azure Web App project call "My Azure Project 1"`
+
+Write 5 more prompts including a mix of:
+
+feeds
+accounts
+steps
+platforms like helm, kustomize, aws lambdas, azure web apps, azure functions, cloud formation, arm templates, bicep templates
+lifecycles
+project groups
+project names
+step run conditions
+rollout strategies like blue/green and canary
+variables
+environments
+target tags
+packages
+cloud providers
+retention policies
+inline scripts
+script from packages
+tenanted, untenanted, or tenanted and untenanted deployments
+tenants
+variable scopes
+tenant tags
+
+Do not reuse project names from previous responses.
+
+Include a random number suffix on the project name from 1 to 10000.
+
+Print each example in an individual markdown code block.
+```
+
+The generated prompts often requested deployment processes that even an Octopus expert couldn't implement. The goal was not to generate logically valid output, but to ensure our combination of sample Terraform and custom instructions generated semantically valid output. This demonstrated that the LLM had the examples and instructions required to generate valid output, meaning it was up to us to provide the correct sample projects to generate useful output.
+
+You can view the instructions from the [GitHub repository](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/main/context/generalinstructions.txt).
+
 ## Generating the project
+
+
 
 ## Security considerations
 
