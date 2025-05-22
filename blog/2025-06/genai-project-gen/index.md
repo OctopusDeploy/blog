@@ -30,7 +30,7 @@ Best practices capture aspects like variable and target tag naming conventions, 
 
 Importantly, we do not train an LLM on any customer data.
 
-Once we have a template project that embodies our best practices, the next step is to serialize the project configuration in a format that can be passed to an LLM.
+Once we have a template project that embodies our best practices, the next step is to serialize the project to a format that can be passed to an LLM.
 
 ## Serializing the template
 
