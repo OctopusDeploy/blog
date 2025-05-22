@@ -171,6 +171,24 @@ Finally, we could take advantage of the fact that Terraform will not modify reso
 
 The combination of OPA policies run against plan JSON files and override files allowed us to restrict the creation of AI-generated resources in a way that would have been all but impossible with custom scripts or raw API calls.
 
+## Customizing the generated project
+
+All of this is overkill if the purpose is to recreate a template project verbatim. Stateless Terraform modules could be applied unmodified with no need to involve an LLM. 
+
+The real power of LLMs are their ability to generate custom responses to any prompt.
+
+The combination of custom LLM instructions, general purpose example Terraform configurations, and specific template project examples allows us to prompt the LLM to generate customized projects. For example, we can write a prompt like this:
+
+```text
+Create an Azure Web App project called "My Azure App". Create tenant tags based on geographical regions. Add 10 tenants named after major capital cities. Add the tenant tags to the tenants. Link the tenants to the project.
+```
+
+Because the LLM has seen what a tenant looks like, what tenant tags look like, and how to link tenants to projects, the result is a project based on the template project but with multiple tenants connected to it.
+
+Importantly, this specific scenario is not something we need to train the LLM to do. These customizations to the template projects are possible because of the one-shot and few-shot examples we provided to the LLM.
+
+This allows us to generate complex, bespoke projects that are still based on our best practices. As long as we provide enough examples of valid Terraform configuration, catch edge cases with the LLM instructions, and provide a good set of template projects, end users can generate almost any project they can imagine.
+
 ## Creating a Virtuous Cycle
 
 We now had a process that allowed us to generate Octopus projects from hand-crafted template projects. Our engineers could contribute new examples simply by creating an example of a best practice project in Octopus. The process of serializing it to Terraform and associated it was an LLM prompt was either scripted or involved a fairly trivial code change. This created a tight feedback loop that we'll take advantage of to continually improve the quality of the generated projects.
