@@ -99,7 +99,7 @@ These examples got us almost all the way to having an LLM generate a project, an
 Generating the instructions involved:
 
 * Having an LLM generate multiple sample prompts that we might expect end users to write themselves.
-* Running the generated prompts and observing the generated Terraform configuration.
+* Running the generated prompts and observing the resulting Terraform configuration.
 * Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases.
 
 This is the prompt we used to generate sample prompts:
@@ -180,7 +180,11 @@ The real power of LLMs are their ability to generate custom responses to any pro
 The combination of custom LLM instructions, general purpose example Terraform configurations, and specific template project examples allows us to prompt the LLM to generate customized projects. For example, we can write a prompt like this:
 
 ```text
-Create an Azure Web App project called "My Azure App". Create tenant tags based on geographical regions. Add 10 tenants named after major capital cities. Add the tenant tags to the tenants. Link the tenants to the project.
+Create an Azure Web App project called "My Azure App". 
+Create tenant tags based on geographical regions. 
+Add 10 tenants named after major capital cities.
+Add the tenant tags to the tenants. 
+Link the tenants to the project.
 ```
 
 Because the LLM has seen what a tenant looks like, what tenant tags look like, and how to link tenants to projects, the result is a project based on the template project but with multiple tenants connected to it.
