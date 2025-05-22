@@ -34,7 +34,7 @@ Once we have a template project that embodies our best practices, the next step 
 
 ## Serializing the template
 
-LLMs excel at generating text, and so to have the LLM generate an Octopus project, we need to define projects in a text-based format. We use Terraform, and specifically Terraform implementing the Octopus Terraform provider, to represent the project configuration.
+LLMs excel at generating text, and so to have the LLM generate an Octopus project, we need to define projects in a text-based format. We use Terraform, and specifically Terraform implementing the Octopus Terraform provider, to represent the project.
 
 Terraform is a natural choice because:
 
