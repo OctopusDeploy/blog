@@ -65,8 +65,8 @@ Octopus has many options in a project you can configure, and customers often wan
 - **Standardised Versions**: Choose a format (`1.0.0`, `2025.06.12`) and apply them consistently. Octopus supports [variable expressions](https://octopus.com/docs/releases/release-versioning) too. 
 - **Start with Approvals**: Adding approvals at the start of your deployment process provides traceability and control to further secure your deployments *before* your application is changed. You can leverage either the [Manual Approval step](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) or our enterprise [ITSM Approval integrations](https://octopus.com/docs/approvals).
 - **Vulnerability Scanning**: Integrate security scanning tools into your deployment process. Usually at the end of the deployment process. It should also run in a dedicated `Security` environment immediately after a Production deployment.
-- **Leverage Tenants**: Use the Octopus [Multi-tenancy](https://octopus.com/docs/tenants) feature where needed to support the ability to deliver software to many production instances, machines or customers while still maintaining a single deployment process.
-- **Use Project version control**: Store project resources in a Git repository.
+- **Leverage Tenants**: Use the Octopus [Multi-tenancy](https://octopus.com/docs/tenants) feature when you need the ability to deliver software to many production instances, machines or customers while still maintaining a single deployment process.
+- **Use Project version control**: Store project resources in a Git repository. Maintain the same Software Development Lifecycle (SDLC) for your deployment resources as you do for your application code through Pull requests and branching.
 - **Runbooks**: Use [Octopus Runbooks](https://octopus.com/docs/runbooks) to automate common operational tasks like backups, environment creation and teardown, or certificate renewals for your application.
 
 :::success
