@@ -132,7 +132,7 @@ When we open the application, we’ll see the proxy wrapping up the response fro
 
 *The proxy application returning the value from the web servers.*
 
-You can accelerate Istio adoption by leveraging [IMESH](https://imesh.ai/) support.
+You can accelerate Istio adoption with [IMESH](https://imesh.ai/) support.
 
 ## Conclusion
 
