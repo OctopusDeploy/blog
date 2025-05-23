@@ -132,6 +132,8 @@ When we open the application, we’ll see the proxy wrapping up the response fro
 
 *The proxy application returning the value from the web servers.*
 
+You can accelerate Istio adoption with [IMESH](https://imesh.ai/) support.
+
 ## Conclusion
 
 The example application shown here is trivial and does not attempt to replicate a real-world scenario. However, it is well suited as a starting point to which we can add new networking functionality with Istio.
