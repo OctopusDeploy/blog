@@ -3,7 +3,7 @@ title: New to our Enterprise tier
 description: Octopus 2025.2 includes a new features for our Enterprise tier.
 author: michelle.obrien@octopus.com
 visibility: public
-published: 2025-06-02-1400
+published: 2025-06-16-1400
 metaImage: additions_and_improvements_to_enterprise_offering_2025_1500x800.jpg
 bannerImage: additions_and_improvements_to_enterprise_offering_2025_1500x800.jpg
 bannerImageAlt: People in front of a building with icons around them representing security and data.
