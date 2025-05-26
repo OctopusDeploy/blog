@@ -29,11 +29,11 @@ In this post, I take you through the changes to our Enterprise tier.
 
 From Octopus Server 2025.2, all enterprise customers have access to both global freezes and our new project-level freezes. 
 
-Project freezes provide an entry level to deployment freezes with lower permission requirements. They empower your teams to create their own freezes for projects without needing administrator permissions. [Read more about project freezes](https://octopus.com/docs/deployments/deployment-freezes/project-deployment-freezes).
+Project freezes provide an entry level to deployment freezes with lower permission requirements. They empower your teams to create their own freezes for projects without needing administrator permissions. [Read more about project freezes in our docs](https://octopus.com/docs/deployments/deployment-freezes/project-deployment-freezes).
 
 Recent enhancements to our Deployment Freeze feature include:
 
-- Recurring deployment freezes—providing the ability to create maintenance windows.
+- Recurring deployment freezes—so you can create maintenance windows.
 - Freeze by tenant—for more granular freezes.
 
 ![Create Deployment Freeze window showing new functionality of recurring freezes](global-freeze.png)
@@ -45,7 +45,7 @@ Our Priority Deployments feature provides 2 ways to automate deployment priority
 1. Prioritize the deployment when creating a new deployment.
 2. Prioritize an environment in a lifecycle phase. This prioritizes all deployments to the environments in the lifecycle.
 
-In 2025.2, we expanded priority deployments to Runbooks. This makes it easier to proactively manage your task queue. Inidividual runbooks will inherit the lifecycle priority, or you can prioritize individuals runs on an adhoc basis.
+In 2025.2, we expanded priority deployments to runbooks. This makes it easier to proactively manage your task queue. Inidividual runbooks inherit the lifecycle priority, or you can prioritize individuals runs on an adhoc basis.
 
 ![New Runbook run window showing new functionality of Priority Deployments for Runbooks](priority-runbooks.png)
 
@@ -63,7 +63,7 @@ We also have more exciting changes coming soon to our Enterprise tier.
 
 Process Templates will soon be available as an early access preview (EAP) for enterprise customers. This gives teams reusable blocks of steps to use as blueprints to reduce process duplication and standardize best practices across pipelines. 
 
-Platform Teams can update and roll out changes to these templates from a new area in Octopus, the Platform Hub, making them easier to maintain in the long term. Some steps will also be flexible, so teams have the freedom to diverge without sacrificing quality or compliance.     
+Platform teams can update and roll out changes to these templates from a new area in Octopus, the Platform Hub, making them easier to maintain in the long term. Some steps will also be flexible, so teams have the freedom to diverge without sacrificing quality or compliance.     
 
 This is the first feature from our Blueprints and Guardrails set of capabilities, letting you automate compliance and standardize best practices across your organization's deployment processes. Keep an eye on [our roadmap](https://roadmap.octopus.com/tabs/2-planned) for what else the team has planned, including:
 
