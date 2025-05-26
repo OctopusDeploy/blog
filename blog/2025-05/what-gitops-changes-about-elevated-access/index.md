@@ -3,7 +3,7 @@ title: What GitOps changes about elevated access
 description: Explore how GitOps shifts elevated access from infrastructure to code, and why secure workflows and governance still matter at every stage.
 author: matthew.allford@octopus.com
 visibility: public
-published: 2025-06-04-1400
+published: 2025-05-26-1400
 metaImage: blogimage-whatisgitops-2025.png
 bannerImage: blogimage-whatisgitops-2025.png
 bannerImageAlt: Person holds magnifying glass over GitOps logo, surrounded by icons for declarative, versioned and immutable, pulled automatically, and continuously reconciled.
