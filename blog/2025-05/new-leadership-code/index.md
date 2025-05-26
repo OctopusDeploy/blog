@@ -145,6 +145,10 @@ Creating the CODE was only the beginning. We now have a lot of work to embed the
 
 By making the CODE central to how we hire, develop, and assess leaders, we aim to build a leadership culture that supports our people and drives Octopus toward its long-term goals.
 
+## Watch our Leadership CODE video with Octopus's leaders
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eZ4COGt5Gwk?si=1TDQyGyH0dE2TZ7y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Reflections 
 
 This journey reinforced my belief that leadership is  a collaborative effort. By defining and sharing our expectations, we set our leaders up for success and create a culture where everyone can thrive.
