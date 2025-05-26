@@ -1,9 +1,9 @@
 --- 
 title: "V1.0 release of the Octopus Deploy Terraform Provider" 
-description: Find out all the changes we've made for the V1.0 release of the Terraform Provider.
+description: "Find out all the changes we made for the V1.0 release of the Terraform Provider."
 author: venkatesh.vasudevan@octopus.com 
 visibility: public 
-published: 2025-05-05-1400  
+published: 2025-06-04-1400  
 metaImage: img-terraform-provider-2025.png
 bannerImage: img-terraform-provider-2025.png
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
@@ -20,7 +20,7 @@ In this post, I take you through the key updates and features included in this r
 
 ## Expanded Terraform Provider capabilities
 
-Version 1.0 brings substantial improvements to managing Octopus Deploy resources through Terraform. Earlier versions of the Provider lacked support for creating all resource types available in the Octopus UI. We've addressed this limitation, enabling comprehensive resource management directly from Terraform. While we support most resources now, there are still a few exclusions. These are intentional and thoroughly [documented](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) for transparency.
+Version 1.0 brings substantial improvements to managing Octopus Deploy resources through Terraform. Earlier versions of the Provider lacked support for creating all resource types available in the Octopus UI. We addressed this limitation, enabling comprehensive resource management directly from Terraform. While we support most resources now, there are still a few exclusions. These are intentional and thoroughly [documented](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) for transparency.
 
 ## Clearer documentation with practical examples
 
@@ -47,7 +47,7 @@ The Terraform Provider has always lived in our OctopusDeployLabs repository, whi
 
 ## Configuration as Code projects and the Terraform Provider
 
-We observed customers using Terraform and Config as Code together to manage their projects and runbooks. While they're both powerful tools, combining them led to unexpected behaviours that can break instances.
+We observed customers using Terraform and Config as Code (version-control) together to manage their projects and runbooks. While they're both powerful tools, combining them led to unexpected behaviours that can break instances.
 
 To ensure stability, we’re taking a clear stance: from version 1.0 onwards, you can manage your Octopus projects or runbooks using *either* Config as Code or Terraform—but not both.
 
@@ -57,6 +57,6 @@ If you try to manage a Config as Code project or runbook with Terraform, the Pro
 
 The v1.0 release solidifies the Octopus Deploy Terraform Provider as a robust tool for managing your Octopus instance as code. By simplifying resource management and improving documentation, teams can work more efficiently with the Terraform provider
 
-For detailed information on all changes and enhancements, please read the [docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) or visit the Terraform registry page for the Provider.
+For detailed information on all changes and enhancements, please [read the docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) or visit the Terraform registry page for the Provider.
 
 Happy deployments!
