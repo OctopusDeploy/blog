@@ -145,10 +145,6 @@ Creating the CODE was only the beginning. We now have a lot of work to embed the
 
 By making the CODE central to how we hire, develop, and assess leaders, we aim to build a leadership culture that supports our people and drives Octopus toward its long-term goals.
 
-## Watch our Leadership CODE video with Octopus's leaders
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eZ4COGt5Gwk?si=1TDQyGyH0dE2TZ7y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Reflections 
 
 This journey reinforced my belief that leadership is  a collaborative effort. By defining and sharing our expectations, we set our leaders up for success and create a culture where everyone can thrive.
@@ -156,5 +152,12 @@ This journey reinforced my belief that leadership is  a collaborative effort. By
 Whether you’re a leader yourself or aspire to become one, my advice is simple: take the time to define what leadership means to you personally. It’s one of the most impactful ways to ensure alignment, growth, and success.
 
 If you’re curious to learn more about Octopus and how we’re building our future, stay tuned for more stories from our People team.
+
+## Watch our Leadership CODE video
+
+Watch our Leadership CODE video with Octopus's leaders, below. You'll also find a section on the [Leadership CODE in our public handbook](https://handbook.octopus.com/getting-oriented/leadership-code).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eZ4COGt5Gwk?si=1TDQyGyH0dE2TZ7y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Happy deployments!
