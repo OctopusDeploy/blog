@@ -1,6 +1,6 @@
 ---
 title: New to our Enterprise tier
-description: Octopus 2025.2 includes a new features for our Enterprise tier.
+description: Octopus 2025.2 includes new features for our Enterprise tier.
 author: michelle.obrien@octopus.com
 visibility: public
 published: 2025-06-09-1400
