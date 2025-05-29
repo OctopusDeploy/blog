@@ -67,7 +67,7 @@ Octopus supports replacing YAML properties at deployment time using the [structu
 
 ## Lock Down Your Lambda
 
-When deploying with AWS SAM, you gain built-in support for security best practices but you still have to apply them. Here are four practical ways to secure your Lambda functions using SAM:
+When deploying with AWS SAM, you gain built-in support for security best practices but you still have to apply them. Here are some practical ways to secure your Lambda functions using SAM:
 
 1. **Use IAM roles of least privilege**: Define fine-grained IAM policies using SAM's `Policies` or `Role` properties. Avoid the use of overly broad policies. Instead, either use AWS-managed policies like `AWSLambdaBasicExecutionRole` or, where more control is required, create custom policies that grant the minimum necessary permissions your function needs.
 
