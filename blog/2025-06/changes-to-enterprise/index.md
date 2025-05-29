@@ -45,7 +45,7 @@ Our Priority Deployments feature provides 2 ways to automate deployment priority
 1. Prioritize the deployment when creating a new deployment.
 2. Prioritize an environment in a lifecycle phase. This prioritizes all deployments to the environments in the lifecycle.
 
-In 2025.2, we expanded priority deployments to runbooks. This makes it easier to proactively manage your task queue. Inidividual runbooks inherit the lifecycle priority, or you can prioritize individuals runs on an adhoc basis.
+In 2025.2, we expanded priority deployments to runbooks. This makes it easier to proactively manage your task queue. Individual runbooks inherit the lifecycle priority, or you can prioritize individuals runs on an adhoc basis.
 
 ![New Runbook run window showing new functionality of Priority Deployments for Runbooks](priority-runbooks.png)
 
