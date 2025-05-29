@@ -8,6 +8,7 @@ metaImage: img-blog-laptop-cogs-cloud.png
 bannerImage: img-blog-laptop-cogs-cloud.png
 bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
 tags:
+  - DevOps
   - Product
   - AI
 isFeatured: false
