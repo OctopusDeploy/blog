@@ -69,7 +69,7 @@ Octopus supports replacing out YAML properties at deployment time using the [str
 
 When deploying with AWS SAM, you gain built-in support for security best practices but you still have to apply them. Here are four practical ways to secure your Lambda functions using SAM:
 
-1. **Use IAM roles of least-privilege**: Define fine-grained IAM policies using the Policies or Role properties in SAM. Avoid using overly broad managed policies—create custom ones that grant only the permissions your function needs.
+1. **Use IAM roles of least-privilege**: Define fine-grained IAM policies using the `Policies` or `Role` properties in SAM. Avoid the use of overly broad policies. Instead, either use AWS-managed policies like `AWSLambdaBasicExecutionRole` or where more control is required, create custom policies that grant the minimum required permissions your function needs.
 
 2. **Manage secrets securely**: Instead of hardcoding secrets, reference secrets from native AWS services such as [Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) or [Secrets Manager](https://docs.aws.amazon.com/secretsmanager/?icmpid=docs_homepage_security) directly in your SAM template.
 
