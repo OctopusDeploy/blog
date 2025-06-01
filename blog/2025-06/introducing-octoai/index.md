@@ -20,7 +20,7 @@ In this post I'll discuss how we plan to streamline and improve the software del
 
 ## What is the problem we are trying to solve?
 
-Are you part of a software company? It seems like an obvious question, and one that is straightforward to answer if your company sells software or technical services. But what about a bank, insurance provider, hospital, school, supermarket, or government agency? Many of these organizations don't think of themselves as software companies.
+Are you part of a software company? It seems like an obvious question, and one that is straightforward to answer if your company sells software or technical services. But what about a bank, insurance provider, hospital, airline, school, supermarket, or government agency? Many of these organizations don't think of themselves as software companies.
 
 The way to determine if you are a software company is to ask yourself: "What would happen if all the computers were turned off?"
 
@@ -38,3 +38,19 @@ When you look at the metrics used to measure DevOps performance, such as DORA me
 Anything that prevents a DevOps team from delivering software to production reduces their performance. There is simply no way to be a high-performing DevOps team without delivering software to production.
 
 This is the problem we are trying to solve: how do we remove the barriers to delivering software to production? Because this is the foundation of high-performing DevOps teams, and every software company demands high-performing DevOps teams.
+
+## How do we think about the DevOps journey?
+
+When we think about the DevOps journey, we often think about it from the perspective of a single team. But in reality, DevOps is a journey that spans multiple teams and stages of maturity.
+
+There are two stages in the DevOps adoption process that we want to focus on:
+
+* How do we help new teams get up and running quickly, creating a solid foundation based on best practices?
+* How do we reduce the friction for existing teams as they deliver software to production?
+
+Thinking about the DevOps journey from these two perspectives helps us to identify the areas where GenAI can provide the most value.
+
+## How does GenAI get teams up and running quickly?
+
+
+
