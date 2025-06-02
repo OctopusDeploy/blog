@@ -165,7 +165,7 @@ While this is a simple process at a high level, there are a number of security c
 
 The first two concerns were addressed by testing the JSON representation of the Terraform plan file with Open Policy Agent. Thanks to the declarative nature of Terraform, it is possible to [determine the provider that will be used to create a resource](https://developer.hashicorp.com/terraform/language/resources/syntax#providers). We can also identify which attributes the provider marks as sensitive and fail unless the sensitive values are set to dummy values like `CHANGE ME`.
 
-To enforce the use of local state we implemented [Terraform override files](https://developer.hashicorp.com/terraform/language/files/override). These files are created alongside the generated Terraform configuration and take precidence over the generated configuration.
+To enforce the use of local state we implemented [Terraform override files](https://developer.hashicorp.com/terraform/language/files/override). These files are created alongside the generated Terraform configuration and take precedence.
 
 Finally, we could take advantage of the fact that Terraform will not modify resources it does not own, and it will never own anything because Terraform was always executed with a blank state.
 
