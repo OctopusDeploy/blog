@@ -98,9 +98,9 @@ These examples got us almost all the way to having an LLM generate a project, an
 
 Generating the instructions involved:
 
-* Having an LLM generate multiple sample prompts that we might expect end users to write themselves.
-* Running the generated prompts and observing the resulting Terraform configuration.
-* Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases.
+* Having an LLM generate multiple sample prompts that we might expect end users to write themselves
+* Running the generated prompts and observing the resulting Terraform configuration
+* Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases
 
 This is the prompt we used to generate sample prompts:
 
