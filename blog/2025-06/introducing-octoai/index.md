@@ -96,9 +96,9 @@ One of the challenges with maintaining a complex platform is knowing what practi
 With GenAI, we provide the ability to ask questions like:
 
 * What are the unused projects in my Octopus instance?
-* List the unused variables in my project.
-* List projects variables that look like plaintext passwords.
-* Suggest tenant tags to make tenants more manageable.
+* List the unused variables in my project
+* List projects variables that look like plaintext passwords
+* Suggest tenant tags to make tenants more manageable
 
 By distributing strong opinions about the best practices through the AI integration, we aim to help teams make those small improvements that allow them to deliver software faster and more reliably.
 
