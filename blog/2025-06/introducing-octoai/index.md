@@ -77,13 +77,53 @@ These prompts hide a lot of complexity. To build a project with nothing more tha
 
 It is asking a lot of new users to understand all of these concepts and how they relate to each other to get even a simple project up and running.
 
-With GenAI, we can train an LLM on hand-built template projects that bake in best practices and recreate those projects from a simple prompt. This removes the dread of the blank page and allows teams to see what a year-5 deployment project looks like, and then customize it to suit their needs.
+With GenAI, we can train an LLM on hand-built template projects that bake in best practices and recreate those projects from a simple prompt. This removes the dread of the blank page and allows teams to see what a year-5 deployment project looks like and then customize it to suit their needs.
 
 The real power of GenAI comes from its ability to model the relationships between plain text descriptions of features and how they are implemented in Octopus. This means projects created via GenAI can be customized by adding new instructions to the prompt, such as:
 
 * Create an Azure Web App project called "My Web App". Enable variable debugging. Enable guided failure mode. Place the project in the "Web Apps" project group. Add tenant tags based on geographic regions. Add 5 tenants named after major capital cities in Europe, the US, and Asia. Apply the tenant tags to the tenants. Link the tenants to the project.
 
-The result of this prompt is a project based on a hand-crafted example of best practices with additional tenants and custom settings. It would take even an experienced user hours to create a project like this, but GenAI can do it in minutes. This is the power of GenAI: it puts a DevOps expert in the seat next to you.
+The result of this prompt is a project based on a hand-crafted example of best practices with additional tenants and custom settings. It would take even an experienced user hours to create a project like this, but GenAI can do it in minutes, which sets new teams up with a solid foundation for success.
+
+This is the power of GenAI: it puts a DevOps expert in the seat next to you.
 
 ## How does GenAI reduce friction for existing teams?
+
+Teams that have been using Octopus for a while will have built up a collection of projects, runbooks, and other resources. Keeping these resources running smoothly requires constant discipline.
+
+One of the challenges with maintaining a complex platform is knowing what practical next steps to take to improve performance, clean up unused resources, combine duplicated values, and so on.
+
+With GenAI, we provide the ability to ask questions like:
+
+* What are the unused projects in my Octopus instance?
+* List the unused variables in my project.
+* List projects variables that look like plaintext passwords.
+* Suggest tenant tags to make tenants more manageable.
+
+By distributing strong opinions about the best practices through the AI integration, we aim to help teams make those small improvements that allow them to deliver software faster and more reliably.
+
+The final major feature is the ability to provide suggestions to resolve failed deployments with a prompt like:
+
+* Help me understand why the deployment failed. Provide suggestions for resolving the issue.
+
+To answer this question we collect all the available information about the deployment, including:
+
+* The deployment logs
+* The steps that make up the deployment
+* Any custom scripts defined in script steps
+* Release notes
+
+These details are passed to the LLM, and it provides suggestions much like the AI tooling found in IDEs today.
+
+The aim is to help DevOps teams resolve issues faster without having to wait for a support team to respond to a support ticket. Given how disruptive a failed deployment can be, saving even just a few hours for each team member over the course of a year can add up to significant time savings.
+
+More importantly, teams can share their own prompts that embed custom business knowledge, for example:
+
+* Why did the deployment fail? If the logs indicate that the smoke test failed, provide instructions to visit https://softwarecompany.support.internal/smoketest for more information.
+
+You can measure the tenure of a DevOps engineer by whether they have tried to build a general purpose error handling tool. I've attempted to build more than one during my career, and they have always failed. This is because such a general-purpose solution necessarily attempts to provide reliable outputs from unpredictable inputs. No matter how clever I was with regexes and parsing, I could never cover all the edge cases.
+
+LLMs, on the other hand, are excellent at extracting meaningful information from unpredictable inputs. You can provide a high-level description of a problem, such as failing a smoke test. The LLM can match that description to a blob of an unstructured text like deployment logs and deployment step configuration to determine if a smoke test failed and print the associated support URL.
+
+These custom prompts can embed a wealth of business knowledge and can be easily distributed amongst DevOps teams. A well-crafted prompt could easily remove the tedious back-and-forth that first level support teams often engage in, allowing DevOps teams to resolve issues faster.
 
