@@ -38,9 +38,9 @@ LLMs excel at generating text, and so to have the LLM generate an Octopus projec
 
 Terraform is a natural choice because:
 
-* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples. This is easy to verify by asking the LLM to generate Terraform code for a popular platform like AWS or Azure.
-* HCL files contain multiple resources and express their relationships via interpolations.
-* It is trivial to determine result is semantically valid Terraform configuration.
+* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples
+* HCL files contain multiple resources and express their relationships via interpolations
+* It is trivial to determine result is semantically valid Terraform configuration
 
 [Octoterra](https://github.com/OctopusSolutionsEngineering/OctopusTerraformExport) is used to convert an existing Octopus project into Terraform configuration. This process is automated, providing a short feedback loop where projects can be updated, serialized, and supplied as an example as part of a LLM prompt.
 
