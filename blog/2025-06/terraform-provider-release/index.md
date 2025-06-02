@@ -24,7 +24,7 @@ Version 1.0 brings substantial improvements to managing Octopus Deploy resources
 
 ## Clearer documentation with practical examples
 
-For a better user experience, we updated the [documentation] (https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) to include detailed examples and best practices for using the Terraform Provider effectively. We outlined 5 key scenarios to guide you. The documentation found at [the Terraform registry](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) now also has examples for all data sources and resources.
+For a better user experience, we updated the [documentation](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) to include detailed examples and best practices for using the Terraform Provider effectively. We outlined 5 key scenarios to guide you. The documentation found at [the Terraform registry](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) now also has examples for all data sources and resources.
 
 
 ## Bug fixes and improvements
