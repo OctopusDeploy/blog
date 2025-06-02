@@ -61,9 +61,9 @@ The documentation may answer some of these questions directly, but GenAI excels 
 The next way we will help teams get up and running is by providing the ability to build new projects, along with all the supporting resources, from prompts like:
 
 * Create an Azure Web App project called "My Web App"
-* Create an Azure functions project called "My Web App"
-* Create an AWS Lambda project called "My Web App"
-* Create a Kubernetes project called "My Web App"
+* Create an Azure functions project called "My Function App"
+* Create an AWS Lambda project called "My Lambda App"
+* Create a Kubernetes project called "My K8s App"
 
 These prompts hide a lot of complexity. To build a project with nothing more than the instruction that it deploys to Azure means making decisions about:
 
