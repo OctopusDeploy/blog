@@ -9,9 +9,9 @@ bannerImage: img-terraform-provider-2025.png
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
 isFeatured: false
 tags: 
-- Product   
-- Terraform
-- Configuration as Code 
+  - Product   
+  - Terraform
+  - Configuration as Code 
 ---
 
 The Octopus Deploy Terraform Provider has officially reached version 1.0. This release introduces expanded capabilities, fixes long-standing bugs, and provides improved documentation. 
