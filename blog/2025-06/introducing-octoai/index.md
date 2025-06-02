@@ -4,9 +4,9 @@ description: Learn how GenAI can empower DevOps teams to deliver software faster
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2099-12-31-0000
-metaImage: img-blog-datadog-octopus-integration-2025.png
-bannerImage: img-blog-datadog-octopus-integration-2025.png
-bannerImageAlt: Octopus and Datadog logos connected by plugs with little stars around the connection.
+metaImage: img-blog-laptop-cogs-cloud.png
+bannerImage: img-blog-laptop-cogs-cloud.png
+bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
 isFeatured: false
 tags: 
   - AI
