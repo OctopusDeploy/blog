@@ -106,7 +106,7 @@ The final major feature is the ability to provide suggestions to resolve failed 
 
 * Help me understand why the deployment failed. Provide suggestions for resolving the issue.
 
-To answer this question we collect all the available information about the deployment, including:
+To answer this question, we collect all the available information about the deployment, including:
 
 * The deployment logs
 * The steps that make up the deployment
@@ -127,3 +127,17 @@ LLMs, on the other hand, are excellent at extracting meaningful information from
 
 These custom prompts can embed a wealth of business knowledge and can be easily distributed amongst DevOps teams. A well-crafted prompt could easily remove the tedious back-and-forth that first level support teams often engage in, allowing DevOps teams to resolve issues faster.
 
+## Conclusion
+
+Software companies demand high-performing DevOps teams, and high-performing DevOps teams must deliver software to production.
+
+We're supporting DevOps teams with GenAI to:
+
+* Answer common questions about Octopus and DevOps concepts.
+* Bootstrap new projects with best practices baked in.
+* Provide strong opinions about how to improve existing Octopus spaces.
+* Quickly resolve failed deployments with suggestions based on the deployment logs and other context.
+
+By putting a DevOps expert in the seat next to you, we aim to help teams deliver software faster and more reliably.
+
+Happy deployments!
