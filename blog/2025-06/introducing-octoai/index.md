@@ -115,7 +115,7 @@ To answer this question, we collect all the available information about the depl
 
 These details are passed to the LLM, and it provides suggestions much like the AI tooling found in IDEs today.
 
-The aim is to help DevOps teams resolve issues faster without having to wait for a support team to respond to a support ticket. Given how disruptive a failed deployment can be, saving even just a few hours for each team member over the course of a year can add up to significant time savings.
+The aim is to help DevOps teams resolve issues faster without having to wait for a support team to respond to a ticket. Given how disruptive a failed deployment can be, saving even just a few hours for each team member over the course of a year can add up to significant time savings.
 
 More importantly, teams can share their own prompts that embed custom business knowledge, for example:
 
