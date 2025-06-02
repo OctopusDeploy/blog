@@ -45,13 +45,13 @@ As this is a major version release, some breaking changes may require updates to
 The Terraform Provider has always lived in our OctopusDeployLabs repository, which signalled that it was an experimental integration. We decided to move it to our [official repository](https://github.com/octopusdeploy), elevating it as a core integration.
 
 
-## Configuration as Code projects and the Terraform Provider
+## Version-controlled projects and the Terraform Provider
 
-We observed customers using Terraform and Version-control together to manage their projects and runbooks. While they're both powerful tools, combining them led to unexpected behaviours that can break instances.
+We observed customers using Terraform and version control together to manage their projects and runbooks. While they're both powerful tools, combining them led to unexpected behaviours that can break instances.
 
-To ensure stability, we’re taking a clear stance: from version 1.0 onwards, you can manage your Octopus projects or runbooks using *either* Version-control or Terraform—but not both.
+To ensure stability, we’re taking a clear stance: from version 1.0 onwards, you can manage your Octopus projects or runbooks using *either* version control or Terraform—but not both.
 
-If you try to manage a Version-controlled project or runbook with Terraform, the Provider will return an error. We designed this change to protect your instance and ensure predictable behavior when managing your Octopus instance.
+If you try to manage a version-controlled project or runbook with Terraform, the Provider will return an error. We designed this change to protect your instance and ensure predictable behavior when managing your Octopus instance.
 
 ## Conclusion
 
