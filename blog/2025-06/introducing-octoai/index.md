@@ -41,16 +41,49 @@ This is the problem we are trying to solve: how do we remove the barriers to del
 
 ## How do we think about the DevOps journey?
 
-When we think about the DevOps journey, we often think about it from the perspective of a single team. But in reality, DevOps is a journey that spans multiple teams and stages of maturity.
-
 There are two stages in the DevOps adoption process that we want to focus on:
 
 * How do we help new teams get up and running quickly, creating a solid foundation based on best practices?
 * How do we reduce the friction for existing teams as they deliver software to production?
 
-Thinking about the DevOps journey from these two perspectives helps us to identify the areas where GenAI can provide the most value.
+Thinking about the DevOps journey from these two perspectives helps us to identify the areas where GenAI can provide the most value. We thought about what a DevOps engineer would ask a knowledgeable colleague during these stages and how GenAI could provide an answer.
 
 ## How does GenAI get teams up and running quickly?
 
+The first, and perhaps most obvious, way GenAI can help is by providing the ability to ask conceptual questions about Octopus, for example:
 
+* What is a project?
+* How is a project different from a runbook?
+* How is an environment related to a lifecycle?
+
+The documentation may answer some of these questions directly, but GenAI excels at providing direct answers to these kinds of questions. This GenAI functionality is table stakes these days, but still incredibly useful for new users.
+
+The next way we will help teams get up and running is by providing the ability to build new projects, along with all the supporting resources, from prompts like:
+
+* Create an Azure Web App project called "My Web App"
+* Create an Azure functions project called "My Web App"
+* Create an AWS Lambda project called "My Web App"
+* Create a Kubernetes project called "My Web App"
+
+These prompts hide a lot of complexity. To build a project with nothing more than the instruction that it deploys to Azure means making decisions about:
+
+* Environments and lifecycle progression
+* Feeds to consume application packages from
+* Accounts to authenticate with Azure
+* Steps to deploy the application
+* Variables to configure the application
+* Targets to represent the Azure Web App
+* Supporting runbooks to manage the application
+
+It is asking a lot of new users to understand all of these concepts and how they relate to each other to get even a simple project up and running.
+
+With GenAI, we can train an LLM on hand-built template projects that bake in best practices and recreate those projects from a simple prompt. This removes the dread of the blank page and allows teams to see what a year-5 deployment project looks like, and then customize it to suit their needs.
+
+The real power of GenAI comes from its ability to model the relationships between plain text descriptions of features and how they are implemented in Octopus. This means projects created via GenAI can be customized by adding new instructions to the prompt, such as:
+
+* Create an Azure Web App project called "My Web App". Enable variable debugging. Enable guided failure mode. Place the project in the "Web Apps" project group. Add tenant tags based on geographic regions. Add 5 tenants named after major capital cities in Europe, the US, and Asia. Apply the tenant tags to the tenants. Link the tenants to the project.
+
+The result of this prompt is a project based on a hand-crafted example of best practices with additional tenants and custom settings. It would take even an experienced user hours to create a project like this, but GenAI can do it in minutes. This is the power of GenAI: it puts a DevOps expert in the seat next to you.
+
+## How does GenAI reduce friction for existing teams?
 
