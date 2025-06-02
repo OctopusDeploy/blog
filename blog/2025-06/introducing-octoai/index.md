@@ -123,9 +123,9 @@ More importantly, teams can share their own prompts that embed custom business k
 
 You can measure the tenure of a DevOps engineer by whether they have tried to build a general purpose error handling tool. I've attempted to build more than one during my career, and they have always failed. This is because such a general-purpose solution necessarily attempts to provide reliable outputs from unpredictable inputs. No matter how clever I was with regexes and parsing, I could never cover all the edge cases.
 
-LLMs, on the other hand, are excellent at extracting meaningful information from unpredictable inputs. You can provide a high-level description of a problem, such as failing a smoke test. The LLM can match that description to a blob of an unstructured text like deployment logs and deployment step configuration to determine if a smoke test failed and print the associated support URL.
+LLMs, on the other hand, are excellent at extracting meaningful information from unpredictable inputs. You can provide a high-level description of a problem, such as failing a smoke test. The LLM can match that description to a blob of unstructured text like deployment logs and deployment step configuration to determine if a smoke test failed and print the associated support URL.
 
-These custom prompts can embed a wealth of business knowledge and can be easily distributed amongst DevOps teams. A well-crafted prompt could easily remove the tedious back-and-forth that first level support teams often engage in, allowing DevOps teams to resolve issues faster.
+These custom prompts can embed a wealth of business knowledge and are easily distributed amongst DevOps teams. A well-crafted prompt could easily remove the tedious back-and-forth that first level support teams often engage in, allowing DevOps teams to resolve issues faster.
 
 ## Conclusion
 
