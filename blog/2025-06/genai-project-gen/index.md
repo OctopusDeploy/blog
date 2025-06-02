@@ -64,7 +64,7 @@ resource "octopusdeploy_environment" "environment_development" {
 }
 ```
 
-This data source and resource pair result in the `count` attribute being set to 1 if the `Development` environment doesn't exist, thus creating the environment, or set the `count` to 0 if the environment is present.
+This data source and resource pair result in the `count` attribute being set to 1 if the `Development` environment doesn't exist, thus creating the environment, or sets the `count` to 0 if the environment is present.
 
 Other resources then use a ternary expression to either reference the existing resource or the newly created one:
 
