@@ -195,7 +195,7 @@ This allows us to generate complex, bespoke projects that are still based on our
 
 ## Creating a virtuous cycle
 
-We now had a process that allowed us to generate Octopus projects from hand-crafted template projects. Our engineers could contribute new examples simply by creating an example of a best practice project in Octopus. The process of serializing it to Terraform and associating it was an LLM prompt was either scripted or involved a fairly trivial code change. This created a tight feedback loop that we'll take advantage of to continually improve the quality of the generated projects.
+We now had a process that allowed us to generate Octopus projects from hand-crafted template projects. Our engineers could contribute new examples simply by creating an example of a best practice project in Octopus. The process of serializing it to Terraform and associating it with an LLM prompt was either scripted or involved a fairly trivial code change. This created a tight feedback loop that we'll take advantage of to continually improve the quality of the generated projects.
 
 ## Conclusion
 
