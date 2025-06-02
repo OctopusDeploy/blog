@@ -1,7 +1,6 @@
 ---
 title: V1.0 release of the Octopus Deploy Terraform Provider
-description: Find out all the changes we made for the V1.0 release of the
-  Terraform Provider.
+description: Find out all the changes we made for the V1.0 release of the Terraform Provider.
 author: venkatesh.vasudevan@octopus.com
 visibility: public
 published: 2025-06-04-1400
@@ -9,7 +8,7 @@ metaImage: img-terraform-provider-2025.png
 bannerImage: img-terraform-provider-2025.png
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
 isFeatured: false
-tags:
+tags: 
   - Product
   - Terraform
   - Configuration as Code
