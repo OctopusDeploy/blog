@@ -46,7 +46,7 @@ Terraform is a natural choice because:
 
 That said, we could not generate a typical Terraform representation of a project. Terraform relies on persistent external state to track the resources it manages, and we wanted to avoid persisting any information about an Octopus instance were possible. Treating the Octopus instance as the single source of truth meant all data stayed securely behind the Octopus API, removed issues around keeping external data in sync, and removed the security concerns around storing and accessing potentially sensitive data.
 
-To support these requirements, we generated what we call "Stateless Terraform" modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resource if it was already present. This is an example:
+To support these requirements, we generate what we call "Stateless Terraform" modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resource if it was already present. This is an example:
 
 ```hcl
 data "octopusdeploy_environments" "environment_development" {
