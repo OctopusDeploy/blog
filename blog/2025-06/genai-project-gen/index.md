@@ -142,7 +142,7 @@ Include a random number suffix on the project name from 1 to 10000.
 Print each example in an individual markdown code block.
 ```
 
-The generated prompts often requested deployment processes that even an Octopus expert couldn't implement. The goal was not to generate logically valid output, but to ensure our combination of sample Terraform and custom instructions generated semantically valid output. This demonstrated that the LLM had the examples and instructions required to generate valid output, meaning it was up to us to provide the correct sample projects to generate useful output.
+The generated prompts often requested deployment processes that even an Octopus expert couldn't implement. The goal was not to generate logically valid output, but to ensure our combination of sample Terraform and custom instructions generated semantically valid output. This demonstrated that the LLM had the examples and instructions required to generate semantically valid output, meaning it was up to us to provide the correct sample projects to generate logically valid output.
 
 You can view the instructions from the [GitHub repository](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/main/context/generalinstructions.txt).
 
