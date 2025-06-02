@@ -77,7 +77,7 @@ These prompts hide a lot of complexity. To build a project with nothing more tha
 
 It is asking a lot of new users to understand all of these concepts and how they relate to each other to get even a simple project up and running.
 
-With GenAI, we can train an LLM on hand-built template projects that bake in best practices and recreate those projects from a simple prompt. This removes the dread of the blank page and allows teams to see what a year-5 deployment project looks like and then customize it to suit their needs.
+With GenAI, we can train an LLM on hand-crafted template projects that bake in best practices and recreate those projects from a simple prompt. This removes the dread of the blank page and allows teams to see what a year-5 deployment project looks like and then customize it to suit their needs.
 
 The real power of GenAI comes from its ability to model the relationships between plain text descriptions of features and how they are implemented in Octopus. This means projects created via GenAI can be customized by adding new instructions to the prompt, such as:
 
