@@ -84,13 +84,13 @@ The integration is available to any Octopus and Datadog customers with [Datadogâ
 
 The metrics sent from the integration, the dashboard, and the monitors, are all standard as part of the integration. (Logs collected from the integration are subject to [logs pricing with Datadog](https://docs.datadoghq.com/account_management/billing/pricing/#log-management).)
 
-To set up the Octopus Datadog integration, [follow the simple instructions provided by Datadog](https://github.com/DataDog/integrations-core/blob/master/octopus_deploy/README.md).
+To set up the Octopus Datadog integration, [follow the simple instructions provided by Datadog](https://docs.datadoghq.com/integrations/octopus_deploy/).
 
 ## Conclusion
 
 Datadog is a best-of-breed monitoring and observability platform, letting you see inside any stack, any app, at any scale, anywhere. When integrated with Octopus as a best-of-breed Continuous Delivery platform, you get world-class observability and CD that let you find problems fast, recover rapidly, and deliver software quickly and reliably at scale.
 
-If you're already using both Octopus and Datadog, you can [set up the integration following Datadog's instructions](https://github.com/DataDog/integrations-core/blob/master/octopus_deploy/README.md).
+If you're already using both Octopus and Datadog, you can [set up the integration by following Datadog's instructions](https://docs.datadoghq.com/integrations/octopus_deploy/).
 
 If you're a Datadog customer interested in using Octopus for your Continuous Delivery, you can [sign up for a free Octopus trial](https://octopus.com/start) or [request a demo](https://octopus.com/lp/schedule-a-demo). 
 
