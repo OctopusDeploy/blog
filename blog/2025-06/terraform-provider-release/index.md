@@ -1,17 +1,17 @@
 --- 
-title: "V1.0 release of the Octopus Deploy Terraform Provider" 
+title: "V1.0 release of the Octopus Deploy Terraform Provider"
 description: "Find out all the changes we made for the V1.0 release of the Terraform Provider."
-author: venkatesh.vasudevan@octopus.com 
-visibility: public 
-published: 2025-06-04-1400  
+author: venkatesh.vasudevan@octopus.com
+visibility: public
+published: 2025-06-04-1400
 metaImage: img-terraform-provider-2025.png
 bannerImage: img-terraform-provider-2025.png
 bannerImageAlt: Terraform branded crane lifting an Octopus branded box.
 isFeatured: false
-tags: 
-  - Product   
+tags:
+  - Product
   - Terraform
-  - Configuration as Code 
+  - Configuration as Code
 ---
 
 The Octopus Deploy Terraform Provider has officially reached version 1.0. This release introduces expanded capabilities, fixes long-standing bugs, and provides improved documentation. 
@@ -26,7 +26,6 @@ Version 1.0 brings substantial improvements to managing Octopus Deploy resources
 
 For a better user experience, we updated the [documentation] (https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) to include detailed examples and best practices for using the Terraform Provider effectively. We outlined 5 key scenarios to guide you. The documentation found at [the Terraform registry](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) now also has examples for all data sources and resources.
 
-
 ## Bug fixes and improvements
 
 We resolved several long-standing bugs in this release. This improves the Provider and ensures a more stable and reliable experience.
@@ -39,11 +38,9 @@ We resolved several long-standing bugs in this release. This improves the Provid
 
 As this is a major version release, some breaking changes may require updates to existing configurations. To help with this transition, we have a [comprehensive migration guide](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs). Please review it carefully before upgrading your environments.
 
-
 ### Provider migrated to Octopus Deploy repository 
 
 The Terraform Provider has always lived in our OctopusDeployLabs repository, which signalled that it was an experimental integration. We decided to move it to our [official repository](https://github.com/octopusdeploy), elevating it as a core integration.
-
 
 ## Version-controlled projects and the Terraform Provider
 
