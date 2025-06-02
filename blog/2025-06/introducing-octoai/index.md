@@ -133,10 +133,10 @@ Software companies demand high-performing DevOps teams, and high-performing DevO
 
 We're supporting DevOps teams with GenAI to:
 
-* Answer common questions about Octopus and DevOps concepts.
-* Bootstrap new projects with best practices baked in.
-* Provide strong opinions about how to improve existing Octopus spaces.
-* Quickly resolve failed deployments with suggestions based on the deployment logs and other context.
+* Answer common questions about Octopus and DevOps concepts
+* Bootstrap new projects with best practices baked in
+* Provide strong opinions about how to improve existing Octopus spaces
+* Quickly resolve failed deployments with suggestions based on the deployment logs and other context
 
 By putting a DevOps expert in the seat next to you, we aim to help teams deliver software faster and more reliably.
 
