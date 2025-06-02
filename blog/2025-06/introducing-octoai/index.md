@@ -139,5 +139,3 @@ We're supporting DevOps teams with GenAI to:
 * Quickly resolve failed deployments with suggestions based on the deployment logs and other context
 
 By putting a DevOps expert in the seat next to you, we aim to help teams deliver software faster and more reliably.
-
-Happy deployments!
