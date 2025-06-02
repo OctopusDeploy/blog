@@ -37,7 +37,7 @@ When you look at the metrics used to measure DevOps performance, such as DORA me
 
 Anything that prevents a DevOps team from delivering software to production reduces their performance. There is simply no way to be a high-performing DevOps team without delivering software to production.
 
-This is the problem we are trying to solve: how do we remove the barriers to delivering software to production? Because this is the foundation of high-performing DevOps teams, and every software company demands high-performing DevOps teams.
+This is the problem we are trying to solve: how do we remove the barriers to delivering software to production? Because this is the foundation of high-performing DevOps teams, and every software company demands their DevOps team be high-performing.
 
 ## How do we think about the DevOps journey?
 
