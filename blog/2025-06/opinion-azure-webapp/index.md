@@ -17,7 +17,7 @@ Pushing up code for an Azure Web App is not a particulary difficult task.  Micro
 ## Use a Build server
 Build servers use the code that has been checked into source control and compile it using an independent machine without any of the specialized tooling developer machines typically have.  Using a build server ensures the application includes all dependencies to run when deployed to destination servers.  This avoids the Works On My Machine (WOMM) scenarios.
 
-### Build once deploy many
+### Build once, deploy many
 To ensure a consistent deployment experience, it is recommended that artifacts be built once and used to deploy to all environments.  The build-per-branch approach introduces risk in that it doesn't guarnatee that the same code is tested in each environment.  In theory, Pull Requests (PR) _should_ prevent unwanted or unanticipated changes, but the risk of bonus code getting introduced is still there.  
 
 ### Versioning scheme
