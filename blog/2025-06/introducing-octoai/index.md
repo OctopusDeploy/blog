@@ -58,6 +58,8 @@ The Octopus AI Assistant provides a number of features to help new teams get up 
 
 ### Using GenAI to answer questions
 
+![An example prompt showing a documentation searh](docs-search.png)
+
 The first, and perhaps most obvious, way GenAI can help is by providing the ability to ask conceptual questions about Octopus, for example:
 
 * What is a project?
@@ -67,6 +69,8 @@ The first, and perhaps most obvious, way GenAI can help is by providing the abil
 The documentation may answer some of these questions directly, but GenAI excels at providing direct answers to these kinds of questions. This GenAI functionality is table stakes these days, but still incredibly useful for new users.
 
 ### Using GenAI to bootstrap new projects
+
+![An example prompt showing the creation of a project](project-creation.png)
 
 The next way we will help teams get up and running is by providing the ability to build new projects, along with all the supporting resources, from prompts like:
 
@@ -103,6 +107,8 @@ Teams that have been using Octopus for a while will have built up a collection o
 
 ### Maintaining Octopus with GenAI
 
+![An example prompt showing a prompt to find unused variables](variable-search.png)
+
 One of the challenges with maintaining a complex platform is knowing what practical next steps to take to improve performance, clean up unused resources, combine duplicated values, and so on.
 
 With GenAI, we provide the ability to ask questions like:
@@ -115,6 +121,8 @@ With GenAI, we provide the ability to ask questions like:
 By distributing strong opinions about the best practices through the AI integration, we aim to help teams make those small improvements that allow them to deliver software faster and more reliably.
 
 ### Providing Level 0 support with GenAI
+
+![An example prompt showing a prompt to resolve a failed deployment](level0-support.png)
 
 The final major feature is the ability to provide suggestions to resolve failed deployments with a prompt like:
 
