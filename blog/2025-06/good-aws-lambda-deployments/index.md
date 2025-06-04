@@ -16,7 +16,7 @@ isFeatured: false
 
 ## Introduction
 
-Deploying AWS Lambda functions can be simple, ranging from quick CLI commands to complete infrastructure as code pipelines. That is until you need to do it reliably across multiple environments, with visibility, auditability, and a team of developers involved. In this post, I'll share some strong opinions on what a good Lambda deployment looks like, shaped by patterns we've seen work and how through 9Brains, GenAI can get you started with these opinions in your own projects quicker.
+Deploying AWS Lambda functions can be simple, ranging from quick CLI commands to complete infrastructure as code pipelines. That is until you need to do it reliably across multiple environments, with visibility, auditability, and a team of developers involved. In this post, I'll share some strong opinions on what a good Lambda deployment looks like, shaped by patterns we've seen work and how through the Octopus AI Assistant, GenAI can get you started with these opinions in your own projects quicker.
 
 ## Use S3 for your Lambda Code
 
@@ -77,7 +77,7 @@ When deploying with AWS SAM, you gain built-in support for security best practic
 
 ## Accelerate your Lambda projects with GenAI
 
-With 9Brain, Octopus' GenAI assistant, you can turbocharge your AWS Lambda function deployments. Using the **Prompt-based project creation** functionality, you can write a prompt like:
+With the Octopus AI Assistant, you can speed up your AWS Lambda function deployments. Using the **Prompt-based project creation** functionality, you can write a prompt like:
 
 > Create an AWS Lambda Project called "Fast-track SAM" in the project group "AWS"
 
