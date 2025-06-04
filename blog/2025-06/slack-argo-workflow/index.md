@@ -157,7 +157,7 @@ metadata:
 ```
 
 ##### valut-policy.hcl
-This file is used to grant the Service Account permissions in Vault so it can read secrets.  This example grants the Service Account read and list permissions to any secret.  In real-world situations, I’d limit what the Service Account has access to. This is just a skmple example to get started.
+This file is used to grant the Service Account permissions in Vault so it can read secrets.  This example grants the Service Account read and list permissions to any secret.  In real-world situations, I’d limit what the Service Account has access to. This is just a simple example to get started.
 
 ```hcl
 path "secret/data/*" {
