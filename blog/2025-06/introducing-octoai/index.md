@@ -28,7 +28,7 @@ Are you part of a software company? It seems like an obvious question, and one t
 
 The way to determine if you are a software company is to ask yourself: "What would happen if all the computers were turned off?"
 
-If the answer is that your business would grind to a halt, then you are a software company. If you are a software company, then you need to deliver software to your employees and users.
+If the answer is that your business would grind to a halt, then you are a software company. If you are a software company, then you must deliver software to your employees and users.
 
 DevOps teams are responsible for keeping software companies running. It is a complex job, and it will only ever get more complex. And the reality is this complexity is always going to be met with the demand to do more with less.
 
