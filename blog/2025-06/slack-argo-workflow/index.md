@@ -444,6 +444,11 @@ templates:
           --data "{ 'token': '{{inputs.parameters.SLACK_TOKEN}}', 'channel': '{{inputs.parameters.SLACK_CHANNEL}}', 'text' : 'Workflow beginning:star:', 'attachments': [{'color': '#ADD8E6','blocks': [ { 'type': 'section', 'fields': [{ 'type': 'mrkdwn', 'text': '{{inputs.parameters.SLACK_MESSAGE}}'}] } ] }]  }" 
 ```
 
+## The result
+Afer going through some trial and error learning how all of this functions, I successfully posted a message to my designated channel!
+
+![Slack message](slack-message.png)
+
 ## Conclusion
 I needed something that would help me wrap my head around how Argo Workflows (and Codefresh Promotions Workflows) worked.  Going through the exercise of setting up my own with a specific purpose in mind demistified not only how they worked, but how to construct one myself.  I'm hoping this post helps you in the same way it helped me.
 
