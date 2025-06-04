@@ -15,15 +15,15 @@ tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a 
  - Engineering
 ---
 
-The acquisition of Codefresh gave me an exciting opportunity to learn new tech.  Initially, I thought Argo was just Argo CD, I didn't realize that Argo consists of four distinct projects; [Argo CD](https://argoproj.github.io/cd/), [Argo Events](https://argoproj.github.io/argo-events/), [Argo Rollouts](https://argoproj.github.io/rollouts/), and [Argo Workflows](https://argoproj.github.io/workflows/).  One of the key features of the Codefresh product is [Promotion Flows](https://codefresh.io/docs/docs/promotions/promotion-flow) which makes heavy use of Argo Workflows.  To better understand its capabilities, I decided to create a workflow so I can see how it works and see it in action.  In this post, I'll go over the project the I undertook!
+The acquisition of Codefresh gave me an exciting opportunity to learn new tech.  Initially, I thought Argo was just Argo CD, I didn't realize that Argo consists of four distinct projects; [Argo CD](https://argoproj.github.io/cd/), [Argo Events](https://argoproj.github.io/argo-events/), [Argo Rollouts](https://argoproj.github.io/rollouts/), and [Argo Workflows](https://argoproj.github.io/workflows/).  One of the key features of the Codefresh product is [Promotion Flows](https://codefresh.io/docs/docs/promotions/promotion-flow) which makes heavy use of Argo Workflows.  To better understand its capabilities, I decided to create a workflow so I can see how it works and put it in action.  In this post, I'll go over the project the I undertook!
 
 ## The problem to solve
-To get this project underway, I needed a problem to solve.  I had read that Kubernetes worked with external secrets providers, but it wasn't something I'd ever seen myself.  Having a local instance of HashiCorp Vault running, I decided to try my hand at including a Slack notification in a Codefresh Promotion Flow where it pulled the secrets for Slack from HashiCorp Vault in a Just In Time (JIT) fashion.  It is worth nothing that while I created this to work as a Promotion Workflow, this will work as a standard Argo Workflow.
+To get this project underway, I needed a problem to solve.  I had read that Kubernetes worked with external secrets providers, but it wasn't something I'd ever used myself.  Having a local instance of HashiCorp Vault running, I decided to try my hand at including a Slack notification in a Codefresh Promotion Flow where it pulled the secrets for Slack from HashiCorp Vault in a Just In Time (JIT) fashion.  It is worth nothing that while I created this to work as a Promotion Workflow, this will work as a standard Argo Workflow.
 
 ## Prep work
 To support this endeavor, there were a couple of things that I needed to configure first:
 - Create a Slack channel to work with
-- Configure Vault to work with Kuberenetes authentication/authorization
+- Configure Vault to work with Kubernetes authentication/authorization
 
 ### Slack channel
 To post a message to Slack, I first need to create an App.  I used this [guide](https://api.slack.com/tutorials/tracks/getting-a-token) to create an App quickly.  Installing the App generated a Bot User OAuth Token which is what is used retrieve secrets from Vault.
@@ -31,7 +31,7 @@ To post a message to Slack, I first need to create an App.  I used this [guide](
 ### Vault
 For the Vault instance, there were two things I needed for this project:
 - Some secrets to retrieve
-- Allow a Kuberenetes Service Account access to my Vault instance
+- Allow a Kubernetes Service Account access to my Vault instance
 
 #### Vault Secrets
 Secrets in Vault can be created via the UI or through an API call.  My Vault instance runs in a container without any data persistence, so I created a quick PowerShell script to automate it
@@ -61,7 +61,7 @@ Invoke-RestMethod -Method Post -Uri "http://<Vault URL>:8200/v1/secret/data/slac
 </details>
 
 #### Kubernetes Service Account authentication and authorization
-There are a few files that needed to be created to configure the integration between my Kuberentes cluster and my HashiCorp vault instance:
+There are a few files that needed to be created to configure the integration between my Kubernetes cluster and my HashiCorp vault instance:
 - vault-auth-service-account.yaml
 - vault-auth-secret.yaml
 - configmap-json.yaml
@@ -157,7 +157,7 @@ metadata:
 ```
 
 ##### valut-policy.hcl
-This file is used to grant the Service Account permissions in Vault so it can read.  This example grants the Service Account read and list permissions to any secret.  In real-world situations, I’d limit what the Service Account has access to, I did this is just to get started.
+This file is used to grant the Service Account permissions in Vault so it can read secrets.  This example grants the Service Account read and list permissions to any secret.  In real-world situations, I’d limit what the Service Account has access to. This is just a skmple example to get started.
 
 ```hcl
 path "secret/data/*" {
@@ -240,7 +240,7 @@ kubectl apply -f configmap-json.yaml
 :::info
 This [tutorial](https://developer.hashicorp.com/vault/tutorials/kubernetes/agent-kubernetes) from HashiCorp contains the same commands used in this post, but in bash format.
 
-Both the bash and PowerShell scripts will require the use of the [HashiCorp Vault CLI](https://developer.hashicorp.com/vault/install).  Please be sure to grab that if you intend on following along with this post.
+Both the bash and PowerShell scripts will require the use of the [HashiCorp Vault CLI](https://developer.hashicorp.com/vault/install).  Please be sure to grab this binary if you intend on following along with this post.
 :::
 
 ## Workflow template
@@ -320,7 +320,7 @@ spec:
             valueFrom:
               path: /etc/secrets/slack.json
 
-    - name: post-message
+    - name: post-message	# we also have an existing plugin at https://github.com/codefresh-io/argo-hub/blob/main/workflows/slack/versions/0.0.2/docs/post-to-channel.md
       inputs:
         parameters:
           - name: SLACK_CHANNEL
@@ -339,7 +339,7 @@ spec:
 </details>
 
 ### Kind
-The Kind for the Workflow manifest is a WorkflowTemplate using the api of argoproj.io/v1.  The annotations applied to this template are what is required to designate this is a `Promotion Workflow` in Codefresh.  If using vanilla Argo Workflows, the annotations section can be removed.
+The Kind for the Workflow manifest is a WorkflowTemplate using the api of argoproj.io/v1.  The annotations applied to this template are what is required to designate this is a `Promotion Workflow` in Codefresh (it allows it to be displayed in the correct dashboards).  If using vanilla Argo Workflows, the annotations section can be removed.
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
