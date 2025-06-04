@@ -1,5 +1,5 @@
 ---
-title: Introducing the Octopus AI integration
+title: Introducing the Octopus AI Assistant
 description: Learn how GenAI can empower DevOps teams to deliver software faster and more reliably.
 author: matthew.casperson@octopus.com
 visibility: private
@@ -12,11 +12,15 @@ tags:
   - AI
 ---
 
-DevOps teams have embraced GenAI for many of their tasks, notably to assist with writing code, but also for other common tasks like pull request comments, documentation, debugging error messages, and more.
+"Create an Azure Web App project called 'Audits Microservice'."
 
-A question we have been exploring in Octopus is how GenAI can meaningfully improve the delivery of software. GenAI is incredibly powerful, but also has the unfortunate distinction of being "slapped on" to products in ways that add little value. So is there an opportunity to integrate GenAI with Octopus in a way that delivers genuine value to our users?
+"Provide suggestions to resolve the failed deployment."
 
-In this post I'll discuss how we plan to streamline and improve the software delivery process with GenAI, and how we plan to integrate it into Octopus.
+"Find unused variables in my project."
+
+These are just a sample of the tasks, insights, and advice you can expect from the new Octopus AI Assistant. Teams can now create projects, with all supporting resources, and based on best practices, in minutes instead of hours. Level 0 support, customized with local business knowledge, is available to every Octopus user without submitting a ticket. And Octopus administrators can get actionable suggestions to improve their Octopus instance.
+
+In this post I'll explain how the Octopus AI Assistant, powered by GenAI, can help DevOps teams deliver software faster and more reliably.
 
 ## What is the problem we are trying to solve?
 
