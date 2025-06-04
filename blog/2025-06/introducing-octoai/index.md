@@ -54,6 +54,10 @@ Thinking about the DevOps journey from these two perspectives helps us to identi
 
 ## How does GenAI get teams up and running quickly?
 
+The Octopus AI Assistant provides a number of features to help new teams get up and running quickly.
+
+### Using GenAI to answer questions
+
 The first, and perhaps most obvious, way GenAI can help is by providing the ability to ask conceptual questions about Octopus, for example:
 
 * What is a project?
@@ -61,6 +65,8 @@ The first, and perhaps most obvious, way GenAI can help is by providing the abil
 * How is an environment related to a lifecycle?
 
 The documentation may answer some of these questions directly, but GenAI excels at providing direct answers to these kinds of questions. This GenAI functionality is table stakes these days, but still incredibly useful for new users.
+
+### Using GenAI to bootstrap new projects
 
 The next way we will help teams get up and running is by providing the ability to build new projects, along with all the supporting resources, from prompts like:
 
@@ -95,6 +101,8 @@ This is the power of GenAI: it puts a DevOps expert in the seat next to you.
 
 Teams that have been using Octopus for a while will have built up a collection of projects, runbooks, and other resources. Keeping these resources running smoothly requires constant discipline.
 
+### Maintaining Octopus with GenAI
+
 One of the challenges with maintaining a complex platform is knowing what practical next steps to take to improve performance, clean up unused resources, combine duplicated values, and so on.
 
 With GenAI, we provide the ability to ask questions like:
@@ -105,6 +113,8 @@ With GenAI, we provide the ability to ask questions like:
 * Suggest tenant tags to make tenants more manageable
 
 By distributing strong opinions about the best practices through the AI integration, we aim to help teams make those small improvements that allow them to deliver software faster and more reliably.
+
+### Providing Level 0 support with GenAI
 
 The final major feature is the ability to provide suggestions to resolve failed deployments with a prompt like:
 
