@@ -76,9 +76,9 @@ You can find more recommendations in our [Best practises and implementation guid
 
 ## Where can GenAI help in Octopus
 
-Putting any best practices into action, and *maintaining them over time* is often where teams struggle most. Whether you're starting a new project or trying to fix a failing one, GenAI helps bridge the gap between knowing what a good deployment looks like and actually building one. Through 9Brain, GenAI supports teams in three key areas:
+Putting any best practices into action, and *maintaining them over time* is often where teams struggle most. Whether you're starting a new project or trying to fix a failing one, GenAI helps bridge the gap between knowing what a good deployment looks like and actually building one. Through the Octopus AI Assistant, GenAI supports teams in three key areas:
 
-1. **Prompt-based project creation**: This lets users describe what they want in natural language like `Create an AWS Lambda Project called "OctoPub SAM" in the project group "AWS"`. Through 9Brain, Octopus will generate a fully structured sample project. This reduces onboarding time for new users and ensures their first project contains a solid foundation of best practises.
+1. **Prompt-based project creation**: This lets users describe what they want in natural language like `Create an AWS Lambda Project called "OctoPub SAM" in the project group "AWS"`. Through the Octopus AI Assistant, it will generate a fully structured sample project. This reduces onboarding time for new users and ensures their first project contains a solid foundation of best practises.
 
 2. **Deployment Failure Analysis**: Figuring out why something has gone wrong is often time consuming. The Deployment Failure Analyzer uses GenAI to review your failed deployments and highlight likely causes - whether its a transient issue with an environment, or a misconfigured variable. Provide a prompt like `Help me understand why the deployment failed. If the deployment didn't fail, say so. Provide suggestions for resolving the issue.` and it can offer next steps and has the potential to reduce the time to resolution which is win-win for everyone.
 
@@ -86,7 +86,7 @@ Putting any best practices into action, and *maintaining them over time* is ofte
 
 ## From Best Practices to Practical Guidance with GenAI
 
-The use of 9Brain and GenAI isn't about enforcing rigid rules, its about empowering our users. Teams still operate Octopus. 9Brain is here to complement your teams' expertise, reduce manual effort and surface opinions you might otherwise not have known about. This is the real value of AI in DevOps - giving our customers more information while helping them maintain control, without adding complexity.
+The use of the Octopus AI Assistant and GenAI isn't about enforcing rigid rules, its about empowering our users. Teams still operate Octopus. GenAI is here to complement your teams' expertise, reduce manual effort and surface opinions you might otherwise not have known about. This is the real value of AI in DevOps - giving our customers more information while helping them maintain control, without adding complexity.
 
 ## Conclusion
 
