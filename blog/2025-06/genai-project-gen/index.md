@@ -3,7 +3,7 @@ title: Building Octopus projects with GenAI
 description: Learn about how we're using GenAI to generate projects in Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2025-06-01-1400
+published: 2099-01-01-1400
 metaImage: img-blog-laptop-cogs-cloud.png
 bannerImage: img-blog-laptop-cogs-cloud.png
 bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
