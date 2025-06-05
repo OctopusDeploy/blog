@@ -14,11 +14,9 @@ isFeatured: false
 
 ## Introduction
 
-The DevOps landscape is growing increasingly complex. Cloud providers regularly add new platforms, the Kubernetes ecosystem is undergoing a Cambrian explosion, and all of this while DevOps teams are expected to address security, observability, scale, and compliance in every step of their processes.
+What if I told you that you could create a complete, functional Octopus project, based on hand-crafted examples of best practices, by simply typing a prompt like `Create a Kubernetes project called "Web App"`?
 
-Octopus has an amazing ability to model the complex environments found in modern enterprises, but configuring the environments, feeds, accounts, lifecycles, projects, runbooks, and targets that make up any real world deployment scenario can be a challenge, let alone doing so according to best practises with patterns that will scale.
-
-To help teams get up and running quickly on Octopus, we're introducing a new feature that populates an Octopus space with common projects based on a prompt like `Create a Kubernetes project called "Web App"`. This functionality is powered by GenAI, and in this post I'll describe how a simple prompt becomes a fully functional project in your Octopus instance.
+This is exactly what we're providing with the Octopus AI Assistant. In this post, I'll describe how we're using GenAI to generate Octopus projects, and how you can use this functionality to accelerate your DevOps processes.
 
 ## Building the templates
 
