@@ -32,7 +32,7 @@ Regardless of what method you use, your deployment should consist of the followi
 ### Notification when a deployment is starting
 A deployment event should never be a surprise, especially to the Production environment.  An argument can be made that mature organizations that deploy several times a day to lower level environments don't necessarily need notifications for all environments.  Too many notifications may lead to noise that nobody pays attention to and important notificaitons getting lost.  The Production environment, however, should always have some sort of notification.  
 
-Notifications can take place in many different ways such as email, Slack, Microsoft Teams, Amazon Chime, or even SMS messages.  Team members, stakeholders, and or management should be among the list of people to receive a notification that a deployment is beginning.
+Notifications can be made using email, Slack, Microsoft Teams, Amazon Chime, or even SMS messages.  Team members, stakeholders, and or management should be among the list of people to receive a notification that a deployment is beginning.
 
 ### Deploy the Function to a Staging slot
 The Azure Functions offering from Microsoft comes with with a freature called [Deployment Slots](https://learn.microsoft.com/en-us/azure/azure-functions/functions-deployment-slots).  It is common to create at least one additional Deployment Slot, usually named Staging, and deploy to it first to allow for testing before releasing the new version to that environment.
@@ -54,7 +54,19 @@ A notification that a deployment has completed successfully is also important to
 ### Notification the deployment failed (only on failure)
 Notification that a deployment has failed is equally as important, if not more so.  Failure notifications should take advantage of whatever features are avaialable to make them stick out.  Important flags in email, red text notifications within instant messenger programs, whatever is necessary to make the failure noticed as soon as possible so it can be investigated and or mediated.  Deployment failures may also need to employ additional notifications such as a PagerDuty event, depending on severity.
 
+## Use the Octopus AI Assistant to create projects according to best practices
+Octopus has embraced the usage of AI and developed the Octopus AI Assistant.  The Octopus AI Assistant provides customers with an easy-to-use, prompt-based system to create projects with best practices baked in.  For example, using the prompt:
+
+```
+Create an Azure Function project called "My Function 1" in space "My Space"
+```
+Octopus will create a new project including all the steps outlined in this post.  In addition, it will create everything necessary to run the project including runbooks to create the infrastructure, project variables, and a Service Principal Azure account.  If you'd rather use OIDC, all that is required is a small tweak to the prompt
+
+```
+Create an Azure Function project called "My Function 1" in space "My Space".  Make the Azure Account use OIDC.
+```
+
 ## Conclusion
-There are many ways to solve a problem.  The steps outlined in this post are what I consider to be the best approach to deploying an Azure Function.  If you feel that I have missed something or disagree, feel free to leave a comment below.
+Part of my job as an SE is to help customers get the most out of Octopus.  This often includes advising on deployment best practices, similar to what I've outlined in this post.  Customers can now use the Octopus AI Assistant to create projects quickly, easily, and with all the best practices baked in!
 
 Happy deployments!
