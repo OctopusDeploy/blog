@@ -20,7 +20,7 @@ tags:
 
 These are just a sample of the tasks, insights, and advice you can expect from the new Octopus AI Assistant. Teams can now create projects, with all supporting resources, and based on best practices, in minutes instead of hours. Level 0 support, customized with local business knowledge, is available to every Octopus user without submitting a ticket. And Octopus administrators get actionable suggestions to improve their Octopus instance.
 
-In this post I'll explain how the Octopus AI Assistant, powered by GenAI, can help DevOps teams deliver software faster and more reliably.
+In this post, I'll explain how the Octopus AI Assistant, powered by GenAI, can help DevOps teams deliver software faster and more reliably.
 
 ## What is the problem we are trying to solve?
 
