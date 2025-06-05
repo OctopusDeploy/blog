@@ -58,7 +58,7 @@ The Octopus AI Assistant provides a number of features to help new teams get up 
 
 ### Using GenAI to answer questions
 
-![An example prompt showing a documentation searh](docs-search.png)
+![An example prompt showing a documentation search](docs-search.png)
 
 The first, and perhaps most obvious, way GenAI can help is by providing the ability to ask conceptual questions about Octopus, for example:
 
