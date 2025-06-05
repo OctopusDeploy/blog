@@ -3,7 +3,7 @@ title: Introducing the Octopus AI Assistant
 description: Learn how GenAI can empower DevOps teams to deliver software faster and more reliably.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2099-12-31-0000
+published: 2099-01-01-0000
 metaImage: img-blog-laptop-cogs-cloud.png
 bannerImage: img-blog-laptop-cogs-cloud.png
 bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
