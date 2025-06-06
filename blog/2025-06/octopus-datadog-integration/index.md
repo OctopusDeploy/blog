@@ -78,6 +78,10 @@ The Datadog Agent collects:
 
 After the integration is set up to send data to Datadog, you can use out-of-the-box dashboards to get an overview of each deployment by project. Build monitors alert you of notable events, like a failed deployment, so you can take action promptly. Octopus's [audit log stream](https://octopus.com/docs/security/users-and-teams/auditing/audit-stream#configure-audit-stream) can further enrich this data, which you can combine within Datadog for more insights.
 
+## See the integration in action
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3Ct0Kuvj6NI?si=Zvt1bcSi60mSdtpd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Who can use the integration
 
 The integration is available to any Octopus and Datadog customers with [Datadog’s Infrastructure Monitoring](https://www.datadoghq.com/dg/enterprise/it-infrastructure-monitoring/).
