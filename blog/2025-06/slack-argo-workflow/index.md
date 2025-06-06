@@ -1,5 +1,5 @@
 ---
-title: Configure a Slack notification with Argo Workflow
+title: Configuring Slack notifications with Argo Workflow - a learning experience
 description: Learn how to configure a Slack notification using an Argo Workflow that pulls a secret fron HashiCorp Vault.
 author: shawn.sesna@octopus.com
 visibility: private
