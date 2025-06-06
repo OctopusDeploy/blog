@@ -8,11 +8,12 @@ metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
+tags: 
+ - AI
+ - Azure
  - DevOps
- - Company
- - Product
- - Engineering
+ - Deployment Patterns
+ - Serverless
 ---
 
 During my tenure as a Solutions Engineer (SE) for Octopus Deploy, I have come across many different ways to perform a deployment of software.  Some of these solutions are quite inventive, while others have been less than optimal.  In this post, I will go over what I believe a deployment of an Azure Function should look like.
