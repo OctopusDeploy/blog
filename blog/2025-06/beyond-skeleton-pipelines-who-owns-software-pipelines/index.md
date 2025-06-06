@@ -32,7 +32,7 @@ The important shift is treating delivery process improvements as regular develop
 
 Ask any group of engineers, "Who owns your software delivery pipelines?" and I bet you'll get different answers. When writing this post, I put that question into a search engine and reviewed the discussions, which weren't surprising. Some say developers should own what they build, others insist it's up to platform or DevOps engineers. Then there's the view that everyone is responsible because DevOps is about everyone working together. My observation is that often, no one owns it, and that's when it becomes a problem.
 
-The distinction that matters isn't really about ownership. It's about accountability. Someone needs to be accountable for ensuring your delivery process evolves, improves, and supports your organization with shipping software rather than being a friction-filled process people loathe working with. Without that accountability, pipelines can easily become orphaned components that gradually deteriorate until they become technical debt and a bottleneck instead of an enabler.
+The distinction that matters isn't really about ownership. It's about accountability. Someone needs to be accountable for ensuring your delivery process evolves, improves, and supports your organization with shipping software rather than being a friction-filled process people loathe working with. Without that accountability, pipelines can easily become unmanaged components that gradually deteriorate until they become technical debt and a bottleneck instead of an enabler.
 
 There's no one-size-fits-all answer for who should own and be accountable for your pipelines. You must discuss and agree based on your maturity, size, team structure, and individual skill sets. The important thing is that it is discussed and agreed upon, and not left to assumptions. Ask yourself now if everyone on the team knows how and where to raise an issue with the deployment process today. If the answer is no, then start there. Determine who's responsible and establish clear channels for pipeline feedback, problems, and improvements.
 
@@ -44,7 +44,7 @@ This ownership vacuum creates predictable problems I've seen many times. Teams f
 - Bring new functionality to your software delivery lifecycle that adds business value
 - Catch issues before they become customer problems
 
-Worse, they often become single points of knowledge. Whoever initially sets up the pipeline is the only person who understands how it works. When that person leaves or gets pulled onto other projects, your team inherits a black box everyone fears touching.
+Worse, they often become single points of knowledge. Whoever initially sets up the pipeline is the only person who understands how it works. When that person leaves or gets pulled onto other projects, your team inherits a mysterious system everyone fears touching.
 
 Fragile pipelines break at the worst possible moments. They miss opportunities to catch issues early, optimize build times, have predictable outcomes, or provide better feedback to developers. Maybe, most importantly, they frustrate your team and slow down what they're supposed to enable: shipping great software and products.
 
