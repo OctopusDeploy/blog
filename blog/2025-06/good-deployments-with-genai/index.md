@@ -3,7 +3,7 @@ title: Good Deployments with GenAI
 description: Discover Octopus Deploy’s view on what makes a good deployment, and how GenAI can help teams adopt best practices faster and with more confidence.
 author: mark.harrison@octopus.com
 visibility: private
-published: 2025-06-01-1400
+published: 2099-01-01-0000
 metaImage: img-blog-laptop-cogs-cloud.png
 bannerImage: img-blog-laptop-cogs-cloud.png
 bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
