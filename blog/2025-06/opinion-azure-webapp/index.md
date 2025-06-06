@@ -9,7 +9,10 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+ - AI
+ - Azure
+ - DevOps
+ - Deployment Patterns
 ---
 
 Pushing up code for an Azure Web App is not particularly difficult.  Microsoft Visual Studio provides a convenient way to publish Azure Web Apps directly from the IDE.  However, the deployment of an application is more than just publishing the bits for execution.  An application deployment needs to consist of repeatable steps that are executed the same way each time the application is deployed.  These steps start with building code and end with an application deployed to a Production environment.  In this post, I will outline what should be considered when deploying an application as an Azure Web App.
