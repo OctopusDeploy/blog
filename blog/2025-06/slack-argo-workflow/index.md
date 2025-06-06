@@ -15,10 +15,10 @@ tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a 
  - Engineering
 ---
 
-The acquisition of Codefresh gave me an exciting opportunity to learn new tech.  Initially, I thought Argo was just Argo CD, I didn't realize that Argo consists of four distinct projects; [Argo CD](https://argoproj.github.io/cd/), [Argo Events](https://argoproj.github.io/argo-events/), [Argo Rollouts](https://argoproj.github.io/rollouts/), and [Argo Workflows](https://argoproj.github.io/workflows/).  One of the key features of the Codefresh product is [Promotion Flows](https://codefresh.io/docs/docs/promotions/promotion-flow) which makes heavy use of Argo Workflows.  To better understand its capabilities, I decided to create a workflow so I can see how it works and put it in action.  In this post, I'll go over the project the I undertook!
+The acquisition of Codefresh gave me an exciting opportunity to learn new tech.  Initially, I thought Argo was just Argo CD, I didn't realize that Argo consists of four distinct projects: [Argo CD](https://argoproj.github.io/cd/), [Argo Events](https://argoproj.github.io/argo-events/), [Argo Rollouts](https://argoproj.github.io/rollouts/), and [Argo Workflows](https://argoproj.github.io/workflows/).  One of the key features of the Codefresh product is [Promotion Flows](https://codefresh.io/docs/docs/promotions/promotion-flow), which makes heavy use of Argo Workflows.  To better understand its capabilities, I decided to create a workflow so I can see how it works and put it into action.  In this post, I'll go over the project I undertook!
 
 ## The problem to solve
-To get this project underway, I needed a problem to solve.  I had read that Kubernetes worked with external secrets providers, but it wasn't something I'd ever used myself.  Having a local instance of HashiCorp Vault running, I decided to try my hand at including a Slack notification in a Codefresh Promotion Flow where it pulled the secrets for Slack from HashiCorp Vault in a Just In Time (JIT) fashion.  It is worth nothing that while I created this to work as a Promotion Workflow, this will work as a standard Argo Workflow.
+To get this project underway, I needed a problem to solve.  I had read that Kubernetes worked with external secret providers, but it wasn't something I'd ever used myself.  Having a local instance of HashiCorp Vault running, I decided to try my hand at including a Slack notification in a Codefresh Promotion Flow where it pulled the secrets for Slack from HashiCorp Vault in a Just In Time (JIT) fashion.  It is worth noting that while I created this to work as a Promotion Workflow, this will work as a standard Argo Workflow.
 
 ## Prep work
 To support this endeavor, there were a couple of things that I needed to configure first:
@@ -26,7 +26,7 @@ To support this endeavor, there were a couple of things that I needed to configu
 - Configure Vault to work with Kubernetes authentication/authorization
 
 ### Slack channel
-To post a message to Slack, I first need to create an App.  I used this [guide](https://api.slack.com/tutorials/tracks/getting-a-token) to create an App quickly.  Installing the App generated a Bot User OAuth Token which is what is used retrieve secrets from Vault.
+To post a message to Slack, I first need to create an App.  I used this [guide](https://api.slack.com/tutorials/tracks/getting-a-token) to create an App quickly.  Installing the App generated a Bot User OAuth Token, which is what is used to retrieve secrets from Vault.
 
 ### Vault
 For the Vault instance, there were two things I needed for this project:
@@ -34,7 +34,7 @@ For the Vault instance, there were two things I needed for this project:
 - Allow a Kubernetes Service Account access to my Vault instance
 
 #### Vault Secrets
-Secrets in Vault can be created via the UI or through an API call.  My Vault instance runs in a container without any data persistence, so I created a quick PowerShell script to automate it
+Secrets in Vault can be created via the UI, CLI, or through an API call.  My Vault instance runs in a container without any data persistence, so I created a quick PowerShell script to automate it
 
 <details>
 <summary>View the script</summary>
@@ -61,17 +61,17 @@ Invoke-RestMethod -Method Post -Uri "http://<Vault URL>:8200/v1/secret/data/slac
 </details>
 
 #### Kubernetes Service Account authentication and authorization
-There are a few files that needed to be created to configure the integration between my Kubernetes cluster and my HashiCorp vault instance:
+There are a few files that need to be created to configure the integration between my Kubernetes cluster and my HashiCorp vault instance:
 - vault-auth-service-account.yaml
 - vault-auth-secret.yaml
 - configmap-json.yaml
 - vault-policy.hcl (this one is actually generated in the script)
 
 ##### vault-auth-service-account.yaml
-This file will creates a new Kubernetes Service Account, then assign some permissions to it.
+This file will create a new Kubernetes Service Account, then assign some permissions to it.
 
 :::info
-The commented out portion is for using vanilla Argo Workflows, my example is configured to be a Codefresh Promotion Flow so I've used the default Service Account of `promotion-template` which has the necessary permissions to execute a Promotion Flow in the Codefresh product.  If using vanilla Argo Workflows, the `vault-auth` Service Account can be used.
+The commented out portion is for using vanilla Argo Workflows, my example is configured to be a Codefresh Promotion Flow so I've used the default Service Account of `cf-default-promotion-workflows-sa` which has the necessary permissions to execute a Promotion Flow in the Codefresh product.  If using vanilla Argo Workflows, the `vault-auth` Service Account can be used.
 :::
 
 ```yaml
@@ -93,7 +93,7 @@ roleRef:
   name: system:auth-delegator
 subjects:
 - kind: ServiceAccount
-  name: promotion-template # Change to vault-auth is using vanilla Argo Workflows
+  name: cf-default-promotion-workflows-sa # Change to vault-auth is using vanilla Argo Workflows
   namespace: codefresh-gitops-runtime  # Change namespace to either your GitOps Runtime namespace or argo if you're using vanilla Argo Workflows
 ```
 
@@ -108,7 +108,7 @@ metadata:
   namespace: codefresh-gitops-runtime  # Change namespace to either your GitOps Runtime namespace or argo if you're using vanilla Argo Workflows
   annotations:
     #kubernetes.io/service-account.name: vault-auth # Uncomment this line and comment out the next if using vanilla Argo Workflows
-    kubernetes.io/service-account.name: promotion-template
+    kubernetes.io/service-account.name: cf-default-promotion-workflows-sa
 type: kubernetes.io/service-account-token
 ```
 
@@ -240,11 +240,11 @@ kubectl apply -f configmap-json.yaml
 :::info
 This [tutorial](https://developer.hashicorp.com/vault/tutorials/kubernetes/agent-kubernetes) from HashiCorp contains the same commands used in this post, but in bash format.
 
-Both the bash and PowerShell scripts will require the use of the [HashiCorp Vault CLI](https://developer.hashicorp.com/vault/install).  Please be sure to grab this binary if you intend on following along with this post.
+Both the bash and PowerShell scripts will require the use of the [HashiCorp Vault CLI](https://developer.hashicorp.com/vault/install).  Please be sure to grab this binary if you intend to follow along with this post.
 :::
 
 ## Workflow template
-If you've never worked with Argo Workflows before, this template may look somewhat intimidating.  I'll break it down by section to make it more digestable.
+If you've never worked with Argo Workflows before, this template may look somewhat intimidating.  I'll break it down by section to make it more digestible.
 
 <details>
   <summary>Click to see full template</summary>
@@ -267,7 +267,7 @@ spec:
     parameters:
         - name: APP_NAME
         - name: RUNTIME
-  serviceAccountName: promotion-template
+  serviceAccountName: cf-default-promotion-workflows-sa
   entrypoint: vault-auth
   volumes:
     - configMap:
@@ -306,7 +306,7 @@ spec:
           - '-log-level=debug'
         env:
           - name: VAULT_ADDR
-            value: http://clusterpi-1:8200
+            value: http://<Vault URL>:8200
         image: hashicorp/vault
         name: vault-agent
         volumeMounts:
@@ -339,7 +339,7 @@ spec:
 </details>
 
 ### Kind
-The Kind for the Workflow manifest is a WorkflowTemplate using the api of argoproj.io/v1.  The annotations applied to this template are what is required to designate this is a `Promotion Workflow` in Codefresh (it allows it to be displayed in the correct dashboards).  If using vanilla Argo Workflows, the annotations section can be removed.
+The Kind for the Workflow manifest is a WorkflowTemplate using the api of argoproj.io/v1.  The annotations applied to this template are what is required to designate this as a `Promotion Workflow` in Codefresh (it allows it to be displayed in the correct dashboards).  If using vanilla Argo Workflows, the annotations section can be removed.
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -353,7 +353,7 @@ metadata:
 ```
 
 ### Spec
-Spec is where we define things `parameters`, `volumes` and the `entrypoint`.  There are some additional components which are broken down in the comments
+Spec is where we define things `parameters`, `volumes`, and the `entrypoint`.  There are additional components that are broken down in the comments
 
 ```yaml
 spec:
@@ -361,7 +361,7 @@ spec:
     parameters: # Define parameters for the workflow
       - name: APP_NAME # APP_NAME and RUNTIME are automatically set when used within a promotion
       - name: RUNTIME
-  serviceAccountName: promotion-template # The service account used during workflow execution
+  serviceAccountName: cf-default-promotion-workflows-sa # The service account used during workflow execution
   entrypoint: vault-auth # Name of the first template to call
   volumes: # Defines workflow wide volume usable by all templates and steps
     - configMap: # This config map is specific to the Vault work we'll be doing, it references the config map we created in the HashiCorp Vault configuration steps
@@ -375,12 +375,12 @@ spec:
 ```
 
 ### Templates
-The templates section defines the different templates that will be utilized during execution of the workflow.  This example contains three templates
-- vault-auth:  This is the name we specified in the entrypoint of the spec section and the beginning of execution and calls the other two.
-- call-vault: This is the template that will perform the call from the cluster to Vault to retrieve the secrets and produces output parameters.
+The templates section defines the different templates that will be utilized during the execution of the workflow.  This example contains three templates
+- vault-auth:  This is the name we specified in the entrypoint of the spec section and the beginning of execution.  This template calls the other two.
+- call-vault: This is the template that will perform the call from the cluster to Vault to retrieve the secrets and produce output parameters.
 - post-message:  This template posts the message to Slack and will receive the secret as an input parameter.
 
-The `- -` syntax indicates the step will execute sequentially, a single `-` means it will execute in parallel with the previous step
+The `- -` syntax indicates the step will execute sequentially; a single `-` means it will execute in parallel with the previous step
 
 ```yaml
 templates:
@@ -412,7 +412,7 @@ templates:
           - '-log-level=debug'
         env:
           - name: VAULT_ADDR
-            value: http://clusterpi-1:8200
+            value: http://<Vault URL>:8200
         image: hashicorp/vault
         name: vault-agent
         volumeMounts:
@@ -445,11 +445,11 @@ templates:
 ```
 
 ## The result
-Afer going through some trial and error learning how all of this functions, I successfully posted a message to my designated channel!
+After going through some trial and error learning how all of this functions, I successfully posted a message to my designated channel!
 
 ![Slack message](slack-message.png)
 
 ## Conclusion
-I needed something that would help me wrap my head around how Argo Workflows (and Codefresh Promotions Workflows) worked.  Going through the exercise of setting up my own with a specific purpose in mind demistified not only how they worked, but how to construct one myself.  I'm hoping this post helps you in the same way it helped me.
+I needed something that would help me wrap my head around how Argo Workflows (and Codefresh Promotions Workflows) worked.  Going through the exercise of setting up my own with a specific purpose in mind demystified not only how they worked, but also how to construct one myself.  I'm hoping this post helps you in the same way it helped me.
 
 Happy deployments!
