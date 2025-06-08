@@ -4,9 +4,9 @@ description: Discover Octopus Deploy’s view on what makes a good deployment, a
 author: mark.harrison@octopus.com
 visibility: private
 published: 2099-01-01-0000
-metaImage: img-blog-laptop-cogs-cloud.png
-bannerImage: img-blog-laptop-cogs-cloud.png
-bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+metaImage: img-what-good-deployments-look-like.png
+bannerImage: img-what-good-deployments-look-like.png
+bannerImageAlt: A box with a green tick sits on a conveyor belt with a clipboard of items all containing green ticks, alongside other boxes, one with a red cross, others with a green tick.
 tags:
   - DevOps
   - Product
