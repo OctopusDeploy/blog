@@ -4,9 +4,9 @@ description: Learn about how we're using GenAI to generate projects in Octopus D
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2099-01-01-1400
-metaImage: img-blog-laptop-cogs-cloud.png
-bannerImage: img-blog-laptop-cogs-cloud.png
-bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+metaImage: blog-ai-building-octopus-projects-with-genai.png
+bannerImage: blog-ai-building-octopus-projects-with-genai.png
+bannerImageAlt: A blue octopus logo centered in a glowing circle, surrounded by four floating window panels that appear to be application interfaces, set against a soft gradient blue-yellow background.
 tags:
   - AI
 isFeatured: false
