@@ -4,9 +4,9 @@ description: Learn how GenAI can empower DevOps teams to deliver software faster
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2099-01-01-0000
-metaImage: img-blog-laptop-cogs-cloud.png
-bannerImage: img-blog-laptop-cogs-cloud.png
-bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+metaImage: blog-ai-introducing-octopus-ai-assistant.png
+bannerImage: blog-ai-introducing-octopus-ai-assistant.png
+bannerImageAlt: The image shows an isometric illustration of a central octopus-like icon connected to multiple brain icons in a hub-and-spoke network pattern against a purple-to-blue gradient background. 
 isFeatured: false
 tags: 
   - AI
