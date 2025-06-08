@@ -4,9 +4,9 @@ description: Discover Octopus Deploy’s view on what makes a good deployment fo
 author: mark.harrison@octopus.com
 visibility: private
 published: 2099-01-01-0000
-metaImage: img-blog-laptop-cogs-cloud.png
-bannerImage: img-blog-laptop-cogs-cloud.png
-bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+metaImage: ing-opinions-on-lambda-deployments.png
+bannerImage: ing-opinions-on-lambda-deployments.png
+bannerImageAlt: A woman with a speech bubble on the left, next to a man with a speech bubble on the right, with a Function icon in the centre next to a green tick.  
 tags:
   - DevOps
   - Product
