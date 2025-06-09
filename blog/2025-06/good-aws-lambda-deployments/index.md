@@ -6,7 +6,7 @@ visibility: private
 published: 2099-01-01-0000
 metaImage: img-opinions-on-lambda-deployments.png
 bannerImage: img-opinions-on-lambda-deployments.png
-bannerImageAlt: A woman with a speech bubble on the left, next to a man with a speech bubble on the right, with a Function icon in the centre next to a green tick.  
+bannerImageAlt: Two people are discussing in front of a lambda symbol with speech bubbles and a green check mark.
 tags:
   - DevOps
   - Product
