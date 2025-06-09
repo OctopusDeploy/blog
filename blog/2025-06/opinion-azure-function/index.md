@@ -6,7 +6,7 @@ visibility: private
 published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Illustration of a woman and a man discussing best practices for deploying an Azure Function, represented by the Azure Functions logo (a lightning bolt within code brackets) in the center. Speech bubbles indicate a conversation or exchange of ideas, and a green checkmark suggests validated or approved practices. The background features a gradient of pink and purple tones, creating a modern and collaborative atmosphere.
 isFeatured: false
 tags: 
  - AI
