@@ -6,7 +6,7 @@ visibility: private
 published: 3020-01-01-1400
 metaImage: 
 bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Illustration of a woman and a man discussing best practices for deploying an Azure Web App, represented by a central icon of the Azure App Service logo (a blue globe with connected nodes). Speech bubbles indicate an exchange of ideas, while a green checkmark suggests a verified or recommended practice. The background features a smooth gradient of teal to purple, symbolizing a collaborative and modern tech environment.
 isFeatured: false
 tags: 
  - AI
