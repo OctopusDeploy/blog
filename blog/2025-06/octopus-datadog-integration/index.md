@@ -3,7 +3,7 @@ title: Introducing the Octopus Datadog integration
 description: Learn how Octopus and Datadog give you visibility across your entire CI/CD pipeline, helping you correlate data, to find and solve issues faster.
 author: tegan.ali@octopus.com
 visibility: public
-published: 2025-06-02-1400
+published: 2025-06-08-1400
 metaImage: img-blog-datadog-octopus-integration-2025.png
 bannerImage: img-blog-datadog-octopus-integration-2025.png
 bannerImageAlt: Octopus and Datadog logos connected by plugs with little stars around the connection.
