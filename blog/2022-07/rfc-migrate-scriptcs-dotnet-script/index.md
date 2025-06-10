@@ -13,11 +13,11 @@ tags:
 ---
 
 :::warning
-We shipped this change as a part of 2023.4. ScriptCS is still included as the default C# scripting engine with the option to use dotnet-script available with a project-specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment-wide feature toggle `OCTOPUS__FeatureToggles__UseDotnetScriptCSharpExecutorFeatureToggle`. Please contact [support](mailto:support@octopus.com) if you're experiencing issues or would like dotnet-script enabled.
+From 2025.2 dotnet-script will be the default C# scripting engine, support for ScriptCS will remain in 2025.2 and be removed in 2025.3. Until 2025.2 ScriptCS was the default C# scripting engine with the option to use dotnet-script available with a project-specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment-wide feature toggle `OCTOPUS__FeatureToggles__UseDotnetScriptCSharpExecutorFeatureToggle`. By setting these values to false in 2025.2 you can switch back to ScriptCS but support will be removed in 2025.3. Please contact [support](mailto:support@octopus.com) if you're experiencing issues or would like dotnet-script enabled.
 For further details on upgrading to dotnet-script please see the migration section.
 :::
 
-We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and UserVoice voting requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
+We received customer feedback and UserVoice voting requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
 
 - Unlock newer C# language features in deployment scripts
 - Allow referencing NuGet packages directly from within scripts
@@ -73,13 +73,124 @@ One trade-off of this change is that C# scripting would no longer be available o
 
 #### Migration
 
-This migration to dotnet-script introduces a dependency on net6.0, any Workers or deployment targets running C# scripts using dotnet-script will require the net6.0 SDK on path.
+This migration to dotnet-script will use the local dotnet-script on path, otherwise this change introduces a dependency on net6.0, any Workers or deployment targets running C# scripts using dotnet-script will require the net6.0 SDK on path.
 
 The Octopus class has also been removed from C# scripting, this brings behaviour inline with PowerShell scripts. This changes behaviour like setting variables from `Octopus.SetVariable` to `SetVariable`. Parameters have also been changed from `Octopus.Parameters` to `OctopusParameters`. For a full list of these methods see the [bootstrap code](https://github.com/OctopusDeploy/Calamari/blob/master/source/Calamari.Common/Features/Scripting/DotnetScript/Bootstrap.csx). The old bootstrapper is still available by setting the `Octopus.Action.Script.CSharp.UseOctopusClassBootstrapper` variable, however this is only intended for migration purposes and is due for deprecation in the near future.
 
 To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via net6.0. This requires the net6.0 SDK on the machine executing dotnet-script.
 
 To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
+
+This PowerShell script can be used to find all steps using C# scripting.
+
+```powershell
+$ErrorActionPreference = "Stop" # Ensures the script stops immediately on an error.
+$octopusURL = "http://" # Replace with your Octopus Deploy URL
+$octopusAPIKey = "API-"     # Replace with your Octopus Deploy API Key
+
+function Get-OctopusItems {
+    param(
+        [string]$OctopusUri,
+        [string]$ApiKey,
+        [int]$SkipCount = 0
+    )
+
+    $items = @()
+    $queryStringPrefix = if ($OctopusUri.Contains("?")) { "&skip=" } else { "?skip=" }
+    $headers = @{ "X-Octopus-ApiKey" = $ApiKey }
+
+    $fullUri = "$($OctopusUri)$($queryStringPrefix)$($SkipCount)"
+    
+    try {
+        $resultSet = Invoke-RestMethod -Uri $fullUri -Method GET -Headers $headers -ErrorAction Stop
+
+        if ($null -ne $resultSet.Items) {
+            $items += $resultSet.Items
+
+            if (($resultSet.Items.Count -gt 0) -and ($resultSet.Items.Count -eq $resultSet.ItemsPerPage)) {
+                $SkipCount += $resultSet.ItemsPerPage
+                $items += Get-OctopusItems -OctopusUri $OctopusUri -ApiKey $ApiKey -SkipCount $SkipCount
+            }
+        } else {
+            return $resultSet
+        }
+    }
+    catch {
+        if ($_.Exception.Response.StatusCode -eq 404 -or 
+            ($_.ErrorDetails.Message -and $_.ErrorDetails.Message -like "*Resource is not found*")) {
+            Write-Host "  Resource not found: $fullUri" -ForegroundColor DarkYellow
+            return @()
+        }
+        else {
+            Write-Host "Error accessing $fullUri : $_" -ForegroundColor Red
+            return @()
+        }
+    }
+    return $items
+}
+if ($octopusURL -eq "https://OctopusServer" -or $octopusAPIKey -eq "API-YourKey") {
+    Write-Host "Please update the `$octopusURL` and `$octopusAPIKey` variables with your Octopus Deploy instance details." -ForegroundColor Yellow
+    exit 1
+}
+
+Write-Host "Starting Octopus Deploy Script Finder..." -ForegroundColor Green
+
+$spaces = Get-OctopusItems -OctopusUri "$octopusURL/api/spaces" -ApiKey $octopusAPIKey
+
+foreach ($space in $spaces) {
+    Write-Host "`n--- Space: $($space.Name) ---" -ForegroundColor Cyan
+
+    $projects = Get-OctopusItems -OctopusUri "$octopusURL/api/$($space.Id)/projects" -ApiKey $octopusAPIKey
+
+    foreach ($project in $projects) {
+        if ($project.IsVersionControlled -eq $true) {
+            continue
+        }
+
+        $deploymentProcess = Get-OctopusItems -OctopusUri "$octopusURL/api/$($space.Id)/deploymentProcesses/$($project.DeploymentProcessId)" -ApiKey $octopusAPIKey
+
+        if ($deploymentProcess) {
+            foreach ($step in $deploymentProcess.Steps) {
+                foreach ($action in $step.Actions) {
+                    if ($action.ActionType -eq "Octopus.Script") {
+                        $scriptSyntax = $action.Properties.'Octopus.Action.Script.Syntax'
+                        if ($scriptSyntax -eq "CSharp") {
+                            Write-Host "`n  Project: $($project.Name)" -ForegroundColor Yellow
+                            Write-Host "    Step: $($step.Name)" -ForegroundColor Green
+                            Write-Host "      Script Type: $scriptSyntax" -ForegroundColor Cyan
+                        }
+                    }
+                }
+            }
+        }
+
+        $runbooks = Get-OctopusItems -OctopusUri "$octopusURL/api/$($space.Id)/projects/$($project.ID)/runbooks" -ApiKey $octopusAPIKey
+
+        foreach ($runbook in $runbooks) {
+            Write-Host "    Checking runbook: $($runbook.Name)" -ForegroundColor Green
+            $runbookProcess = Get-OctopusItems -OctopusUri "$octopusURL/api/$($space.Id)/runbookprocesses/$($runbook.RunbookProcessId)" -ApiKey $octopusAPIKey
+
+            if ($runbookProcess) {
+                foreach ($step in $runbookProcess.Steps) {
+                    foreach ($action in $step.Actions) {
+                        if ($action.ActionType -eq "Octopus.Script") {
+                            $scriptSyntax = $action.Properties.'Octopus.Action.Script.Syntax'
+                            if ($scriptSyntax -eq "CSharp") {
+                                Write-Host "`n  Project: $($project.Name) (Runbook: $($runbook.Name))" -ForegroundColor Yellow
+                                Write-Host "    Step: $($step.Name)" -ForegroundColor Green
+                                Write-Host "      Script Type: $scriptSyntax" -ForegroundColor Cyan
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+Write-Host "`nScript execution complete." -ForegroundColor Green
+```
+
 
 ### Windows Server 2012 R2 (and earlier) targets
 The other trade-off with this change is that `dotnet-script` only works with net6.0 and above. This would make C# scripting unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
@@ -110,7 +221,7 @@ $scriptCs = Join-Path $OctopusParameters["Octopus.Action.Package[scriptcs].Extra
 
 ## When will this be released?
 
-We're still evaluating how many users this change is likely to affect. We won't make or release the proposed changes until we have a clear picture of who we'll impact and what actions they'd need to take.
+dotnet-script is now available for use and is the default C# scripting language from 2025.2 on.
 
 ## We want your feedback
 
