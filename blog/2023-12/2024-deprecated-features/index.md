@@ -112,11 +112,12 @@ Before any final removal of support, we'll provide details about the change and 
 
 ### ScriptCS
 
-Earlier in 2023, we let you know we're moving the [C# script execution engine, from using ScriptCS to dotnet script](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script). 
+Earlier in 2023, we announced our plans to migrate the [C# script execution engine from ScriptCS to dotnet-script](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script).
 
-We're now midway through this process, so we temporarily support both mechanisms, controllable via a project variable. The behavior defaults to the existing ScriptCS library. This lets you opt in to the modern approach as it may need updates to some scripts as outlined in our [blog post](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script). 
+We're now midway through this process. Both engines are currently supported and selectable via a project variable. Starting with version **2025.2**, dotnet-script will become the default execution engine. We're **removing support for ScriptCS in 2025.3**.
 
-We aim to swap the default engine used by 2024.3 and then remove ScriptCS entirely by 2025.1.
+For guidance on updating your scripts, please refer to our [blog post](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script).
+
 
 ### Octo CLI
 
