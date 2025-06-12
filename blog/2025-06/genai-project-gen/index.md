@@ -1,34 +1,43 @@
 ---
 title: Building Octopus projects with GenAI
-description: Learn about how we're using GenAI to generate projects in Octopus Deploy.
+description: Learn how we're using GenAI to generate projects in Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2099-01-01-1400
 metaImage: blog-ai-building-octopus-projects-with-genai.png
 bannerImage: blog-ai-building-octopus-projects-with-genai.png
 bannerImageAlt: A blue octopus logo centered in a glowing circle, surrounded by four floating window panels that appear to be application interfaces, set against a soft gradient blue-yellow background.
-tags:
-  - AI
 isFeatured: false
+tags:
+  - DevOps
+  - AI
 ---
-
-## Introduction
 
 What if I told you that you could create a complete, functional Octopus project, based on hand-crafted examples of best practices, by simply typing a prompt like `Create a Kubernetes project called "Web App"`?
 
-This is exactly what we're providing with the Octopus AI Assistant. In this post, I'll describe how we're using GenAI to generate Octopus projects, and how you can use this functionality to accelerate your DevOps processes.
+This is exactly what we're providing with the Octopus AI Assistant. 
+
+In this post, I describe how we're using GenAI to generate Octopus projects, and how you can use this functionality to accelerate your DevOps processes.
 
 ## Building the templates
 
 GenAI is only as good as the data it has learned from. For GenAI to build a project, along with all the supporting resources, we start by hand crafting a number of template projects according to a set of best practices that we've evolved over the years. 
 
-At this stage the template projects are nothing more than regular projects manually created via the web UI. This makes it easy to build and test the project as if it were any other project in Octopus.
+At this stage, the template projects are nothing more than regular projects manually created via the web UI. This makes it easy to build and test the project as if it were any other project in Octopus.
 
-Best practices capture aspects like variable and target tag naming conventions, release versioning schemes, worker images, supporting runbooks, and much more. There are hundreds of configurable fields in an Octopus project, and we have a continually evolving set of opinions to provide DevOps teams with a solid foundation for their deployment workflows.
+Best practices capture aspects like: 
+
+- Variable and target tag naming conventions
+- Release versioning schemes
+- Worker images
+- Supporting runbooks
+- And much more 
+
+There are hundreds of configurable fields in an Octopus project, and we have a continually evolving set of opinions to provide DevOps teams with a solid foundation for their deployment workflows.
 
 Importantly, we do not train an LLM on any customer data.
 
-Once we have a template project that embodies our best practices, the next step is to serialize the project to a format that can be passed to an LLM.
+After we have a template project that embodies our best practices, the next step is to serialize the project to a format that can be passed to an LLM.
 
 ## Serializing the template
 
@@ -36,13 +45,17 @@ LLMs excel at generating text, and so to have the LLM generate an Octopus projec
 
 Terraform is a natural choice because:
 
-* We can reasonably expect any large LLM to have been trained on a large body of Terraform examples
-* HCL files contain multiple resources and express their relationships via interpolations
-* It is trivial to determine result is semantically valid Terraform configuration
+- We can reasonably expect any large LLM to have been trained on a large body of Terraform examples
+- HCL files contain multiple resources and express their relationships via interpolations
+- It's trivial to determine if the result is semantically valid Terraform configuration
 
 [Octoterra](https://github.com/OctopusSolutionsEngineering/OctopusTerraformExport) is used to convert an existing Octopus project into Terraform configuration. This process is automated, providing a short feedback loop where projects can be updated, serialized, and supplied as an example as part of a LLM prompt.
 
-That said, we could not generate a typical Terraform representation of a project. Terraform relies on persistent external state to track the resources it manages, and we wanted to avoid persisting any information about an Octopus instance were possible. Treating the Octopus instance as the single source of truth meant all data stayed securely behind the Octopus API, removed issues around keeping external data in sync, and removed the security concerns around storing and accessing potentially sensitive data.
+That said, we could not generate a typical Terraform representation of a project. Terraform relies on persistent external state to track the resources it manages, and we wanted to avoid persisting any information about an Octopus instance where possible. Treating the Octopus instance as the single source of truth meant: 
+
+- All data stayed securely behind the Octopus API
+- It removed issues around keeping external data in sync
+- It removed the security concerns around storing and accessing potentially sensitive data
 
 To support these requirements, we generate what we call "stateless" Terraform modules. These modules always pair a data source and the resource to be created in such a way as to create the resource if it didn't exist or reference the existing resource if it was already present. This is an example:
 
@@ -84,21 +97,21 @@ resource "octopusdeploy_lifecycle" "lifecycle_application" {
 }
 ```
 
-This Terraform configuration would not work as expected if it was applied multiple times with a persistent state. Resources would be alternatively created and destroyed as the count associated with a resource toggled between 0 and 1.
+This Terraform configuration would not work as expected if it were applied multiple times with a persistent state. Resources would be alternatively created and destroyed as the count associated with a resource toggled between 0 and 1.
 
-However, when the Terraform configuration is run against an empty state, this style of configuration works perfectly. Missing resources are created, and existing resources are left unmodified. This is exactly the behavior we want when generating Octopus resources via the LLM. It provides an imperative method for creating resources if they do not exist without needing to know anything about the Octopus space where the configuration will be applied.
+However, when the Terraform configuration is run against an empty state, this style of configuration works perfectly. Missing resources are created, and existing resources are left unmodified. This is exactly the behavior we want when generating Octopus resources via the LLM. It provides an imperative method for creating resources if they do not exist, without needing to know anything about the Octopus space where the configuration will be applied.
 
 ## Training the LLM
 
-Once the ability to serialize projects to stateless Terraform modules is in place, we can pass these modules as part of the context of an LLM prompt. This is called one-shot or few-shot prompting, where the LLM is given an example of the task it is being asked to perform.
+After the ability to serialize projects to stateless Terraform modules is in place, we can pass these modules as part of the context of an LLM prompt. This is called one-shot or few-shot prompting, where the LLM is given an example of the task it's being asked to perform.
 
 These examples got us almost all the way to having an LLM generate a project, and all the supporting resources, from a plain text prompt. However, because the LLMs had not been explicitly trained or fine-tuned on the stateless Terraform modules, we needed some additional prompt instructions to avoid edge cases and steer the LLM towards generating the correct Terraform configuration.
 
 Generating the instructions involved:
 
-* Having an LLM generate multiple sample prompts that we might expect end users to write themselves
-* Running the generated prompts and observing the resulting Terraform configuration
-* Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases
+- Having an LLM generate multiple sample prompts that we might expect end users to write themselves
+- Running the generated prompts and observing the resulting Terraform configuration
+- Finding cases where the LLM generated invalid output and refining the prompt instructions to avoid these cases
 
 This is the prompt we used to generate sample prompts:
 
@@ -140,7 +153,7 @@ Include a random number suffix on the project name from 1 to 10000.
 Print each example in an individual markdown code block.
 ```
 
-The generated prompts often requested deployment processes that even an Octopus expert couldn't implement. The goal was not to generate logically valid output, but to ensure our combination of sample Terraform and custom instructions generated semantically valid output. This demonstrated that the LLM had the examples and instructions required to generate semantically valid output, meaning it was up to us to provide the correct sample projects to generate logically valid output.
+The generated prompts often requested deployment processes that even an Octopus expert couldn't implement. The goal was not to generate logically valid output, but to ensure our combination of sample Terraform and custom instructions generated semantically valid output. This demonstrated that the LLM had the examples and instructions needed to generate semantically valid output, meaning it was up to us to provide the correct sample projects to generate logically valid output.
 
 You can view the instructions from the [GitHub repository](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/main/context/generalinstructions.txt).
 
@@ -148,26 +161,26 @@ You can view the instructions from the [GitHub repository](https://github.com/Oc
 
 Once the LLM was trained, the next step was to execute the generated Terraform configuration to populate the Octopus space.
 
-This was a relatively easy task since we did not have to persist any state. So we created an Azure function that:
+This was a relatively easy task since we didn't have to persist any state. So we created an Azure function that:
 
-* Embedded the OpenTofu executable
-* Exposed an HTTP endpoint to generate a plan
-* Applied the plan once it was approved by the end user
+- Embedded the OpenTofu executable
+- Exposed an HTTP endpoint to generate a plan
+- Applied the plan after it was approved by the end user
 
 While this is a simple process at a high level, there are a number of security concerns we needed to address:
 
-* The Terraform configuration should only create Octopus resources, not other resources for platforms like Azure or AWS
-* We needed to fail if any sensitive data was included in the generated Terraform configuration because the prompt interface is not secure
-* We needed to enforce the use of local Terraform state and not allow Terraform to try and save state in any external location
-* Any existing resource must not be modified when creating AI generated resources
+- The Terraform configuration should only create Octopus resources, not other resources for platforms like Azure or AWS.
+- We needed to fail if any sensitive data was included in the generated Terraform configuration because the prompt interface is not secure.
+- We needed to enforce the use of local Terraform state and not allow Terraform to try and save state in any external location.
+- Any existing resource must not be modified when creating AI generated resources.
 
-The first two concerns were addressed by testing the JSON representation of the Terraform plan file with Open Policy Agent. Thanks to the declarative nature of Terraform, it is possible to [determine the provider that will be used to create a resource](https://developer.hashicorp.com/terraform/language/resources/syntax#providers). We can also identify which attributes the provider marks as sensitive and fail unless the sensitive values are set to dummy values like `CHANGE ME`.
+The first 2 concerns were addressed by testing the JSON representation of the Terraform plan file with Open Policy Agent. Thanks to the declarative nature of Terraform, it's possible to [determine the provider that will be used to create a resource](https://developer.hashicorp.com/terraform/language/resources/syntax#providers). We can also identify which attributes the provider marks as sensitive and fail unless the sensitive values are set to dummy values like `CHANGE ME`.
 
 To enforce the use of local state we implemented [Terraform override files](https://developer.hashicorp.com/terraform/language/files/override). These files are created alongside the generated Terraform configuration and take precedence.
 
-Finally, we could take advantage of the fact that Terraform will not modify resources it does not own, and it will never own anything because Terraform was always executed with a blank state.
+Finally, we could take advantage of the fact that Terraform will not modify resources it does not own, and it will never own anything, because Terraform was always executed with a blank state.
 
-The combination of OPA policies run against plan JSON files and override files allowed us to restrict the creation of AI-generated resources in a way that would have been all but impossible with custom scripts or raw API calls.
+The combination of OPA policies run against plan JSON files and override files let us restrict the creation of AI-generated resources in a way that would have been all but impossible with custom scripts or raw API calls.
 
 ## Customizing the generated project
 
@@ -175,7 +188,7 @@ All of this is overkill if the purpose is to recreate a template project verbati
 
 The real power of LLMs are their ability to generate custom responses to any prompt.
 
-The combination of custom LLM instructions, general purpose example Terraform configurations, and specific template project examples allows us to prompt the LLM to generate customized projects. For example, we can write a prompt like this:
+The combination of custom LLM instructions, general purpose example Terraform configurations, and specific template project examples lets us prompt the LLM to generate customized projects. For example, we can write a prompt like this:
 
 ```text
 Create an Azure Web App project called "My Azure App". 
@@ -189,7 +202,7 @@ Because the LLM has seen what a tenant looks like, what tenant tags look like, a
 
 Importantly, this specific scenario is not something we need to train the LLM to do. These customizations to the template projects are possible because of the one-shot and few-shot examples we provided to the LLM.
 
-This allows us to generate complex, bespoke projects that are still based on our best practices. As long as we provide enough examples of valid Terraform configuration, catch edge cases with the LLM instructions, and provide a good set of template projects, end users can generate almost any project they can imagine.
+This lets us generate complex, bespoke projects that are still based on our best practices. As long as we provide enough examples of valid Terraform configuration, catch edge cases with the LLM instructions, and provide a good set of template projects, end users can generate almost any project they can imagine.
 
 ## Creating a virtuous cycle
 
@@ -200,3 +213,5 @@ We now had a process that allowed us to generate Octopus projects from hand-craf
 One of the challenges when integrating AI into an existing platform is identifying where AI adds unique value to solve real-world problems. By training an LLM to generate Octopus projects using their inherent affinity for generating text, we can empower new Octopus users to populate an entire Octopus space with a functional sample project, built on top of our hand-crafted examples, in a matter of minutes. 
 
 This is just one way that we're using GenAI to improve the experience of using Octopus Deploy, and we're excited to see how our customers will use this functionality to accelerate their DevOps processes.
+
+Happy deployments!
