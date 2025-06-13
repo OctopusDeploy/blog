@@ -2,16 +2,16 @@
 title: Opinions on Azure Function deployments
 description: Learn what Octopus Deploy considers a best practice deployment of an Azure Function.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: Illustration of a woman and a man discussing best practices for deploying an Azure Function, represented by the Azure Functions logo (a lightning bolt within code brackets) in the center. Speech bubbles indicate a conversation or exchange of ideas, and a green checkmark suggests validated or approved practices. The background features a gradient of pink and purple tones, creating a modern and collaborative atmosphere.
+visibility: public
+published: 2026-01-01-1400
+metaImage: blog-opinions-on-azure-functions-deployments-2025-750x400.jpg
+bannerImage: blog-opinions-on-azure-functions-deployments-2025-750x400.jpg
+bannerImageAlt: Illustration of people having a discussion with speech bubbles, with the Azure Functions logo, a lightning bolt within code brackets, in the center. A green checkmark suggests validated or approved practices.
 isFeatured: false
-tags: 
+tags:
+ - DevOps 
  - AI
  - Azure
- - DevOps
  - Deployment Patterns
  - Serverless
 ---
