@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2025-06-16-1400
-metaImage: 
-bannerImage: 
+metaImage: img-blog-inside-inside-devops-750x400-oluwateniola-1x.png
+bannerImage: img-blog-inside-inside-devops-750x400-oluwateniola-1x-no-title.png
 bannerImageAlt: Photo of Oluwateniola Olubowale
 isFeatured: false
 tags: 
@@ -22,11 +22,9 @@ Hear from [Oluwateniola Olubowale](https://www.linkedin.com/in/oluwateniola-olub
 
 *Oluwateniola:*  DevOps represents a fundamental cultural shift rather than just a technical discipline. It’s about fostering close collaboration between development and operations teams to deliver high-quality software at speed. It emphasizes automation, transparency, and continuous feedback, all aimed at driving measurable business outcomes.
 
-
 **How did your DevOps journey start?**
 
 *Oluwateniola:*  It began when I transitioned from a backend development role to one that required more involvement with infrastructure and deployment processes. I became increasingly curious about the delays and inefficiencies that occurred after code was written. This curiosity led me to explore Continuous Integration, containerization, and Infrastructure as Code (IaC)—areas that gradually shaped my path into DevOps.
-
 
 **What’s the most challenging part of DevOps?**
 
@@ -55,7 +53,7 @@ Hear from [Oluwateniola Olubowale](https://www.linkedin.com/in/oluwateniola-olub
 
 **What DevOps book would you recommend reading?**
 
-*Oluwateniola:* [The Phoenix Project](https://octopus.com/devops/reading-list/#the-phoenix-project) by Gene Kim remains one of the most accessible and insightful introductions to DevOps. It conveys key concepts through relatable storytelling. For a deeper dive, [The DevOps Handbook](https://octopus.com/devops/reading-list/#the-devops-handbook) by Gene Kim, Jez Humble, Patrick Debois, and John Willis offers a comprehensive, practical guide to implementing DevOps practices.us.com/devops/reading-list/#team-topologies)* by Matthew Skelto
+*Oluwateniola:* [The Phoenix Project](https://octopus.com/devops/reading-list/#the-phoenix-project) by Gene Kim remains one of the most accessible and insightful introductions to DevOps. It conveys key concepts through relatable storytelling. For a deeper dive, [The DevOps Handbook](https://octopus.com/devops/reading-list/#the-devops-handbook) by Gene Kim, Jez Humble, Patrick Debois, and John Willis offers a comprehensive, practical guide to implementing DevOps practices.
 
 **What’s one thing about you that might surprise us?**
 
