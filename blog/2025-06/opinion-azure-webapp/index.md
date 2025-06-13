@@ -2,10 +2,10 @@
 title: Opinions on deploying an Azure Web App
 description: This post discusses my opinion on how to deploy an Azure Web App.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2026-01-01-1400
+metaImage: blog-opinions-on-azure-web-app-2025-750x400.jpg
+bannerImage: blog-opinions-on-azure-web-app-2025-750x400.jpg
 bannerImageAlt: Illustration of people having a discussion with speech bubbles, with a central icon of the Azure App Service logo. A green checkmark suggests a verified or recommended practice.
 isFeatured: false
 tags: 
