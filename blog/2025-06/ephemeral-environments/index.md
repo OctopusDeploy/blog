@@ -1,3 +1,18 @@
+---
+title: Help shape Ephemeral Environments
+description: Learn about ephemeral environments coming soon to Octopus and help us shape the feature.
+author: harriet.alexander@octopus.com
+visibility: public
+published: 2025-06-23-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
+isFeatured: false
+tags: 
+  - Product
+  - Environment Promotion
+---
+
 ![ephemeral environments set up based development environment](friendly-neighbourhood-designer.jpg)
 # Ephemeral Environments are coming: Help us shape it.
 
