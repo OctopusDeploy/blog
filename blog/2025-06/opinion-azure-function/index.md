@@ -77,13 +77,13 @@ Notification that a deployment has failed is equally as important, if not more s
 Octopus has embraced AI and developed the Octopus AI Assistant. The Octopus AI Assistant gives you an easy-to-use, prompt-based system to create projects with best practices baked in.  For example, using the prompt:
 
 ```
-Create an Azure Function project called "My Function 1" in space "My Space"
+Create an Azure Function project called 'My Function 1' in space 'My Space'.
 ```
 
 Octopus will create a new project including all the steps outlined in this post.  It will also create everything necessary to run the project, including runbooks to create the infrastructure, project variables, and a Service Principal Azure account.  If you'd rather use OIDC, all you need is a small tweak to the prompt:
 
 ```
-Create an Azure Function project called "My Function 1" in space "My Space".  Make the Azure Account use OIDC.
+Create an Azure Function project called 'My Function 1' in space 'My Space'.  Make the Azure Account use OIDC.
 ```
 
 ## Conclusion
