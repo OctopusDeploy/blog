@@ -2,8 +2,8 @@
 title: Building Octopus projects with GenAI
 description: Learn how we're using GenAI to generate projects in Octopus Deploy.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2099-01-01-1400
+visibility: public
+published: 2026-01-01-1400
 metaImage: blog-ai-building-octopus-projects-with-genai.png
 bannerImage: blog-ai-building-octopus-projects-with-genai.png
 bannerImageAlt: A blue octopus logo centered in a glowing circle, surrounded by four floating window panels that appear to be application interfaces, set against a soft gradient blue-yellow background.
