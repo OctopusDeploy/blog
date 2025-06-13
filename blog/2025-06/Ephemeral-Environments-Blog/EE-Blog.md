@@ -1,4 +1,4 @@
-
+![ephemeral environments set up based development environment](friendly-neighbourhood-designer.jpg)
 # Ephemeral Environments are coming: Help us shape it.
 
 In the fast-paced world of software development, few phrases provoke as much frustration as “It works on my machine.” It’s the ultimate debugging roadblock: your code works flawlessly in your local environment, but everything breaks when it merges. But what if there was a way to ensure your code wasn’t just “working on your machine” but on an environment that mirrors your production environment before you merge?
