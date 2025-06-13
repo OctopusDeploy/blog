@@ -2,8 +2,8 @@
 title: Good AWS Lambda deployments
 description: Discover Octopus Deploy’s view on what makes a good deployment for an AWS Lambda and how you can get started quickly using GenAI.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2099-01-01-0000
+visibility: public
+published: 2026-01-01-1400
 metaImage: img-opinions-on-lambda-deployments.png
 bannerImage: img-opinions-on-lambda-deployments.png
 bannerImageAlt: Two people are discussing in front of a lambda symbol with speech bubbles and a green check mark.
