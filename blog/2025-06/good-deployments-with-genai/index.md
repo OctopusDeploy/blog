@@ -2,8 +2,8 @@
 title: Good deployments with GenAI
 description: Discover Octopus Deploy’s view on what makes a good deployment, and how GenAI can help teams adopt best practices faster and with more confidence.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2099-01-01-0000
+visibility: public
+published: 2026-01-01-1400
 metaImage: img-what-good-deployments-look-like.png
 bannerImage: img-what-good-deployments-look-like.png
 bannerImageAlt: Two people inspect packages on a conveyor belt, marking them with check or cross symbols based on clipboard data.
