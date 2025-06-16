@@ -2,7 +2,7 @@
 title: "The State of GitOps report: Exploring effective GitOps"
 description: Key insights from the first State of GitOps report based on 660 survey responses. Learn how high-performing teams achieve better software delivery, increased reliability, and stronger security through 6 essential GitOps practices. 
 author: steve.fenton@octopus.com
-visibility: private
+visibility: public
 published: 2025-06-17-1400
 metaImage: what-is-gitops-2025.png
 bannerImage: what-is-gitops-2025.png
