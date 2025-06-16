@@ -50,7 +50,7 @@ Whether you want to sign up for a product demo, participate in our alpha testing
 
 ## How to sign up
 
-[Register your interest via our form](https://admin.typeform.com/form/ZOia9Aje/create?block=9ded49c0-1887-400a-a9ba-5e2ae8aab68d).
+[Register your interest via our form](https://octopusdeploy.typeform.com/to/ZOia9Aje).
 
 We're hoping to release ephemeral environments in all instances later this year.
 
