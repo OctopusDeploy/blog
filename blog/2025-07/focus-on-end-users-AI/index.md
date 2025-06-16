@@ -12,37 +12,66 @@ tags:
   - AI
 ---
 
-Recently I attended a conference targeted at CIOs, CTOs, and VPs of Technology.  As expected, there was a lot of sessions on AI and how they can help your company be more efficient.  The example given was the well-known use of AI in the hiring process.  "Your human resources people won't have to wade through so many CVs and interviews!"  
+Recently I attended a conference targeted at CIOs, CTOs, and VPs of Technology.  As expected, there was a lot of sessions on AI and how they can help companies be more efficient.  The example given was the well-known use of AI in the hiring process.  Use AI as gatekeepers to quickly weed out all the unqualified candidates.  "Your human resources people won't have to wade through so many CVs and phone screen!"  
 
-That use case improves the efficiency of human resources, or your people team.  But that efficiency comes at the cost of the end users, the people you are trying to hire.  Because _everyone hates_ how AI is used in hiring processes today.  Phrases like dystopian and Orwellian are common.  In this article, I'll discuss why it is important to focus on end users with real-world use cases from our AI Assistant.
+That use case improves the efficiency of human resources or your people team.  But that efficiency comes at the cost of the end users, the people you are trying to hire.  _Everyone hates_ how AI is used in hiring processes today.  Phrases like dystopian and Orwellian are common.  In this article, I'll discuss why it is important to focus on both the beneficiary users and end users of your AI feature.
 
-## Who are your end users?
+## Beneficiary User vs. End User
 
-For B2C or B2B companies, the default answer is "our customers!" But that is partially correct.  It is correct for any public facing side of the business, for example a e-commerce site, a physical retail store, or a SaaS application.  What about all the internal applications and tools used within the company?  Customers never see or use those tools.  
+A beneficiary user is a person who gets a benefit from leveraging AI.  The end user is the person who will use an AI feature to accomplish a specific task.
 
-In some cases, there are two kinds of end users.  They use the software differently based on their role.  At Octopus Deploy, our primary users are platform engineers/DevOps engineers/Team Leads.  They are the experts that developers or sysadmins turn to first when something doesn't work.  For us, our end-users are both the platform engineers and the developers.
+Going back to hiring process, the beneficiary user is the person in charge of wading through CVs and performing the initial phone screen. The end user is the person submitting their CV.  The person in charge of going through CVs benefits from AI by off-loading the repetitive work of screening unqualified candidates.  Imagine a job posting for a senior .NET developer but 30% of CVs submitted are tailored towards project managers.  You might think I'm exaggerating, but you'd be surprised.  As a former hiring manager who had to wade through CVs, I was shocked how many people were "CV Bombing" - applying for as many positions as possible.
 
-Going back to the hiring process example, the end users are human resources AND the applicants.  For an e-commerce website, the end users are the internal marketing / product managers AND the customer.  
+Looking at Octopus Deploy, the beneficiary of our AI Assistant is the platform engineer.  The end user is the developer who uses the assistant to accomplish a particular task.  For example, you can ask the Octopus AI Assistant why a deployment or runbook run failed.  The AI Assistant will look at the failure message, and using our knowledge base, our docs, and the web, will come up with a reason why the failure occurred and suggestions on how to fix it.  Assuming the suggestion is correct, the developer can quickly self-serve a solution and never involve the platform engineer.  The platform engineer benefits because they can focus on high-value tasks instead of helping debug a specific deployment failure.  If the platform engineer didn't know the answer, they'd be going through our docs or doing a Google search.  
+
+Now that we understand the two kinds of users, let's examine what happens when a person is both the beneficiary and the end user.
 
 ## Learning the wrong lessons from the success of ChatGPT
 
-One of many benefits of ChatGPT is that it is an evolution of search engines.  Before ChatGPT, you did a Google (or DuckDuckGo) search and got back a list of results.  The search engine ranked the results for you.  They had complex algorithms to find the best results based on their internal ranking system.  A cottage industry of SEO (Search Engine Optimization) sprung up to get higher results.  ChatGPT changed that by providing you the answer curated from the pages.  It uses linear math to find the common result.  It was a huge time savings over clicking through a list of pages hoping for the best.  
+ChatGPT and other similar tools are in a unique situation where a person is both the beneficiary and the end user.  
 
-All the search engines saw the writing on the wall and quickly added their own AI-based answer.  In this particular case, the end user was the customer.  They focused on providing value to their customers. 
+One of many benefits of ChatGPT is that it is an evolution of search engines.  Before ChatGPT, you did a Google (or DuckDuckGo) search and got back a list of results.  The search engine ranked the results for you.  They had complex algorithms to find the best results based on their internal ranking system.  A cottage industry of SEO (Search Engine Optimization) sprung up to get higher results.  ChatGPT changed that by providing you the answer curated from the content from many websites.  It uses linear math to find the most likely result.
 
-But ChatGPT can do so much more, including generating content, images, composing songs, and more.  Experienced individuals know it is good for scaffolding, but terrible at the details.  
+For common questions, with many sources more or less agreeing on the same answer, the results between Google and ChatGPT are close.  ChatGPT is not infallible, one time it insisted that Omaha, Nebraska was 29 nautical miles from Chicago, Illinois.  Google can be more accurate, but that is a result of maturity.  They've had 25 years to improve and iterate their search results algorithm.  
+
+For this particular use case, ChatGPT is popular because of the interface.  Everyone is familiar with the Google Search box.  The results are where they differ.  Instead of forcing the user to click through pages of results hoping for the best, it generates and formats an answer that is easy to read.  Google Searches are very transactional, do a search, get a result, move on with your day.  With ChatGPT, the sessions are interactive.  You can ask additional questions and ChatGPT remembers the entire conversation.  
+
+All the search engines saw the writing on the wall and quickly added their own AI-based answer.  
+
+I'm only focused on the question/answer aspect of ChatGPT.  I know it can do so much more, including generating content, images, composing songs, and more.   
 
 Unfortunately, technology companies seem insistent on learning the wrong lessons when looking at the success of other companies.  They see "people like prompts and providing answers or content to them, let's do that for [insert use case here]!"    
 
-## Don't sacrifice your end users for the goal of efficiency
- 
-My first computer game was [Space Quest III](https://en.wikipedia.org/wiki/Space_Quest_III).  It was a standard 1980s/early 1990s Sierra game where you typed in commands to get the on-screen character to perform an action.  There is no help guide or tutorial.  You had to figure it out.  My brother and I spent _weeks_ trying to get out of the first area.  We had to find the magic set of commands to execute in a specific sequence in specific areas.
+## An awful user experience and its impact
 
-You've probably encountered the latest trend in phone support, you dial the number, and a human sounding voice asks you want you need help with.  You tell them what you need and the response is "I'm sorry, I didn't get that" or "I didn't understand."  I absolutely hate this trend.  It's like trying to get out of the first area in Space Quest III.  You need to know the magic phrase to proceed.  I can't believe I miss the days of "press 1 to...press 2 to..."  
+That wrong lesson has its roots in computer graphic adventure games from the 1980s/early 1990s.
 
-I switched banks because my old bank had that phone support system.  I can talk to a person on the phone in less than three minutes with my new bank.  I know why my bank went with that phone system.  They believed they could help more customers with fewer support people.  They were no longer had a limit by the number of menus and submenus in the old phone system.  But they missed the point, they gained efficiency of their support team by sacrificing their customer's experience.  With ChatGPT, I'm fine with "good enough" because I can take the result and modify it as I see fit.  With banking, "good enough" is unacceptable.  
+My first computer game was [Space Quest III](https://en.wikipedia.org/wiki/Space_Quest_III) from Sierra.  Like computer games of that era, I typed in commands to get the on-screen character to perform an action.  There was no help guide or tutorial.  I had to figure it out.  My brother and I spent _weeks_ trying to get out of the first area.  We had to find the magic set of commands to execute in a specific sequence in specific areas.
 
+Last year, I started the multi-month process of changing banks from a regional to a national bank.  The national bank offered a high-yield savings account while the regional bank didn't.  There were a few use cases where I had to call the national bank.  They have followed the latest trend in phone support.  Dial the number, a human sounding voice asks you want you need help with.  Tell them what is needed the response is "I'm sorry, I didn't get that" or "I didn't understand."  I needed to know the magic phrase to get help.  There was no clear escape hatch to get to an operator.
 
+Their online AI help agent was no better.  The AI help agent was trained on their public docs.  If the answer wasn't in the docs, it couldn't help me.  Often, it referred me to calling their support line.  It created an endless cycle of frustration.    
 
- 
+That experience was so bad that I went back to the regional bank.  They proudly promote you'll talk to a real person when calling for help.  I would rather lose thousands of dollars over the span of years than to deal with the national bank's awful AI-based help system.
 
+## Augmenting the end user experience
+
+The problem is just like humans, AI makes mistakes.  Unlike humans, AI cannot make complex decisions.  It doesn't do well when something is outside the expected parameters.  Today's AI has to still undergo many more evolutions to become similar to [Tony Stark's Jarvis](https://en.wikipedia.org/wiki/J.A.R.V.I.S.) in the MCU.  We are still a far way off.  In a [recent study](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) by Apple Computers, many popular LRMs (Large Reasoning Models) models couldn't handle puzzles (Tower of Hanoi, Checker Jumping, Block World and River Crossing) once the number of pieces increased beyond simple examples.  
+
+When you work under the assumption that AI is imperfect like it's creator, the end result can augment the end-user experience.  ChatGPT and the Octopus AI Assistant ARE NOT intended to entirely replace the current end-user interfaces.  If a developer cannot solve a deployment failure using the suggestions from Octopus AI they can still escalate to their DevOps or Platform Engineers.  If I want to know about an answer from ChatGPT, I can go to the source and read the details.  They augmented what was already there.  
+
+That is very different from using AI in the hiring process or using AI based help agents.  Unless you know someone at the hiring company or the magic phrase for AI Agent based help, there are no alternatives.  They are replacement end-user interfaces.  
+
+When AI is the sole gatekeeper, the end-user experience suffers.  I believe that is one of the main reasons why [IBM found](https://www.ibm.com/thought-leadership/institute-business-value/en-us/c-suite-study/ceo) that only 25% of AI initiatives have delivered the expected ROI over the past few years.  
+
+## Considerations for the end user experience
+
+1. What problem is the AI feature attempting to solve for the end user?
+2. What is the fallback when the AI feature encounters an unknown use case?
+3. What is an acceptable level of accuracy for the AI feature?
+4. What is the escalation process for the end user?
+5. How will the functionality be discovered?
+
+## Conclusion
+
+When an AI feature has a beneficiary user and end user, equal focus must be spent on improving the experience for both.  
