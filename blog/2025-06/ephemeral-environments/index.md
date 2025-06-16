@@ -17,7 +17,7 @@ In the fast-paced world of software development, few phrases provoke as much fru
 
 In this post, I introduce our solution—Ephemeral Environments.
 
-## What ere Ephemeral Environments?
+## What are Ephemeral Environments?
 
 We've been hard at work developing Ephemeral Environments, tailored for modern development workflows. These environments are automatically generated and linked to feature branches created through pull requests (PRs). They offer a temporary space for testing code changes without affecting the main lifecycle environments. 
 
