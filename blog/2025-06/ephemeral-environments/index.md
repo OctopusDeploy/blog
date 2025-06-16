@@ -4,9 +4,9 @@ description: Learn about Ephemeral Environments, coming soon to Octopus, and hel
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2025-06-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blog-ephemeralenvironments25.png
+bannerImage: blog-ephemeralenvironments25.png
+bannerImageAlt: Banner showing a parent environment branching to two ephemeral environments while two illustrated developers point to the child nodes against a blue-green gradient background.
 isFeatured: false
 tags: 
   - Product
@@ -21,7 +21,7 @@ In this post, I introduce our solution—Ephemeral Environments.
 
 We've been hard at work developing Ephemeral Environments, tailored for modern development workflows. These environments are automatically generated and linked to feature branches created through pull requests (PRs). They offer a temporary space for testing code changes without affecting the main lifecycle environments. 
 
-The primary goal is to **shift left** in the development process: identifying issues earlier when they are easier and less costly to address. This then minimizes surprises later in the workflow. 
+The primary goal is to *shift left* in the development process: identifying issues earlier when they are easier and less costly to address. This then minimizes surprises later in the workflow. 
 
 ## How Ephemeral Environments will work
 
@@ -50,7 +50,7 @@ Whether you want to sign up for a product demo, participate in our alpha testing
 
 ## How to sign up
 
-[Register your interest via our form](https://admin.typeform.com/form/ZOia9Aje/create?block=9ded49c0-1887-400a-a9ba-5e2ae8aab68d) to have your say.
+[Register your interest via our form](https://admin.typeform.com/form/ZOia9Aje/create?block=9ded49c0-1887-400a-a9ba-5e2ae8aab68d).
 
 We're hoping to release ephemeral environments in all instances later this year.
 
