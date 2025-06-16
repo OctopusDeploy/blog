@@ -10,7 +10,6 @@ bannerImageAlt: Person holds magnifying glass over GitOps logo, surrounded by ic
 isFeatured: false
 tags: 
   - DevOps
-  - Kubernetes
   - GitOps
 ---
 
