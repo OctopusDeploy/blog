@@ -22,6 +22,7 @@ Check everything off this list before you submit your post for review.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/latest/brand/writing/working-with-images-SGltcd4n-SGltcd4n).
 - [ ] I've added alt text for all the images I've included (alt text describes an image to people unable to see it, 125 characters max).
 - [ ] The draft is complete, and this post is ready to be reviewed. (Please mark the post 'ready for review' at the bottom of the PR.)
+- [ ] I've dropped a note in Slack in #website-requests to advise that my post is ready for review.
 
 ## How to review this PR
 
