@@ -33,4 +33,4 @@ Posts are organized in year-month directories (e.g., 2025-01/). Find or create t
 
 When you're happy with your post, please create a PR. Go through the checklist on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md) and complete all the steps. When ready, please drop a note in Slack in #website-requests.
 
-Please allow a week for scheduling.
+Please allow a week for design to create a new image if needed, and for scheduling.
