@@ -23,16 +23,14 @@ You'll also find some helpful links and information on the [PR template](https:/
 
 If you're drafting a post that you need to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
 
-# How to submit a blog post 
+## How to submit a blog post
 
 For detailed instructions, please see the section on [creating a new branch, pull request, and blog post in Confluence](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2828959895/Managing+the+blog#Creating-a-new-branch%2C-pull-request%2C-and-blog-post).
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
-Posts are organized in year-month directories (e.g., 2025-01/). Find or create the directory that is roughly when your post is going out, and add your files there. 
+Posts are organized in year-month directories (e.g., 2025-01/). Find or create the directory that is roughly when your post is going out, and add your files there.
 
-When you're happy with your post, please create a PR. Go through the checklist on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md) and complete all the steps before you assign @TeganAli as reviewer. When ready, please drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
+When you're happy with your post, please create a PR. Go through the checklist on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md) and complete all the steps. When ready, please drop a note in Slack in #website-requests.
 
-The editing process takes time, and we have a schedule of posts, so giving us at least one week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
-
-(If you're feeling unsure about your content and would like feedback on a work in progress, you can create a draft PR and tag @TeganAli with your request, however she'll do a full review and edit when the post is submitted as a PR and she's assigned as a reviewer.)
+Please allow a week for design to create a new image if needed, and for scheduling.
