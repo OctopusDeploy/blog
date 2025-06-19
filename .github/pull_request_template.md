@@ -16,7 +16,7 @@ Please note that the design team asks for a 1–2 week turnaround time.
 Check everything off this list before you submit your post for review. 
 
 - [ ] I'm familiar with the [Octopus voice and style](https://www.octopus.design/latest/brand/writing/voice-and-style-fUurR0ng), the [guide for blog content basics](https://www.octopus.design/latest/brand/writing/blog-content-basics-WtUy91nY-WtUy91nY), and [writing educational content](https://www.octopus.design/latest/brand/writing/educational-content-how-we-write-about-what-we-do-PP3ny9gk-PP3ny9gk).
-- [ ] I've checked the content using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice. 
+- [ ] I've [self-edited my work](https://www.octopus.design/latest/brand/writing/self-editing-tips-JTx3azMm-JTx3azMm), including checking the content using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice. 
 - [ ] I've used text-to-speech software to listen to my writing to minimize typos and other mistakes.
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://www.octopus.design/latest/brand/writing/blog-content-basics-WtUy91nY-WtUy91nY#section-common-validation-errors-4d) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/latest/brand/writing/working-with-images-SGltcd4n-SGltcd4n).
