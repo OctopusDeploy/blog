@@ -34,9 +34,7 @@ One of many benefits of ChatGPT is that it is an evolution of search engines.  B
 
 For common questions, with many sources more or less agreeing on the same answer, the results between Google and ChatGPT are close.  ChatGPT is not infallible, one time it insisted that Omaha, Nebraska was 29 nautical miles from Chicago, Illinois.  Google can be more accurate, but that is a result of maturity.  They've had 25 years to improve and iterate their search results algorithm.  
 
-For this particular use case, ChatGPT is popular because of the interface.  Everyone is familiar with the Google Search box.  The results are where they differ.  Instead of forcing the user to click through pages of results hoping for the best, it generates and formats an answer that is easy to read.  Google Searches are very transactional, do a search, get a result, move on with your day.  With ChatGPT, the sessions are interactive.  You can ask additional questions and ChatGPT remembers the entire conversation.  
-
-All the search engines saw the writing on the wall and quickly added their own AI-based answer.  
+For this particular use case, ChatGPT is popular because of the interface.  Everyone is familiar with the Google Search box.  The results are where they differ.  Instead of forcing the user to click through pages of results hoping for the best, it generates and formats an answer that is easy to read.  Google Searches are very transactional, do a search, get a result, move on with your day.  With ChatGPT, the sessions are interactive.  You can ask additional questions and ChatGPT remembers the entire conversation.   
 
 I'm only focused on the question/answer aspect of ChatGPT.  I know it can do so much more, including generating content, images, composing songs, and more.   
 
@@ -56,7 +54,7 @@ That experience was so bad that I went back to the regional bank.  They proudly 
 
 ## Augmenting the end user experience
 
-The problem is just like humans, AI makes mistakes.  Unlike humans, AI cannot make complex decisions.  It doesn't do well when something is outside the expected parameters.  Today's AI has to still undergo many more evolutions to become similar to [Tony Stark's Jarvis](https://en.wikipedia.org/wiki/J.A.R.V.I.S.) in the MCU.  We are still a far way off.  In a [recent study](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) by Apple Computers, many popular LRMs (Large Reasoning Models) models couldn't handle puzzles (Tower of Hanoi, Checker Jumping, Block World and River Crossing) once the number of pieces increased beyond simple examples.  
+The problem is just like humans, AI makes mistakes.  Unlike humans, AI cannot make complex decisions.  It doesn't do well when something is outside the expected parameters.  Today's AI has to still undergo many more evolutions to become similar to [Tony Stark's Jarvis](https://en.wikipedia.org/wiki/J.A.R.V.I.S.) in the MCU.  We are still a far way off.  In a [recent study](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) by Apple Computers, many popular LRMs (Large Reasoning Models) models couldn't handle puzzles (Tower of Hanoi, Checker Jumping, Block World and River Crossing) once the number of pieces increased beyond simple examples.  Because of that, many AI features aren't empowered to help beyond simple use cases.  It results in a frustrating experience for the end user.  
 
 When you work under the assumption that AI is imperfect like it's creator, the end result can augment the end-user experience.  ChatGPT and the Octopus AI Assistant ARE NOT intended to entirely replace the current end-user interfaces.  If a developer cannot solve a deployment failure using the suggestions from Octopus AI they can still escalate to their DevOps or Platform Engineers.  If I want to know about an answer from ChatGPT, I can go to the source and read the details.  They augmented what was already there.  
 
@@ -66,12 +64,24 @@ When AI is the sole gatekeeper, the end-user experience suffers.  I believe that
 
 ## Considerations for the end user experience
 
+When designing the Octopus AI assistant we started with multiple questions focused on augmenting the end-user experience.  We didn't want to "sprinkle AI" into the product and claim we had an AI strategy.  
+
 1. What problem is the AI feature attempting to solve for the end user?
 2. What is the fallback when the AI feature encounters an unknown use case?
 3. What is an acceptable level of accuracy for the AI feature?
-4. What is the escalation process for the end user?
+4. In the event the response is wrong, what is the escalation process for the end user?
 5. How will the functionality be discovered?
+
+The answers for deployment failure functionality of the AI Assistant are:
+
+1. Often failures are a result of a incorrect configuration, transient error, bug in the script, permissions, or some other common problem.  In many cases, it is outside the direct control of Octopus.  Surface the information to the user, to enable them to self-service the fix, and increase time to recovery.  
+2. Provide a generic answer and encourage the user to contact Octopus Support or their internal experts.
+3. Reasonable accuracy is expected.  Errors can be caused by a variety of conditions outside the control of Octopus Deploy.  Provide multiple suggestions using publicly available documentation.  If none of them work, encourage the user to escalate to a human.
+4. In the event the response doesn't help, provide link to Octopus Support or to contact their internal experts.  In either case, they will escalate to a human.
+5. When navigating to a failed deployment or runbook run, the Octopus AI Assistant will provide a suggestion the user can click on to get the answer.
+
+The focus the entire time has been "how can we take what we have and make it better?"  Not, "how can we ensure that Platform or DevOps engineers are never bothered again."        
 
 ## Conclusion
 
-When an AI feature has a beneficiary user and end user, equal focus must be spent on improving the experience for both.  
+When an AI feature has a beneficiary user and end user, focus on providing a fantastic experience for the end-user.  AI features must augment the end-user experience. But assume that at some point the AI will be incorrect (just like a person is incorrect), and offer a clear escalation path.  Despite the many advances in AI, experienced people can handle complex scenarios.  When the end-user isn't considered, any the only focus is "improving the bottom line" it ends up creating an inferior replacement for an existing experience.  End users will only put up with so much before they decide to change.  
