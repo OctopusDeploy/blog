@@ -1,9 +1,9 @@
 ---
-title: Title using sentence case
+title: Git credential repository restrictions
 description: A brief summary of the announcement, 170 characters max including spaces.
-author: firstname.surname@octopus.com
+author: frank.lin@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2025-07-01-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -15,26 +15,28 @@ tags:
   - Engineering
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags
+As part of our work on [orchestrating ArgoCD with Octopus](https://roadmap.octopus.com/c/85-orchestrate-argo-cd-with-octopus), we’ve taken the opportunity to add an enhancement to Git credentials called repository restrictions. This allows you to specify what repository URL’s the Git credential can be used for.
 
-State the subject of the announcement as plainly and directly as you can.
+## Background
 
-## H2 subheading here (please use sentence case for all headings)
+Part of the ArgoCD orchestration involves updating the manifests in the repository that an ArgoCD application is monitoring. Octopus can query the repository URL from ArgoCD, but ArgoCD doesn’t expose the login credentials. The user has to enter the credentials into Octopus separately. 
 
-If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
+Previously, a Git credential only stored a name and description alongside the login credentials. It’s difficult to tell what repositories the credentials are valid for, other than relying on naming conventions. Also, any authentication errors from choosing the wrong credential would only surface when Octopus made a request to the Git server.
 
-If you're talking about a new feature, try to include the pain users feel, and how our feature solves it. Try using this formula, or similar: When you wanted to [do something], you used to have to [toil and pain]. But with our new [feature] you can [do something even better with less toil and pain].
+For the Argo orchestration work, we had no reliable way to pick the appropriate credential for a given repository URL.
 
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
-Here's an example of authoring alt text and an image caption:
-![Alt text](image.png)*Caption text*
+## Solution
 
-Please note the advice in our style guide about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+By letting the user specify a list of allowed repositories on a Git credential, Octopus can now automatically match a credential to the repository URL when updating ArgoCD applications.
+
+The feature also lets you control where the credentials can be used within the Space.
+
+You can add complete repository URL’s or specify a wildcard at the end to include everything under that path.
 
 ## Conclusion
 
-Close the post by stating what the reader should expect next and invite feedback.
+This feature is now rolling out across Octopus Cloud. Give it a try a let us know what you think at xyz@octopus.com
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
+- [Github issue](https://github.com/OctopusDeploy/Issues/issues/9471)
