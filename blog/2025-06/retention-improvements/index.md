@@ -16,6 +16,8 @@ tags:
 
 Retention isn’t the most glamorous part of the deployment process, but it is critical to get right. When storage is efficiently used, it can improve deployment times and performance. To help achieve this, we’ve made two improvements to package retention, with more to come. 
 
+These changes are available to cloud customers now and will be included in the server release 2025.3.
+
 ## Recent improvements (and why they matter to you)
 
 1. Package caching
