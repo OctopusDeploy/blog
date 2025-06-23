@@ -34,6 +34,11 @@ The feature also lets you control where the credentials can be used within the S
 You can add complete repository URL’s or specify a wildcard at the end to include everything under that path.
 
 ![Git credential repository restrictions](git-credential-details.png)
+
+When you reference a Git credential that isn't compatible with the repository URL, a validation error will prevent you from saving the step. The same validation also runs at deployment time. 
+
+![Step validation](step-validation.png)
+
 ## Conclusion
 
 This feature is now rolling out across Octopus Cloud. Give it a try a let us know what you think at xyz@octopus.com
