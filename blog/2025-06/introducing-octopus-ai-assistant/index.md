@@ -37,7 +37,7 @@ When you look at the metrics used to measure DevOps performance, like DORA metri
 
 - Deployment Frequency is a direct measurement of production deployment frequency
 - Mean Lead Time for Changes measures the time it takes to get changes into production
-- Mean Time to Restore measures how quickly a change can be made in production to restore service
+- Failed Deployment Recovery Time measures how quickly a change can be made in production to restore service
 - Change Failure Rate measures how many production deployments introduce failures
 
 Anything that prevents a DevOps team from delivering software to production reduces their performance. There's simply no way to be a high-performing DevOps team without delivering software to production.
