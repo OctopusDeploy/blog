@@ -4,9 +4,9 @@ description: Optimize efficiency with our latest package retention enhancements
 author: michelle.obrien@octopus.com
 visibility: private
 published: 2025-06-26-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: img-blog-retention-policy-2025.png
+bannerImage: img-blog-retention-policy-2025.png
+bannerImageAlt: Policy document going into a drawer with an Octopus logo on the front.
 isFeatured: false
 tags: 
 - Product
